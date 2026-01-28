@@ -1,0 +1,16 @@
+<div class="border-2 border-dashed border-store-brown/30 bg-store-cream p-8 rounded-xl text-center hover:bg-white transition cursor-pointer"
+     (click)="fileInput.click()">
+  
+  <input #fileInput type="file" (change)="onFileSelected($event)" class="hidden">
+  
+  <div class="flex flex-col items-center">
+    <lucide-icon name="upload-cloud" class="text-store-brown w-12 h-12 mb-3"></lucide-icon>
+    <p class="text-store-brown font-semibold">Click to upload product image</p>
+    <p class="text-xs text-gray-500 mt-1">PNG, JPG up to 2MB</p>
+  </div>
+
+  <div *ngIf="uploadProgress > 0" class="mt-4 w-full bg-gray-200 rounded-full h-2">
+    <div class="bg-store-brown h-2 rounded-full transition-all duration-300" 
+         [style.width.%]="uploadProgress"></div>
+  </div>
+</div>

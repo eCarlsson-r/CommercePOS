@@ -1,0 +1,35 @@
+<div class="bg-white rounded-2xl border border-border shadow-sm overflow-hidden">
+  <div class="p-6 border-b border-border flex items-center justify-between bg-store-cream/50">
+    <h3 class="font-bold text-primary flex items-center gap-2">
+      <lucide-icon name="package-search" class="w-5 h-5"></lucide-icon>
+      Stock Replenishment Needed
+    </h3>
+    <span class="text-xs font-mono text-muted-foreground">{{ lowStockItems().length }} alerts</span>
+  </div>
+
+  <div class="divide-y divide-border max-h-[400px] overflow-y-auto">
+    @for (item of lowStockItems(); track item.id) {
+      <div class="p-4 flex items-center justify-between hover:bg-muted/30 transition">
+        <div class="space-y-1">
+          <p class="font-semibold text-sm">{{ item.name }}</p>
+          <div class="flex items-center gap-2">
+            <div class="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+              <div class="bg-destructive h-full" [style.width.%]="(item.quantity / 10) * 100"></div>
+            </div>
+            <span class="text-[10px] font-bold text-destructive">{{ item.quantity }} left</span>
+          </div>
+        </div>
+        
+        <button (click)="onOrder(item.id)" 
+                class="bg-primary text-white text-xs px-3 py-1.5 rounded-lg hover:bg-store-brown-dark transition shadow-sm">
+          Restock
+        </button>
+      </div>
+    } @empty {
+      <div class="p-12 text-center text-muted-foreground italic">
+        <lucide-icon name="check-circle" class="w-8 h-8 mx-auto mb-2 text-stock-in"></lucide-icon>
+        All stock levels are healthy.
+      </div>
+    }
+  </div>
+</div>

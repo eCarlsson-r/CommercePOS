@@ -1,0 +1,96 @@
+<div class="p-6 max-w-7xl mx-auto space-y-8">
+  
+  <div class="flex justify-between items-end">
+    <div>
+      <h1 class="text-3xl font-bold text-store-brown tracking-tight">Inventory Logistics</h1>
+      <p class="text-gray-500">Manage transfers between Medan and Binjai branches</p>
+    </div>
+    <button (click)="isDrawerOpen.set(true)" 
+            class="bg-store-brown text-white px-8 py-3 rounded-2xl font-bold shadow-lg shadow-store-brown/20 flex items-center gap-2 hover:-translate-y-1 transition-all">
+      <i-lucide name="plus" class="w-5 h-5"></i-lucide>
+      Create New Transfer
+    </button>
+  </div>
+
+  @if (incomingTransfers().length > 0) {
+    <section class="animate-in fade-in slide-in-from-top duration-500">
+      <h2 class="text-sm font-bold text-orange-600 uppercase tracking-widest mb-4 flex items-center gap-2">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+        </span>
+        Action Required: Incoming Shipments
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @for (transfer of incomingTransfers(); track transfer.id) {
+          <div class="bg-white border-2 border-orange-100 p-5 rounded-2xl flex justify-between items-center shadow-sm">
+            <div class="flex items-center gap-4">
+              <div class="bg-orange-50 p-3 rounded-xl text-orange-600">
+                <i-lucide name="truck" class="w-6 h-6"></i-lucide>
+              </div>
+              <div>
+                <p class="font-bold text-gray-900">Transfer #{{ transfer.id }}</p>
+                <p class="text-xs text-gray-500">From: {{ transfer.from_branch_name }} • {{ transfer.items.length }} Items</p>
+              </div>
+            </div>
+            <button (click)="onReceive(transfer.id)" 
+                    class="bg-orange-500 text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-orange-600 transition shadow-md shadow-orange-200">
+              Confirm Arrival
+            </button>
+          </div>
+        }
+      </div>
+    </section>
+  }
+
+  <section>
+    <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Movement History</h2>
+    <div class="bg-white rounded-2xl border border-border overflow-hidden">
+      <table class="w-full text-left">
+        <thead class="bg-store-cream/20 text-store-brown text-xs font-bold uppercase tracking-widest">
+          <tr>
+            <th class="p-5">Reference</th>
+            <th class="p-5">Path</th>
+            <th class="p-5">Items</th>
+            <th class="p-5">Status</th>
+            <th class="p-5 text-right">Date</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          @for (move of allMovements(); track move.id) {
+            <tr class="hover:bg-store-cream/5 transition-colors group">
+              <td class="p-5 font-mono text-sm">#TRF-{{ move.id }}</td>
+              <td class="p-5">
+                <div class="flex items-center gap-3">
+                  <span class="text-gray-900 font-medium">B-{{ move.from_branch_id }}</span>
+                  <div class="h-px w-4 bg-gray-300"></div>
+                  <span class="text-gray-900 font-medium">B-{{ move.to_branch_id }}</span>
+                </div>
+              </td>
+              <td class="p-5 text-sm text-gray-600">{{ move.items.length }} Items</td>
+              <td class="p-5">
+                @if (move.status === 'M') {
+                  <span class="flex items-center gap-1.5 text-blue-600 bg-blue-50 px-3 py-1 rounded-full text-xs font-bold w-fit border border-blue-100">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+                    IN TRANSIT
+                  </span>
+                } @else {
+                  <span class="flex items-center gap-1.5 text-green-600 bg-green-50 px-3 py-1 rounded-full text-xs font-bold w-fit border border-green-100">
+                    <i-lucide name="check" class="w-3 h-3"></i-lucide>
+                    RECEIVED
+                  </span>
+                }
+              </td>
+              <td class="p-5 text-right text-sm text-gray-400">
+                {{ move.created_at | date:'dd/MM/yy HH:mm' }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <app-stock-movement-drawer [isOpen]="isDrawerOpen()" (onClose)="isDrawerOpen.set(false)"></app-stock-movement-drawer>
+</div>

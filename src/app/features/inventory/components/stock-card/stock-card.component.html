@@ -1,0 +1,43 @@
+<div class="overflow-hidden bg-white rounded-xl shadow-lg border-t-4 border-store-brown">
+  <div class="p-6 bg-gray-50 flex justify-between items-center">
+    <h3 class="text-xl font-bold text-gray-800">Kartu Stok</h3>
+    <button (click)="exportToPdf()" class="text-store-brown hover:text-store-brown-light">
+      <lucide-icon name="download"></lucide-icon> Export PDF
+    </button>
+  </div>
+
+  <table class="w-full text-left">
+    <thead class="bg-gray-100 uppercase text-xs font-semibold text-gray-600">
+      <tr>
+        <th class="px-6 py-4">Date / Time</th>
+        <th class="px-6 py-4">Reference</th>
+        <th class="px-6 py-4 text-green-600">IN</th>
+        <th class="px-6 py-4 text-red-600">OUT</th>
+        <th class="px-6 py-4 bg-store-brown text-white">BALANCE</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-100">
+      <tr *ngFor="let log of stockLogs" class="hover:bg-gray-50 transition">
+        <td class="px-6 py-4">
+          <p class="font-medium text-gray-800">{{ log.date }}</p>
+          <p class="text-xs text-gray-400">{{ log.time }}</p>
+        </td>
+        <td class="px-6 py-4">
+          <span class="px-2 py-1 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold">
+            {{ log.reference }}
+          </span>
+          <p class="text-xs text-gray-500 mt-1">{{ log.description }}</p>
+        </td>
+        <td class="px-6 py-4 font-bold text-green-600">
+          {{ log.qty_in ? '+' + log.qty_in : '' }}
+        </td>
+        <td class="px-6 py-4 font-bold text-red-600">
+          {{ log.qty_out ? '-' + log.qty_out : '' }}
+        </td>
+        <td class="px-6 py-4 font-black text-store-brown bg-amber-50">
+          {{ log.running_balance }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
