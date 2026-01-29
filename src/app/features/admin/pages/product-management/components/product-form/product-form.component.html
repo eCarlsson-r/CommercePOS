@@ -1,0 +1,58 @@
+<form [formGroup]="productForm" (ngSubmit)="submit()" class="space-y-6 flex-1 overflow-y-auto pr-2">
+  
+  <div class="space-y-4">
+    <div>
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Product Name</label>
+      <input formControlName="name" type="text" placeholder="e.g. Arabica Gayo 250g"
+             class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-store-brown outline-none transition-all">
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">SKU / Barcode</label>
+        <input formControlName="sku" type="text" placeholder="BRW-001"
+               class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-store-brown outline-none">
+      </div>
+      <div>
+        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Category</label>
+        <select formControlName="category_id" 
+                class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-store-brown outline-none appearance-none cursor-pointer">
+          <option value="">Select...</option>
+          @for (cat of store.categories(); track cat.id) {
+            <option [value]="cat.id">{{ cat.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <hr class="border-dashed border-gray-100">
+
+  <div class="space-y-4">
+    <div>
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Universal Base Price (Rp)</label>
+      <input formControlName="base_price" type="number"
+             class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl font-mono font-bold text-store-brown focus:border-store-brown outline-none">
+    </div>
+
+    <div>
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Global Min. Stock Alert</label>
+      <div class="flex items-center gap-3">
+        <input formControlName="min_stock_alert" type="number"
+               class="w-24 mt-1 p-3 bg-gray-50 border border-border rounded-xl text-center focus:border-store-brown outline-none">
+        <span class="text-xs text-gray-400 italic">Notify me when branch stock falls below this.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-8 flex gap-3 mt-auto sticky bottom-0 bg-white pb-4">
+    <button type="button" (click)="cancel.emit()"
+            class="flex-1 px-6 py-4 rounded-2xl font-bold text-gray-500 hover:bg-gray-50 transition-colors">
+      Cancel
+    </button>
+    <button type="submit" [disabled]="productForm.invalid"
+            class="flex-2 bg-store-brown text-white px-6 py-4 rounded-2xl font-bold shadow-lg shadow-store-brown/20 hover:opacity-90 disabled:opacity-50 transition-all">
+      {{ initialData ? 'Update Product' : 'Create Product' }}
+    </button>
+  </div>
+</form>

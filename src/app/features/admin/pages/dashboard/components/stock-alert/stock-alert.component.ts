@@ -1,6 +1,6 @@
 // src/app/features/dashboard/components/stock-alert.component.ts
 import { Component, computed, inject } from '@angular/core';
-import { ProductService } from '@/services/product.service';
+import { StockService } from '@/services/stock.service';
 import { LucideAngularModule } from 'lucide-angular'; // <--- Import this
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -11,11 +11,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
   imports: [LucideAngularModule]
 })
 export class StockAlertComponent {
-  private productService = inject(ProductService);
+  private stockService = inject(StockService);
 
   // Automatic reactive filter: only items with stock < 10
   lowStockItems = toSignal(
-    this.productService.getLowStock(), 
+    this.stockService.getLowStock(), 
     { initialValue: [] }
   );
 

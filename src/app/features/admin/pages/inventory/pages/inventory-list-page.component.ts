@@ -1,8 +1,11 @@
 // src/app/features/inventory/pages/inventory-list-page.component.ts
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
-import { StockCardComponent } from '@/features/inventory/components/stock-card/stock-card.component';
+import { StockCardComponent } from '@/features/admin/pages/inventory/components/stock-card/stock-card.component';
+import { CategoryService } from '@/services/category.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { BranchService } from '@/services/branch.service';
 
 @Component({
   selector: 'app-inventory-list-page',
@@ -28,9 +31,7 @@ import { StockCardComponent } from '@/features/inventory/components/stock-card/s
             class="w-full pl-10 pr-4 py-2 rounded-lg border border-border focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none">
         </div>
         <select class="px-4 py-2 rounded-lg border border-border outline-none bg-white">
-          <option>All Categories</option>
-          <option>Electronics</option>
-          <option>Furniture</option>
+          <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
         </select>
       </div>
 
@@ -42,4 +43,10 @@ import { StockCardComponent } from '@/features/inventory/components/stock-card/s
     </div>
   `
 })
-export class InventoryListPageComponent {}
+export class InventoryListPageComponent {
+  private categoryService = inject(CategoryService);
+  private branchService = inject(BranchService);
+  
+  categories = toSignal(this.categoryService.getCategories())();
+  branches = toSignal(this.branchService.getBranches())();
+}

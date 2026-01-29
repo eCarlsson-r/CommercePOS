@@ -1,0 +1,63 @@
+<div class="p-6 max-w-7xl mx-auto space-y-6">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-bold text-store-brown">Customer Network</h1>
+      <p class="text-sm text-gray-500 tracking-tight">Managing loyalty across all 11 branches</p>
+    </div>
+    
+    <div class="flex gap-2">
+      <div class="relative">
+        <lucide-icon name="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></lucide-icon>
+        <input type="text" placeholder="Search by phone..." 
+               class="pl-10 pr-4 py-2 border border-border rounded-xl focus:border-store-brown outline-none text-sm">
+      </div>
+      <button class="bg-store-brown text-white px-5 py-2 rounded-xl font-bold text-sm shadow-sm hover:opacity-90">
+        New Member
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-2xl border border-border overflow-hidden shadow-sm">
+    <table class="w-full text-left border-collapse">
+      <thead class="bg-gray-50 text-xs font-bold text-gray-400 uppercase tracking-widest border-b">
+        <tr>
+          <th class="p-4">Customer</th>
+          <th class="p-4">Tier</th>
+          <th class="p-4 text-center">Points</th>
+          <th class="p-4 text-right">Total Spend</th>
+          <th class="p-4"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border">
+        @for (member of customers(); track member.id) {
+          <tr class="hover:bg-store-cream/5 transition-colors group">
+            <td class="p-4">
+              <div class="font-bold text-gray-900">{{ member.name }}</div>
+              <div class="text-xs text-gray-500">{{ member.phone }}</div>
+            </td>
+            <td class="p-4">
+              <span [ngClass]="{
+                'bg-slate-100 text-slate-600': member.member_tier === 'Silver',
+                'bg-amber-50 text-amber-600': member.member_tier === 'Gold',
+                'bg-indigo-50 text-indigo-600': member.member_tier === 'Platinum'
+              }" class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter border border-current opacity-80">
+                {{ member.member_tier }}
+              </span>
+            </td>
+            <td class="p-4 text-center font-mono font-bold text-store-brown">
+              {{ member.points | number }}
+            </td>
+            <td class="p-4 text-right font-medium text-gray-700">
+              Rp {{ member.total_spend | number }}
+            </td>
+            <td class="p-4 text-right">
+              <button class="text-gray-400 hover:text-store-brown transition-colors">
+                <lucide-icon name="arrow-right" class="w-4 h-4"></lucide-icon>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -5,8 +5,7 @@ import { provideZard } from './core/provider/providezard';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideServiceWorker } from '@angular/service-worker';
-import { LucideAngularModule } from 'lucide-angular';
-import { ShoppingCart, Truck, Users, AlertCircle, Edit3, Trash2, MapPin, UserPlus, ArrowRight, Check } from 'lucide-angular';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -15,20 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
-    }), 
-    importProvidersFrom(
-      LucideAngularModule.pick({
-        ShoppingCart, 
-        Truck, 
-        Users, 
-        AlertCircle, 
-        Edit3, 
-        Trash2, 
-        MapPin, 
-        UserPlus, 
-        ArrowRight, 
-        Check 
-      })
-    )
+    })
   ]
 };

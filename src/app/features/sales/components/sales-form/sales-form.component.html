@@ -25,7 +25,7 @@
     <div class="p-4 bg-store-cream/30 border-b">
       <label class="text-xs font-bold text-store-brown uppercase mb-1 block">Customer</label>
       <div class="relative">
-        <select [(ngModel)]="selectedCustomerId" 
+        <select [(ngModel)]="activeSale().customerId" 
                 class="w-full bg-white border border-border rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-store-brown/20">
           <option [value]="null">Walk-in Customer</option>
           <option *ngFor="let customer of customers" [value]="customer.id">{{ customer.name }}</option>
@@ -38,19 +38,19 @@
     </div>
 
     <div class="flex-1 overflow-y-auto p-4 space-y-4">
-      <div *ngFor="let item of cart" class="flex justify-between items-center">
+      <div *ngFor="let item of activeSale().items" class="flex justify-between items-center">
         <div>
           <p class="font-medium">{{ item.name }}</p>
-          <p class="text-sm text-gray-500">{{ item.qty }} x {{ item.price | currency }}</p>
+          <p class="text-sm text-gray-500">{{ item.quantity }} x {{ item.price | currency }}</p>
         </div>
-        <p class="font-bold">{{ (item.qty * item.price) | currency }}</p>
+        <p class="font-bold">{{ (item.quantity * item.price) | currency }}</p>
       </div>
     </div>
 
     <div class="p-6 bg-gray-50 rounded-b-xl">
       <div class="flex justify-between mb-4 text-xl font-bold">
         <span>Total</span>
-        <span class="text-store-brown">{{ total | currency }}</span>
+        <span class="text-store-brown">{{ totalPrice() | currency }}</span>
       </div>
       <button (click)="processPayment()" 
               class="w-full bg-store-brown text-white py-4 rounded-lg font-bold text-lg hover:bg-opacity-90 transition">
@@ -59,5 +59,5 @@
     </div>
   </aside>
 
-  <app-thermal-receipt [items]="cart" [total]="total"></app-thermal-receipt>
+  <app-thermal-receipt [items]="activeSale().items" [total]="totalPrice()"></app-thermal-receipt>
 </div>

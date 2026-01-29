@@ -1,0 +1,78 @@
+<div class="p-6 max-w-7xl mx-auto space-y-6">
+  <div class="flex justify-between items-end">
+    <div>
+      <h1 class="text-2xl font-bold text-store-brown">Master Product Catalog</h1>
+      <p class="text-sm text-gray-500">Universal definitions for all 11 branches</p>
+    </div>
+    <button (click)="openCreateDrawer()" 
+            class="bg-store-brown text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:bg-opacity-90 transition-all">
+      <lucide-icon name="plus" class="w-4 h-4"></lucide-icon>
+      Add Universal Product
+    </button>
+  </div>
+
+  <div class="bg-white p-4 rounded-2xl border border-border flex gap-4 items-center shadow-sm">
+    <div class="relative flex-1">
+      <lucide-icon name="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></lucide-icon>
+      <input type="text" placeholder="Search by SKU or Name..." 
+             class="w-full pl-10 pr-4 py-2 bg-gray-50 border-none rounded-lg focus:ring-2 ring-store-brown/20 outline-none">
+    </div>
+    <select class="bg-gray-50 border-none rounded-lg px-4 py-2 text-sm font-medium outline-none">
+      <option>All Categories</option>
+      @for(cat of categories(); track cat.id) {
+        <option [value]="cat.id">{{ cat.name }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="bg-white rounded-3xl border border-border overflow-hidden shadow-sm">
+    <table class="w-full text-left">
+      <thead class="bg-gray-50 border-b border-border">
+        <tr>
+          <th class="p-4 text-xs font-bold text-gray-400 uppercase">Product</th>
+          <th class="p-4 text-xs font-bold text-gray-400 uppercase">SKU</th>
+          <th class="p-4 text-xs font-bold text-gray-400 uppercase">Category</th>
+          <th class="p-4 text-xs font-bold text-gray-400 uppercase">Base Price</th>
+          <th class="p-4"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border">
+        @for(product of products(); track product.id) {
+          <tr class="hover:bg-gray-50 transition-colors group">
+            <td class="p-4">
+              <div class="font-bold text-gray-900">{{ product.name }}</div>
+            </td>
+            <td class="p-4 text-sm font-mono text-gray-500">{{ product.sku }}</td>
+            <td class="p-4">
+              <span class="px-2 py-1 bg-store-cream/20 text-store-brown text-[10px] font-bold rounded uppercase">
+                {{ product.category?.name }}
+              </span>
+            </td>
+            <td class="p-4 font-medium text-gray-700">Rp {{ product.base_price | number }}</td>
+            <td class="p-4 text-right">
+              <button (click)="openEditDrawer(product)" class="p-2 text-gray-400 hover:text-store-brown transition-colors">
+                <lucide-icon name="edit-3" class="w-4 h-4"></lucide-icon>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (isDrawerOpen()) {
+  <div class="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex justify-end">
+    <div class="w-full max-w-md bg-white h-full shadow-2xl p-8 flex flex-col">
+       <h2 class="text-xl font-bold mb-6 text-store-brown">
+         {{ selectedProductId() ? 'Edit Product' : 'New Universal Product' }}
+       </h2>
+       
+       <app-product-form 
+         [initialData]="selectedProduct()" 
+         (save)="saveProduct($event)" 
+         (cancel)="closeDrawer()">
+       </app-product-form>
+    </div>
+  </div>
+}

@@ -5,9 +5,9 @@ import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 
 // Import our new components
-import { StatsGridComponent } from '@/features/dashboard/components/stats-grid/stats-grid.component';
-import { RecentSalesComponent } from '@/features/dashboard/components/recent-sales/recent-sales.component';
-import { StockAlertComponent } from '@/features/dashboard/components/stock-alert/stock-alert.component';
+import { StatsGridComponent } from '@/features/admin/pages/dashboard/components/stats-grid/stats-grid.component';
+import { RecentSalesComponent } from '@/features/admin/pages/dashboard/components/recent-sales/recent-sales.component';
+import { StockAlertComponent } from '@/features/admin/pages/dashboard/components/stock-alert/stock-alert.component';
 
 @Component({
   selector: 'app-dashboard-page',

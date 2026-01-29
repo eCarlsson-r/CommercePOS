@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import { AuthService } from '@/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +14,7 @@ import { LucideAngularModule } from 'lucide-angular';
     <div class="bg-white p-8 rounded-3xl border border-border shadow-xl shadow-primary/5">
       <h2 class="text-xl font-bold text-foreground mb-6">Welcome back</h2>
       
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <form [formGroup]="loginForm" class="space-y-4" (submit)="handleLogin($event)">
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Email</label>
           <input type="email" formControlName="email" 
@@ -39,7 +40,7 @@ import { LucideAngularModule } from 'lucide-angular';
 })
 export class LoginPageComponent {
   private fb = inject(FormBuilder);
-  private router = inject(Router);
+  private auth = inject(AuthService);
   
   isLoading = false;
   loginForm = this.fb.group({
@@ -47,14 +48,18 @@ export class LoginPageComponent {
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
-  onSubmit() {
-    if (this.loginForm.valid) {
-      this.isLoading = true;
-      // Simulate API Call
-      setTimeout(() => {
+  handleLogin(event: Event) {
+    event.preventDefault();
+    this.isLoading = true;
+
+    this.auth.login({ email: this.loginForm.value.email, password: this.loginForm.value.password }).subscribe({
+      next: () => {
+        console.log('Login successful! Redirecting to Medan Dashboard...');
+      },
+      error: (err) => {
         this.isLoading = false;
-        this.router.navigate(['/dashboard']);
-      }, 1500);
-    }
+        alert('Invalid credentials. Please check your Medan Store account.');
+      }
+    });
   }
 }

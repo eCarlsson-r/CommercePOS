@@ -1,13 +1,24 @@
-import { inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Subject, switchMap, startWith } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { StockService } from '@/services/stock.service';
+import { CommonModule } from '@angular/common';
+import { StockMovementDrawerComponent } from '../../components/stock-movement-drawer/stock-movement-drawer.component';
+import { LucideAngularModule } from 'lucide-angular';
+
+@Component({
+  selector: 'app-stock-movement-page',
+  standalone: true,
+  imports: [CommonModule, StockMovementDrawerComponent, LucideAngularModule],
+  templateUrl: './stock-movement-page.component.html'
+})
 
 export class StockMovementPageComponent {
   private stockService = inject(StockService);
   
   // 1. Create a "Trigger" signal
   private refreshTrigger = new Subject<void>();
+  isDrawerOpen = signal(false);
 
   // 2. This signal automatically re-fetches whenever refreshTrigger.next() is called
   allMovements = toSignal(

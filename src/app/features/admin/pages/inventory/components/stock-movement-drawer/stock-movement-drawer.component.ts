@@ -39,12 +39,14 @@ import { switchMap } from 'rxjs';
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">From Branch</label>
-              <input type="text" disabled value="Medan Main" class="w-full border p-3 rounded-xl bg-gray-50 text-gray-500">
+              <select formControlName="from_branch_id" class="w-full border p-3 rounded-xl outline-none">
+                <option *ngFor="let b of branches" [value]="b.id">{{ b.name }}</option>
+              </select>
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">To Branch</label>
               <select formControlName="to_branch_id" class="w-full border p-3 rounded-xl outline-none">
-                <option value="2">Binjai Store</option>
+                <option *ngFor="let b of branches" [value]="b.id">{{ b.name }}</option>
               </select>
             </div>
           </div>
@@ -75,6 +77,8 @@ export class StockMovementDrawerComponent {
   products = toSignal(toObservable(this.branchService.selectedBranch).pipe(
         switchMap(branch => this.productService.getProducts(branch?.id))
       ), { initialValue: [] })();
+
+  branches = this.branchService.branches();
 
   // For the selection form
   transferForm = this.fb.group({

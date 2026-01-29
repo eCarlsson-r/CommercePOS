@@ -1,3 +1,19 @@
+export interface ActiveSale {
+  branchId: number;
+  items: CartItem[];
+  customerId: number | null;
+  customerName?: string;
+  appliedPoints: number;
+  subtotal: number;
+}
+
+export interface CartItem {
+  productId: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
 export interface Sale {
   id: number;
   invoice_number: string;

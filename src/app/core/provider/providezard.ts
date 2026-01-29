@@ -1,22 +1,9 @@
-import { makeEnvironmentProviders, type EnvironmentProviders } from '@angular/core';
+import { importProvidersFrom, makeEnvironmentProviders, type EnvironmentProviders } from '@angular/core';
 import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 
 import { ZardDebounceEventManagerPlugin } from './event-manager-plugins/zard-debounce-event-manager-plugin';
 import { ZardEventManagerPlugin } from './event-manager-plugins/zard-event-manager-plugin';
-import { 
-  LUCIDE_ICONS, 
-  LucideIconProvider, // This is the class behind the provider
-  Package, 
-  AlertTriangle, 
-  Banknote, 
-  ShoppingCart, 
-  LayoutDashboard,
-  Eye, 
-  MapPin,
-  PackageSearch,
-  CheckCircle,
-  Layout
-} from 'lucide-angular';
+import { AlertCircle, ArrowRight, Check, Edit3, Loader2, LogIn, LogOut, Lock, LucideAngularModule, Mail, MapPin, Plus, ShoppingCart, Trash2, Truck, UserPlus, Users } from 'lucide-angular';
 
 export function provideZard(): EnvironmentProviders {
   const eventManagerPlugins = [
@@ -32,26 +19,27 @@ export function provideZard(): EnvironmentProviders {
     },
   ];
 
-  // 1. Group your icons into an object
-  const icons = { 
-    Package, 
-    AlertTriangle, 
-    Banknote, 
-    ShoppingCart, 
-    MapPin, 
-    LayoutDashboard, 
-    PackageSearch, 
-    CheckCircle,
-    Eye,
-    Layout
-  };
-
   return makeEnvironmentProviders([
     ...eventManagerPlugins, 
-    {
-      provide: LUCIDE_ICONS,
-      multi: true,
-      useValue: icons
-    }
+    importProvidersFrom(
+      LucideAngularModule.pick({
+        Plus,
+        ShoppingCart, 
+        Truck, 
+        Users, 
+        AlertCircle, 
+        Edit3, 
+        Trash2, 
+        Loader2,
+        MapPin, 
+        UserPlus, 
+        ArrowRight, 
+        Check,
+        Mail,
+        Lock,
+        LogIn,
+        LogOut
+      })
+    )
   ]);
 }

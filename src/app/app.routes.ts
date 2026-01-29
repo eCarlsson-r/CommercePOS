@@ -1,33 +1,22 @@
 import { Routes } from '@angular/router';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { authGuard } from './core/guards/auth.guard';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginPageComponent } from './features/auth/pages/login-page.component';
+import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { TerminalComponent } from './features/sales/pages/terminal/terminal.component';
 
 export const routes: Routes = [
-  {
-    path: 'auth',
-    component: LoginLayoutComponent,
-    children: [
-      { 
-        path: 'login', 
-        loadComponent: () => import('./features/auth/pages/login-page.component').then(m => m.LoginPageComponent) 
-      }
-    ]
+  { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginPageComponent }] }, // Public
+  { 
+    path: 'admin', 
+    canActivate: [authGuard], // Protected
+    component: AdminLayoutComponent,
+    loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)
   },
   {
-    path: '',
-    component: AdminLayoutComponent,
-    canActivate: [authGuard],
-    children: [
-      { 
-        path: 'dashboard', 
-        loadComponent: () => import('./features/dashboard/pages/dashboard-page/dashboard-page.component').then(m => m.DashboardPageComponent) 
-      },
-      { 
-        path: 'inventory', 
-        loadComponent: () => import('./features/inventory/pages/inventory-list-page.component').then(m => m.InventoryListPageComponent) 
-      },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
-    ]
-  }
+    path: 'pos',
+    component: TerminalComponent, // Use the Terminal directly (no sidebar)
+    canActivate: [authGuard]
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

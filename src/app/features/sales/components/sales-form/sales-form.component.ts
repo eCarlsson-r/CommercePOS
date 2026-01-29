@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ViewChild, NgModule } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, NgModule, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
 import { ThermalReceiptComponent } from '../thermal-receipt/thermal-receipt.component';
@@ -7,13 +7,7 @@ import { Product } from '@/models/product.model';
 import { Customer } from '@/models/customer.model';
 import { CustomerService } from '@/services/customer.service';
 import { FormsModule } from '@angular/forms';
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  qty: number;
-}
+import { ActiveSale } from '@/models/sale.model';
 
 @Component({
   selector: 'app-sales-form',
@@ -28,15 +22,27 @@ export class SalesFormComponent implements OnInit {
   products: Product[] = [];
   customers: Customer[] = [];
   isLoading = false;
-  selectedCustomerId: string | null = null;
-
-  // Must match the *ngFor="let item of cart"
-  cart: CartItem[] = [];
+  activeSale = signal<ActiveSale>({
+    branchId: 0,
+    items: [],
+    customerId: null,
+    appliedPoints: 0,
+    subtotal: 0
+  }); 
 
   ngOnInit() {
     this.loadProducts();
     this.loadCustomers();
   }
+
+  /**
+   * Matches {{ total | currency }}
+   */
+  totalPrice = computed(() => {
+    const subtotal = this.activeSale().items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const discount = this.activeSale().appliedPoints * 100; // Example: 1 point = Rp 100
+    return subtotal - discount;
+  });
 
   loadProducts() {
     this.isLoading = true;
@@ -66,29 +72,22 @@ export class SalesFormComponent implements OnInit {
     });
   }
 
-  /**
-   * Matches (click)="addToCart(product)"
-   */
-  addToCart(product: Product) {
-    const existingItem = this.cart.find(item => item.id === product.id);
-
-    if (existingItem) {
-      existingItem.qty += 1;
-    } else {
-      this.cart.push({
-        id: product.id,
-        name: product.name,
-        price: product.sale_price,
-        qty: 1
-      });
-    }
+  selectCustomer(customer: Customer) {
+    this.activeSale.update(current => ({
+      ...current,
+      customerId: customer.id,
+      customerName: customer.name
+    }));
   }
 
   /**
-   * Matches {{ total | currency }}
+   * Matches (click)="addToCart(product)"
    */
-  get total(): number {
-    return this.cart.reduce((sum, item) => sum + (item.qty * item.price), 0);
+  addToCart(product: any) {
+    this.activeSale.update(current => ({
+      ...current,
+      items: [...current.items, { productId: product.id, name: product.name, price: product.price, quantity: 1 }]
+    }));
   }
 
   // Link to the component in the HTML
@@ -98,9 +97,9 @@ export class SalesFormComponent implements OnInit {
    * Matches (click)="processPayment()"
    */
   processPayment() {
-    if (this.cart.length === 0) return alert('Cart is empty!');
+    if (this.activeSale().items.length === 0) return alert('Cart is empty!');
     
-    console.log('Processing payment for:', this.cart);
+    console.log('Processing payment for:', this.activeSale().items);
     // 1. Send to Laravel API
     // 2. Trigger Print
     setTimeout(() => {
@@ -110,7 +109,10 @@ export class SalesFormComponent implements OnInit {
   }
 
   clearCart() {
-    this.cart = [];
+    this.activeSale.update(current => ({
+      ...current,
+      items: []
+    }));
     this.receipt.items = [];
     this.receipt.total = 0;
   }

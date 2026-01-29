@@ -16,4 +16,12 @@ export class CategoryService {
   getCategories() {
     return this.http.get<Category[]>(this.apiUrl);
   }
+
+  create(data: { name: string }) {
+    return this.http.post<Category>(this.apiUrl, data);
+  }
+
+  delete(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }
