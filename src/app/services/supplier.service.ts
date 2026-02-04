@@ -1,6 +1,5 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { Injectable } from '@angular/core';
+import { BaseApiService } from './base-api.service';
 
 export interface Supplier {
   id: number;
@@ -11,11 +10,10 @@ export interface Supplier {
 }
 
 @Injectable({ providedIn: 'root' })
-export class SupplierService {
-  private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/suppliers`;
+export class SupplierService extends BaseApiService {
+  private apiUrl = `${this.baseUrl}/suppliers`;
 
   getSuppliers() {
-    return this.http.get<Supplier[]>(this.apiUrl);
+    return this.http.get<Supplier[]>(this.apiUrl, { headers: this.getHeaders() });
   }
 }

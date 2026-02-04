@@ -1,5 +1,5 @@
 // src/app/features/admin/pages/inventory/pages/product-management/components/product-form/product-form.component.ts
-import { Component, Input, Output, EventEmitter, inject, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MasterDataStore } from '@/core/store/master-data.store';
 import { LucideAngularModule } from 'lucide-angular';
@@ -13,6 +13,8 @@ import { LucideAngularModule } from 'lucide-angular';
 export class ProductFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   public store = inject(MasterDataStore); // To get categories
+  previews = signal<string[]>([]);
+  selectedFiles: File[] = [];
 
   @Input() set initialData(product: any) {
     if (product) {
@@ -39,9 +41,34 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+  onFilesSelected(event: any) {
+    const files: FileList = event.target.files;
+    if (files.length > 0) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        this.selectedFiles.push(file);
+
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.previews.update(prev => [...prev, e.target.result]);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }
+
+  removeImage(index: number) {
+    this.previews.update(prev => prev.filter((_, i) => i !== index));
+    this.selectedFiles.splice(index, 1);
+  }
+
   submit() {
     if (this.productForm.valid) {
-      this.save.emit(this.productForm.value);
+      // We emit an object containing both the form values and the files
+      this.save.emit({
+        ...this.productForm.value,
+        images: this.selectedFiles
+      });
     }
   }
 }

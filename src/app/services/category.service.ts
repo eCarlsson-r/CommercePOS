@@ -1,6 +1,5 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { Injectable } from '@angular/core';
+import { BaseApiService } from './base-api.service';
 
 export interface Category {
   id: number;
@@ -9,19 +8,18 @@ export interface Category {
 }
 
 @Injectable({ providedIn: 'root' })
-export class CategoryService {
-  private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/categories`;
+export class CategoryService extends BaseApiService {
+  private apiUrl = `${this.baseUrl}/categories`;
 
   getCategories() {
-    return this.http.get<Category[]>(this.apiUrl);
+    return this.http.get<Category[]>(this.apiUrl, { headers: this.getHeaders() });
   }
 
   create(data: { name: string }) {
-    return this.http.post<Category>(this.apiUrl, data);
+    return this.http.post<Category>(this.apiUrl, data, { headers: this.getHeaders() });
   }
 
   delete(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
   }
 }

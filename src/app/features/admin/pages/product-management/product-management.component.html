@@ -37,7 +37,7 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-border">
-        @for(product of products(); track product.id) {
+        @for(product of filteredProducts(); track product.id) {
           <tr class="hover:bg-gray-50 transition-colors group">
             <td class="p-4">
               <div class="font-bold text-gray-900">{{ product.name }}</div>

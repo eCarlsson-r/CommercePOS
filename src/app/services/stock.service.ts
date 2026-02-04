@@ -1,8 +1,8 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 import { Product } from '@/models/product.model';
+import { BaseApiService } from './base-api.service';
 
 export interface StockTransferPayload {
   from_branch_id: number;
@@ -11,9 +11,8 @@ export interface StockTransferPayload {
 }
 
 @Injectable({ providedIn: 'root' })
-export class StockService {
-  private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/stock-transfers`;
+export class StockService extends BaseApiService {
+  private apiUrl = `${this.baseUrl}/stock-transfers`;
 
   getLowStock(branchId?: number): Observable<Product[]> {
     let params = new HttpParams();
@@ -21,7 +20,7 @@ export class StockService {
       params = params.set('branch_id', branchId.toString());
     }
     // Targets the /products/low-stock endpoint in Laravel
-    return this.http.get<Product[]>(`${environment.apiUrl}/products/low-stock`, { params });
+    return this.http.get<Product[]>(`${this.baseUrl}/products/low-stock`, { params });
   }
 
   getMovements(branchId?: number): Observable<any[]> {

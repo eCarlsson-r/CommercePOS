@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { ProductService } from '@/services/product.service';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
@@ -23,6 +23,18 @@ export class ProductManagementComponent {
   isSaving = signal(false);
   selectedProduct = signal<any | null>(null);
   selectedProductId = signal<number | null>(null);
+
+  searchQuery = signal('');
+  selectedCategory = signal<string>('All');
+
+  filteredProducts = computed(() => {
+    return this.products().filter(p => {
+      const matchesSearch = p.name.toLowerCase().includes(this.searchQuery().toLowerCase()) || 
+                            p.sku.toLowerCase().includes(this.searchQuery().toLowerCase());
+      const matchesCat = this.selectedCategory() === 'All' || p.category_id == this.selectedCategory();
+      return matchesSearch && matchesCat;
+    });
+  });
 
   ngOnInit() {
     this.refreshProducts();
@@ -59,12 +71,14 @@ export class ProductManagementComponent {
     this.isDrawerOpen.set(false);
   }
 
-  saveProduct(formData: any) {
+  saveProduct(eventData: any) {
     this.isSaving.set(true);
+
+    const { images, ...formData } = eventData;
     
     const request = this.selectedProductId() 
-      ? this.productService.update(this.selectedProductId()!, formData)
-      : this.productService.create(formData);
+      ? this.productService.update(this.selectedProductId()!, formData, images)
+      : this.productService.create(formData, images);
 
     request.subscribe({
       next: () => {

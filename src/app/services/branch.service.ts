@@ -1,8 +1,7 @@
 // src/app/core/services/branch.service.ts
-import { Injectable, signal, inject, computed } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, signal, computed } from '@angular/core';
 import { tap } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { BaseApiService } from './base-api.service';
 
 export interface Branch {
   id: number;
@@ -13,9 +12,8 @@ export interface Branch {
 }
 
 @Injectable({ providedIn: 'root' })
-export class BranchService {
-  private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/branches`;
+export class BranchService extends BaseApiService {
+  private apiUrl = `${this.baseUrl}/branches`;
 
   // Signals for state
   branches = signal<Branch[]>([]);
@@ -31,7 +29,7 @@ export class BranchService {
    * This is called during the App Initializer phase.
    */
   getBranches() {
-    return this.http.get<Branch[]>(this.apiUrl).pipe(
+    return this.http.get<Branch[]>(this.apiUrl, { headers: this.getHeaders() }).pipe(
       tap(data => {
         this.branches.set(data);
         // Default to the first active branch if nothing is selected yet

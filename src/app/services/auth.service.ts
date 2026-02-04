@@ -1,13 +1,11 @@
 // src/app/core/services/auth.service.ts
 import { Injectable, signal, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { BaseApiService } from './base-api.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
-  private http = inject(HttpClient);
+export class AuthService extends BaseApiService {
   private router = inject(Router);
   
   // Use a signal to track the current user globally
@@ -15,6 +13,7 @@ export class AuthService {
   isAuthenticated = signal<boolean>(!!localStorage.getItem('token'));
 
   constructor() {
+    super();
     const token = localStorage.getItem('token');
     if (token) {
       // Optional: Call a /me endpoint to verify the token is still valid
@@ -23,9 +22,9 @@ export class AuthService {
   }
 
   login(credentials: any) {
-    return this.http.post<any>(`${environment.apiUrl}/login`, credentials).pipe(
+    return this.http.post<any>(`${this.baseUrl}/login`, credentials, { headers: this.getHeaders() }).pipe(
       tap(res => {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('pos-token', res.token);
         this.currentUser.set(res.user);
         this.isAuthenticated.set(true);
         this.router.navigate(['/admin/dashboard']);
@@ -34,7 +33,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('pos-token');
     this.isAuthenticated.set(false);
     this.currentUser.set(null);
     this.router.navigate(['/login']);

@@ -1,33 +1,51 @@
 // src/app/services/product.service.ts
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { BaseApiService } from './base-api.service';
 
 @Injectable({ providedIn: 'root' })
-export class ProductService {
-  private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/products`; // Adjust to your backend URL
+export class ProductService extends BaseApiService {
+  private apiUrl = `${this.baseUrl}/products`; // Adjust to your backend URL
 
   getProducts(branchId?: number): Observable<any[]> {
     let url = this.apiUrl;
     if (branchId) {
       url += `?branch_id=${branchId}`;
     }
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(url, { headers: this.getHeaders() });
   }
 
   getProductById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
   }
 
   // Define the missing 'create'
-  create(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+  create(data: any, files: File[]): Observable<any> {
+    const formData = new FormData();
+  
+    // Universal data
+    Object.keys(data).forEach(key => formData.append(key, data[key]));
+    
+    // Gallery data
+    files.forEach((file) => {
+      formData.append(`images[]`, file);
+    });
+
+    return this.http.post(this.apiUrl, formData, { headers: this.getHeaders() });
   }
 
   // Define the missing 'update'
-  update(id: number, data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+  update(id: number, data: any, files: File[]): Observable<any> {
+    const formData = new FormData();
+  
+    // Universal data
+    Object.keys(data).forEach(key => formData.append(key, data[key]));
+    
+    // Gallery data
+    files.forEach((file) => {
+      formData.append(`images[]`, file);
+    });
+    
+    return this.http.put(`${this.apiUrl}/${id}`, formData, { headers: this.getHeaders() });
   }
 }

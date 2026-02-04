@@ -1,6 +1,5 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { Injectable } from '@angular/core';
+import { BaseApiService } from './base-api.service';
 
 export interface Employee {
   id: number;
@@ -11,16 +10,15 @@ export interface Employee {
 }
 
 @Injectable({ providedIn: 'root' })
-export class EmployeeService {
-  private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/employees`;
+export class EmployeeService extends BaseApiService {
+  private apiUrl = `${this.baseUrl}/employees`;
 
   getEmployees(branchId?: number) {
     const url = branchId ? `${this.apiUrl}?branch_id=${branchId}` : this.apiUrl;
-    return this.http.get<Employee[]>(url);
+    return this.http.get<Employee[]>(url, { headers: this.getHeaders() });
   }
 
   updateEmployee(id: number, data: Partial<Employee>) {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+    return this.http.put(`${this.apiUrl}/${id}`, data, { headers: this.getHeaders() });
   }
 }

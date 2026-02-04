@@ -2,8 +2,6 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { BaseApiService } from '@/services/base-api.service';
 import { Sale } from '@/models/sale.model';
-import { environment } from 'src/environments/environment';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +32,7 @@ export class SaleService extends BaseApiService {
 
   getDashboardStats(branchId?: number) {
     const params = branchId ? { headers: this.getHeaders(), params: { branch_id: branchId.toString() } } : { headers: this.getHeaders() };
-    return this.http.get<any>(`${environment.apiUrl}/sales/stats`, params);
+    return this.http.get<any>(`${this.baseUrl}/sales/stats`, params);
   }
 
   /**

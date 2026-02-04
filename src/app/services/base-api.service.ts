@@ -1,12 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseApiService {
   protected http = inject(HttpClient);
-  protected readonly baseUrl = 'http://localhost:8000/api/v1/admin';
+  protected readonly baseUrl = environment.apiUrl + '/admin';
 
   protected getHeaders(): HttpHeaders {
     return new HttpHeaders({

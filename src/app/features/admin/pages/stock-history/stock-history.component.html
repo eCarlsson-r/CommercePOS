@@ -1,0 +1,56 @@
+<div class="p-6 space-y-6">
+  <div class="bg-white p-6 rounded-3xl border border-border shadow-sm">
+    <div class="flex flex-col md:flex-row gap-4 items-end mb-8">
+      <div class="flex-1 space-y-2">
+        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Branch Context</label>
+        <select [(ngModel)]="selectedBranchId" (change)="loadHistory()" class="w-full p-3 bg-gray-50 border rounded-xl outline-none">
+          @for (branch of branches(); track branch.id) {
+            <option [value]="branch.id">{{ branch.name }}</option>
+          }
+        </select>
+      </div>
+      
+      <div class="flex-1 space-y-2">
+        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select Product</label>
+        <select [(ngModel)]="selectedProductId" (change)="loadHistory()" class="w-full p-3 bg-gray-50 border rounded-xl outline-none">
+          @for (product of products(); track product.id) {
+            <option [value]="product.id">{{ product.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="overflow-hidden border rounded-2xl">
+      <table class="w-full text-left border-collapse">
+        <thead class="bg-gray-50 text-[10px] font-black text-gray-500 uppercase tracking-widest">
+          <tr>
+            <th class="p-4">Date & Time</th>
+            <th class="p-4">Reference</th>
+            <th class="p-4">Type</th>
+            <th class="p-4 text-right">Change</th>
+            <th class="p-4 text-right bg-store-cream/10 text-store-brown">Balance</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y text-sm">
+          @for (log of history(); track log.id) {
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="p-4 text-gray-400">{{ log.created_at | date:'dd MMM yyyy, HH:mm' }}</td>
+              <td class="p-4 font-bold text-gray-700">{{ log.reference_id }}</td>
+              <td class="p-4">
+                <span [class]="getTypeClass(log.type)" class="px-2 py-1 rounded-md text-[10px] font-bold uppercase">
+                  {{ log.type }}
+                </span>
+              </td>
+              <td class="p-4 text-right font-mono font-bold" [class.text-green-500]="log.quantity_change > 0" [class.text-red-500]="log.quantity_change < 0">
+                {{ log.quantity_change > 0 ? '+' : '' }}{{ log.quantity_change }}
+              </td>
+              <td class="p-4 text-right font-black bg-store-cream/5 text-store-brown">
+                {{ log.balance_after }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
