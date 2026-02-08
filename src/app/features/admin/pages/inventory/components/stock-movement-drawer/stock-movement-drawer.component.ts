@@ -24,14 +24,14 @@ import { switchMap } from 'rxjs';
       
       <div class="p-6 h-full flex flex-col">
         <div class="flex justify-between items-center mb-8">
-          <h2 class="text-xl font-bold text-store-brown">Create Transfer</h2>
+          <h2 class="text-xl font-bold text-primary">Create Transfer</h2>
           <button (click)="onClose.emit()" class="text-gray-400 hover:text-gray-600">✕</button>
         </div>
 
         <form [formGroup]="transferForm" class="flex-1 space-y-6">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Product</label>
-            <select formControlName="product_id" class="w-full border p-3 rounded-xl outline-none border-border focus:border-store-brown">
+            <select formControlName="product_id" class="w-full border p-3 rounded-xl outline-none border-border focus:border-primary">
               <option *ngFor="let p of products" [value]="p.id">{{ p.name }} (Stock: {{ p.quantity }})</option>
             </select>
           </div>
@@ -58,7 +58,7 @@ import { switchMap } from 'rxjs';
         </form>
 
         <button (click)="submitTransfer()" 
-                class="w-full bg-store-brown text-white py-4 rounded-xl font-bold mt-auto">
+                class="w-full bg-primary text-white py-4 rounded-xl font-bold mt-auto">
           CONFIRM MOVEMENT
         </button>
       </div>
@@ -108,11 +108,19 @@ export class StockMovementDrawerComponent {
   }
 
   submitTransfer() {
+    const fromId = this.branchService.selectedBranch()?.id;
+    const toId = Number(this.transferForm.value.to_branch_id);
+
+    if (fromId === toId) {
+      alert("Source and Destination branches must be different.");
+      return;
+    }
+
     if (this.itemsInBasket.length === 0) return;
 
     const payload: StockTransferPayload = {
-      from_branch_id: this.branchService.selectedBranch()?.id!,
-      to_branch_id: Number(this.transferForm.value.to_branch_id),
+      from_branch_id: fromId!,
+      to_branch_id: toId,
       items: this.itemsInBasket.map(({product_id, quantity}) => ({product_id, quantity}))
     };
 

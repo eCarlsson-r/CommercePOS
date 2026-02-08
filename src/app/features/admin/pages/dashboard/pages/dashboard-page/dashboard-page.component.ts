@@ -36,8 +36,7 @@ export class DashboardPageComponent {
   }
 
   loadNetworkStats() {
-    // In a real app, you'd have an endpoint like getNetworkOverview()
-    this.reportService.getNetworkOverview().subscribe(data => {
+    this.reportService.getFinancialOverview().subscribe(data => {
       this.branchPerformance.set(data.branches);
       this.totalNetworkRevenue.set(data.total);
     });

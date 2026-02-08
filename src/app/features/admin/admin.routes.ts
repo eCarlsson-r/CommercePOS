@@ -13,7 +13,8 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'employees', loadComponent: () => import('./pages/employee-list/employee-list.component').then(c => c.EmployeeListComponent) },
       { path: 'inventory', loadComponent: () => import('./pages/inventory/pages/inventory-list-page.component').then(c => c.InventoryListPageComponent) },
       { path: 'movement', loadComponent: () => import('./pages/inventory/pages/stock-movement-page/stock-movement-page.component').then(c => c.StockMovementPageComponent) },
-      { path: 'reports/daily-closing', loadComponent: () => import('./pages/reports/pages/daily-closing/daily-closing.component').then(m => m.DailyClosingComponent) },
+      { path: 'purchase', loadComponent: () => import('./pages/inventory/pages/purchase-order/purchase-order.component').then(c => c.PurchaseOrderComponent) },
+      { path: 'reports/daily-closing', loadComponent: () => import('./pages/reports/pages/daily-closing/daily-closing.component').then(c => c.DailyClosingComponent) },
     ]
   }
 ];

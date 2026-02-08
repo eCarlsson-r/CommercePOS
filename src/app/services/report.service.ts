@@ -24,8 +24,19 @@ export interface NetworkOverview {
 @Injectable({ providedIn: 'root' })
 export class ReportService extends BaseApiService {
   // This fetches the data for the chart we just built
-  getNetworkOverview(): Observable<NetworkOverview> {
-    return this.http.get<NetworkOverview>(`${this.baseUrl}/reports/network-overview`);
+  getFinancialOverview(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/reports/financial-overview`);
+  }
+
+  // 2. For the Stock Matrix (Inventory)
+  getInventoryMatrix(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/reports/inventory-matrix`);
+  }
+
+  getStockAudit(productId: number, branchId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/reports/stock-audit`, {
+      params: { product_id: productId, branch_id: branchId }
+    });
   }
 
   getClosingReport(branchId: number, date: string) {

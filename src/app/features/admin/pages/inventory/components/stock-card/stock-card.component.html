@@ -1,7 +1,7 @@
-<div class="overflow-hidden bg-white rounded-xl shadow-lg border-t-4 border-store-brown">
+<div class="overflow-hidden bg-white rounded-xl shadow-lg border-t-4 border-primary">
   <div class="p-6 bg-gray-50 flex justify-between items-center">
     <h3 class="text-xl font-bold text-gray-800">Kartu Stok</h3>
-    <button (click)="exportToPdf()" class="text-store-brown hover:text-store-brown-light">
+    <button (click)="exportToPdf()" class="text-primary hover:text-primary-light">
       <lucide-icon name="download"></lucide-icon> Export PDF
     </button>
   </div>
@@ -13,7 +13,7 @@
         <th class="px-6 py-4">Reference</th>
         <th class="px-6 py-4 text-green-600">IN</th>
         <th class="px-6 py-4 text-red-600">OUT</th>
-        <th class="px-6 py-4 bg-store-brown text-white">BALANCE</th>
+        <th class="px-6 py-4 bg-primary text-white">BALANCE</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-100">
@@ -34,7 +34,7 @@
         <td class="px-6 py-4 font-bold text-red-600">
           {{ log.qty_out ? '-' + log.qty_out : '' }}
         </td>
-        <td class="px-6 py-4 font-black text-store-brown bg-amber-50">
+        <td class="px-6 py-4 font-black text-primary bg-amber-50">
           {{ log.running_balance }}
         </td>
       </tr>

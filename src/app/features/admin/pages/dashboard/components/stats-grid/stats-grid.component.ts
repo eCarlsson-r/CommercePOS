@@ -26,14 +26,15 @@ export class StatsGridComponent {
 
   // Reactive calculation: Total Value = Sum of (Stock * Price)
   totalInventoryValue = computed(() => {
-    return this.products().reduce((acc, p) => 
-      acc + (p.quantity * p.sale_price), 0
+    if (this.products().length > 0) return this.products().reduce((acc, p) => 
+      acc + (p.quantity * p.purchase_price), 0
     );
+    return 0;
   });
 
   // Reactive count of low stock items
   lowStockCount = computed(() => 
-    this.products().filter(p => p.quantity < 10).length
+    (this.products().length > 0) ? this.products().filter(p => p.quantity < 10).length : []
   );
   
   // You can add more signals for Today's Sales from SaleService

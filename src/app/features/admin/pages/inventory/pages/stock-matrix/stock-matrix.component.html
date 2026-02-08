@@ -1,0 +1,57 @@
+<div class="p-6 space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-store-brown">Network Stock Matrix</h1>
+    <div class="flex gap-2">
+        <button (click)="exportToExcel()" class="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-bold shadow-md hover:bg-green-700 transition-all">
+            <lucide-icon name="file-spreadsheet" class="w-4 h-4"></lucide-icon>
+            Export Excel
+        </button>
+        
+        <button (click)="loadMatrix()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <lucide-icon name="refresh-cw" [class.animate-spin]="isLoading()" class="w-5 h-5 text-gray-500"></lucide-icon>
+        </button>
+    </div>
+</div>
+
+  <div class="bg-white rounded-3xl border border-border shadow-sm overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead class="bg-gray-50 border-b">
+          <tr>
+            <th class="p-4 text-xs font-black text-gray-400 uppercase sticky left-0 bg-gray-50 z-10 border-r w-64">Product Name</th>
+            @for (branch of branches(); track branch.id) {
+              <th class="p-4 text-[10px] font-black text-gray-400 uppercase text-center min-w-[120px]">
+                {{ branch.name }}
+              </th>
+            }
+            <th class="p-4 text-xs font-black text-store-brown uppercase text-center bg-store-cream/10">Total Network</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y">
+          @for (product of products(); track product.id) {
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 font-bold text-sm text-gray-700 sticky left-0 bg-white z-10 border-r">
+                {{ product.name }}
+                <div class="text-[10px] text-gray-400 font-mono">{{ product.sku }}</div>
+              </td>
+              
+              @for (branch of branches(); track branch.id) {
+                <td class="p-4 text-center">
+                  @let qty = getStock(product, branch.id);
+                  <span [class]="qty <= product.min_stock_alert ? 'text-red-500 font-black' : 'text-gray-600'" 
+                        class="text-sm font-mono">
+                    {{ qty }}
+                  </span>
+                </td>
+              }
+
+              <td class="p-4 text-center font-black text-store-brown bg-store-cream/5">
+                {{ product.stocks | sumStock }} 
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

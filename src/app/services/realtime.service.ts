@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
+import { environment } from 'src/environments/environment';
 
 (window as any).Pusher = Pusher;
 
@@ -20,9 +21,9 @@ export class RealtimeService {
   private initializeEcho() {
     this.echo = new Echo({
       broadcaster: 'reverb',
-      key: 'your-reverb-key', // From your Laravel .env
-      wsHost: 'localhost',
-      wsPort: 8080,
+      key: environment.reverbKey,
+      wsHost: environment.reverbHost,
+      wsPort: environment.reverbPort,
       forceTLS: false,
       enabledTransports: ['ws', 'wss'],
     });

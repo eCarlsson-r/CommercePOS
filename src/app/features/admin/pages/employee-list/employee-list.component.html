@@ -2,14 +2,14 @@
   
   <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
-      <h1 class="text-2xl font-bold text-store-brown">Staff Directory</h1>
+      <h1 class="text-2xl font-bold text-primary">Staff Directory</h1>
       <p class="text-sm text-gray-500">
         Managing staff for: 
         <span class="font-bold text-gray-700">{{ branchService.selectedBranch()?.name || 'All Branches' }}</span>
       </p>
     </div>
     
-    <button class="bg-store-brown text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:bg-opacity-90 transition">
+    <button class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:bg-opacity-90 transition">
         <lucide-icon name="user-plus" class="w-5 h-5"></lucide-icon> Add New Employee
     </button>
   </div>
@@ -20,7 +20,7 @@
         
         <div class="absolute top-0 right-0">
           <span [class]="{
-            'bg-store-brown text-white': staff.role === 'admin',
+            'bg-primary text-white': staff.role === 'admin',
             'bg-gray-100 text-gray-600': staff.role === 'cashier'
           }" class="text-[10px] font-black uppercase px-4 py-1 rounded-bl-xl tracking-widest">
             {{ staff.role }}
@@ -28,7 +28,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-          <div class="w-16 h-16 rounded-full bg-store-cream flex items-center justify-center text-store-brown font-bold text-xl border-2 border-white shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-store-cream flex items-center justify-center text-primary font-bold text-xl border-2 border-white shadow-sm">
             {{ staff.name.charAt(0) }}
           </div>
           
@@ -45,7 +45,7 @@
           </div>
           
           <div class="flex gap-2">
-            <button class="p-2 hover:bg-gray-50 rounded-lg text-gray-400 hover:text-store-brown transition">
+            <button class="p-2 hover:bg-gray-50 rounded-lg text-gray-400 hover:text-primary transition">
               <lucide-icon name="edit-3" class="w-4 h-4"></lucide-icon>
             </button>
             <button class="p-2 hover:bg-red-50 rounded-lg text-gray-400 hover:text-red-500 transition">

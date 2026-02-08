@@ -1,0 +1,48 @@
+<div class="p-6 space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold">New Purchase Order</h1>
+    <div class="flex gap-4">
+      <select [(ngModel)]="selectedBranchId" class="p-2 border rounded-xl">
+        @for (branch of availableBranches(); track branch.id) {
+          <option [value]="branch.id">{{ branch.name }}</option>
+        }
+      </select>
+      <select [(ngModel)]="selectedSupplierId" class="p-2 border rounded-xl">
+        @for (supplier of availableSuppliers(); track supplier.id) {
+          <option [value]="supplier.id">{{ supplier.name }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-3xl border p-6">
+    <table class="w-full">
+      <thead>
+        <tr class="text-xs uppercase text-gray-400">
+          <th class="pb-4">Product</th>
+          <th class="pb-4">Quantity</th>
+          <th class="pb-4">Unit Cost (Rp)</th>
+          <th class="pb-4">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of poItems(); track $index) {
+          <tr>
+            <td class="py-2 font-bold">{{ item.name }}</td>
+            <td class="py-2">
+              <input type="number" [(ngModel)]="item.quantity" class="w-20 p-2 border rounded-lg">
+            </td>
+            <td class="py-2">
+              <input type="number" [(ngModel)]="item.cost_price" class="w-32 p-2 border rounded-lg font-mono">
+            </td>
+            <td class="py-2 font-mono">Rp {{ item.quantity * item.cost_price | number }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    
+    <button (click)="submitPO()" class="mt-6 w-full bg-green-600 text-white p-4 rounded-2xl font-bold">
+      Receive Stock & Update Ledger
+    </button>
+  </div>
+</div>

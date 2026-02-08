@@ -28,7 +28,7 @@
             <th class="p-4">Reference</th>
             <th class="p-4">Type</th>
             <th class="p-4 text-right">Change</th>
-            <th class="p-4 text-right bg-store-cream/10 text-store-brown">Balance</th>
+            <th class="p-4 text-right bg-store-cream/10 text-primary">Balance</th>
           </tr>
         </thead>
         <tbody class="divide-y text-sm">
@@ -44,7 +44,7 @@
               <td class="p-4 text-right font-mono font-bold" [class.text-green-500]="log.quantity_change > 0" [class.text-red-500]="log.quantity_change < 0">
                 {{ log.quantity_change > 0 ? '+' : '' }}{{ log.quantity_change }}
               </td>
-              <td class="p-4 text-right font-black bg-store-cream/5 text-store-brown">
+              <td class="p-4 text-right font-black bg-store-cream/5 text-primary">
                 {{ log.balance_after }}
               </td>
             </tr>

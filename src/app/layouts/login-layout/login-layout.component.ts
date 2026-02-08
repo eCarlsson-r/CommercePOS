@@ -1,4 +1,3 @@
-// src/app/core/layouts/login-layout/login-layout.component.ts
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
@@ -11,8 +10,7 @@ import { LucideAngularModule } from 'lucide-angular';
     <div class="min-h-screen bg-[#FDFCFB] flex items-center justify-center p-6">
       <div class="w-full max-w-md">
         <div class="text-center mb-8">
-          <h1 class="text-4xl font-bold text-primary italic">Zard Store</h1>
-          <p class="text-muted-foreground mt-2">Information System & POS</p>
+          <img src="/logo-full.png" alt="Logo" class="mx-auto mb-4">
         </div>
         
         <router-outlet></router-outlet>

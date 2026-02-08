@@ -1,66 +1,55 @@
 <div class="p-6 max-w-4xl mx-auto space-y-6">
-  
-  <div class="flex items-center justify-between">
-    <h1 class="text-2xl font-black text-store-brown tracking-tighter">DAILY CLOSING REPORT</h1>
-    <div class="flex gap-2">
-      <button (click)="printReport()" class="p-2 bg-white border rounded-xl hover:bg-gray-50">
-        <i-lucide name="printer" class="w-5 h-5 text-gray-400"></i-lucide>
-      </button>
-      <button (click)="exportPDF()" class="bg-store-brown text-white px-4 py-2 rounded-xl font-bold text-sm">
-        Export PDF
-      </button>
+  <div class="bg-white p-6 rounded-3xl border border-border shadow-sm flex gap-4 items-end print:hidden">
+    <div class="flex-1">
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select Date</label>
+      <input type="date" [(ngModel)]="selectedDate" class="w-full mt-2 p-3 bg-gray-50 border border-border rounded-xl">
     </div>
+    <button (click)="fetchReport()" class="bg-store-brown text-white px-8 py-3 rounded-2xl font-bold">
+      Generate Report
+    </button>
+    <button (click)="printReport()" class="p-3 bg-gray-100 rounded-2xl hover:bg-gray-200">
+      <lucide-icon name="printer" class="w-5 h-5 text-gray-600"></lucide-icon>
+    </button>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <div class="bg-white p-6 rounded-3xl border border-border">
-      <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Revenue</p>
-      <p class="text-2xl font-black text-store-brown mt-1">Rp {{ report()?.total_revenue | number }}</p>
-    </div>
-    <div class="bg-white p-6 rounded-3xl border border-border">
-      <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Transactions</p>
-      <p class="text-2xl font-black text-gray-900 mt-1">{{ report()?.transaction_count }}</p>
-    </div>
-    <div class="bg-white p-6 rounded-3xl border border-border" [class.border-red-200]="report()?.low_stock_alerts! > 0">
-      <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Stock Alerts</p>
-      <p class="text-2xl font-black mt-1" [class.text-red-500]="report()?.low_stock_alerts! > 0">
-        {{ report()?.low_stock_alerts }}
-      </p>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="bg-white rounded-3xl border border-border overflow-hidden">
-      <div class="p-4 border-b bg-gray-50 font-bold text-xs uppercase tracking-widest text-gray-500">
-        Payment Methods
+  @if (reportData()) {
+    <div class="bg-white p-10 rounded-3xl border border-border shadow-sm space-y-8 print:border-none print:shadow-none">
+      <div class="text-center space-y-2">
+        <h2 class="text-2xl font-black text-store-brown uppercase tracking-tighter">Daily Sales Summary</h2>
+        <p class="text-gray-400 font-mono text-sm">{{ reportData().generated_at }}</p>
       </div>
-      <div class="p-6 space-y-4">
-        @for (item of report()?.payment_methods; track item.method) {
-          <div class="flex justify-between items-center">
-            <span class="text-sm font-medium text-gray-600">{{ item.method }}</span>
+
+      <div class="grid grid-cols-2 gap-8 border-y py-8 border-dashed">
+        <div>
+          <p class="text-xs font-bold text-gray-400 uppercase">Total Revenue</p>
+          <p class="text-3xl font-black text-store-brown">Rp {{ reportData().total_revenue | number }}</p>
+        </div>
+        <div class="text-right">
+          <p class="text-xs font-bold text-gray-400 uppercase">Transactions</p>
+          <p class="text-3xl font-black text-gray-800">{{ reportData().transaction_count }}</p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest">Payment Breakdown</h3>
+        @for (item of reportData().breakdown; track item.payment_method) {
+          <div class="flex justify-between items-center py-2 border-b border-gray-50">
+            <span class="font-bold text-gray-600 capitalize">{{ item.payment_method }}</span>
             <span class="font-mono font-bold">Rp {{ item.total | number }}</span>
           </div>
-          <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-store-brown h-full" [style.width.%]="(item.total / report()?.total_revenue!) * 100"></div>
-          </div>
         }
       </div>
-    </div>
 
-    <div class="bg-white rounded-3xl border border-border overflow-hidden">
-      <div class="p-4 border-b bg-gray-50 font-bold text-xs uppercase tracking-widest text-gray-500">
-        Best Sellers (Today)
-      </div>
-      <div class="divide-y">
-        @for (product of report()?.top_products; track product.name) {
-          <div class="p-4 flex justify-between items-center">
-            <span class="text-sm font-bold text-gray-800">{{ product.name }}</span>
-            <span class="bg-store-cream/20 text-store-brown px-3 py-1 rounded-lg text-xs font-black">
-              {{ product.qty }} pcs
-            </span>
-          </div>
-        }
+      <div class="pt-10 mt-10 border-t space-y-4 print:block hidden">
+        <div class="flex justify-between border-b pb-2">
+          <span class="text-sm">Physical Cash in Drawer:</span>
+          <span class="text-sm">____________________</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-sm font-bold">Manager Signature:</span>
+          <span class="text-sm">____________________</span>
+        </div>
       </div>
     </div>
-  </div>
+  }
 </div>

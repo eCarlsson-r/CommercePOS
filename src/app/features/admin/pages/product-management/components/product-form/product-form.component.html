@@ -4,19 +4,19 @@
     <div>
       <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Product Name</label>
       <input formControlName="name" type="text" placeholder="e.g. Arabica Gayo 250g"
-             class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-store-brown outline-none transition-all">
+             class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-primary outline-none transition-all">
     </div>
 
     <div class="grid grid-cols-2 gap-4">
       <div>
         <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">SKU / Barcode</label>
         <input formControlName="sku" type="text" placeholder="BRW-001"
-               class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-store-brown outline-none">
+               class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-primary outline-none">
       </div>
       <div>
         <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Category</label>
         <select formControlName="category_id" 
-                class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-store-brown outline-none appearance-none cursor-pointer">
+                class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-primary outline-none appearance-none cursor-pointer">
           <option value="">Select...</option>
           @for (cat of store.categories(); track cat.id) {
             <option [value]="cat.id">{{ cat.name }}</option>
@@ -40,8 +40,8 @@
         </div>
       }
 
-      <label class="aspect-square flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 hover:border-store-brown/50 transition-all group">
-        <lucide-icon name="image-plus" class="w-6 h-6 text-gray-300 group-hover:text-store-brown"></lucide-icon>
+      <label class="aspect-square flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 hover:border-primary/50 transition-all group">
+        <lucide-icon name="image-plus" class="w-6 h-6 text-gray-300 group-hover:text-primary"></lucide-icon>
         <span class="text-[8px] font-black text-gray-400 mt-2 uppercase tracking-tighter">Add Photo</span>
         <input type="file" (change)="onFilesSelected($event)" multiple class="hidden" accept="image/*">
       </label>
@@ -54,14 +54,14 @@
     <div>
       <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Universal Base Price (Rp)</label>
       <input formControlName="base_price" type="number"
-             class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl font-mono font-bold text-store-brown focus:border-store-brown outline-none">
+             class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl font-mono font-bold text-primary focus:border-primary outline-none">
     </div>
 
     <div>
       <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Global Min. Stock Alert</label>
       <div class="flex items-center gap-3">
         <input formControlName="min_stock_alert" type="number"
-               class="w-24 mt-1 p-3 bg-gray-50 border border-border rounded-xl text-center focus:border-store-brown outline-none">
+               class="w-24 mt-1 p-3 bg-gray-50 border border-border rounded-xl text-center focus:border-primary outline-none">
         <span class="text-xs text-gray-400 italic">Notify me when branch stock falls below this.</span>
       </div>
     </div>
@@ -73,7 +73,7 @@
       Cancel
     </button>
     <button type="submit" [disabled]="productForm.invalid"
-            class="flex-2 bg-store-brown text-white px-6 py-4 rounded-2xl font-bold shadow-lg shadow-store-brown/20 hover:opacity-90 disabled:opacity-50 transition-all">
+            class="flex-2 bg-primary text-white px-6 py-4 rounded-2xl font-bold shadow-lg shadow-primary/20 hover:opacity-90 disabled:opacity-50 transition-all">
       {{ initialData ? 'Update Product' : 'Create Product' }}
     </button>
   </div>

@@ -32,6 +32,35 @@ export class AdminLayoutComponent implements OnInit {
   pendingTransfers = 0;
   hasNewNotifications = false;
 
+  menuItems = [
+    {
+      title: 'Master',
+      items: [
+        { title: 'Branches', link: '/admin/branches', icon: 'map-pin' },
+        { title: 'Customers', link: '/admin/customers', icon: 'users' },
+        { title: 'Products', link: '/admin/products', icon: 'package' },  
+        { title: 'Suppliers', link: '/admin/suppliers', icon: 'users' },
+        { title: 'Categories', link: '/admin/categories', icon: 'folder' },
+      ]
+    },
+    {
+      title: 'Inventory',
+      items: [
+        { title: 'Stock Inventory', link: '/admin/inventory', icon: 'monitor-smartphone' },
+        { title: 'Purchase Order', link: '/admin/purchase', icon: 'shopping-cart' }, // Changed to shopping-cart for clarity
+        { title: 'Stock Transfers', link: '/admin/movement', icon: 'truck' },
+        { title: 'Returns & Waste', link: '/admin/returns', icon: 'rotate-ccw' }, // New!
+      ]
+    },
+    {
+      title: 'Insights',
+      items: [
+        { title: 'Daily Closing', link: '/admin/reports/daily-closing', icon: 'file-text' },
+        { title: 'Stock Audit (Kartu Stok)', link: '/admin/reports/audit', icon: 'clipboard-list' }, // New!
+      ]
+    },
+  ];
+
   ngOnInit() {
     // 1. Listen for new stock movement requests via Reverb
     this.realtime.listenForTransfers().subscribe({

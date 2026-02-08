@@ -1,7 +1,7 @@
 <div class="p-6 max-w-7xl mx-auto space-y-6">
   <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
-      <h1 class="text-2xl font-bold text-store-brown">Customer Network</h1>
+      <h1 class="text-2xl font-bold text-primary">Customer Network</h1>
       <p class="text-sm text-gray-500 tracking-tight">Managing loyalty across all 11 branches</p>
     </div>
     
@@ -9,9 +9,9 @@
       <div class="relative">
         <lucide-icon name="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></lucide-icon>
         <input type="text" placeholder="Search by phone..." 
-               class="pl-10 pr-4 py-2 border border-border rounded-xl focus:border-store-brown outline-none text-sm">
+               class="pl-10 pr-4 py-2 border border-border rounded-xl focus:border-primary outline-none text-sm">
       </div>
-      <button class="bg-store-brown text-white px-5 py-2 rounded-xl font-bold text-sm shadow-sm hover:opacity-90">
+      <button class="bg-primary text-white px-5 py-2 rounded-xl font-bold text-sm shadow-sm hover:opacity-90">
         New Member
       </button>
     </div>
@@ -44,14 +44,14 @@
                 {{ member.member_tier }}
               </span>
             </td>
-            <td class="p-4 text-center font-mono font-bold text-store-brown">
+            <td class="p-4 text-center font-mono font-bold text-primary">
               {{ member.points | number }}
             </td>
             <td class="p-4 text-right font-medium text-gray-700">
               Rp {{ member.total_spend | number }}
             </td>
             <td class="p-4 text-right">
-              <button class="text-gray-400 hover:text-store-brown transition-colors">
+              <button class="text-gray-400 hover:text-primary transition-colors">
                 <lucide-icon name="arrow-right" class="w-4 h-4"></lucide-icon>
               </button>
             </td>
