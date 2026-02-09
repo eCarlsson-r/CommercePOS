@@ -4,7 +4,7 @@
       <h1 class="text-2xl font-bold text-primary">Branch Network</h1>
       <p class="text-sm text-gray-500">Managing {{ branchService.branches().length }} active locations</p>
     </div>
-    <button class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+    <button (click)="showDrawer.set(true)" class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2">
       <lucide-icon name="plus" class="w-4 h-4"></lucide-icon> Add New Branch
     </button>
   </div>
@@ -35,5 +35,31 @@
         </div>
       </div>
     }
+  </div>
+
+  <div class="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex justify-end" *ngIf="showDrawer()">
+    <div class="w-full max-w-md bg-white h-full shadow-2xl p-8 flex flex-col">
+      <h2 class="text-xl font-black text-primary mb-8 uppercase tracking-tighter">New Branch Location</h2>
+      
+      <div class="space-y-6 flex-1 overflow-y-auto">
+        <div>
+          <label class="text-[10px] font-bold text-gray-400 uppercase">Branch Name</label>
+          <input [(ngModel)]="formData.name" class="w-full mt-2 p-4 bg-gray-50 rounded-2xl border-none" placeholder="e.g., Binjai Supermall">
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-gray-400 uppercase">Branch Phone</label>
+          <input [(ngModel)]="formData.phone" class="w-full mt-2 p-4 bg-gray-50 rounded-2xl border-none" placeholder="e.g., 08123456789">
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-gray-400 uppercase">Address</label>
+          <textarea [(ngModel)]="formData.address" class="w-full mt-2 p-4 bg-gray-50 rounded-2xl border-none h-32"></textarea>
+        </div>
+      </div>
+
+      <div class="pt-6 flex gap-4">
+        <button (click)="showDrawer.set(false)" class="flex-1 py-4 bg-gray-100 rounded-2xl font-bold">Cancel</button>
+        <button (click)="saveBranch()" class="flex-1 py-4 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-store-brown/20">Create Branch</button>
+      </div>
+    </div>
   </div>
 </div>

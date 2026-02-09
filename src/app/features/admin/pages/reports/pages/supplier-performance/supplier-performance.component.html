@@ -1,0 +1,45 @@
+<div class="p-6 space-y-6">
+  <div class="flex justify-between items-center">
+    <div>
+      <h1 class="text-2xl font-bold text-store-brown">Supplier Performance</h1>
+      <p class="text-sm text-gray-500">Analyze vendor reliability and inventory waste impact</p>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-3xl border border-border overflow-hidden shadow-sm">
+    <table class="w-full text-left">
+      <thead class="bg-gray-50 border-b">
+        <tr>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase">Supplier Name</th>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase text-center">Orders</th>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase text-center">Total Qty In</th>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase text-center">Waste Qty</th>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase">Waste Rate</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        @for (s of performanceData(); track s.id) {
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="p-4 font-bold text-gray-700">{{ s.name }}</td>
+            <td class="p-4 text-center text-sm">{{ s.po_count }}</td>
+            <td class="p-4 text-center font-mono text-sm">{{ s.total_volume | number }}</td>
+            <td class="p-4 text-center font-mono text-sm text-red-500">{{ s.waste_volume | number }}</td>
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div class="h-full rounded-full" 
+                       [style.width.%]="s.defect_rate"
+                       [ngClass]="s.defect_rate > 10 ? 'bg-red-500' : 'bg-green-500'">
+                  </div>
+                </div>
+                <span class="text-xs font-black" [class.text-red-500]="s.defect_rate > 10">
+                  {{ s.defect_rate | number:'1.1-1' }}%
+                </span>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

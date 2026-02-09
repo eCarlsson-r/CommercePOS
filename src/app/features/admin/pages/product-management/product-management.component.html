@@ -68,11 +68,13 @@
          {{ selectedProductId() ? 'Edit Product' : 'New Universal Product' }}
        </h2>
        
-       <app-product-form 
-         [initialData]="selectedProduct()" 
-         (save)="saveProduct($event)" 
-         (cancel)="closeDrawer()">
-       </app-product-form>
+       <div class="flex-1 overflow-y-auto p-8 pt-4">
+         <app-product-form 
+           [initialData]="selectedProduct()" 
+           (save)="saveProduct($event)" 
+           (cancel)="closeDrawer()">
+         </app-product-form>
+       </div>
     </div>
   </div>
 }

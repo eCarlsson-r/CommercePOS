@@ -32,4 +32,8 @@ export class CustomerListComponent {
     ),
     { initialValue: [] as Customer[] }
   );
+
+  ngOnInit() {
+    this.customerService.getCustomers();
+  }
 }

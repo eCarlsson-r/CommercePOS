@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { BaseApiService } from './base-api.service';
 
 export interface Category {
-  id: number;
+  id?: number;
   name: string;
   slug: string;
+  description: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -15,8 +16,12 @@ export class CategoryService extends BaseApiService {
     return this.http.get<Category[]>(this.apiUrl, { headers: this.getHeaders() });
   }
 
-  create(data: { name: string }) {
+  create(data: Category) {
     return this.http.post<Category>(this.apiUrl, data, { headers: this.getHeaders() });
+  }
+
+  update(id: number, data: Category) {
+    return this.http.put<Category>(`${this.apiUrl}/${id}`, data, { headers: this.getHeaders() });
   }
 
   delete(id: number) {

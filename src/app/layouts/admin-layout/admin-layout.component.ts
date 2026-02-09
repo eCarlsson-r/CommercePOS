@@ -38,9 +38,11 @@ export class AdminLayoutComponent implements OnInit {
       items: [
         { title: 'Branches', link: '/admin/branches', icon: 'map-pin' },
         { title: 'Customers', link: '/admin/customers', icon: 'users' },
+        { title: 'Employees', link: '/admin/employees', icon: 'user-plus' },
         { title: 'Products', link: '/admin/products', icon: 'package' },  
         { title: 'Suppliers', link: '/admin/suppliers', icon: 'users' },
         { title: 'Categories', link: '/admin/categories', icon: 'folder' },
+        { title: 'Price Coder', link: '/admin/price-coder', icon: 'tag' }
       ]
     },
     {

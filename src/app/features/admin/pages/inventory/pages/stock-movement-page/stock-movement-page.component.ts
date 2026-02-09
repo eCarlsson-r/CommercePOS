@@ -37,7 +37,6 @@ export class StockMovementPageComponent {
   onReceive(id: number) {
     this.stockService.receiveTransfer(id).subscribe({
       next: () => {
-        // After receiving, we "pull the lever" to update the list
         this.loadData(); 
       },
       error: (err) => console.error('Confirmation failed', err)

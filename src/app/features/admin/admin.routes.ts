@@ -11,9 +11,12 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'customers', loadComponent: () => import('./pages/customer-list/customer-list.component').then(c => c.CustomerListComponent) },
       { path: 'branches', loadComponent: () => import('./pages/branch-management/branch-management.component').then(c => c.BranchManagementComponent) },
       { path: 'employees', loadComponent: () => import('./pages/employee-list/employee-list.component').then(c => c.EmployeeListComponent) },
+      { path: 'suppliers', loadComponent: () => import('./pages/supplier-list/supplier-list.component').then(c => c.SupplierListComponent) },
       { path: 'inventory', loadComponent: () => import('./pages/inventory/pages/inventory-list-page.component').then(c => c.InventoryListPageComponent) },
       { path: 'movement', loadComponent: () => import('./pages/inventory/pages/stock-movement-page/stock-movement-page.component').then(c => c.StockMovementPageComponent) },
       { path: 'purchase', loadComponent: () => import('./pages/inventory/pages/purchase-order/purchase-order.component').then(c => c.PurchaseOrderComponent) },
+      { path: 'returns', loadComponent: () => import('./pages/inventory/pages/returns/returns.component').then(c => c.ReturnsComponent) },
+      { path: 'reports/audit', loadComponent: () => import('./pages/inventory/pages/stock-audit/stock-audit.component').then(c => c.StockAuditComponent) },
       { path: 'reports/daily-closing', loadComponent: () => import('./pages/reports/pages/daily-closing/daily-closing.component').then(c => c.DailyClosingComponent) },
     ]
   }

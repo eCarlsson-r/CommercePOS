@@ -3,6 +3,7 @@ import { Component, Input, Output, EventEmitter, inject, OnInit, signal } from '
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MasterDataStore } from '@/core/store/master-data.store';
 import { LucideAngularModule } from 'lucide-angular';
+import { CategoryService } from '@/services/category.service';
 
 @Component({
   selector: 'app-product-form',
@@ -12,7 +13,9 @@ import { LucideAngularModule } from 'lucide-angular';
 })
 export class ProductFormComponent implements OnInit {
   private fb = inject(FormBuilder);
-  public store = inject(MasterDataStore); // To get categories
+  private categoryService = inject(CategoryService);
+
+  categories = signal<any[]>([]);
   previews = signal<string[]>([]);
   selectedFiles: File[] = [];
 
@@ -36,9 +39,13 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit() {
     // Ensure categories are loaded for the dropdown
-    if (this.store.categories().length === 0) {
-      this.store.init();
-    }
+    this.refreshCategories();
+  }
+
+  refreshCategories() {
+    this.categoryService.getCategories().subscribe(data => {
+      this.categories.set(data);
+    });
   }
 
   onFilesSelected(event: any) {

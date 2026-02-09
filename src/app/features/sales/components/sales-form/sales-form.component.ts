@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ViewChild, NgModule, signal, computed } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, NgModule, signal, computed, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
 import { ThermalReceiptComponent } from '../thermal-receipt/thermal-receipt.component';
@@ -22,6 +22,7 @@ export class SalesFormComponent implements OnInit {
   products: Product[] = [];
   customers: Customer[] = [];
   isLoading = false;
+  scanBuffer = '';
   activeSale = signal<ActiveSale>({
     branchId: 0,
     items: [],
@@ -78,6 +79,24 @@ export class SalesFormComponent implements OnInit {
       customerId: customer.id,
       customerName: customer.name
     }));
+  }
+
+  // Add this to your Return or Sales Component
+  @HostListener('window:keydown', ['$event'])
+  onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.processScannedCode(this.scanBuffer);
+      this.scanBuffer = ''; // Clear for next scan
+    } else {
+      this.scanBuffer += event.key;
+    }
+  }
+
+  processScannedCode(sku: string) {
+    const product = this.products.find(p => p.sku === sku);
+    if (product) {
+      this.addToCart(product); // Add to the return or sales list
+    }
   }
 
   /**

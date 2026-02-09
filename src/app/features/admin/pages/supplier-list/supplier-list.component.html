@@ -1,0 +1,59 @@
+<div class="p-6 space-y-6">
+  <div class="flex justify-between items-center">
+    <div>
+      <h1 class="text-2xl font-bold text-store-brown">Supplier Directory</h1>
+      <p class="text-sm text-gray-500">Manage vendor relationships and procurement contacts</p>
+    </div>
+    <button (click)="showDrawer.set(true)" class="bg-primary text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2">
+      <lucide-icon name="plus" class="w-5 h-5"></lucide-icon>
+      Add Supplier
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @for (s of suppliers(); track s.id) {
+      <div class="bg-white p-6 rounded-3xl border border-border shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex justify-between items-start mb-4">
+          <div class="p-3 bg-store-cream/20 rounded-2xl">
+            <lucide-icon name="truck" class="w-6 h-6 text-store-brown"></lucide-icon>
+          </div>
+          <button class="text-gray-300 hover:text-gray-600"><lucide-icon name="more-vertical" class="w-5 h-5"></lucide-icon></button>
+        </div>
+        
+        <h3 class="text-lg font-bold text-gray-800">{{ s.name }}</h3>
+        <p class="text-sm text-gray-500 mb-4">{{ s.contact_person }}</p>
+
+        <div class="space-y-2 border-t pt-4">
+          <div class="flex items-center gap-3 text-sm text-gray-600">
+            <lucide-icon name="phone" class="w-4 h-4"></lucide-icon>
+            {{ s.phone }}
+          </div>
+          <div class="flex items-center gap-3 text-sm text-gray-600">
+            <lucide-icon name="store" class="w-4 h-4"></lucide-icon>
+            {{ s.address || 'No address provided' }}
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (showDrawer()) {
+    <div class="fixed inset-0 bg-black/50 z-50 flex justify-end">
+      <div class="bg-white w-full max-w-md p-8 h-full shadow-2xl space-y-6">
+        <h2 class="text-xl font-bold">New Supplier Details</h2>
+        <div class="space-y-4">
+          <input [(ngModel)]="formData.name" placeholder="Company Name" class="w-full p-4 bg-gray-50 rounded-2xl border-none">
+          <input [(ngModel)]="formData.contact_person" placeholder="Contact Person" class="w-full p-4 bg-gray-50 rounded-2xl border-none">
+          <input [(ngModel)]="formData.tax_id" placeholder="Tax ID" class="w-full p-4 bg-gray-50 rounded-2xl border-none">
+          <input [(ngModel)]="formData.phone" placeholder="Phone Number" class="w-full p-4 bg-gray-50 rounded-2xl border-none">
+          <input [(ngModel)]="formData.email" placeholder="Email Address" class="w-full p-4 bg-gray-50 rounded-2xl border-none">
+          <textarea [(ngModel)]="formData.address" placeholder="Physical Address" class="w-full p-4 bg-gray-50 rounded-2xl border-none h-24"></textarea>
+        </div>
+        <div class="flex gap-4">
+          <button (click)="showDrawer.set(false)" class="flex-1 py-4 bg-gray-100 rounded-2xl font-bold">Cancel</button>
+          <button (click)="saveSupplier()" class="flex-1 py-4 bg-primary text-white rounded-2xl font-bold">Save</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

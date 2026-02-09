@@ -2,15 +2,17 @@
   
   <div class="bg-white p-6 rounded-2xl border border-border shadow-sm">
     <div class="flex items-center justify-between">
-      <div class="p-2 bg-primary/10 rounded-lg text-primary">
+      <div class="p-2 bg-green-100 rounded-lg text-green-600">
         <lucide-icon name="banknote" class="w-6 h-6"></lucide-icon>
       </div>
-      <span class="text-xs font-bold text-green-600">Live</span>
     </div>
-    <p class="mt-4 text-sm text-muted-foreground font-medium">Inventory Value</p>
+    <p class="mt-4 text-sm text-muted-foreground font-medium">Sales Today</p>
     <h3 class="text-2xl font-bold text-foreground">
-      {{ totalInventoryValue() | currency:'IDR':'symbol':'1.0-0' }}
+      {{ salesCount() }} Transactions
     </h3>
+    <p class="text-xs text-primary font-bold">
+      Total: {{ todayRevenue() | currency:'IDR':'symbol':'1.0-0' }}
+    </p>
   </div>
 
   <div class="bg-white p-6 rounded-2xl border border-border shadow-sm">
@@ -27,25 +29,22 @@
   <div class="bg-white p-6 rounded-2xl border border-border shadow-sm">
     <div class="flex items-center justify-between">
       <div class="p-2 bg-blue-100 rounded-lg text-blue-600">
-        <lucide-icon name="shopping-cart" class="w-6 h-6"></lucide-icon>
+        <lucide-icon name="truck" class="w-6 h-6"></lucide-icon>
       </div>
     </div>
-    <p class="mt-4 text-sm text-muted-foreground font-medium">Sales Today</p>
+    <p class="mt-4 text-sm text-muted-foreground font-medium">In Transit</p>
     <h3 class="text-2xl font-bold text-foreground">
-      {{ salesCount() }} Transactions
+      {{ pendingTransfers() }} Transfers
     </h3>
-    <p class="text-xs text-primary font-bold">
-      Total: {{ todayRevenue() | currency:'IDR':'symbol':'1.0-0' }}
-    </p>
   </div>
 
   <div class="bg-white p-6 rounded-2xl border border-border shadow-sm">
     <div class="flex items-center justify-between">
-      <div class="p-2 bg-amber-100 rounded-lg text-amber-700">
-        <lucide-icon name="map-pin" class="w-6 h-6"></lucide-icon>
+      <div class="p-2 bg-orange-100 rounded-lg text-orange-600">
+        <lucide-icon name="trash-2" class="w-6 h-6"></lucide-icon>
       </div>
     </div>
-    <p class="mt-4 text-sm text-muted-foreground font-medium">Active Branch</p>
-    <h3 class="text-lg font-bold text-foreground truncate">Main Warehouse</h3>
+    <p class="mt-4 text-sm text-muted-foreground font-medium">Waste Today</p>
+    <h3 class="text-lg font-bold text-foreground truncate">Rp {{ dailyWaste() | currency:'IDR':'symbol':'1.0-0' }}</h3>
   </div>
 </div>

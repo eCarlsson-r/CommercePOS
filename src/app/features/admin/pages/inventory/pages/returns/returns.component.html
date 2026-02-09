@@ -1,0 +1,94 @@
+<div class="p-6 max-w-6xl mx-auto space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-store-brown">Returns & Inventory Waste</h1>
+    <div class="bg-gray-100 p-1 rounded-xl flex">
+      <button (click)="activeTab.set('process')" [class.bg-white]="activeTab() === 'process'" class="px-4 py-2 rounded-lg text-sm font-bold">New Return</button>
+      <button (click)="activeTab.set('history')" [class.bg-white]="activeTab() === 'history'" class="px-4 py-2 rounded-lg text-sm font-bold">History</button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2 space-y-4">
+      <div class="relative">
+        <lucide-icon name="search" class="absolute left-4 top-4 text-gray-400 w-5 h-5"></lucide-icon>
+        <input type="text" [(ngModel)]="searchQuery" (input)="searchProducts()" 
+               placeholder="Scan Barcode or Type Product Name..." 
+               class="w-full pl-12 p-4 bg-white border border-border rounded-2xl shadow-sm outline-none focus:border-store-brown">
+        
+        @if (searchResults().length > 0) {
+          <div class="absolute w-full mt-2 bg-white border border-border rounded-2xl shadow-xl z-10 max-h-60 overflow-y-auto">
+            @for (p of searchResults(); track p.id) {
+              <div (click)="addToBasket(p)" class="p-4 hover:bg-gray-50 cursor-pointer flex justify-between border-b">
+                <span class="font-bold">{{ p.name }}</span>
+                <span class="text-xs font-mono text-gray-400">{{ p.sku }}</span>
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="bg-white rounded-3xl border border-border overflow-hidden">
+        <table class="w-full">
+          <thead class="bg-gray-50 text-[10px] font-black uppercase text-gray-400">
+            <tr>
+              <th class="p-4 text-left">Product</th>
+              <th class="p-4 text-center">Qty</th>
+              <th class="p-4 text-center">Status/Condition</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            @for (item of basket(); track item.product_id) {
+              <tr>
+                <td class="p-4">
+                  <div class="font-bold">{{ item.name }}</div>
+                  <div class="text-[10px] text-gray-400">{{ item.sku }}</div>
+                </td>
+                <td class="p-4 w-24">
+                  <input type="number" [(ngModel)]="item.quantity" class="w-full p-2 bg-gray-50 rounded-lg text-center font-bold">
+                </td>
+                <td class="p-4">
+                  <div class="flex bg-gray-100 p-1 rounded-xl">
+                    <button (click)="item.condition = 'good'" 
+                            [class.bg-green-500]="item.condition === 'good'"
+                            [class.text-white]="item.condition === 'good'"
+                            class="flex-1 py-1 text-[10px] font-black uppercase rounded-lg">Good</button>
+                    <button (click)="item.condition = 'damaged'" 
+                            [class.bg-red-500]="item.condition === 'damaged'"
+                            [class.text-white]="item.condition === 'damaged'"
+                            class="flex-1 py-1 text-[10px] font-black uppercase rounded-lg">Damaged</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-3xl border border-border space-y-4 shadow-sm">
+        <h3 class="font-black text-xs uppercase text-gray-400 tracking-widest">Return Summary</h3>
+        
+        <div>
+          <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select Supplier</label>
+          <select [(ngModel)]="supplier_id" class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl">
+            <option value="">Choose Supplier...</option>
+            @for (s of suppliers(); track s.id) {
+              <option [value]="s.id">{{ s.name }} ({{ s.contact_person }})</option>
+            }
+          </select>
+        </div>
+
+        <div>
+          <label class="text-[10px] font-bold text-gray-400">Reason for Return</label>
+          <textarea [(ngModel)]="reason" class="w-full mt-2 p-3 bg-gray-50 rounded-xl h-32 border-none resize-none" placeholder="Defective, wrong size, expired, etc..."></textarea>
+        </div>
+
+        <button (click)="submit()" [disabled]="basket().length === 0" 
+                class="w-full py-4 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/20 disabled:opacity-50">
+          Process Inventory Adjustment
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

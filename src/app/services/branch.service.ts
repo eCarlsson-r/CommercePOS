@@ -4,7 +4,7 @@ import { tap } from 'rxjs';
 import { BaseApiService } from './base-api.service';
 
 export interface Branch {
-  id: number;
+  id?: number;
   name: string;
   address: string;
   phone: string;
@@ -34,10 +34,14 @@ export class BranchService extends BaseApiService {
         this.branches.set(data);
         // Default to the first active branch if nothing is selected yet
         if (!this.selectedBranchId() && data.length > 0) {
-          this.selectedBranchId.set(data[0].id);
+          this.selectedBranchId.set(data[0].id!);
         }
       })
     );
+  }
+
+  createBranch(data: Branch) {
+    return this.http.post<Branch>(this.apiUrl, data, { headers: this.getHeaders() });
   }
 
   setBranch(id: number) {

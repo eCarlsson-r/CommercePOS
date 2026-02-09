@@ -21,7 +21,7 @@
         <div class="absolute top-0 right-0">
           <span [class]="{
             'bg-primary text-white': staff.role === 'admin',
-            'bg-gray-100 text-gray-600': staff.role === 'cashier'
+            'bg-gray-100 text-gray-600': staff.role === 'staff'
           }" class="text-[10px] font-black uppercase px-4 py-1 rounded-bl-xl tracking-widest">
             {{ staff.role }}
           </span>
@@ -60,5 +60,45 @@
         <p class="text-gray-500 font-medium">No employees found for this branch.</p>
       </div>
     }
+  </div>
+
+  <div class="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex justify-end" *ngIf="showDrawer()">
+    <div class="w-full max-w-md bg-white h-full shadow-2xl p-8 flex flex-col">
+      <h2 class="text-xl font-black text-primary mb-8 uppercase tracking-tighter">Onboard Employee</h2>
+      
+      <div class="space-y-6 flex-1 overflow-y-auto">
+        <input [(ngModel)]="formData.name" placeholder="Full Name" class="w-full p-4 bg-gray-50 rounded-2xl border-none">
+        <input [(ngModel)]="formData.email" placeholder="Email (Login Username)" class="w-full p-4 bg-gray-50 rounded-2xl border-none">
+        <input [(ngModel)]="formData.password" type="password" placeholder="Temporary Password" class="w-full p-4 bg-gray-50 rounded-2xl border-none">
+        
+        <div>
+          <label class="text-[10px] font-bold text-gray-400 uppercase">Assigned Branch</label>
+          <select [(ngModel)]="formData.branch_id" class="w-full mt-2 p-4 bg-gray-50 rounded-2xl border-none">
+            <option [ngValue]="null">Select Branch...</option>
+            @for (b of branches(); track b.id) {
+              <option [value]="b.id">{{ b.name }}</option>
+            }
+          </select>
+        </div>
+
+        <div>
+          <label class="text-[10px] font-bold text-gray-400 uppercase">Access Level</label>
+          <div class="grid grid-cols-2 gap-2 mt-2">
+            <button (click)="formData.role = 'staff'" 
+                    [class.bg-store-brown]="formData.role === 'staff'"
+                    [class.text-white]="formData.role === 'staff'"
+                    class="p-3 rounded-xl border border-gray-100 text-xs font-bold uppercase">Staff</button>
+            <button (click)="formData.role = 'admin'" 
+                    [class.bg-store-brown]="formData.role === 'admin'"
+                    [class.text-white]="formData.role === 'admin'"
+                    class="p-3 rounded-xl border border-gray-100 text-xs font-bold uppercase">Manager</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6">
+        <button (click)="saveEmployee()" class="w-full py-4 bg-store-brown text-white rounded-2xl font-bold">Assign to Branch</button>
+      </div>
+    </div>
   </div>
 </div>

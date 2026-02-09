@@ -18,7 +18,7 @@
         <select formControlName="category_id" 
                 class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-primary outline-none appearance-none cursor-pointer">
           <option value="">Select...</option>
-          @for (cat of store.categories(); track cat.id) {
+          @for (cat of categories(); track cat.id) {
             <option [value]="cat.id">{{ cat.name }}</option>
           }
         </select>
