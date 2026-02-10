@@ -43,6 +43,10 @@ export class ReportService extends BaseApiService {
     return this.http.get<any[]>(`${this.baseUrl}/reports/supplier-performance`);
   }
 
+  getBranchDailySummary(branchId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/reports/daily-summary/${branchId}`);
+  }
+
   getClosingReport(branchId: number, date: string) {
     return this.http.get<EODReport>(`${this.baseUrl}/reports/daily-closing`, {
       params: { branch_id: branchId, date: date }

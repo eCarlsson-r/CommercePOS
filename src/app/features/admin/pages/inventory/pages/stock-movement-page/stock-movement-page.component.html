@@ -39,9 +39,9 @@
               <td class="p-5 text-sm text-gray-600">{{ move.items.length }} Items</td>
               <td class="p-5">
                 @if (move.status === 'M') {
-                  <span class="flex items-center gap-1.5 text-blue-600 bg-blue-50 px-3 py-1 rounded-full text-xs font-bold w-fit border border-blue-100">
+                  <span (click)="onReceive(move.id)" class="flex items-center gap-1.5 text-blue-600 bg-blue-50 px-3 py-1 rounded-full text-xs font-bold w-fit border border-blue-100">
                     <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
-                    IN TRANSIT
+                    Receive
                   </span>
                 } @else {
                   <span class="flex items-center gap-1.5 text-green-600 bg-green-50 px-3 py-1 rounded-full text-xs font-bold w-fit border border-green-100">

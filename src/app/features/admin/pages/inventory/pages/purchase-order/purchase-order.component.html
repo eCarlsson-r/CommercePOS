@@ -1,48 +1,128 @@
-<div class="p-6 space-y-6">
-  <div class="flex justify-between items-center">
-    <h1 class="text-2xl font-bold">New Purchase Order</h1>
-    <div class="flex gap-4">
-      <select [(ngModel)]="selectedBranchId" class="p-2 border rounded-xl">
-        @for (branch of availableBranches(); track branch.id) {
-          <option [value]="branch.id">{{ branch.name }}</option>
-        }
-      </select>
-      <select [(ngModel)]="selectedSupplierId" class="p-2 border rounded-xl">
-        @for (supplier of availableSuppliers(); track supplier.id) {
-          <option [value]="supplier.id">{{ supplier.name }}</option>
-        }
-      </select>
+<div class="p-8 space-y-8">
+  <header class="flex justify-between items-center">
+    <div>
+      <h1 class="text-3xl font-black text-primary tracking-tighter uppercase">Purchase Orders</h1>
+      <p class="text-gray-500 text-sm font-medium">Managing inventory procurement for 11 branches</p>
     </div>
-  </div>
+    <button (click)="createNewPO()" 
+            class="bg-primary text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-3 shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all">
+      <lucide-icon name="plus-circle" class="w-5 h-5"></lucide-icon>
+      Create New Order
+    </button>
+  </header>
 
-  <div class="bg-white rounded-3xl border p-6">
-    <table class="w-full">
-      <thead>
-        <tr class="text-xs uppercase text-gray-400">
-          <th class="pb-4">Product</th>
-          <th class="pb-4">Quantity</th>
-          <th class="pb-4">Unit Cost (Rp)</th>
-          <th class="pb-4">Subtotal</th>
+  <div class="bg-white rounded-[2.5rem] border border-border overflow-hidden shadow-sm">
+    <table class="w-full text-left">
+      <thead class="bg-gray-50/50 border-b">
+        <tr>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">PO Reference</th>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">Supplier</th>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">Order Date</th>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">Total Amount</th>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase text-center">Status</th>
+          <th class="p-6"></th>
         </tr>
       </thead>
-      <tbody>
-        @for (item of poItems(); track $index) {
-          <tr>
-            <td class="py-2 font-bold">{{ item.name }}</td>
-            <td class="py-2">
-              <input type="number" [(ngModel)]="item.quantity" class="w-20 p-2 border rounded-lg">
+      <tbody class="divide-y divide-gray-100">
+        @for (po of purchaseOrders(); track po.id) {
+          <tr class="group hover:bg-gray-50/50 transition-colors">
+            <td class="p-6">
+              <span class="font-mono text-xs font-bold text-primary px-2 py-1 bg-primary/5 rounded">#PO-{{ po.id }}</span>
             </td>
-            <td class="py-2">
-              <input type="number" [(ngModel)]="item.cost_price" class="w-32 p-2 border rounded-lg font-mono">
+            <td class="p-6">
+              <div class="font-bold text-gray-800">{{ po.supplier_name }}</div>
+              <div class="text-[10px] text-gray-400 uppercase">{{ po.branch_destination }}</div>
             </td>
-            <td class="py-2 font-mono">Rp {{ item.quantity * item.cost_price | number }}</td>
+            <td class="p-6 text-sm text-gray-500 font-medium">{{ po.created_at | date:'mediumDate' }}</td>
+            <td class="p-6">
+              <div class="font-black text-gray-900">Rp {{ po.total_cost | number }}</div>
+            </td>
+            <td class="p-6">
+              <div class="flex justify-center">
+                <span [ngClass]="{
+                  'bg-orange-50 text-orange-600 border-orange-100': po.status === 'pending',
+                  'bg-blue-50 text-blue-600 border-blue-100': po.status === 'sent',
+                  'bg-green-50 text-green-600 border-green-100': po.status === 'received'
+                }" class="text-[10px] font-black uppercase px-3 py-1 rounded-full border">
+                  {{ po.status }}
+                </span>
+              </div>
+            </td>
+            <td class="p-6">
+              <button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-primary">
+                <lucide-icon name="eye" class="w-5 h-5"></lucide-icon>
+              </button>
+            </td>
           </tr>
         }
       </tbody>
     </table>
-    
-    <button (click)="submitPO()" class="mt-6 w-full bg-green-600 text-white p-4 rounded-2xl font-bold">
-      Receive Stock & Update Ledger
-    </button>
+  </div>
+
+  <div class="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex justify-end" *ngIf="showDrawer()">
+    <div class="w-full max-w-2xl bg-white h-full shadow-2xl flex flex-col">
+      <div class="p-8 border-b flex justify-between items-center">
+        <h2 class="text-xl font-black text-primary uppercase">New Purchase Order</h2>
+        <button (click)="showDrawer.set(false)" class="text-gray-400 hover:text-red-500"><lucide-icon name="x"></lucide-icon></button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-8 space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase">Supplier</label>
+            <select class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none">
+              <option>Select Supplier...</option>
+              @for(s of availableSuppliers(); track s.id){ <option [value]="s.id">{{s.name}}</option> }
+            </select>
+          </div>
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase">Destination Branch</label>
+            <select class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none">
+              @for(b of availableBranches(); track b.id){ <option [value]="b.id">{{b.name}}</option> }
+            </select>
+          </div>
+        </div>
+
+        <div class="relative">
+          <label class="text-[10px] font-black text-gray-400 uppercase">Add Products</label>
+          <div class="mt-2 relative">
+            <lucide-icon name="search" class="absolute left-4 top-4 text-gray-300 w-5 h-5"></lucide-icon>
+            <input [(ngModel)]="searchTerm" (input)="searchProducts()"
+                  placeholder="Search products to order..."
+                  class="w-full pl-12 p-4 bg-gray-50 rounded-2xl border-none">
+          </div>
+          @if(searchResults().length > 0) {
+            <div class="absolute w-full mt-1 bg-white border border-border rounded-2xl shadow-xl z-20">
+              @for(p of searchResults(); track p.id) {
+                <div (click)="addToBasket(p)" class="p-4 hover:bg-gray-50 cursor-pointer flex justify-between border-b last:border-0">
+                  <span class="font-bold text-sm">{{p.name}}</span>
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="space-y-3">
+          @for(item of poItems(); track item.product_id) {
+            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl">
+              <div class="font-bold text-sm w-64">{{item.name}}</div>
+              <input type="number" [(ngModel)]="item.quantity" class="w-16 p-2 bg-white rounded-xl text-center font-bold">
+              <input type="number" [(ngModel)]="item.cost_price" class="w-28 p-2 bg-white rounded-xl text-center font-bold">
+              <div class="w-32 text-right font-black text-primary">Rp {{ (item.quantity * item.cost_price) | number }}</div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="p-8 bg-gray-50 border-t space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-gray-500 uppercase text-xs">Total Commitment</span>
+          <span class="text-2xl font-black text-primary">Rp {{ grandTotal() | number }}</span>
+        </div>
+        <button (click)="submitPO()" class="w-full py-4 bg-primary text-white rounded-2xl font-black shadow-lg shadow-primary/20">
+          Create Purchase Order
+        </button>
+      </div>
+    </div>
   </div>
 </div>

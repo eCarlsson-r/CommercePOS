@@ -10,7 +10,7 @@ import { SupplierService } from '@/services/supplier.service';
 interface POItem {
   product_id: number;
   name: string;
-  sku: string;
+  code: string;
   quantity: number;
   cost_price: number;
 }
@@ -30,6 +30,8 @@ export class PurchaseOrderComponent {
   // State
   selectedSupplierId = signal<number>(0); // Default to Medan Warehouse
   selectedBranchId = signal<number>(1); // Default to Medan Warehouse
+  purchaseOrders = signal<any[]>([]); // This holds your list data
+  showDrawer = signal(false);
   poItems = signal<POItem[]>([]);
   isSubmitting = signal(false);
   
@@ -38,11 +40,29 @@ export class PurchaseOrderComponent {
   availableSuppliers = signal<any[]>([]);
   availableBranches = signal<any[]>([]);
   searchTerm = '';
+  searchResults = signal<any[]>([]);
+  
+  searchProducts() {
+    if (this.searchTerm.length < 2) return;
+    this.productService.getProducts().subscribe(all => {
+      this.searchResults.set(
+        all.filter(p => p.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || p.code.includes(this.searchTerm))
+      );
+    });
+  }
 
   ngOnInit() {
     this.loadProducts();
     this.loadSuppliers();
     this.loadBranches();
+  }
+
+  createNewPO() {
+    this.showDrawer.set(true);
+  }
+
+  cancelCreation() {
+    this.showDrawer.set(false);
   }
 
   loadProducts() {
@@ -57,7 +77,7 @@ export class PurchaseOrderComponent {
     this.branchService.getBranches().subscribe(data => this.availableBranches.set(data));
   }
 
-  addItem(product: any) {
+  addToBasket(product: any) {
     const existing = this.poItems().find(p => p.product_id === product.id);
     if (existing) {
       existing.quantity += 1;
@@ -65,11 +85,13 @@ export class PurchaseOrderComponent {
       this.poItems.update(items => [...items, {
         product_id: product.id,
         name: product.name,
-        sku: product.sku,
+        code: product.code,
         quantity: 1,
-        cost_price: product.base_price // Default to base price, user can edit
+        cost_price: product.cost_price // Default to base price, user can edit
       }]);
     }
+    this.searchResults.set([]);
+    this.searchTerm = '';
   }
 
   removeItem(index: number) {

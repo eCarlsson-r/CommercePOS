@@ -6,6 +6,8 @@ import { StockCardComponent } from '@/features/admin/pages/inventory/components/
 import { CategoryService } from '@/services/category.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BranchService } from '@/services/branch.service';
+import { StockService } from '@/services/stock.service';
+import { map, startWith, Subject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-inventory-list-page',
@@ -18,10 +20,6 @@ import { BranchService } from '@/services/branch.service';
           <h1 class="text-2xl font-bold text-foreground">Inventory Assets</h1>
           <p class="text-sm text-muted-foreground">Manage and track your branch stock levels</p>
         </div>
-        <button class="bg-primary text-white px-6 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:shadow-lg hover:shadow-primary/20 transition-all">
-          <lucide-icon name="plus" class="w-4 h-4"></lucide-icon>
-          Add Product
-        </button>
       </div>
 
       <div class="bg-white p-4 rounded-2xl border border-border flex flex-col md:flex-row gap-4">
@@ -35,9 +33,13 @@ import { BranchService } from '@/services/branch.service';
         </select>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        @for (i of [1,2,3,4,5,6,7,8]; track i) {
-          <app-stock-card></app-stock-card>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        @for (move of allMovements(); track move.id) {
+          <app-stock-card [move]="move"></app-stock-card>
+        } @empty {
+          @for (i of [1,2,3,4]; track $index) {
+            <div class="bg-gray-50 h-48 rounded-3xl animate-pulse"></div>
+          }
         }
       </div>
     </div>
@@ -46,7 +48,21 @@ import { BranchService } from '@/services/branch.service';
 export class InventoryListPageComponent {
   private categoryService = inject(CategoryService);
   private branchService = inject(BranchService);
+  private stockService = inject(StockService);
   
   categories = toSignal(this.categoryService.getCategories())();
   branches = toSignal(this.branchService.getBranches())();
+  
+  private refreshTrigger = new Subject<void>();
+
+  allMovements = toSignal(
+    this.refreshTrigger.pipe(
+      startWith(null),
+      switchMap(() => this.stockService.getMovements()),
+      map((res: any) => {
+        return Array.isArray(res) ? res : (res?.data || []);
+      })
+    ),
+    { initialValue: [] }
+  );
 }

@@ -5,8 +5,16 @@ export interface Employee {
   id: number;
   name: string;
   email: string;
-  role: 'admin' | 'staff';
-  branch_id: number;
+  role: string;
+  status: string;
+  join_date: string;
+  quit_reason: string | null;
+  quit_date: string | null;
+  branch_id: number | null;
+  mobile: string;
+  username: string;
+  password: string;
+  type: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -24,5 +32,9 @@ export class EmployeeService extends BaseApiService {
 
   updateEmployee(id: number, data: Partial<Employee>) {
     return this.http.put(`${this.apiUrl}/${id}`, data, { headers: this.getHeaders() });
+  }
+
+  offboard(id: number, data: { quit_date: string; reason: string }) {
+    return this.http.put(`${this.apiUrl}/${id}/offboard`, data, { headers: this.getHeaders() });
   }
 }

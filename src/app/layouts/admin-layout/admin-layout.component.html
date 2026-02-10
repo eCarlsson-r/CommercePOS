@@ -5,7 +5,7 @@
     </a>
     
     <nav class="flex-1 p-4 overflow-y-auto">
-      @for(item of menuItems; track $index) {
+      @for(item of menuItems(); track $index) {
         <div>
           <p class="px-4 text-[10px] font-black text-primary/40 uppercase tracking-widest my-2">{{item.title}}</p>
           <div class="space-y-1">
@@ -23,10 +23,20 @@
   <main class="flex-1 flex flex-col overflow-hidden">
     <header class="h-16 border-b border-border bg-white flex items-center justify-between px-8">
       <h2 class="font-semibold text-foreground">Store Management</h2>
-      <div class="flex items-center gap-4">
-        <div class="px-3 py-1 bg-secondary rounded-full text-[10px] font-bold text-primary uppercase">
-          Main Branch
-        </div>
+      <div class="flex items-center gap-4 bg-white px-4 py-2 rounded-2xl border border-border">
+        <lucide-icon name="map-pin" class="w-4 h-4 text-primary"></lucide-icon>
+        
+        <select [ngModel]="selectedBranch()?.id" 
+                (ngModelChange)="onBranchChange($event)"
+                class="bg-transparent font-bold text-sm outline-none border-none cursor-pointer">
+          @for (b of branches(); track b.id) {
+            <option [value]="b.id">{{ b.name }}</option>
+          }
+        </select>
+
+        @if (userRole() === 'admin') {
+          <span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded font-black">SUPER-ADMIN</span>
+        }
       </div>
     </header>
 

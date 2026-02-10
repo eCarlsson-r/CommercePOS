@@ -1,7 +1,11 @@
 <div class="space-y-8 p-1 animate-in fade-in slide-in-from-bottom-4 duration-700">
   
   <header>
-    <app-stats-grid></app-stats-grid>
+    @if (userRole() === 'admin') {
+      <app-stats-grid></app-stats-grid>
+    } @else {
+      <app-branch-staff-kpis></app-branch-staff-kpis>
+    }
   </header>
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -12,53 +16,15 @@
         <app-recent-sales></app-recent-sales>
       </section>
 
-      <div class="bg-store-cream/20 border-2 border-dashed border-border rounded-2xl p-12 text-center">
-        <header>
-          <h1 class="text-3xl font-black text-primary tracking-tighter">NETWORK OVERVIEW</h1>
-          <p class="text-gray-500">Live performance across 11 branches</p>
-        </header>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-primary p-8 rounded-4xl text-white shadow-xl shadow-primary/20 relative overflow-hidden">
-            <div class="relative z-10">
-              <p class="text-white/60 text-xs font-bold uppercase tracking-widest">Total Network Revenue (Today)</p>
-              <h2 class="text-4xl font-black mt-2">Rp {{ totalNetworkRevenue() | number }}</h2>
-            </div>
-            <i-lucide name="trending-up" class="absolute -right-4 -bottom-4 w-32 h-32 text-white/5"></i-lucide>
-          </div>
-
-          <div class="bg-white p-8 rounded-4xl border border-border shadow-sm">
-            <p class="text-gray-400 text-xs font-bold uppercase tracking-widest">Top Performing Branch</p>
-            <h2 class="text-4xl font-black mt-2 text-gray-900">
-              {{ branchPerformance()[0]?.name || 'Loading...' }}
-            </h2>
-          </div>
-        </div>
-
-        <div class="bg-white p-8 rounded-4xl border border-border shadow-sm">
-          <h3 class="font-bold text-gray-800 mb-8">Branch Revenue Comparison</h3>
-          
-          <div class="space-y-6">
-            @for (branch of branchPerformance(); track branch.id) {
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm font-bold">
-                  <span class="text-gray-600">{{ branch.name }}</span>
-                  <span class="text-primary">Rp {{ branch.revenue | number }}</span>
-                </div>
-                <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
-                  <div class="bg-primary h-full transition-all duration-1000"
-                      [style.width.%]="(branch.revenue / branchPerformance()[0].revenue) * 100">
-                  </div>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-      </div>
+      @if (userRole() === 'admin') {
+        <app-admin-metrics-view 
+          [revenue]="totalNetworkRevenue()" 
+          [branchPerformance]="branchPerformance()">
+        </app-admin-metrics-view>
+      }
     </div>
 
     <div class="space-y-8">
-      
       <section>
         <app-stock-alert></app-stock-alert>
       </section>
@@ -73,7 +39,7 @@
             <lucide-icon name="monitor-smartphone" class="w-4 h-4"></lucide-icon>
             Open POS
           </button>
-          <button routerLink="/inventory/add" class="w-full bg-white/10 hover:bg-white/20 py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2 border border-white/10">
+          <button routerLink="/admin/movement" class="w-full bg-white/10 hover:bg-white/20 py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2 border border-white/10">
             <lucide-icon name="plus-circle" class="w-4 h-4"></lucide-icon>
             Receive Stock
           </button>

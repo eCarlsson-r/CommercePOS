@@ -3,6 +3,7 @@ import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '@/models/product.model';
 import { BaseApiService } from './base-api.service';
+import { map } from 'rxjs/operators';
 
 export interface StockTransferPayload {
   from_branch_id: number;
@@ -12,7 +13,16 @@ export interface StockTransferPayload {
 
 @Injectable({ providedIn: 'root' })
 export class StockService extends BaseApiService {
+
   private apiUrl = `${this.baseUrl}/stock-transfers`;
+
+  getStocks(branchId?: number): Observable<any[]> {
+    let params = new HttpParams();
+    if (branchId) {
+      params = params.set('branch_id', branchId.toString());
+    }
+    return this.http.get<any[]>(`${this.baseUrl}/stocks`, { params });
+  }
 
   getLowStock(branchId?: number): Observable<Product[]> {
     let params = new HttpParams();
@@ -29,6 +39,11 @@ export class StockService extends BaseApiService {
       : this.apiUrl;
       
     return this.http.get<any[]>(url);
+  }
+
+  // For the Audit View
+  getStockAudit(productId: number, branchId: number) {
+    return this.http.get<any[]>(`${this.baseUrl}/stock/audit/${productId}/${branchId}`);
   }
 
   sendTransfer(payload: StockTransferPayload): Observable<any> {

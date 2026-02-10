@@ -23,9 +23,15 @@ export class ReturnsComponent {
   supplier_id = signal(1); // Usually auto-filled by user's branch
   reason = signal('');
   suppliers = signal<any[]>([]);
+  returnHistory = signal<any[]>([]);
 
   ngOnInit() {
     this.supplierService.getSuppliers().subscribe(data => this.suppliers.set(data));
+  }
+
+  loadHistory() {
+    this.activeTab.set('history');
+    this.returnService.getReturns().subscribe(data => this.returnHistory.set(data));
   }
   
   // Search state

@@ -1,5 +1,5 @@
 // src/app/core/services/auth.service.ts
-import { Injectable, signal, inject } from '@angular/core';
+import { Injectable, signal, inject, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { BaseApiService } from './base-api.service';
@@ -20,6 +20,11 @@ export class AuthService extends BaseApiService {
       this.isAuthenticated.set(true);
     }
   }
+
+  // A helper signal to get just the role string
+  userRole = computed(() => this.currentUser()?.role || 'guest');
+  // A helper signal for branch-level access
+  userBranchId = computed(() => this.currentUser()?.employee?.branch_id);
 
   login(credentials: any) {
     return this.http.post<any>(`${this.baseUrl}/login`, credentials, { headers: this.getHeaders() }).pipe(

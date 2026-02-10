@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { Subject, switchMap, startWith } from 'rxjs';
+import { Subject, switchMap, startWith, map, catchError, of } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { StockService } from '@/services/stock.service';
 import { CommonModule } from '@angular/common';
@@ -23,8 +23,14 @@ export class StockMovementPageComponent {
   // 2. This signal automatically re-fetches whenever refreshTrigger.next() is called
   allMovements = toSignal(
     this.refreshTrigger.pipe(
-      startWith(null), // Fetch immediately on load
-      switchMap(() => this.stockService.getMovements())
+      startWith(null),
+      switchMap(() => this.stockService.getMovements()),
+      // Add a map to ensure we are returning an array
+      map((res: any) => {
+        // If Laravel returns pagination, the array is in res.data
+        // If it returns a direct array, use res
+        return Array.isArray(res) ? res : (res?.data || []);
+      })
     ),
     { initialValue: [] }
   );

@@ -11,7 +11,7 @@
       {{ salesCount() }} Transactions
     </h3>
     <p class="text-xs text-primary font-bold">
-      Total: {{ todayRevenue() | currency:'IDR':'symbol':'1.0-0' }}
+      Total: {{ todayRevenue() | currency:'IDR':'Rp. ':'1.0-0' }}
     </p>
   </div>
 
@@ -45,6 +45,6 @@
       </div>
     </div>
     <p class="mt-4 text-sm text-muted-foreground font-medium">Waste Today</p>
-    <h3 class="text-lg font-bold text-foreground truncate">Rp {{ dailyWaste() | currency:'IDR':'symbol':'1.0-0' }}</h3>
+    <h3 class="text-lg font-bold text-foreground truncate">{{ dailyWaste() | currency:'IDR':'Rp. ':'1.0-0' }}</h3>
   </div>
 </div>

@@ -1,18 +1,16 @@
 // src/app/features/inventory/components/stock-movement-drawer/stock-movement-drawer.component.ts
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ProductService } from '@/services/product.service';
 import { StockService } from '@/services/stock.service';
 import { BranchService } from '@/services/branch.service';
-import { StockTransferPayload, TransferItem } from '@/models/stock-transfer.model';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { switchMap } from 'rxjs';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-stock-movement-drawer',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule],
   template: `
     <div *ngIf="isOpen" 
          class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity"
@@ -28,34 +26,68 @@ import { switchMap } from 'rxjs';
           <button (click)="onClose.emit()" class="text-gray-400 hover:text-gray-600">✕</button>
         </div>
 
-        <form [formGroup]="transferForm" class="flex-1 space-y-6">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Product</label>
-            <select formControlName="product_id" class="w-full border p-3 rounded-xl outline-none border-border focus:border-primary">
-              <option *ngFor="let p of products" [value]="p.id">{{ p.name }} (Stock: {{ p.quantity }})</option>
-            </select>
-          </div>
-
+        <form class="flex-1 space-y-6">
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">From Branch</label>
-              <select formControlName="from_branch_id" class="w-full border p-3 rounded-xl outline-none">
-                <option *ngFor="let b of branches" [value]="b.id">{{ b.name }}</option>
+              <select [(ngModel)]="from_branch_id" name="from_branch_id" class="w-full border p-3 rounded-xl outline-none">
+                @for (b of branches(); track b.id) {
+                  <option [value]="b.id">{{ b.name }}</option>
+                }  
               </select>
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">To Branch</label>
-              <select formControlName="to_branch_id" class="w-full border p-3 rounded-xl outline-none">
-                <option *ngFor="let b of branches" [value]="b.id">{{ b.name }}</option>
+              <select [(ngModel)]="to_branch_id" name="to_branch_id" class="w-full border p-3 rounded-xl outline-none">
+                @for (b of branches(); track b.id) {
+                  <option [value]="b.id">{{ b.name }}</option>
+                }  
               </select>
             </div>
           </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Quantity to Move</label>
-            <input formControlName="quantity" type="number" class="w-full border p-3 rounded-xl outline-none">
+          <div class="flex items-center gap-3">
+            <div class="w-full">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Product</label>
+              <select [(ngModel)]="product_id" name="product_id" class="w-full border p-3 rounded-xl outline-none border-border focus:border-primary">
+                @for (p of products(); track p.id) {
+                  <option [value]="p.id">{{ p.name }}</option>
+                }  
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+              <input type="number" [(ngModel)]="quantity" name="quantity"
+                class="w-16 p-2 bg-gray-50 border border-border rounded-xl text-center font-black text-primary">
+            </div>  
+            <button (click)="addItem()" class="text-green-400 hover:text-green-600">
+              <lucide-icon name="plus" class="w-4 h-4"></lucide-icon>
+            </button>
           </div>
         </form>
+
+        <div class="space-y-2">
+          @for (item of items(); track item.product_id) {
+            <div class="flex items-center justify-between p-4 bg-white border border-border rounded-2xl">
+              <div>
+                <h5 class="font-bold text-sm">{{ item.name }}</h5>
+                <p class="text-[10px] text-gray-400">Available: {{ item.max }}</p>
+              </div>
+              
+              <div class="flex items-center gap-3">
+                <input type="number" [(ngModel)]="item.quantity" name="item.quantity" [max]="item.max"
+                      class="w-16 p-2 bg-gray-50 rounded-xl text-center font-black text-primary border-none">
+                <button (click)="removeItem(item.product_id)" class="text-red-400 hover:text-red-600">
+                  <lucide-icon name="trash-2" class="w-4 h-4"></lucide-icon>
+                </button>
+              </div>
+            </div>
+          } @empty {
+            <div class="py-12 text-center border-2 border-dashed border-gray-100 rounded-3xl">
+              <p class="text-gray-400 text-sm">Search and add products to this transfer</p>
+            </div>
+          }
+        </div>
 
         <button (click)="submitTransfer()" 
                 class="w-full bg-primary text-white py-4 rounded-xl font-bold mt-auto">
@@ -69,65 +101,60 @@ export class StockMovementDrawerComponent {
   @Input() isOpen = false;
   @Output() onClose = new EventEmitter<void>();
 
-  private fb = inject(FormBuilder);
   private productService = inject(ProductService);
   private stockService = inject(StockService);
   private branchService = inject(BranchService);
 
-  products = toSignal(toObservable(this.branchService.selectedBranch).pipe(
-        switchMap(branch => this.productService.getProducts(branch?.id))
-      ), { initialValue: [] })();
+  products = signal<any[]>([]);
+  branches = signal<any[]>([]);
 
-  branches = this.branchService.branches();
+  product_id = signal<number | null>(null);
+  from_branch_id = signal<number | null>(null);
+  to_branch_id = signal<number | null>(null);
+  quantity = signal<number | null>(null);
+  items = signal<any[]>([]); // The "Cart" for this transfer
 
-  // For the selection form
-  transferForm = this.fb.group({
-    product_id: [null, Validators.required],
-    quantity: [null, [Validators.required, Validators.min(1)]],
-    to_branch_id: [null, Validators.required]
-  });
-
-  // The "Basket" of items
-  itemsInBasket: { product_id: number; quantity: number; name: string }[] = [];
-
-  addItem() {
-    if (this.transferForm.invalid) return;
-
-    const { product_id, quantity } = this.transferForm.value;
-    const product = toSignal(this.productService.getProductById(Number(product_id)))();
-
-    if (product) {
-      this.itemsInBasket.push({
-        product_id: product.id,
-        quantity: Number(quantity),
-        name: product.name
-      });
-      // Reset only product and quantity, keep the target branch
-      this.transferForm.patchValue({ product_id: null, quantity: null });
-    }
+  ngOnInit() {
+    this.from_branch_id.set(this.branchService.selectedBranchId()!);
+    this.productService.getProducts().subscribe(data => this.products.set(data));
+    this.branchService.getBranches().subscribe(data => this.branches.set(data));
   }
 
-  submitTransfer() {
-    const fromId = this.branchService.selectedBranch()?.id;
-    const toId = Number(this.transferForm.value.to_branch_id);
+  removeItem(product_id: number) {
+    this.items.update(prev => prev.filter(item => item.product_id !== product_id));
+  }
 
-    if (fromId === toId) {
-      alert("Source and Destination branches must be different.");
+  addItem() {
+    const product = this.products().find(p => p.id == this.product_id());
+    if (!product) return;
+
+    // Logic: Prevent adding if the 'From' branch doesn't have enough stock
+    if (product.current_stock <= 0) {
+      alert('No stock available in source branch!');
       return;
     }
 
-    if (this.itemsInBasket.length === 0) return;
+    this.items.update(prev => [
+      ...prev,
+      { 
+        product_id: product.id, 
+        name: product.name, 
+        quantity: this.quantity() || 0, 
+        max: product.current_stock // Store limit for validation
+      }
+    ]);
+    this.quantity.set(null);
+  }
 
-    const payload: StockTransferPayload = {
-      from_branch_id: fromId!,
-      to_branch_id: toId,
-      items: this.itemsInBasket.map(({product_id, quantity}) => ({product_id, quantity}))
+  submitTransfer() {
+    const payload = {
+      from_branch_id: this.from_branch_id() || 0,
+      to_branch_id: this.to_branch_id() || 0,
+      items: this.items()
     };
-
+    
     this.stockService.sendTransfer(payload).subscribe(() => {
-      this.itemsInBasket = [];
-      this.onClose.emit();
-      // This will trigger your Laravel store() and send the WebPush
+      this.onClose.emit(); // Tell parent to refresh the list
     });
   }
 }
