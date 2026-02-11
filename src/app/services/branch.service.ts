@@ -2,14 +2,7 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { tap } from 'rxjs';
 import { BaseApiService } from './base-api.service';
-
-export interface Branch {
-  id?: number;
-  name: string;
-  address: string;
-  phone: string;
-  is_active: boolean;
-}
+import { Branch } from '@/models/branch.model';
 
 @Injectable({ providedIn: 'root' })
 export class BranchService extends BaseApiService {

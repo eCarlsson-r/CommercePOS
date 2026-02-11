@@ -1,21 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from './base-api.service';
-
-export interface Employee {
-  id: number | null;
-  name: string;
-  email: string;
-  role: string;
-  status: string;
-  join_date: string;
-  quit_reason: string | null;
-  quit_date: string | null;
-  branch_id: number | null;
-  mobile: string;
-  username: string;
-  password: string;
-  type: string;
-}
+import { Employee } from '@/models/employee.model';
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeService extends BaseApiService {
@@ -31,7 +16,7 @@ export class EmployeeService extends BaseApiService {
   }
 
   updateEmployee(id: number, data: Partial<Employee>) {
-    return this.http.put(`${this.apiUrl}/${id}`, data, { headers: this.getHeaders() });
+    return this.http.put<Employee>(`${this.apiUrl}/${id}`, data, { headers: this.getHeaders() });
   }
 
   offboard(id: number, data: { quit_date: string; reason: string }) {

@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from './base-api.service';
-
-export interface Category {
-  id?: number;
-  name: string;
-  slug: string;
-  description: string;
-}
+import { Category } from '@/models/category.model';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService extends BaseApiService {

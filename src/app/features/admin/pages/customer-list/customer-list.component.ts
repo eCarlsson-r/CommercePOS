@@ -5,7 +5,7 @@ import { CustomerService } from '@/services/customer.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, switchMap, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, of, BehaviorSubject, merge } from 'rxjs';
 import { Customer } from '@/models/customer.model';
 
 @Component({
@@ -22,29 +22,34 @@ export class CustomerListComponent {
   searchControl = new FormControl('');
   customerForm: FormGroup = this.fb.group({
     name: ['', [Validators.required]],
-    phone: ['', [Validators.required]],
+    mobile: ['', [Validators.required]],
+    email: ['', [Validators.email]],
   });
   showDrawer = signal(false);
 
-  // Reactive signal that updates whenever the user types in the search box
+  private refresh$ = new BehaviorSubject<void>(undefined);
+  
+  // Reactive signal that updates whenever the user types in the search box OR calls refreshCustomers()
   customers = toSignal(
-    this.searchControl.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(query => {
-        if (!query) return of([]); // Return empty if search is cleared
-        return this.customerService.findCustomer(query);
+    merge(
+      this.searchControl.valueChanges.pipe(debounceTime(300), distinctUntilChanged()),
+      this.refresh$
+    ).pipe(
+      switchMap(() => {
+        const query = this.searchControl.value || '';
+        return query 
+          ? this.customerService.findCustomer(query)
+          : this.customerService.getCustomers();
       })
     ),
     { initialValue: [] as Customer[] }
   );
 
   ngOnInit() {
-    this.refreshCustomers();
   }
 
   refreshCustomers() {
-    this.customerService.getCustomers();
+    this.refresh$.next();
   }
 
   cancelEdit() {

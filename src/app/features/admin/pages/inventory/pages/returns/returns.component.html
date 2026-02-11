@@ -22,7 +22,7 @@
             @for (p of searchResults(); track p.id) {
               <div (click)="addToBasket(p)" class="p-4 hover:bg-gray-50 cursor-pointer flex justify-between border-b">
                 <span class="font-bold">{{ p.name }}</span>
-                <span class="text-xs font-mono text-gray-400">{{ p.sku }}</span>
+                <span class="text-xs font-mono text-gray-400">{{ p.code }}</span>
               </div>
             }
           </div>
@@ -43,7 +43,7 @@
               <tr>
                 <td class="p-4">
                   <div class="font-bold">{{ item.name }}</div>
-                  <div class="text-[10px] text-gray-400">{{ item.sku }}</div>
+                  <div class="text-[10px] text-gray-400">{{ item.code }}</div>
                 </td>
                 <td class="p-4 w-24">
                   <input type="number" [(ngModel)]="item.quantity" class="w-full p-2 bg-gray-50 rounded-lg text-center font-bold">

@@ -2,21 +2,22 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BaseApiService } from './base-api.service';
+import { Product } from '@/models/product.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService extends BaseApiService {
   private apiUrl = `${this.baseUrl}/products`; // Adjust to your backend URL
 
-  getProducts(branchId?: number): Observable<any[]> {
+  getProducts(branchId?: number): Observable<Product[]> {
     let url = this.apiUrl;
     if (branchId) {
       url += `?branch_id=${branchId}`;
     }
-    return this.http.get<any[]>(url, { headers: this.getHeaders() });
+    return this.http.get<Product[]>(url, { headers: this.getHeaders() });
   }
 
-  getProductById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
   }
 
   // Define the missing 'create'

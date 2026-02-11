@@ -29,8 +29,7 @@ export class EmployeeListComponent {
     join_date: new Date().toISOString().split('T')[0],
     create_account: false,
     username: '',
-    password: '',
-    type: 'staff' // 'admin' | 'staff'
+    password: ''
   };
   
   ngOnInit() {
@@ -60,8 +59,7 @@ export class EmployeeListComponent {
       join_date: employee.join_date,
       create_account: false,
       username: '',
-      password: '',
-      type: employee.type // 'admin' | 'staff'
+      password: ''
     };
     this.showDrawer.set(true);
     // Smoothly scroll to the form if on mobile
@@ -78,8 +76,7 @@ export class EmployeeListComponent {
       join_date: new Date().toISOString().split('T')[0],
       create_account: false,
       username: '',
-      password: '',
-      type: 'staff'
+      password: ''
     };
     this.editingEmployee.set(0);
   }

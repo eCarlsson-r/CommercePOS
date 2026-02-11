@@ -9,7 +9,7 @@ export const roleGuard = (allowedRoles: string[]) => {
     const router = inject(Router);
     const user = authService.currentUser(); // Signal from your AuthService
 
-    if (user && allowedRoles.includes(user.type)) {
+    if (user && allowedRoles.includes(user.role)) {
       return true;
     }
 

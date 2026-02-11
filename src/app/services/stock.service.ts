@@ -3,13 +3,7 @@ import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '@/models/product.model';
 import { BaseApiService } from './base-api.service';
-import { map } from 'rxjs/operators';
-
-export interface StockTransferPayload {
-  from_branch_id: number;
-  to_branch_id: number;
-  items: { product_id: number; quantity: number }[];
-}
+import { StockTransferPayload } from '@/models/stock-transfer.model';
 
 @Injectable({ providedIn: 'root' })
 export class StockService extends BaseApiService {

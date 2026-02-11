@@ -10,7 +10,7 @@ import { SupplierService } from '@/services/supplier.service';
 interface POItem {
   product_id: number;
   name: string;
-  code: string;
+  sku: string;
   quantity: number;
   cost_price: number;
 }
@@ -46,7 +46,7 @@ export class PurchaseOrderComponent {
     if (this.searchTerm.length < 2) return;
     this.productService.getProducts().subscribe(all => {
       this.searchResults.set(
-        all.filter(p => p.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || p.code.includes(this.searchTerm))
+        all.filter(p => p.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || p.sku.includes(this.searchTerm))
       );
     });
   }
@@ -85,7 +85,7 @@ export class PurchaseOrderComponent {
       this.poItems.update(items => [...items, {
         product_id: product.id,
         name: product.name,
-        code: product.code,
+        sku: product.sku,
         quantity: 1,
         cost_price: product.cost_price // Default to base price, user can edit
       }]);

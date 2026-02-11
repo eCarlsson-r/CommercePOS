@@ -33,7 +33,7 @@ export class StatsGridComponent {
 
   // Reactive count of low stock items
   lowStockCount = computed(() => 
-    (this.products().length > 0) ? this.products().filter(p => p.quantity < 10).length : 0
+    (this.products().length > 0) ? this.products().filter(p => p.stocks && p.stocks[0].quantity < 10).length : 0
   );
   
   // Count of sales fetched

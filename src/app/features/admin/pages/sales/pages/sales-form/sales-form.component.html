@@ -15,8 +15,8 @@
             <lucide-icon name="package" class="text-gray-300 group-hover:text-primary transition w-10 h-10"></lucide-icon>
         </div>
         <h3 class="font-bold text-gray-800">{{ product.name }}</h3>
-        <p class="text-primary font-semibold">{{ product.sale_price | currency }}</p>
-        <p class="text-xs text-gray-400">Stock: {{ product.quantity }}</p>
+        <p class="text-primary font-semibold">{{ product.stocks?.[0]?.sale_price | currency }}</p>
+        <p class="text-xs text-gray-400">Stock: {{ product.stocks?.[0]?.quantity }}</p>
       </div>
     </div>
   </section>

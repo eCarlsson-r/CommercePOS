@@ -59,7 +59,7 @@ export class StockMatrixComponent implements OnInit {
     const exportData = this.products().map(product => {
       const row: any = {
         'Product Name': product.name,
-        'SKU': product.sku,
+        'SKU': product.code,
         'Category': product.category?.name
       };
 

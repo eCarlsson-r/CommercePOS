@@ -1,15 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from './base-api.service';
 import { Observable } from 'rxjs';
-
-export interface Supplier {
-  id: number;
-  name: string;
-  contact_person: string;
-  tax_id: string;
-  phone: string;
-  address: string;
-}
+import { Supplier } from '@/models/supplier.model';
 
 @Injectable({ providedIn: 'root' })
 export class SupplierService extends BaseApiService {

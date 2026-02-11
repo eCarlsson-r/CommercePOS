@@ -23,6 +23,7 @@ export interface Sale {
   tax_amount: number;
   discount_amount: number;
   grand_total: number;
+  branch_id: number;
   created_at: string;
   
   // Relations

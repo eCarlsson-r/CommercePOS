@@ -43,7 +43,7 @@ export class SaleService extends BaseApiService {
    * Process a new POS transaction (Split Payments)
    */
   createSale(saleData: any) {
-    return this.http.post(`${this.baseUrl}/sales`, saleData, { headers: this.getHeaders() });
+    return this.http.post<Sale>(`${this.baseUrl}/sales`, saleData, { headers: this.getHeaders() });
   }
 
   // Listening for new e-commerce orders via Polling or WebSockets

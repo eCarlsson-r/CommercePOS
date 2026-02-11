@@ -14,9 +14,9 @@
           <p class="font-semibold text-sm">{{ item.name }}</p>
           <div class="flex items-center gap-2">
             <div class="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-              <div class="bg-destructive h-full" [style.width.%]="(item.quantity / 10) * 100"></div>
+              <div class="bg-destructive h-full" [style.width.%]="((item.stocks?.[0]?.quantity || 0) / 10) * 100"></div>
             </div>
-            <span class="text-[10px] font-bold text-destructive">{{ item.quantity }} left</span>
+            <span class="text-[10px] font-bold text-destructive">{{ item.stocks?.[0]?.quantity || 0 }} left</span>
           </div>
         </div>
         

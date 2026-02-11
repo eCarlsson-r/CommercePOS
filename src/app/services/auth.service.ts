@@ -3,13 +3,14 @@ import { Injectable, signal, inject, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { BaseApiService } from './base-api.service';
+import { User } from '@/models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseApiService {
   private router = inject(Router);
   
   // Use a signal to track the current user globally
-  currentUser = signal<any | null>(null);
+  currentUser = signal<User | null>(null);
   isAuthenticated = signal<boolean>(!!localStorage.getItem('pos-token'));
 
   constructor() {
@@ -24,7 +25,7 @@ export class AuthService extends BaseApiService {
   // A helper signal to get just the role string
   userRole = computed(() => this.currentUser()?.role || 'guest');
   // A helper signal for branch-level access
-  userBranchId = computed(() => this.currentUser()?.employee?.branch_id);
+  userBranchId = computed(() => this.currentUser()?.employee?.branch?.id);
 
   me() {
     return this.http.get<any>(`${this.baseUrl}/user`, { headers: this.getHeaders() }).pipe(

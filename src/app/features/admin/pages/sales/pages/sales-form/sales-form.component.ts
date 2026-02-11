@@ -53,7 +53,7 @@ export class SalesFormComponent implements OnInit {
     this.productService.getProducts().subscribe((data) => {
       // Only show products that have a stock entry for THIS specific branch
       this.products = data.filter(p => 
-        p.stocks.some((s: any) => s.branch_id === branchId && s.quantity > 0)
+        p.stocks?.some((s: any) => s.branch_id === branchId && s.quantity > 0)
       );
     });
   }

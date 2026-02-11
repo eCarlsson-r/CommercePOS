@@ -32,7 +32,7 @@
             <tr class="hover:bg-gray-50 transition-colors">
               <td class="p-4 font-bold text-sm text-gray-700 sticky left-0 bg-white z-10 border-r">
                 {{ product.name }}
-                <div class="text-[10px] text-gray-400 font-mono">{{ product.sku }}</div>
+                <div class="text-[10px] text-gray-400 font-mono">{{ product.code }}</div>
               </td>
               
               @for (branch of branches(); track branch.id) {

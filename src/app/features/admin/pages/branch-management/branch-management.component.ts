@@ -1,9 +1,10 @@
 // src/app/features/admin/pages/branch-management/branch-management.component.ts
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BranchService, Branch } from '@/services/branch.service';
+import { BranchService } from '@/services/branch.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { FormsModule } from '@angular/forms';
+import { Branch } from '@/models/branch.model';
 
 @Component({
   selector: 'app-branch-management',
