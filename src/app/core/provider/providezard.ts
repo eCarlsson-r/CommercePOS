@@ -3,7 +3,7 @@ import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 
 import { ZardDebounceEventManagerPlugin } from './event-manager-plugins/zard-debounce-event-manager-plugin';
 import { ZardEventManagerPlugin } from './event-manager-plugins/zard-event-manager-plugin';
-import { CheckCircle, AlertCircle, ArrowRight, Check, Edit3, Loader2, LogIn, LogOut, Lock, LucideAngularModule, Mail, MapPin, Plus, ShoppingCart, Trash2, Truck, UserPlus, Users, LayoutDashboard, Package, FileText, TrendingUp, Zap, MonitorSmartphone, PackageSearch, Banknote, PlusCircle, AlertTriangle, Folder, RotateCcw, ClipboardList, Search, Download, Power, Coffee, Printer, Store, ImagePlus, MoreVertical, Phone, Tag, X } from 'lucide-angular';
+import { CheckCircle, AlertCircle, ArrowRight, Check, Edit3, Loader2, LogIn, LogOut, Lock, LucideAngularModule, Mail, MapPin, Plus, ShoppingCart, Trash2, Truck, UserPlus, Users, LayoutDashboard, Package, FileText, TrendingUp, Zap, MonitorSmartphone, PackageSearch, Banknote, PlusCircle, AlertTriangle, Folder, RotateCcw, ClipboardList, Search, Download, Power, Coffee, Printer, Store, ImagePlus, MoreVertical, Phone, Tag, X, UserX, History, Menu } from 'lucide-angular';
 
 export function provideZard(): EnvironmentProviders {
   const eventManagerPlugins = [
@@ -25,9 +25,11 @@ export function provideZard(): EnvironmentProviders {
       LucideAngularModule.pick({
         Folder,
         X,
+        UserX,
         RotateCcw,
         ClipboardList,
         Plus,
+        History,
         LayoutDashboard,
         Package,
         PackageSearch,
@@ -63,7 +65,8 @@ export function provideZard(): EnvironmentProviders {
         Power,
         Lock,
         LogIn,
-        LogOut
+        LogOut,
+        Menu
       })
     )
   ]);

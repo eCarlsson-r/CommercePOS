@@ -103,6 +103,7 @@ export class PurchaseOrderComponent {
   });
 
   submitPO() {
+    console.info(this.poItems());
     if (this.poItems().length === 0) return;
 
     this.isSubmitting.set(true);

@@ -1,9 +1,8 @@
-// src/app/layouts/admin-layout/admin-layout.component.ts
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
-import { RealtimeService } from '@/services/realtime.service'; // Adjust paths as needed
+import { RealtimeService } from '@/services/realtime.service';
 import { PushNotificationService } from '@/services/push-notification.service';
 import { BranchService } from '@/services/branch.service';
 import { AuthService } from '@/services/auth.service';
@@ -31,6 +30,15 @@ export class AdminLayoutComponent implements OnInit {
   userRole = this.auth.userRole;
   branches = this.branchService.branches;
   selectedBranch = this.branchService.selectedBranch;
+  isSidebarOpen = signal(false);
+
+  toggleSidebar() {
+    this.isSidebarOpen.update((v: boolean) => !v);
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen.set(false);
+  }
 
   onBranchChange(event: any) {
     this.branchService.setBranch(Number(event.target.value));
@@ -40,7 +48,7 @@ export class AdminLayoutComponent implements OnInit {
   hasNewNotifications = false;
 
   menuItems = computed(() => {
-    const role = this.user()?.role;
+    const role = this.userRole();
 
     const baseMenu = [
       {

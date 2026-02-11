@@ -10,14 +10,14 @@ export class AuthService extends BaseApiService {
   
   // Use a signal to track the current user globally
   currentUser = signal<any | null>(null);
-  isAuthenticated = signal<boolean>(!!localStorage.getItem('token'));
+  isAuthenticated = signal<boolean>(!!localStorage.getItem('pos-token'));
 
   constructor() {
     super();
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('pos-token');
     if (token) {
-      // Optional: Call a /me endpoint to verify the token is still valid
       this.isAuthenticated.set(true);
+      this.me().subscribe();
     }
   }
 
@@ -26,11 +26,20 @@ export class AuthService extends BaseApiService {
   // A helper signal for branch-level access
   userBranchId = computed(() => this.currentUser()?.employee?.branch_id);
 
+  me() {
+    return this.http.get<any>(`${this.baseUrl}/user`, { headers: this.getHeaders() }).pipe(
+      tap(user => {
+        this.currentUser.set(user);
+        this.isAuthenticated.set(true);
+      })
+    );
+  }
+
   login(credentials: any) {
     return this.http.post<any>(`${this.baseUrl}/login`, credentials, { headers: this.getHeaders() }).pipe(
       tap(res => {
         localStorage.setItem('pos-token', res.token);
-        this.currentUser.set(res.user);
+        this.currentUser.set(res.data);
         this.isAuthenticated.set(true);
         this.router.navigate(['/admin/dashboard']);
       })

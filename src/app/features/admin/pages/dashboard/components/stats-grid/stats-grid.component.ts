@@ -33,10 +33,9 @@ export class StatsGridComponent {
 
   // Reactive count of low stock items
   lowStockCount = computed(() => 
-    (this.products().length > 0) ? this.products().filter(p => p.quantity < 10).length : []
+    (this.products().length > 0) ? this.products().filter(p => p.quantity < 10).length : 0
   );
   
-  // You can add more signals for Today's Sales from SaleService
   // Count of sales fetched
   salesCount = computed(() => this.saleService.recentSales().length);
   // Total money earned today

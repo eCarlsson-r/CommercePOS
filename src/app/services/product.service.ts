@@ -31,7 +31,7 @@ export class ProductService extends BaseApiService {
       formData.append(`images[]`, file);
     });
 
-    return this.http.post(this.apiUrl, formData, { headers: this.getHeaders() });
+    return this.http.post(this.apiUrl, formData, { headers: this.getHeaders(true) });
   }
 
   // Define the missing 'update'
@@ -39,13 +39,20 @@ export class ProductService extends BaseApiService {
     const formData = new FormData();
   
     // Universal data
-    Object.keys(data).forEach(key => formData.append(key, data[key]));
+    Object.keys(data).forEach(key => {
+      if (data[key] !== null && data[key] !== undefined) {
+        formData.append(key, data[key]);
+      }
+    });
+
+    // Method spoofing for Laravel
+    formData.append('_method', 'PUT');
     
     // Gallery data
     files.forEach((file) => {
       formData.append(`images[]`, file);
     });
     
-    return this.http.put(`${this.apiUrl}/${id}`, formData, { headers: this.getHeaders() });
+    return this.http.post(`${this.apiUrl}/${id}`, formData, { headers: this.getHeaders(true) });
   }
 }

@@ -16,8 +16,8 @@ import { AuthService } from '@/services/auth.service';
       
       <form [formGroup]="loginForm" class="space-y-4" (submit)="handleLogin($event)">
         <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Email</label>
-          <input type="email" formControlName="email" 
+          <label class="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Username</label>
+          <input type="text" formControlName="username" 
             class="w-full px-4 py-3 rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
         </div>
 
@@ -41,10 +41,11 @@ import { AuthService } from '@/services/auth.service';
 export class LoginPageComponent {
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
-  
+  private router = inject(Router);  
+
   isLoading = false;
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
@@ -52,13 +53,13 @@ export class LoginPageComponent {
     event.preventDefault();
     this.isLoading = true;
 
-    this.auth.login({ email: this.loginForm.value.email, password: this.loginForm.value.password }).subscribe({
+    this.auth.login({ username: this.loginForm.value.username, password: this.loginForm.value.password }).subscribe({
       next: () => {
-        console.log('Login successful! Redirecting to Medan Dashboard...');
+        this.isLoading = false;
       },
       error: (err) => {
         this.isLoading = false;
-        alert('Invalid credentials. Please check your Medan Store account.');
+        alert(err.error.message);
       }
     });
   }

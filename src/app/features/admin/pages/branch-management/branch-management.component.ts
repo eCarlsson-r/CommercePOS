@@ -15,6 +15,7 @@ export class BranchManagementComponent {
   // Injecting our dynamic branch service
   public branchService = inject(BranchService);
   showDrawer = signal(false);
+  action = signal("Create");
   formData = { name: '', address: '', phone: '', is_active: true };
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class BranchManagementComponent {
 
   // Local state for UI feedback
   isUpdating = signal(false);
+  editingBranch = signal(0);
 
   toggleBranchStatus(branch: Branch) {
     this.isUpdating.set(true);
@@ -34,14 +36,32 @@ export class BranchManagementComponent {
     setTimeout(() => this.isUpdating.set(false), 500);
   }
 
-  saveBranch() {
-    this.branchService.createBranch(this.formData).subscribe(() => {
-      this.showDrawer.set(false);
-      this.resetForm();
-    });
+  editBranch(branch: any) {
+    this.action.set("Update");
+    this.editingBranch.set(branch.id);
+    this.formData = {
+      name: branch.name,
+      phone: branch.phone,
+      address: branch.address,
+      is_active: branch.is_active,
+    };
+    this.showDrawer.set(true);
+    // Smoothly scroll to the form if on mobile
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  resetForm() {
+  cancelEdit() {
+    this.showDrawer.set(false);
+    this.action.set("Create");
     this.formData = { name: '', address: '', phone: '', is_active: true };
+    this.editingBranch.set(0);
+  }
+
+  saveBranch() {
+    const obs$ = this.editingBranch() > 0
+      ? this.branchService.updateBranch(this.editingBranch(), this.formData)
+      : this.branchService.createBranch(this.formData);
+
+    obs$.subscribe(() => this.cancelEdit);
   }
 }

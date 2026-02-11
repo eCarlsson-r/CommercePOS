@@ -86,20 +86,22 @@
         <div class="relative">
           <label class="text-[10px] font-black text-gray-400 uppercase">Add Products</label>
           <div class="mt-2 relative">
-            <lucide-icon name="search" class="absolute left-4 top-4 text-gray-300 w-5 h-5"></lucide-icon>
-            <input [(ngModel)]="searchTerm" (input)="searchProducts()"
-                  placeholder="Search products to order..."
-                  class="w-full pl-12 p-4 bg-gray-50 rounded-2xl border-none">
-          </div>
-          @if(searchResults().length > 0) {
-            <div class="absolute w-full mt-1 bg-white border border-border rounded-2xl shadow-xl z-20">
-              @for(p of searchResults(); track p.id) {
-                <div (click)="addToBasket(p)" class="p-4 hover:bg-gray-50 cursor-pointer flex justify-between border-b last:border-0">
-                  <span class="font-bold text-sm">{{p.name}}</span>
-                </div>
-              }
+            <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+              <lucide-icon name="search" class="w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors"></lucide-icon>
             </div>
-          }
+            <input [(ngModel)]="searchTerm" (input)="searchProducts()" type="text" 
+                placeholder="Scan Barcode or Type Product Name..." 
+                class="w-full pl-12 p-4 bg-gray-50 rounded-2xl border-none">
+            @if(searchResults().length > 0) {
+              <div class="absolute w-full mt-1 bg-white border border-border rounded-2xl shadow-xl z-20">
+                @for(p of searchResults(); track p.id) {
+                  <div (click)="addToBasket(p)" class="p-4 hover:bg-gray-50 cursor-pointer flex justify-between border-b last:border-0">
+                    <span class="font-bold text-sm">{{p.name}}</span>
+                  </div>
+                }
+              </div>
+            }
+          </div>
         </div>
 
         <div class="space-y-3">

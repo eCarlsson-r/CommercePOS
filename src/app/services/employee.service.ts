@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseApiService } from './base-api.service';
 
 export interface Employee {
-  id: number;
+  id: number | null;
   name: string;
   email: string;
   role: string;

@@ -44,6 +44,10 @@ export class BranchService extends BaseApiService {
     return this.http.post<Branch>(this.apiUrl, data, { headers: this.getHeaders() });
   }
 
+  updateBranch(id: number, data: Branch) {
+    return this.http.put<Branch>(`${this.apiUrl}/${id}`, data, { headers: this.getHeaders() });
+  }
+
   setBranch(id: number) {
     this.selectedBranchId.set(id);
   }

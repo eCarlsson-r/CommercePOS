@@ -12,7 +12,6 @@ import { ReportService } from '@/services/report.service';
 import { AuthService } from '@/services/auth.service';
 import { AdminMetricsViewComponent } from '@/features/admin/pages/dashboard/components/app-admin-metrics-view/app-admin-metrics-view.component';
 import { BranchStaffKpisComponent } from '@/features/admin/pages/dashboard/components/branch-staff-kpis/branch-staff-kpis.component';
-import { StockService } from '@/services/stock.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -33,7 +32,6 @@ import { StockService } from '@/services/stock.service';
 export class DashboardPageComponent {
   private auth = inject(AuthService);
   private reportService = inject(ReportService);
-  private stockService = inject(StockService);
   
   userRole = this.auth.userRole;
   userBranchId = this.auth.userBranchId;

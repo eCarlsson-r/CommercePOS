@@ -1,13 +1,14 @@
 import { Component, OnInit, inject, ViewChild, NgModule, signal, computed, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
-import { ThermalReceiptComponent } from '../thermal-receipt/thermal-receipt.component';
+import { ThermalReceiptComponent } from '../../components/thermal-receipt/thermal-receipt.component';
 import { ProductService } from '@/services/product.service';
 import { Product } from '@/models/product.model';
 import { Customer } from '@/models/customer.model';
 import { CustomerService } from '@/services/customer.service';
 import { FormsModule } from '@angular/forms';
 import { ActiveSale } from '@/models/sale.model';
+import { BranchService } from '@/services/branch.service';
 
 @Component({
   selector: 'app-sales-form',
@@ -18,11 +19,13 @@ import { ActiveSale } from '@/models/sale.model';
 export class SalesFormComponent implements OnInit {
   private productService = inject(ProductService);
   private customerService = inject(CustomerService);
+  private branchService = inject(BranchService);
   
   products: Product[] = [];
   customers: Customer[] = [];
   isLoading = false;
   scanBuffer = '';
+  selectedCustomerBalance = signal(0);
   activeSale = signal<ActiveSale>({
     branchId: 0,
     items: [],
@@ -46,16 +49,12 @@ export class SalesFormComponent implements OnInit {
   });
 
   loadProducts() {
-    this.isLoading = true;
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Failed to load products', err);
-        this.isLoading = false;
-      }
+    const branchId = this.branchService.selectedBranchId();
+    this.productService.getProducts().subscribe((data) => {
+      // Only show products that have a stock entry for THIS specific branch
+      this.products = data.filter(p => 
+        p.stocks.some((s: any) => s.branch_id === branchId && s.quantity > 0)
+      );
     });
   }
 
@@ -77,8 +76,17 @@ export class SalesFormComponent implements OnInit {
     this.activeSale.update(current => ({
       ...current,
       customerId: customer.id,
-      customerName: customer.name
+      customerName: customer.name,
+      appliedPoints: 0 // Reset points on customer change
     }));
+    this.selectedCustomerBalance.set(customer.points || 0);
+  }
+
+  togglePoints() {
+    const current = this.activeSale();
+    // If points not applied, apply all available points
+    const pointsToApply = current.appliedPoints > 0 ? 0 : this.selectedCustomerBalance();
+    this.activeSale.update(state => ({ ...state, appliedPoints: pointsToApply }));
   }
 
   // Add this to your Return or Sales Component
@@ -103,10 +111,30 @@ export class SalesFormComponent implements OnInit {
    * Matches (click)="addToCart(product)"
    */
   addToCart(product: any) {
-    this.activeSale.update(current => ({
-      ...current,
-      items: [...current.items, { productId: product.id, name: product.name, price: product.price, quantity: 1 }]
-    }));
+    this.activeSale.update(current => {
+      const existingItem = current.items.find(i => i.productId === product.id);
+      
+      if (existingItem) {
+        // Increment quantity of existing line item
+        return {
+          ...current,
+          items: current.items.map(i => 
+            i.productId === product.id ? { ...i, quantity: i.quantity + 1 } : i
+          )
+        };
+      }
+      
+      // Add new line item
+      return {
+        ...current,
+        items: [...current.items, { 
+          productId: product.id, 
+          name: product.name, 
+          price: product.sale_price, // Use sale_price from your model
+          quantity: 1 
+        }]
+      };
+    });
   }
 
   // Link to the component in the HTML

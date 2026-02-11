@@ -26,10 +26,10 @@
         <p class="text-sm text-gray-500 mb-4">{{ branch.address }}</p>
         
         <div class="flex gap-2 pt-4 border-t border-gray-50">
-          <button class="flex-1 py-2 text-xs font-bold text-gray-600 bg-gray-50 rounded-lg hover:bg-gray-100">
+          <button (click)="editBranch(branch)" class="flex-1 py-2 text-xs font-bold text-gray-600 bg-gray-50 rounded-lg hover:bg-gray-100">
             Edit Details
           </button>
-          <button class="px-3 py-2 text-xs font-bold text-primary bg-store-cream/20 rounded-lg">
+          <button routerLink="/admin/inventory" class="px-3 py-2 text-xs font-bold text-primary bg-store-cream/20 rounded-lg">
              View Inventory
           </button>
         </div>
@@ -58,7 +58,7 @@
 
       <div class="pt-6 flex gap-4">
         <button (click)="showDrawer.set(false)" class="flex-1 py-4 bg-gray-100 rounded-2xl font-bold">Cancel</button>
-        <button (click)="saveBranch()" class="flex-1 py-4 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-store-brown/20">Create Branch</button>
+        <button (click)="saveBranch()" class="flex-1 py-4 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-store-brown/20">{{action()}} Branch</button>
       </div>
     </div>
   </div>

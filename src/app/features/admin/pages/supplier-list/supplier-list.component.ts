@@ -33,10 +33,25 @@ export class SupplierListComponent {
   }
 
   saveSupplier() {
-    this.supplierService.create(this.formData).subscribe(() => {
+    this.supplierService.createSupplier(this.formData).subscribe(() => {
       this.loadSuppliers();
       this.showDrawer.set(false);
       this.resetForm();
+    });
+  }
+
+  editSupplier(supplier: any) {
+    this.formData = supplier;
+    this.showDrawer.set(true);
+  }
+
+  viewHistory(id: number) {
+    console.log('View history for supplier:', id);
+  }
+
+  deleteSupplier(id: number) {
+    this.supplierService.deleteSupplier(id).subscribe(() => {
+      this.loadSuppliers();
     });
   }
 

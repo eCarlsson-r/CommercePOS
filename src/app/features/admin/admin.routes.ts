@@ -16,6 +16,7 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'movement', loadComponent: () => import('./pages/inventory/pages/stock-movement-page/stock-movement-page.component').then(c => c.StockMovementPageComponent) },
       { path: 'purchase', loadComponent: () => import('./pages/inventory/pages/purchase-order/purchase-order.component').then(c => c.PurchaseOrderComponent) },
       { path: 'returns', loadComponent: () => import('./pages/inventory/pages/returns/returns.component').then(c => c.ReturnsComponent) },
+      { path: 'sales', loadComponent: () => import('./pages/sales/pages/sales-form/sales-form.component').then(c => c.SalesFormComponent) },
       { path: 'reports/audit', loadComponent: () => import('./pages/inventory/pages/stock-audit/stock-audit.component').then(c => c.StockAuditComponent) },
       { path: 'reports/daily-closing', loadComponent: () => import('./pages/reports/pages/daily-closing/daily-closing.component').then(c => c.DailyClosingComponent) },
     ]

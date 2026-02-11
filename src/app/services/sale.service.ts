@@ -1,13 +1,17 @@
 // src/app/services/sale.service.ts
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import { BaseApiService } from '@/services/base-api.service';
 import { Sale } from '@/models/sale.model';
+import { BranchService } from '@/services/branch.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SaleService extends BaseApiService {
+  private branchService = inject(BranchService);
   // Signals for state management
   recentSales = signal<Sale[]>([]);
+  incomingOrders = signal<any[]>([]);
   loading = signal<boolean>(false);
 
   // Computed signal to calculate total revenue from recent sales
@@ -41,4 +45,11 @@ export class SaleService extends BaseApiService {
   createSale(saleData: any) {
     return this.http.post(`${this.baseUrl}/sales`, saleData, { headers: this.getHeaders() });
   }
+
+  // Listening for new e-commerce orders via Polling or WebSockets
+  /*fetchOnlineOrders() {
+    const branchId = this.branchService.selectedBranchId();
+    this.http.get(`${this.baseUrl}/ecommerce/orders?branch_id=${branchId}`)
+      .subscribe(orders => this.incomingOrders.set(orders));
+  }*/
 }

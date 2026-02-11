@@ -9,12 +9,16 @@ export class BaseApiService {
   protected http = inject(HttpClient);
   protected readonly baseUrl = environment.apiUrl + '/admin';
 
-  protected getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
+  protected getHeaders(isFormData: boolean = false): HttpHeaders {
+    let headers = new HttpHeaders({
       'Accept': 'application/json',
-      // This identifies which branch the POS/Manager is currently "acting" for
       'X-Branch-ID': localStorage.getItem('active_branch_id') || ''
     });
+
+    if (!isFormData) {
+      headers = headers.set('Content-Type', 'application/json');
+    }
+
+    return headers;
   }
 }

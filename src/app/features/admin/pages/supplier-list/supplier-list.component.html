@@ -17,7 +17,29 @@
           <div class="p-3 bg-store-cream/20 rounded-2xl">
             <lucide-icon name="truck" class="w-6 h-6 text-store-brown"></lucide-icon>
           </div>
-          <button class="text-gray-300 hover:text-gray-600"><lucide-icon name="more-vertical" class="w-5 h-5"></lucide-icon></button>
+          <div class="relative group">
+            <button class="text-gray-300 hover:text-gray-600">
+              <lucide-icon name="more-vertical" class="w-5 h-5"></lucide-icon>
+            </button>
+            
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-border hidden group-focus-within:block z-30">
+              <div class="p-2">
+                <button (click)="editSupplier(s)" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-700 hover:bg-gray-50 rounded-xl">
+                  <lucide-icon name="edit-3" class="w-4 h-4 text-blue-500"></lucide-icon>
+                  Edit Details
+                </button>
+                <button (click)="viewHistory(s.id)" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-700 hover:bg-gray-50 rounded-xl">
+                  <lucide-icon name="history" class="w-4 h-4 text-primary"></lucide-icon>
+                  Purchase History
+                </button>
+                <div class="h-px bg-gray-100 my-1"></div>
+                <button (click)="deleteSupplier(s.id)" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl">
+                  <lucide-icon name="trash-2" class="w-4 h-4"></lucide-icon>
+                  Remove Supplier
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         
         <h3 class="text-lg font-bold text-gray-800">{{ s.name }}</h3>

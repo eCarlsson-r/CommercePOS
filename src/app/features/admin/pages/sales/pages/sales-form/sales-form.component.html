@@ -1,0 +1,79 @@
+<div class="flex h-full space-x-4">
+  
+  <section class="flex-1">
+    <div class="mb-4 flex items-center bg-white p-4 rounded-lg shadow-sm">
+      <lucide-icon name="search" class="text-primary mr-3 w-5 h-5"></lucide-icon>
+      <input type="text" placeholder="Search product code or name..." 
+             class="w-full focus:outline-none text-lg">
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div *ngFor="let product of products" 
+           (click)="addToCart(product)"
+           class="bg-white p-4 rounded-xl shadow-sm border-b-4 border-transparent hover:border-primary transition cursor-pointer group">
+        <div class="h-32 bg-gray-100 rounded-lg mb-3 flex items-center justify-center">
+            <lucide-icon name="package" class="text-gray-300 group-hover:text-primary transition w-10 h-10"></lucide-icon>
+        </div>
+        <h3 class="font-bold text-gray-800">{{ product.name }}</h3>
+        <p class="text-primary font-semibold">{{ product.sale_price | currency }}</p>
+        <p class="text-xs text-gray-400">Stock: {{ product.quantity }}</p>
+      </div>
+    </div>
+  </section>
+
+  <aside class="w-96 bg-white rounded-4xl border border-border shadow-xl flex flex-col overflow-hidden">
+  <div class="p-6 bg-primary text-white">
+    <div class="flex justify-between items-center">
+      <h2 class="font-black uppercase tracking-widest text-xs">Current Order</h2>
+      <lucide-icon name="shopping-cart" class="w-4 h-4 text-white/50"></lucide-icon>
+    </div>
+  </div>
+
+  @if (activeSale().customerId) {
+    <div class="p-4 bg-green-50 border-b border-green-100 flex justify-between items-center">
+      <div>
+        <p class="text-[10px] font-black text-green-600 uppercase">Loyalty Points</p>
+        <p class="text-xs font-bold">{{ selectedCustomerBalance() }} pts available</p>
+      </div>
+      <button (click)="togglePoints()" 
+              class="px-3 py-1 bg-white border border-green-200 rounded-lg text-[10px] font-black text-green-600 hover:bg-green-600 hover:text-white transition-colors">
+        {{ activeSale().appliedPoints > 0 ? 'REMOVE' : 'REDEEM' }}
+      </button>
+    </div>
+  }
+
+  <div class="flex-1 overflow-y-auto p-6 space-y-4">
+    @for (item of activeSale().items; track item.productId) {
+      <div class="flex justify-between items-start animate-in fade-in slide-in-from-right-2">
+        <div class="flex-1">
+          <p class="font-bold text-sm text-gray-800">{{ item.name }}</p>
+          <div class="flex items-center gap-2 mt-1">
+            <button class="p-1 bg-gray-100 rounded-md"><lucide-icon name="minus" class="w-3 h-3"></lucide-icon></button>
+            <span class="text-xs font-mono font-bold">{{ item.quantity }}</span>
+            <button class="p-1 bg-gray-100 rounded-md"><lucide-icon name="plus" class="w-3 h-3"></lucide-icon></button>
+          </div>
+        </div>
+        <p class="font-black text-sm text-gray-900">Rp {{ (item.quantity * item.price) | number }}</p>
+      </div>
+    }
+  </div>
+    <div class="p-6 bg-gray-50 space-y-3">
+      @if (activeSale().appliedPoints > 0) {
+        <div class="flex justify-between text-xs font-bold text-green-600">
+          <span>Discount (Points)</span>
+          <span>- Rp {{ (activeSale().appliedPoints * 100) | number }}</span>
+        </div>
+      }
+      <div class="flex justify-between text-2xl font-black text-gray-900 border-t pt-4">
+        <span>Total</span>
+        <span class="text-primary">Rp {{ totalPrice() | number }}</span>
+      </div>
+      <button (click)="processPayment()" 
+              class="w-full bg-primary text-white py-4 rounded-2xl font-black text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+        PROCESS PAYMENT
+      </button>
+    </div>
+  </aside>
+
+  <app-thermal-receipt [items]="activeSale().items" [total]="totalPrice()"></app-thermal-receipt>
+</div>
