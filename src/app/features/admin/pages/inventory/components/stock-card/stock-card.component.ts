@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
   templateUrl: './stock-card.component.html'
 })
 export class StockCardComponent {
-  move = input<any>(); // Signal-based input
+  stock = input<any>(); // Signal-based input
 }

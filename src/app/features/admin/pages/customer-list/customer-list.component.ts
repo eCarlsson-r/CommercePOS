@@ -7,11 +7,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap, of, BehaviorSubject, merge } from 'rxjs';
 import { Customer } from '@/models/customer.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, ReactiveFormsModule],
+  imports: [CommonModule, LucideAngularModule, ReactiveFormsModule, RouterLink],
   templateUrl: './customer-list.component.html'
 })
 export class CustomerListComponent {

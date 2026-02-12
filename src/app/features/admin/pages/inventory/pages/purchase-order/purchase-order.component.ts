@@ -12,7 +12,7 @@ interface POItem {
   name: string;
   sku: string;
   quantity: number;
-  cost_price: number;
+  unit_price: number;
 }
 
 @Component({
@@ -34,6 +34,8 @@ export class PurchaseOrderComponent {
   showDrawer = signal(false);
   poItems = signal<POItem[]>([]);
   isSubmitting = signal(false);
+  orderDate = signal<Date | null>(null);
+  expectedDate = signal<Date | null>(null);
   
   // For the product search dropdown
   availableProducts = signal<any[]>([]);  
@@ -55,6 +57,7 @@ export class PurchaseOrderComponent {
     this.loadProducts();
     this.loadSuppliers();
     this.loadBranches();
+    this.loadPurchases();
   }
 
   createNewPO() {
@@ -77,21 +80,34 @@ export class PurchaseOrderComponent {
     this.branchService.getBranches().subscribe(data => this.availableBranches.set(data));
   }
 
+  loadPurchases() {
+    this.purchaseService.getPurchaseOrders().subscribe(data => this.purchaseOrders.set(data));
+  }
+
   addToBasket(product: any) {
     const existing = this.poItems().find(p => p.product_id === product.id);
     if (existing) {
-      existing.quantity += 1;
+      this.poItems.update(items => items.map(item => 
+        item.product_id === product.id ? { ...item, quantity: item.quantity + 1, total_price: item.unit_price * (item.quantity + 1) } : item
+      ));
     } else {
       this.poItems.update(items => [...items, {
         product_id: product.id,
         name: product.name,
         sku: product.sku,
         quantity: 1,
-        cost_price: product.cost_price // Default to base price, user can edit
+        unit_price: product.unit_price || 0,
+        total_price: product.unit_price || 0 
       }]);
     }
     this.searchResults.set([]);
     this.searchTerm = '';
+  }
+
+  updateItem(productId: number, changes: Partial<POItem>) {
+    this.poItems.update(items => items.map(item => 
+      item.product_id === productId ? { ...item, ...changes } : item
+    ));
   }
 
   removeItem(index: number) {
@@ -99,17 +115,18 @@ export class PurchaseOrderComponent {
   }
 
   grandTotal = computed(() => {
-    return this.poItems().reduce((acc, item) => acc + (item.quantity * item.cost_price), 0);
+    return this.poItems().reduce((acc, item) => acc + (item.quantity * item.unit_price), 0);
   });
 
   submitPO() {
-    console.info(this.poItems());
     if (this.poItems().length === 0) return;
 
     this.isSubmitting.set(true);
     const payload = {
       supplier_id: this.selectedSupplierId(),
       branch_id: this.selectedBranchId(),
+      order_date: this.orderDate(),
+      expected_date: this.expectedDate(),
       items: this.poItems(),
       total_amount: this.grandTotal()
     };

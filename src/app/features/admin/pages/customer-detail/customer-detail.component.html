@@ -1,0 +1,72 @@
+<div class="p-8 space-y-8 max-w-6xl mx-auto">
+  <header class="flex justify-between items-start">
+    <div class="flex gap-6 items-center">
+      <div class="w-24 h-24 bg-primary/10 rounded-4xl flex items-center justify-center text-3xl font-black text-primary">
+        {{ customer().name.charAt(0) }}
+      </div>
+      <div>
+        <h1 class="text-4xl font-black text-gray-900 tracking-tighter">{{ customer().name }}</h1>
+        <p class="text-gray-500 font-medium">Member since {{ customer().created_at | date }} • {{ customer().mobile }}</p>
+      </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-4xl border border-border shadow-sm flex gap-12">
+      <div class="text-center">
+        <p class="text-[10px] font-black text-gray-400 uppercase">Total Spent</p>
+        <p class="text-2xl font-black text-gray-900">Rp {{ customer().balance | number }}</p>
+      </div>
+      <div class="text-center">
+        <p class="text-[10px] font-black text-green-500 uppercase">Points Balance</p>
+        <p class="text-2xl font-black text-green-600">{{ customer().points }} pts</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <section class="lg:col-span-2 space-y-4">
+      <h3 class="font-black text-gray-400 text-xs uppercase tracking-widest">Recent Transactions</h3>
+      @for (sale of salesHistory(); track sale.id) {
+        <div class="bg-white p-6 rounded-3xl border border-border flex justify-between items-center hover:shadow-md transition-all">
+          <div class="flex gap-4 items-center">
+            <div class="p-3 bg-gray-50 rounded-2xl text-primary">
+              <lucide-icon name="shopping-bag"></lucide-icon>
+            </div>
+            <div>
+              <p class="font-bold text-gray-800">#INV-{{ sale.id }}</p>
+              <p class="text-[10px] text-gray-400 font-bold uppercase">{{ sale.branch_name }} • {{ sale.date | date:'short' }}</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="font-black text-gray-900">Rp {{ sale.grand_total | number }}</p>
+            <p class="text-[10px] text-green-500 font-bold uppercase">+{{ sale.points_earned }} Points</p>
+          </div>
+        </div>
+      }
+    </section>
+
+    <aside class="space-y-6">
+      <div class="bg-gray-900 p-8 rounded-[2.5rem] text-white">
+        <h4 class="font-black text-xs uppercase text-white/40 mb-4">Top Favorite Item</h4>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
+            <lucide-icon name="coffee"></lucide-icon>
+          </div>
+          <div>
+            <p class="font-bold">{{ topItem() }}</p>
+            <p class="text-[10px] text-white/50">Purchased {{ mostSales() }} times</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-[2.5rem] border border-border">
+        <h4 class="font-black text-xs uppercase text-gray-400 mb-4">Manual Points Adjustment</h4>
+        <div class="flex flex-col gap-4">
+          <input type="number" placeholder="Enter amount..." class="w-full p-4 bg-gray-50 rounded-2xl border-none">
+          <button class="w-full py-4 bg-primary text-white rounded-2xl font-black text-xs uppercase shadow-lg shadow-primary/20">
+            Apply Correction
+          </button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>

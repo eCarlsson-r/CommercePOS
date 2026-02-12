@@ -8,7 +8,7 @@ export class PurchaseService extends BaseApiService {
   createPurchase(data: {
     supplier_id: number;
     branch_id: number;
-    items: { product_id: number; quantity: number; cost_price: number }[];
+    items: { product_id: number; quantity: number; unit_price: number }[];
   }) {
     return this.http.post(this.apiUrl, data);
   }

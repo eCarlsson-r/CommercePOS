@@ -10,10 +10,13 @@ export class StockService extends BaseApiService {
 
   private apiUrl = `${this.baseUrl}/stock-transfers`;
 
-  getStocks(branchId?: number): Observable<any[]> {
+  getStocks(branchId?: number | null, categoryId?: number | null): Observable<any[]> {
     let params = new HttpParams();
     if (branchId) {
       params = params.set('branch_id', branchId.toString());
+    }
+    if (categoryId) {
+      params = params.set('category_id', categoryId.toString());
     }
     return this.http.get<any[]>(`${this.baseUrl}/stocks`, { params });
   }

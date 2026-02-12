@@ -52,6 +52,13 @@ export class AdminLayoutComponent implements OnInit {
 
     const baseMenu = [
       {
+        title: 'Sales',
+        items: [
+          { title: 'Sales POS', link: '/admin/sales', icon: 'shopping-cart' },
+          { title: 'E-Commerce Orders', link: '/admin/ecommerce-orders', icon: 'shopping-cart' }
+        ]
+      },
+      {
         title: 'Master',
         // Only Admins in Medan can see the "Master" section
         visible: role === 'admin', 

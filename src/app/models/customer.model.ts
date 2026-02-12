@@ -5,4 +5,5 @@ export interface Customer {
   email?: string;
   points: number;
   balance: number;
+  created_at?: Date;
 }

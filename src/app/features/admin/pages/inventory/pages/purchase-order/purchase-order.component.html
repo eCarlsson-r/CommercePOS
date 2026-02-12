@@ -30,12 +30,12 @@
               <span class="font-mono text-xs font-bold text-primary px-2 py-1 bg-primary/5 rounded">#PO-{{ po.id }}</span>
             </td>
             <td class="p-6">
-              <div class="font-bold text-gray-800">{{ po.supplier_name }}</div>
-              <div class="text-[10px] text-gray-400 uppercase">{{ po.branch_destination }}</div>
+              <div class="font-bold text-gray-800">{{ po.supplier.name }}</div>
+              <div class="text-[10px] text-gray-400 uppercase">{{ po.branch.name }}</div>
             </td>
-            <td class="p-6 text-sm text-gray-500 font-medium">{{ po.created_at | date:'mediumDate' }}</td>
+            <td class="p-6 text-sm text-gray-500 font-medium">{{ po.order_date | date:'mediumDate' }}</td>
             <td class="p-6">
-              <div class="font-black text-gray-900">Rp {{ po.total_cost | number }}</div>
+              <div class="font-black text-gray-900">Rp {{ po.total_amount | number }}</div>
             </td>
             <td class="p-6">
               <div class="flex justify-center">
@@ -70,16 +70,27 @@
         <div class="grid grid-cols-2 gap-4">
           <div class="space-y-2">
             <label class="text-[10px] font-black text-gray-400 uppercase">Supplier</label>
-            <select class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none">
-              <option>Select Supplier...</option>
+            <select [(ngModel)]="selectedSupplierId" class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none">
+              <option [value]="0">Select Supplier...</option>
               @for(s of availableSuppliers(); track s.id){ <option [value]="s.id">{{s.name}}</option> }
             </select>
           </div>
           <div class="space-y-2">
             <label class="text-[10px] font-black text-gray-400 uppercase">Destination Branch</label>
-            <select class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none">
+            <select [(ngModel)]="selectedBranchId" class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none">
               @for(b of availableBranches(); track b.id){ <option [value]="b.id">{{b.name}}</option> }
             </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase">Order Date</label>
+            <input type="date" [(ngModel)]="orderDate" class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none">
+          </div>
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase">Expected Date</label>
+            <input type="date" [(ngModel)]="expectedDate" class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none">
           </div>
         </div>
 
@@ -108,9 +119,9 @@
           @for(item of poItems(); track item.product_id) {
             <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl">
               <div class="font-bold text-sm w-64">{{item.name}}</div>
-              <input type="number" [(ngModel)]="item.quantity" class="w-16 p-2 bg-white rounded-xl text-center font-bold">
-              <input type="number" [(ngModel)]="item.cost_price" class="w-28 p-2 bg-white rounded-xl text-center font-bold">
-              <div class="w-32 text-right font-black text-primary">Rp {{ (item.quantity * item.cost_price) | number }}</div>
+              <input type="number" [ngModel]="item.quantity" (ngModelChange)="updateItem(item.product_id, {quantity: $event})" class="w-16 p-2 bg-white rounded-xl text-center font-bold">
+              <input type="number" [ngModel]="item.unit_price" (ngModelChange)="updateItem(item.product_id, {unit_price: $event})" class="w-28 p-2 bg-white rounded-xl text-center font-bold">
+              <div class="w-32 text-right font-black text-primary">Rp {{ (item.quantity * item.unit_price) | number }}</div>
             </div>
           }
         </div>

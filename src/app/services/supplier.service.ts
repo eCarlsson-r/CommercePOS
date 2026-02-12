@@ -15,6 +15,10 @@ export class SupplierService extends BaseApiService {
     return this.http.post(this.apiUrl, data);
   }
 
+  updateSupplier(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
+  }
+
   deleteSupplier(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }

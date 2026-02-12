@@ -44,7 +44,7 @@
               {{ log.quantity_change > 0 ? '+' : '' }}{{ log.quantity_change }}
             </td>
             <td class="p-4 text-center font-black text-store-brown">{{ log.balance_after }}</td>
-            <td class="p-4 text-xs text-gray-500">{{ log.user?.name }}</td>
+            <td class="p-4 text-xs text-gray-500">{{ log.user?.employee?.name ?? log.user?.username }}</td>
           </tr>
         }
       </tbody>

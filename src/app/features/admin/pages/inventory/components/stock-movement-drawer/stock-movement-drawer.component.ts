@@ -6,6 +6,7 @@ import { ProductService } from '@/services/product.service';
 import { StockService } from '@/services/stock.service';
 import { BranchService } from '@/services/branch.service';
 import { LucideAngularModule } from 'lucide-angular';
+import { AuthService } from '@/services/auth.service';
 
 @Component({
   selector: 'app-stock-movement-drawer',
@@ -101,6 +102,7 @@ export class StockMovementDrawerComponent {
   @Input() isOpen = false;
   @Output() onClose = new EventEmitter<void>();
 
+  private authService = inject(AuthService);
   private productService = inject(ProductService);
   private stockService = inject(StockService);
   private branchService = inject(BranchService);
@@ -148,6 +150,7 @@ export class StockMovementDrawerComponent {
 
   submitTransfer() {
     const payload = {
+      user_id: this.authService.currentUser()?.id,
       from_branch_id: this.from_branch_id() || 0,
       to_branch_id: this.to_branch_id() || 0,
       items: this.items()
