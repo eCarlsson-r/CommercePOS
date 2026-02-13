@@ -27,7 +27,7 @@ export class BranchService extends BaseApiService {
         this.branches.set(data);
         // Default to the first active branch if nothing is selected yet
         if (!this.selectedBranchId() && data.length > 0) {
-          this.selectedBranchId.set(data[0].id!);
+          this.selectedBranchId.set(data[0].id || 0);
         }
       })
     );

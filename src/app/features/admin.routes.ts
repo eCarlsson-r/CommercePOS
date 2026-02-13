@@ -20,6 +20,8 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'returns', loadComponent: () => import('./pages/inventory/pages/returns/returns.component').then(c => c.ReturnsComponent) },
       { path: 'sales', loadComponent: () => import('./pages/sales/pages/sales-form/sales-form.component').then(c => c.SalesFormComponent) },
       { path: 'ecommerce-orders', loadComponent: () => import('./pages/ecommerce-orders/ecommerce-orders.component').then(c => c.EcommerceOrdersComponent) },
+      { path: 'reports/sales', loadComponent: () => import('./pages/reports/pages/sales-report/sales-report.component').then(c => c.SalesReportComponent) },
+      { path: 'reports/purchase', loadComponent: () => import('./pages/reports/pages/purchase-report/purchase-report.component').then(c => c.PurchaseReportComponent) },
       { path: 'reports/audit', loadComponent: () => import('./pages/inventory/pages/stock-audit/stock-audit.component').then(c => c.StockAuditComponent) },
       { path: 'reports/daily-closing', loadComponent: () => import('./pages/reports/pages/daily-closing/daily-closing.component').then(c => c.DailyClosingComponent) },
     ]

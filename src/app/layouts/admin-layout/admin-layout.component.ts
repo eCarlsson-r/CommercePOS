@@ -53,9 +53,10 @@ export class AdminLayoutComponent implements OnInit {
     const baseMenu = [
       {
         title: 'Sales',
+        visible: true, // Everyone sees inventory
         items: [
           { title: 'Sales POS', link: '/sales', icon: 'shopping-cart' },
-          { title: 'E-Commerce Orders', link: '/ecommerce-orders', icon: 'shopping-cart' }
+          { title: 'E-Commerce Orders', link: '/ecommerce-orders', icon: 'globe' }
         ]
       },
       {
@@ -86,8 +87,10 @@ export class AdminLayoutComponent implements OnInit {
         title: 'Insights',
         visible: true,
         items: [
-          { title: 'Daily Closing', link: '/reports/daily-closing', icon: 'file-text' },
-          { title: 'Stock Audit', link: '/reports/audit', icon: 'clipboard-list' },
+          { title: 'Daily Closing', link: '/reports/daily-closing', icon: 'clipboard-list' },
+          { title: 'Sales Report', link: '/reports/sales', icon: 'file-text' },
+          { title: 'Purchase Report', link: '/reports/purchase', icon: 'truck' },
+          { title: 'Stock Audit', link: '/reports/audit', icon: 'clipboard-pen-line' },
         ]
       },
     ];

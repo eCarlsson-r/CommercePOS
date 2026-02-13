@@ -1,79 +1,67 @@
-<div class="a4-page p-12 bg-white mx-auto text-gray-900">
+<div class="a4-page print-area p-10 bg-white mx-auto text-[10px] text-gray-900">
   
-  <header class="flex justify-between items-start border-b-2 border-gray-900 pb-6 mb-8">
+  <header class="flex justify-between items-end border-b-2 border-black pb-4 mb-6">
     <div>
-      <h1 class="text-2xl font-black uppercase tracking-tighter">Sales Performance Report</h1>
-      <p class="text-sm font-bold text-gray-500 uppercase">Branch: {{ branchName }}</p>
-    </div>
-    <div class="text-right">
-      <p class="text-xs font-bold uppercase">Period: {{ startDate | date }} - {{ endDate | date }}</p>
-      <p class="text-[10px] text-gray-400">Generated on: {{ today | date:'medium' }}</p>
+      <h1 class="text-xl font-black uppercase">Sales Report</h1>
+      <p class="font-bold uppercase">
+        {{ branchName() }} | 
+        @if (employeeName()) {
+          {{ employeeName() }} | 
+        }
+        @if (startDate() === endDate()) {
+          {{ startDate() | date:'dd MMMM yyyy' }}
+        } @else {
+          {{ startDate() | date:'dd MMMM yyyy' }} to {{ endDate() | date:'dd MMMM yyyy' }}
+        }
+      </p>
     </div>
   </header>
 
-  <div class="grid grid-cols-4 gap-4 mb-10">
-    <div class="border p-4">
-      <p class="text-[8px] font-black uppercase text-gray-400">Total Revenue</p>
-      <p class="text-lg font-black">Rp {{ reportData.total_revenue | number }}</p>
-    </div>
-    <div class="border p-4">
-      <p class="text-[8px] font-black uppercase text-gray-400">Total Cost of Goods</p>
-      <p class="text-lg font-black">Rp {{ reportData.total_cost | number }}</p>
-    </div>
-    <div class="border p-4 bg-gray-50">
-      <p class="text-[8px] font-black uppercase text-gray-400">Gross Profit</p>
-      <p class="text-lg font-black">Rp {{ (reportData.total_revenue - reportData.total_cost) | number }}</p>
-    </div>
-    <div class="border p-4">
-      <p class="text-[8px] font-black uppercase text-gray-400">Total Transactions</p>
-      <p class="text-lg font-black">{{ reportData.transaction_count }}</p>
+  <table class="w-full border-collapse">
+    <thead>
+      <tr class="border-b border-black text-left uppercase font-black">
+        <th class="py-2">SKU</th>
+        <th class="py-2">Item Name</th>
+        <th class="py-2 text-center">Cost (Enc)</th>
+        <th class="py-2 text-center">Qty</th>
+        <th class="py-2 text-right">Unit Price</th>
+        <th class="py-2 text-right">Total</th>
+        <th class="py-2 text-right">Sold By</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      @for (item of salesItems(); track item.id) {
+        <tr class="hover:bg-gray-50">
+          <td class="py-2 font-mono text-[9px]">{{ item.sku }}</td>
+          <td class="py-2 font-bold">{{ item.name }}</td>
+          
+          <td class="py-2 text-center">
+            <span class="bg-gray-100 px-2 py-0.5 rounded font-mono font-black text-gray-600">
+              {{ generateCostCode(item.purchase_price) }}
+            </span>
+          </td>
+ 
+          <td class="py-2 text-center">{{ item.quantity }}</td>
+          <td class="py-2 text-right">Rp {{ item.sale_price | number }}</td>
+          <td class="py-2 text-right font-black">Rp {{ (item.quantity * item.sale_price) | number }}</td>
+          <td class="py-2 text-right uppercase text-[8px] font-bold text-primary">
+            {{ item.employee_name }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+ 
+  <div class="mt-8 border-t-2 border-black pt-4">
+    <div class="flex justify-end gap-12">
+      <div class="text-right">
+        <p class="text-[8px] font-black text-gray-400 uppercase">Total Items Sold</p>
+        <p class="text-lg font-black">{{ totalQty() }}</p>
+      </div>
+      <div class="text-right">
+        <p class="text-[8px] font-black text-gray-400 uppercase">Grand Total Sales</p>
+        <p class="text-lg font-black">Rp {{ grandTotal() | number }}</p>
+      </div>
     </div>
   </div>
-
-  <section class="mb-10">
-    <h3 class="text-xs font-black uppercase mb-4 border-l-4 border-gray-900 pl-2">Daily Breakdown</h3>
-    <table class="w-full text-xs">
-      <thead>
-        <tr class="border-b-2 border-gray-100 text-left">
-          <th class="py-2">Date</th>
-          <th class="py-2">POS Sales</th>
-          <th class="py-2">Online Sales</th>
-          <th class="py-2 text-right">Daily Total</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y">
-        @for (day of reportData.daily_logs; track day.date) {
-          <tr>
-            <td class="py-2 font-medium">{{ day.date | date:'dd MMM yyyy' }}</td>
-            <td class="py-2 text-gray-600">Rp {{ day.pos | number }}</td>
-            <td class="py-2 text-gray-600">Rp {{ day.online | number }}</td>
-            <td class="py-2 text-right font-bold">Rp {{ (day.pos + day.online) | number }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h3 class="text-xs font-black uppercase mb-4 border-l-4 border-gray-900 pl-2">Staff Contribution</h3>
-    <div class="grid grid-cols-2 gap-8">
-      @for (staff of reportData.staff_performance; track staff.id) {
-        <div class="flex justify-between items-center border-b py-2 text-xs">
-          <span>{{ staff.name }}</span>
-          <span class="font-bold">Rp {{ staff.total_sales | number }}</span>
-        </div>
-      }
-    </div>
-  </section>
-
-  <footer class="mt-20 flex justify-between">
-    <div class="text-center w-48">
-      <div class="border-b border-gray-900 h-16 mb-2"></div>
-      <p class="text-[10px] font-bold uppercase">Branch Manager</p>
-    </div>
-    <div class="text-center w-48">
-      <div class="border-b border-gray-900 h-16 mb-2"></div>
-      <p class="text-[10px] font-bold uppercase">Medan Finance HQ</p>
-    </div>
-  </footer>
 </div>

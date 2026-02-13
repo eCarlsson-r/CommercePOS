@@ -34,7 +34,7 @@ export class StockAuditComponent {
   fetchAudit() {
     if (!this.selectedProduct() || !this.selectedBranch()) return;
     
-    this.reportService.getStockAudit(this.selectedProduct()!, this.selectedBranch()!)
+    this.reportService.getStockAudit(this.selectedProduct() || 0, this.selectedBranch() || 0)
       .subscribe(res => this.auditLogs.set(res.data));
   }
 }

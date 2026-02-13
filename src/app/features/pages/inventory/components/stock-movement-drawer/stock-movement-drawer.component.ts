@@ -117,7 +117,7 @@ export class StockMovementDrawerComponent {
   items = signal<any[]>([]); // The "Cart" for this transfer
 
   ngOnInit() {
-    this.from_branch_id.set(this.branchService.selectedBranchId()!);
+    this.from_branch_id.set(this.branchService.selectedBranchId() || 0);
     this.productService.getProducts().subscribe(data => this.products.set(data));
     this.branchService.getBranches().subscribe(data => this.branches.set(data));
   }

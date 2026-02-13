@@ -3,7 +3,7 @@ import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 
 import { ZardDebounceEventManagerPlugin } from './event-manager-plugins/zard-debounce-event-manager-plugin';
 import { ZardEventManagerPlugin } from './event-manager-plugins/zard-event-manager-plugin';
-import { CheckCircle, AlertCircle, ArrowRight, Check, Edit3, Loader2, LogIn, LogOut, Lock, LucideAngularModule, Mail, MapPin, Plus, ShoppingCart, Trash2, Truck, UserPlus, Users, LayoutDashboard, Package, FileText, TrendingUp, Zap, MonitorSmartphone, PackageSearch, Banknote, PlusCircle, AlertTriangle, Folder, RotateCcw, ClipboardList, Search, Download, Power, Coffee, Printer, Store, ImagePlus, MoreVertical, Phone, Tag, X, UserX, History, Menu, Settings2, Eye, RefreshCw, ShoppingBag  } from 'lucide-angular';
+import { CheckCircle, AlertCircle, ArrowRight, Check, Edit3, Loader2, File, LogIn, LogOut, Lock, LucideAngularModule, Mail, MapPin, Plus, ShoppingCart, Trash2, Truck, UserPlus, Users, LayoutDashboard, Package, FileText, TrendingUp, Zap, MonitorSmartphone, PackageSearch, Banknote, PlusCircle, AlertTriangle, Folder, RotateCcw, ClipboardList, Search, Download, Power, Coffee, Printer, Store, ImagePlus, MoreVertical, Phone, Tag, X, UserX, History, Menu, Settings2, Eye, RefreshCw, ShoppingBag, Globe, ReceiptText, ClipboardPenLine  } from 'lucide-angular';
 
 export function provideZard(): EnvironmentProviders {
   const eventManagerPlugins = [
@@ -28,8 +28,10 @@ export function provideZard(): EnvironmentProviders {
         UserX,
         RefreshCw,
         RotateCcw,
+        ClipboardPenLine,
         ClipboardList,
         Plus,
+        Globe,
         History,
         LayoutDashboard,
         Package,
@@ -48,6 +50,8 @@ export function provideZard(): EnvironmentProviders {
         Loader2,
         Settings2,
         MapPin, 
+        File,
+        ReceiptText,
         FileText,
         TrendingUp,
         MonitorSmartphone,

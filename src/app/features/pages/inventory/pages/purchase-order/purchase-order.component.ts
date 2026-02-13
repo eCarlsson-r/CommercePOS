@@ -6,6 +6,7 @@ import { ProductService } from '@/services/product.service';
 import { PurchaseService } from '@/services/purchase.service';
 import { BranchService } from '@/services/branch.service';
 import { SupplierService } from '@/services/supplier.service';
+import { PurchaseReceiptComponent } from '../../components/purchase-receipt/purchase-receipt.component';
 
 interface POItem {
   product_id: number;
@@ -18,7 +19,7 @@ interface POItem {
 @Component({
   selector: 'app-purchase-order',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule, PurchaseReceiptComponent],
   templateUrl: './purchase-order.component.html'
 })
 export class PurchaseOrderComponent {
@@ -32,6 +33,8 @@ export class PurchaseOrderComponent {
   selectedBranchId = signal<number>(1); // Default to Medan Warehouse
   purchaseOrders = signal<any[]>([]); // This holds your list data
   showDrawer = signal(false);
+  showReceiptModal = signal(false);
+  selectedPurchaseOrder = signal<any>(null);
   poItems = signal<POItem[]>([]);
   isSubmitting = signal(false);
   orderDate = signal<Date | null>(null);
@@ -62,6 +65,11 @@ export class PurchaseOrderComponent {
 
   createNewPO() {
     this.showDrawer.set(true);
+  }
+
+  viewReceipt(po: any) {
+    this.selectedPurchaseOrder.set(po);
+    this.showReceiptModal.set(true);
   }
 
   cancelCreation() {

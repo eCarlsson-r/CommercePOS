@@ -4,21 +4,20 @@ import { Component, inject, signal, Input } from '@angular/core';
 import { SettingsService } from '@/services/settings.service';
 
 @Component({
-  selector: 'app-sales-a4',
+  selector: 'app-purchase-a4',
   standalone: true,
   imports: [DatePipe, DecimalPipe],
-  templateUrl: './sales-a4.component.html',
+  templateUrl: './purchase-a4.component.html',
 })
-export class SalesA4Component {
+export class PurchaseA4Component {
   private reportService = inject(ReportService);
   private settingsService = inject(SettingsService);
-  branchName = signal<string>('All Branches');
-  employeeName = signal<string>('All Employees');
-  salesItems = signal<any[]>([]);
-  totalQty = signal<number>(0);
-  grandTotal = signal<number>(0);
-  @Input() branchId: number = 0;
-  @Input() employeeId: number = 0;
+  supplierName = signal<string>('All Suppliers');
+  purchaseItems = signal<any[]>([]);
+  totalOrders = signal<number>(0);
+  totalSpend = signal<number>(0);
+  @Input() supplierId: number = 0;
+  branchSpend = signal<any[]>([]);
   startDate = signal<string>('');
   endDate = signal<string>('');
   reportDate = new Date();
@@ -47,31 +46,45 @@ export class SalesA4Component {
   }
 
   resetReport() {
-    this.salesItems.set([]);
-    this.totalQty.set(0);
-    this.grandTotal.set(0);
+    this.purchaseItems.set([]);
+    this.totalOrders.set(0);
+    this.totalSpend.set(0);
+    this.branchSpend.set([]);
   }
 
-  loadReportData(branchId: number, employeeId: number, startDate: string, endDate: string) {
+  loadReportData(supplierId: number, startDate: string, endDate: string) {
     this.resetReport();
     this.startDate.set(startDate);
     this.endDate.set(endDate);
-    this.reportService.getSalesReport(branchId, employeeId, startDate, endDate).subscribe({
+    this.reportService.getPurchaseReport(supplierId, startDate, endDate).subscribe({
       next: (res) => {
-        res.forEach((sales: any) => {
-          sales.items.forEach((item: any) => {
-            this.salesItems.update(items => [...items, {
+        res.forEach((purchase: any) => {
+          purchase.items.forEach((item: any) => {
+            this.purchaseItems.update(items => [...items, {
               id: item.id,
               sku: item.product.sku,
               name: item.product.name,
-              purchase_price: item.purchase_price || 0,
-              sale_price: Number(item.sale_price),
-              quantity: Number(item.quantity),
-              employee_name: sales.employee.name,
+              purchase_price: item.unit_price || 0,
+              quantity: Number(item.quantity)
             }]);
-            this.totalQty.update(q => q + Number(item.quantity));
           });
-          this.grandTotal.update(total => total + Number(sales.grand_total));
+
+          this.branchSpend.update(branches => {
+            const branch = branches.find(b => b.id === purchase.branch_id);
+            if (branch) {
+              branch.total += Number(purchase.total_amount);
+            } else {
+              branches.push({
+                id: purchase.branch_id,
+                name: purchase.branch?.name || 'Unknown Branch',
+                total: Number(purchase.total_amount),
+              });
+            }
+            return [...branches]; // Return a new array reference for signal reactivity
+          });
+
+          this.totalOrders.update(total => total + 1);
+          this.totalSpend.update(total => total + Number(purchase.total_amount));
         });
       },
       complete: () => {

@@ -35,9 +35,15 @@ export class ReportService extends BaseApiService {
     });
   }
 
-  getSalesReport(startDate: string, endDate: string): Observable<any> {
+  getSalesReport(branchId: number, employeeId: number, startDate: string, endDate: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/reports/sales-report`, {
-      params: { start_date: startDate, end_date: endDate }
+      params: { branch_id: branchId, employee_id: employeeId, start_date: startDate, end_date: endDate }
+    });
+  }
+
+  getPurchaseReport(supplier_id: number, startDate: string, endDate: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/reports/purchase-report`, {
+      params: { supplier_id: supplier_id, start_date: startDate, end_date: endDate }
     });
   }
 }

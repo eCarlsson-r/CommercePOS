@@ -77,7 +77,7 @@ export class ProductManagementComponent {
     const { images, ...formData } = eventData;
     
     const request = this.selectedProductId() 
-      ? this.productService.update(this.selectedProductId()!, formData, images)
+      ? this.productService.update(this.selectedProductId() || 0, formData, images)
       : this.productService.create(formData, images);
 
     request.subscribe({
