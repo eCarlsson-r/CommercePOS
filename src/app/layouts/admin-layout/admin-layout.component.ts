@@ -54,8 +54,8 @@ export class AdminLayoutComponent implements OnInit {
       {
         title: 'Sales',
         items: [
-          { title: 'Sales POS', link: '/admin/sales', icon: 'shopping-cart' },
-          { title: 'E-Commerce Orders', link: '/admin/ecommerce-orders', icon: 'shopping-cart' }
+          { title: 'Sales POS', link: '/sales', icon: 'shopping-cart' },
+          { title: 'E-Commerce Orders', link: '/ecommerce-orders', icon: 'shopping-cart' }
         ]
       },
       {
@@ -63,31 +63,31 @@ export class AdminLayoutComponent implements OnInit {
         // Only Admins in Medan can see the "Master" section
         visible: role === 'admin', 
         items: [
-          { title: 'Branches', link: '/admin/branches', icon: 'map-pin' },
-          { title: 'Employees', link: '/admin/employees', icon: 'user-plus' },
-          { title: 'Customers', link: '/admin/customers', icon: 'users' },
-          { title: 'Products', link: '/admin/products', icon: 'package' },  
-          { title: 'Suppliers', link: '/admin/suppliers', icon: 'users' },
-          { title: 'Categories', link: '/admin/categories', icon: 'folder' },
-          { title: 'Price Coder', link: '/admin/price-coder', icon: 'tag' }
+          { title: 'Branches', link: '/branches', icon: 'map-pin' },
+          { title: 'Employees', link: '/employees', icon: 'user-plus' },
+          { title: 'Customers', link: '/customers', icon: 'users' },
+          { title: 'Products', link: '/products', icon: 'package' },  
+          { title: 'Suppliers', link: '/suppliers', icon: 'users' },
+          { title: 'Categories', link: '/categories', icon: 'folder' },
+          { title: 'Price Coder', link: '/price-coder', icon: 'tag' }
         ]
       },
       {
         title: 'Inventory',
         visible: true, // Everyone sees inventory
         items: [
-          { title: 'Stock Inventory', link: '/admin/inventory', icon: 'monitor-smartphone' },
-          { title: 'Purchase Order', link: '/admin/purchase', icon: 'shopping-cart' }, // Changed to shopping-cart for clarity
-          { title: 'Stock Transfers', link: '/admin/movement', icon: 'truck' }, 
-          { title: 'Returns & Waste', link: '/admin/returns', icon: 'rotate-ccw' }, // New!
+          { title: 'Stock Inventory', link: '/inventory', icon: 'monitor-smartphone' },
+          { title: 'Purchase Order', link: '/purchase', icon: 'shopping-cart' }, // Changed to shopping-cart for clarity
+          { title: 'Stock Transfers', link: '/movement', icon: 'truck' }, 
+          { title: 'Returns & Waste', link: '/returns', icon: 'rotate-ccw' }, // New!
         ]
       },
       {
         title: 'Insights',
         visible: true,
         items: [
-          { title: 'Daily Closing', link: '/admin/reports/daily-closing', icon: 'file-text' },
-          { title: 'Stock Audit', link: '/admin/reports/audit', icon: 'clipboard-list' },
+          { title: 'Daily Closing', link: '/reports/daily-closing', icon: 'file-text' },
+          { title: 'Stock Audit', link: '/reports/audit', icon: 'clipboard-list' },
         ]
       },
     ];

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class BaseApiService {
   protected http = inject(HttpClient);
-  protected readonly baseUrl = environment.apiUrl + '/admin';
+  protected readonly baseUrl = environment.apiUrl;
 
   protected getHeaders(isFormData: boolean = false): HttpHeaders {
     let headers = new HttpHeaders({

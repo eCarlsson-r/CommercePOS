@@ -1,25 +1,33 @@
 <div class="flex h-screen bg-[#FDFCFB] overflow-hidden">
   <!-- Mobile Sidebar Backdrop -->
-  <div *ngIf="isSidebarOpen()" 
-       (click)="closeSidebar()"
-       class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden animate-in fade-in duration-300">
-  </div>
+  <div
+    *ngIf="isSidebarOpen()"
+    (click)="closeSidebar()"
+    class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden animate-in fade-in duration-300"
+  ></div>
 
   <!-- Sidebar -->
-  <aside 
-    [class]="'fixed inset-y-0 left-0 w-72 bg-white border-r border-border z-50 transform transition-transform duration-300 ease-in-out md:static md:translate-x-0 flex flex-col ' + (isSidebarOpen() ? 'translate-x-0' : '-translate-x-full')"
+  <aside
+    [class]="
+      'fixed inset-y-0 left-0 w-72 bg-white border-r border-border z-50 transform transition-transform duration-300 ease-in-out md:static md:translate-x-0 flex flex-col ' +
+      (isSidebarOpen() ? 'translate-x-0' : '-translate-x-full')
+    "
   >
     <nav class="flex-1 p-4 overflow-y-auto">
-      @for(item of menuItems(); track $index) {
+      @for (item of menuItems(); track $index) {
         <div>
-          <p class="px-4 text-[10px] font-black text-primary/40 uppercase tracking-widest my-2">{{item.title}}</p>
+          <p class="px-4 text-[10px] font-black text-primary/40 uppercase tracking-widest my-2">
+            {{ item.title }}
+          </p>
           <div class="space-y-1">
-            @for(subItem of item.items; track $index) {
-              <a [routerLink]="subItem.link" 
-                 routerLinkActive="bg-primary/10" 
-                 (click)="closeSidebar()"
-                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition text-sm font-bold text-gray-600">
-                <i-lucide [name]="subItem.icon" class="w-5 h-5"></i-lucide> {{subItem.title}}
+            @for (subItem of item.items; track $index) {
+              <a
+                [routerLink]="subItem.link"
+                routerLinkActive="bg-primary/10"
+                (click)="closeSidebar()"
+                class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition text-sm font-bold text-gray-600"
+              >
+                <i-lucide [name]="subItem.icon" class="w-5 h-5"></i-lucide> {{ subItem.title }}
               </a>
             }
           </div>
@@ -29,29 +37,38 @@
   </aside>
 
   <main class="flex-1 flex flex-col overflow-hidden min-w-0">
-    <header class="h-16 border-b border-border bg-white flex items-center justify-between px-4 md:px-8">
+    <header
+      class="h-16 border-b border-border bg-white flex items-center justify-between px-4 md:px-8"
+    >
       <div class="flex items-center gap-4">
         <button (click)="toggleSidebar()" class="p-2 md:hidden hover:bg-gray-100 rounded-xl">
           <lucide-icon name="menu" class="w-6 h-6 text-primary"></lucide-icon>
         </button>
-        <a [routerLink]="/admin/dashboard" (click)="closeSidebar()">
-          <img src="/logo-text.png" alt="Logo" class="h-10">
+        <a routerLink="/" (click)="closeSidebar()">
+          <img src="/logo-text.png" alt="Logo" class="h-10" />
         </a>
       </div>
 
-      <div class="flex items-center gap-2 md:gap-4 bg-gray-50 md:bg-white px-3 md:px-4 py-1.5 md:py-2 rounded-2xl border border-border">
+      <div
+        class="flex items-center gap-2 md:gap-4 bg-gray-50 md:bg-white px-3 md:px-4 py-1.5 md:py-2 rounded-2xl border border-border"
+      >
         <lucide-icon name="map-pin" class="w-3 h-3 md:w-4 md:h-4 text-primary"></lucide-icon>
-        
-        <select [ngModel]="selectedBranch()?.id" 
-                (ngModelChange)="onBranchChange($event)"
-                class="bg-transparent font-black text-xs md:text-sm outline-none border-none cursor-pointer max-w-[80px] md:max-w-none">
+
+        <select
+          [ngModel]="selectedBranch()?.id"
+          (ngModelChange)="onBranchChange($event)"
+          class="bg-transparent font-black text-xs md:text-sm outline-none border-none cursor-pointer max-w-[80px] md:max-w-none"
+        >
           @for (b of branches(); track b.id) {
             <option [value]="b.id">{{ b.name }}</option>
           }
         </select>
 
         @if (userRole() === 'admin') {
-          <span class="hidden sm:inline-block text-[8px] md:text-[10px] bg-primary/10 text-primary px-1.5 md:px-2 py-0.5 rounded font-black">SUPER-ADMIN</span>
+          <span
+            class="hidden sm:inline-block text-[8px] md:text-[10px] bg-primary/10 text-primary px-1.5 md:px-2 py-0.5 rounded font-black"
+            >SUPER-ADMIN</span
+          >
         }
       </div>
     </header>

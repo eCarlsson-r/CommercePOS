@@ -47,9 +47,9 @@ export class SaleService extends BaseApiService {
   }
 
   // Listening for new e-commerce orders via Polling or WebSockets
-  /*fetchOnlineOrders() {
+  fetchOnlineOrders() {
     const branchId = this.branchService.selectedBranchId();
-    this.http.get(`${this.baseUrl}/ecommerce/orders?branch_id=${branchId}`)
+    this.http.get<any[]>(`${this.baseUrl}/ecommerce/orders?branch_id=${branchId}`)
       .subscribe(orders => this.incomingOrders.set(orders));
-  }*/
+  }
 }

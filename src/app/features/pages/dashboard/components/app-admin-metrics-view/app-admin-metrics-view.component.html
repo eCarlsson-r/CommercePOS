@@ -1,0 +1,43 @@
+<div class="bg-secondary/20 border-2 border-dashed border-border rounded-2xl p-12 text-center">
+    <header>
+        <h1 class="text-3xl font-black text-primary tracking-tighter">NETWORK OVERVIEW</h1>
+        <p class="text-gray-500">Live performance across {{ branchPerformance().length }} branches</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-primary p-8 rounded-4xl text-white shadow-xl shadow-primary/20 relative overflow-hidden">
+        <div class="relative z-10">
+            <p class="text-white/60 text-xs font-bold uppercase tracking-widest">Total Network Revenue (Today)</p>
+            <h2 class="text-4xl font-black mt-2">Rp {{ revenue() | number }}</h2>
+        </div>
+        <i-lucide name="trending-up" class="absolute -right-4 -bottom-4 w-32 h-32 text-white/5"></i-lucide>
+        </div>
+
+        <div class="bg-white p-8 rounded-4xl border border-border shadow-sm">
+        <p class="text-gray-400 text-xs font-bold uppercase tracking-widest">Top Performing Branch</p>
+        <h2 class="text-4xl font-black mt-2 text-gray-900">
+            {{ branchPerformance()[0]?.name || 'Loading...' }}
+        </h2>
+        </div>
+    </div>
+
+    <div class="bg-white p-8 rounded-4xl border border-border shadow-sm">
+        <h3 class="font-bold text-gray-800 mb-8">Branch Revenue Comparison</h3>
+        
+        <div class="space-y-6">
+        @for (branch of branchPerformance(); track branch.id) {
+            <div class="space-y-2">
+            <div class="flex justify-between text-sm font-bold">
+                <span class="text-gray-600">{{ branch.name }}</span>
+                <span class="text-primary">Rp {{ branch.sales_sum_grand_total | number }}</span>
+            </div>
+            <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
+                <div class="bg-primary h-full transition-all duration-1000"
+                    [style.width.%]="(branch.sales_sum_grand_total / revenue()) * 100">
+                </div>
+            </div>
+            </div>
+        }
+        </div>
+    </div>
+</div>

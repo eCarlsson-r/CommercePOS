@@ -42,7 +42,7 @@ export class AuthService extends BaseApiService {
         localStorage.setItem('pos-token', res.token);
         this.currentUser.set(res.data);
         this.isAuthenticated.set(true);
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/dashboard']);
       })
     );
   }
