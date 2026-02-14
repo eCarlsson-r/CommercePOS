@@ -1,17 +1,25 @@
-<div class="print-container hidden print:block">
+<div class="print-container">
   @for (item of printQueue(); track item.id) {
     @for (copy of [].constructor(item.printQty); track $index) {
       <div class="barcode-label-box">
-        <div class="label-header">{{ item.name | slice:0:20 }}</div>
+        <div class="label-header">{{ item.product.name | slice:0:22 }}</div>
         
         <div class="barcode-wrapper">
-          <ngx-barcode6 
-            [bc-value]="item.sku" 
-            [bc-display-value]="false" 
-            [bc-height]="30"
-            [bc-width]="1.5">
-          </ngx-barcode6>
-          <span class="sku-text">{{ item.sku }}</span>
+          @if (item.product.sku) {
+            <ngx-barcode6 
+              [bc-value]="item.product.sku" 
+              [bc-display-value]="false" 
+              [bc-height]="25"
+              [bc-width]="1.5"
+              [bc-element-type]="'svg'">
+            </ngx-barcode6>
+          } @else {
+            <div class="text-[8px] text-red-500 font-bold uppercase">No SKU</div>
+          }
+          <div class="sku-row">
+            <span class="sku-text">{{ item.product.sku }}</span>
+            <span class="cost-code">{{ generateCostCode(item.purchase_price) || 'N/A' }}</span>
+          </div>
         </div>
 
         <div class="label-footer">Rp {{ item.sale_price | number }}</div>

@@ -35,4 +35,8 @@ export class PurchaseReportComponent {
     generatePurchaseReport() {
         this.report.loadReportData(Number(this.supplierId()), this.startDate(), this.endDate());
     }
+
+    printReport() {
+        this.report.printReport();
+    }
 }

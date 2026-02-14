@@ -35,6 +35,6 @@ export class StockAuditComponent {
     if (!this.selectedProduct() || !this.selectedBranch()) return;
     
     this.reportService.getStockAudit(this.selectedProduct() || 0, this.selectedBranch() || 0)
-      .subscribe(res => this.auditLogs.set(res.data));
+      .subscribe(res => this.auditLogs.set(res));
   }
 }

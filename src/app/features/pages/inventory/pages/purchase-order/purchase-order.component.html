@@ -49,9 +49,19 @@
               </div>
             </td>
             <td class="p-6">
-              <button (click)="viewReceipt(po)" class="p-2 opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-primary">
-                <lucide-icon name="eye" class="w-5 h-5"></lucide-icon>
-              </button>
+              <div class="flex gap-2 justify-end">
+                @if (po.status !== 'received') {
+                  <button (click)="receiveStock(po)" 
+                          class="p-2 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors shadow-lg shadow-green-200"
+                          title="Confirm Delivery & Add to Stock">
+                    <lucide-icon name="check-circle" class="w-5 h-5"></lucide-icon>
+                  </button>
+                }
+                
+                <button (click)="viewReceipt(po)" class="p-2 text-gray-400 hover:text-primary transition-colors">
+                  <lucide-icon name="eye" class="w-5 h-5"></lucide-icon>
+                </button>
+              </div>
             </td>
           </tr>
         }

@@ -46,7 +46,11 @@ export class SalesReportComponent {
 
     @ViewChild(SalesA4Component) report!: SalesA4Component;
 
-    openSalesReport() {
+    generateReport() {
         this.report.loadReportData(Number(this.branchId()), Number(this.employeeId()), this.startDate(), this.endDate());
+    }
+
+    printReport() {
+        this.report.printReport();
     }
 }

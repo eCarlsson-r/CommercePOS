@@ -8,11 +8,22 @@ import { Product } from '@/models/product.model';
 export class ProductService extends BaseApiService {
   private apiUrl = `${this.baseUrl}/products`; // Adjust to your backend URL
 
-  getProducts(branchId?: number): Observable<Product[]> {
+  getProducts(branchId?: number, search?: string): Observable<Product[]> {
     let url = this.apiUrl;
+    const params: string[] = [];
+    
     if (branchId) {
-      url += `?branch_id=${branchId}`;
+      params.push(`branch_id=${branchId}`);
     }
+    
+    if (search) {
+      params.push(`search=${search}`);
+    }
+
+    if (params.length > 0) {
+      url += `?${params.join('&')}`;
+    }
+
     return this.http.get<Product[]>(url, { headers: this.getHeaders() });
   }
 

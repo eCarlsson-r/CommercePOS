@@ -18,9 +18,4 @@ export class StockAlertComponent {
     this.stockService.getLowStock(), 
     { initialValue: [] }
   );
-
-  onOrder(productId: number) {
-    // Navigate to Procurement with product pre-selected
-    console.log('Redirecting to PO for product:', productId);
-  }
 }

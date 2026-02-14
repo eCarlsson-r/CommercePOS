@@ -2,17 +2,20 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
-import { ProductService } from '@/services/product.service';
+import { StockService } from '@/services/stock.service';
 import { SettingsService } from '@/services/settings.service';
+import { BranchService } from '@/services/branch.service';
+import { BarcodeLabelComponent } from './components/barcode-label.component';
 
 @Component({
   selector: 'app-price-coder',
   templateUrl: './price-coder.component.html',
-  imports: [CommonModule, FormsModule, LucideAngularModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule, BarcodeLabelComponent],
   standalone: true
 })
 export class PriceCoderComponent {
-  private productService = inject(ProductService);
+  private stockService = inject(StockService);
+  private branchService = inject(BranchService);
   private settingsService = inject(SettingsService);
   searchQuery = '';
   searchResults = signal<any[]>([]);
@@ -37,21 +40,11 @@ export class PriceCoderComponent {
     this.tempKey.set(this.settingsService.getCipherKey());
   }
 
-  generateCostCode(price: number): string {
-    const key = this.settingsService.getCipherKey();
-    // Map digits to the 10-letter key
-    return price.toString().split('').map(digit => {
-      const index = parseInt(digit);
-      // If 0, it's the 10th letter (index 9), otherwise index digit-1
-      return key[index === 0 ? 9 : index - 1];
-    }).join('');
-  }
-
   onSearch() {
     if (this.searchQuery.length < 2) return;
-    this.productService.getProducts().subscribe(all => {
+    this.stockService.getStocks().subscribe(all => {
       this.searchResults.set(
-        all.filter(p => p.name.toLowerCase().includes(this.searchQuery.toLowerCase()) || p.sku.includes(this.searchQuery))
+        all.filter(p => parseInt(p.branch_id) === this.branchService.selectedBranchId() && (p.product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) || p.product.sku.includes(this.searchQuery)))
       );
     });
   }

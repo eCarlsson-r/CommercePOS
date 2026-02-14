@@ -10,20 +10,18 @@
   <div class="divide-y divide-border max-h-[400px] overflow-y-auto">
     @for (item of lowStockItems(); track item.id) {
       <div class="p-4 flex items-center justify-between hover:bg-muted/30 transition">
-        <div class="space-y-1">
-          <p class="font-semibold text-sm">{{ item.name }}</p>
-          <div class="flex items-center gap-2">
+        <div class="flex flex-col md:grid md:grid-cols-2 space-y-1">
+          <div>
+            <p class="font-semibold text-sm">{{ item.product.name }}</p>
+            <p class="text-xs text-muted-foreground">{{ item.branch.name }}</p>
+          </div>
+          <div class="flex md:justify-end items-center gap-2">
             <div class="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-              <div class="bg-destructive h-full" [style.width.%]="((item.stocks?.[0]?.quantity || 0) / 10) * 100"></div>
+              <div class="bg-destructive h-full" [style.width.%]="((item.quantity || 0) / 10) * 100"></div>
             </div>
-            <span class="text-[10px] font-bold text-destructive">{{ item.stocks?.[0]?.quantity || 0 }} left</span>
+            <span class="text-[10px] font-bold text-destructive">{{ item.quantity || 0 }} left</span>
           </div>
         </div>
-        
-        <button (click)="onOrder(item.id)" 
-                class="bg-primary text-white text-xs px-3 py-1.5 rounded-lg hover:bg-primary-dark transition shadow-sm">
-          Restock
-        </button>
       </div>
     } @empty {
       <div class="p-12 text-center text-muted-foreground italic">

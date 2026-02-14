@@ -29,9 +29,12 @@ export class AuthService extends BaseApiService {
 
   me() {
     return this.http.get<any>(`${this.baseUrl}/user`, { headers: this.getHeaders() }).pipe(
-      tap(user => {
-        this.currentUser.set(user);
-        this.isAuthenticated.set(true);
+      tap({
+        next: (user) => {
+          this.currentUser.set(user);
+          this.isAuthenticated.set(true);
+        },
+        error: () => this.logout() // If token is invalid or request fails, logout
       })
     );
   }
@@ -42,7 +45,7 @@ export class AuthService extends BaseApiService {
         localStorage.setItem('pos-token', res.token);
         this.currentUser.set(res.data);
         this.isAuthenticated.set(true);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/']);
       })
     );
   }

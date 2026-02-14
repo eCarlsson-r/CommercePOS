@@ -1,18 +1,29 @@
-<div class="bg-white p-6 rounded-3xl border border-border shadow-sm hover:shadow-md transition-all">
+<div class="bg-white p-6 rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group">
   <div class="flex justify-between items-start mb-4">
     <div class="p-3 bg-primary/5 rounded-2xl">
       <lucide-icon name="package" class="w-5 h-5 text-primary"></lucide-icon>
     </div>
     <span class="text-[10px] font-black px-2 py-1 bg-gray-100 rounded-md uppercase">
-        #{{ stock()?.id || 'REF-000' }}
+        {{ stock()?.product?.sku || 'SKU-000' }}
     </span>
+    <button (click)="onEdit.emit(stock())" 
+            class="opacity-0 group-hover:opacity-100 p-2 bg-gray-900 text-white rounded-xl transition-all shadow-lg active:scale-95">
+      <lucide-icon name="edit-3" class="w-4 h-4"></lucide-icon>
+    </button>
   </div>
-  
+
   <h4 class="font-bold text-gray-800">{{ stock()?.product?.name || 'Loading Product...' }}</h4>
-  <p class="text-xs text-gray-400 mt-1">{{ stock()?.created_at | date:'medium' }}</p>
   
-  <div class="mt-4 pt-4 border-t flex justify-between items-center">
-    <span class="text-sm font-medium text-gray-500">Qty:</span>
-    <span class="text-lg font-black text-primary">{{ stock()?.quantity || 0 }}</span>
+  <div class="mt-4 space-y-2">
+    <div class="flex justify-between items-center bg-gray-50 p-2 rounded-xl border border-dashed">
+      <span class="text-[10px] font-black text-gray-400 uppercase tracking-tighter">Cost (Cipher)</span>
+      <span class="font-mono text-xs font-bold text-gray-500">
+        {{ generateCostCode(stock()?.purchase_price) }}
+      </span>
+    </div>
+    <div class="flex justify-between items-center bg-primary/5 p-2 rounded-xl border border-primary/10">
+      <span class="text-[10px] font-black text-primary uppercase">Sale Price</span>
+      <span class="font-black text-gray-900">Rp {{ stock()?.sale_price | number }}</span>
+    </div>
   </div>
 </div>

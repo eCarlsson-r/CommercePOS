@@ -61,4 +61,5 @@
   </section>
 
   <app-stock-movement-drawer [isOpen]="isDrawerOpen()" (onClose)="isDrawerOpen.set(false);loadData();"></app-stock-movement-drawer>
+  <app-transfer-receipt *ngIf="showReceiptModal()"></app-transfer-receipt>
 </div>

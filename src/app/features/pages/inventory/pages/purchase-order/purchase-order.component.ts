@@ -151,4 +151,19 @@ export class PurchaseOrderComponent {
       }
     });
   }
+
+  receiveStock(po: any) {
+    if (!confirm(`Confirm receiving PO #${po.id}? This will add ${po.items.length} items to ${po.branch.name} inventory.`)) return;
+
+    this.purchaseService.updateStatus(po.id, 'received').subscribe({
+      next: () => {
+        // Update local state
+        this.purchaseOrders.update(orders => 
+          orders.map(o => o.id === po.id ? { ...o, status: 'received' } : o)
+        );
+        alert('Stock successfully integrated into branch inventory.');
+      },
+      error: (err) => alert('Error updating status: ' + err.message)
+    });
+  }
 }

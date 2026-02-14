@@ -13,6 +13,10 @@ export class PurchaseService extends BaseApiService {
     return this.http.post(this.apiUrl, data);
   }
 
+  updateStatus(id: number, status: string) {
+    return this.http.put(`${this.apiUrl}/${id}`, { status });
+  }
+  
   getPurchaseOrders() {
     return this.http.get<any[]>(this.apiUrl);
   }

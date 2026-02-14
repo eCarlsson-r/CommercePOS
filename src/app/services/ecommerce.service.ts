@@ -25,7 +25,10 @@ export class EcommerceService extends BaseApiService {
    * Update order status (e.g., from 'new' to 'processing')
    * This triggers the stock deduction logic in Laravel.
    */
-  updateStatus(orderId: number, status: string): Observable<any> {
+  updateStatus(orderId: number, status: string, branchId?: number): Observable<any> {
+    if (branchId && branchId > 0) {
+      return this.http.patch(`${this.apiUrl}/${orderId}/status`, { status, branch_id: branchId });
+    }
     return this.http.patch(`${this.apiUrl}/${orderId}/status`, { status });
   }
 
@@ -43,5 +46,9 @@ export class EcommerceService extends BaseApiService {
     this.getOrders('new').subscribe(orders => {
       this.newOrdersCount.set(orders.length);
     });
+  }
+
+  finalizeShipment(orderId: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${orderId}/finalize`, { status: 'shipped' });
   }
 }

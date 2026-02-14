@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from '@/models/product.model';
 import { BaseApiService } from './base-api.service';
 import { StockTransferPayload } from '@/models/stock-transfer.model';
 
@@ -21,13 +20,13 @@ export class StockService extends BaseApiService {
     return this.http.get<any[]>(`${this.baseUrl}/stocks`, { params });
   }
 
-  getLowStock(branchId?: number): Observable<Product[]> {
+  getLowStock(branchId?: number): Observable<any[]> {
     let params = new HttpParams();
     if (branchId) {
       params = params.set('branch_id', branchId.toString());
     }
     // Targets the /products/low-stock endpoint in Laravel
-    return this.http.get<Product[]>(`${this.baseUrl}/products/low-stock`, { params });
+    return this.http.get<any[]>(`${this.baseUrl}/products/low-stock`, { params });
   }
 
   getMovements(branchId?: number): Observable<any[]> {
@@ -49,5 +48,13 @@ export class StockService extends BaseApiService {
 
   receiveTransfer(transferId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/receive`, { transfer_id: transferId });
+  }
+
+  getStockLogs(stockId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/stocks/${stockId}`);
+  }
+
+  updateStock(stockId: number, data: { quantity: number, sale_price: number, purchase_price: number }): Observable<any> {
+    return this.http.put(`${this.baseUrl}/stocks/${stockId}`, data);
   }
 }

@@ -1,14 +1,14 @@
 export interface ActiveSale {
-  branchId: number;
+  branch_id: number;
   items: CartItem[];
-  customerId: number | null;
-  customerName?: string;
+  customer_id: number | null;
+  customer_name?: string;
   appliedPoints: number;
   subtotal: number;
 }
 
 export interface CartItem {
-  productId: number;
+  product_id: number;
   name: string;
   price: number;
   quantity: number;

@@ -49,7 +49,7 @@ export class SaleService extends BaseApiService {
   // Listening for new e-commerce orders via Polling or WebSockets
   fetchOnlineOrders() {
     const branchId = this.branchService.selectedBranchId();
-    this.http.get<any[]>(`${this.baseUrl}/ecommerce/orders?branch_id=${branchId}`)
+    this.http.get<any[]>(`${this.baseUrl}/orders?branch_id=${branchId}`, { headers: this.getHeaders() })
       .subscribe(orders => this.incomingOrders.set(orders));
   }
 }

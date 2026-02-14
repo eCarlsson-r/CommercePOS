@@ -5,11 +5,12 @@ import { StockService } from '@/services/stock.service';
 import { CommonModule } from '@angular/common';
 import { StockMovementDrawerComponent } from '../../components/stock-movement-drawer/stock-movement-drawer.component';
 import { LucideAngularModule } from 'lucide-angular';
+import { TransferReceiptComponent } from '../../components/transfer-receipt/transfer-receipt.component';
 
 @Component({
   selector: 'app-stock-movement-page',
   standalone: true,
-  imports: [CommonModule, StockMovementDrawerComponent, LucideAngularModule],
+  imports: [CommonModule, StockMovementDrawerComponent, LucideAngularModule, TransferReceiptComponent],
   templateUrl: './stock-movement-page.component.html'
 })
 
@@ -19,6 +20,8 @@ export class StockMovementPageComponent {
   // 1. Create a "Trigger" signal
   private refreshTrigger = new Subject<void>();
   isDrawerOpen = signal(false);
+  selectedTransfer = signal<any>(null);
+  showReceiptModal = signal(false);
 
   // 2. This signal automatically re-fetches whenever refreshTrigger.next() is called
   allMovements = toSignal(
@@ -40,9 +43,15 @@ export class StockMovementPageComponent {
     this.refreshTrigger.next();
   }
 
+  viewReceipt(transfer: any) {
+    this.selectedTransfer.set(transfer);
+    this.showReceiptModal.set(true);
+  }
+
   onReceive(id: number) {
     this.stockService.receiveTransfer(id).subscribe({
       next: () => {
+        this.viewReceipt(this.allMovements().find((move: any) => move.id === id));
         this.loadData(); 
       },
       error: (err) => console.error('Confirmation failed', err)

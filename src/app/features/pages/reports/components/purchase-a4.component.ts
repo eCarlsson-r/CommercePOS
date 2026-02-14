@@ -22,29 +22,6 @@ export class PurchaseA4Component {
   endDate = signal<string>('');
   reportDate = new Date();
 
-  generateCostCode(price: number): string {
-    const key = this.settingsService.getCipherKey(); // e.g., "REPUBLICAN"
-    const digits = price.toString().split('');
-    let result = '';
-    
-    for (let i = 0; i < digits.length; i++) {
-      let count = 1;
-      // Check if the next digits are the same
-      while (i + 1 < digits.length && digits[i] === digits[i + 1]) {
-        count++;
-        i++;
-      }
-
-      const num = parseInt(digits[i]);
-      const char = key[num === 0 ? 9 : num - 1];
-      
-      // If count > 1, append the character then the number of repeats
-      result += count > 1 ? char + count : char;
-    }
-    
-    return result;
-  }
-
   resetReport() {
     this.purchaseItems.set([]);
     this.totalOrders.set(0);
@@ -86,11 +63,6 @@ export class PurchaseA4Component {
           this.totalOrders.update(total => total + 1);
           this.totalSpend.update(total => total + Number(purchase.total_amount));
         });
-      },
-      complete: () => {
-        // Use a timeout to ensure the browser has finished rendering 
-        // the new signal data before showing the print dialog
-        setTimeout(() => this.printReport(), 500);
       }
     });
   }

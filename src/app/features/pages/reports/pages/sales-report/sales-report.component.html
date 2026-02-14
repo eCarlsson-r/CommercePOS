@@ -35,10 +35,12 @@
     </div>
 
     <div class="flex items-end">
-      <button (click)="openSalesReport()" 
+      <button (click)="generateReport()" 
               class="w-full py-5 bg-primary text-white rounded-3xl font-black text-xs uppercase flex items-center justify-center gap-3 hover:bg-primary transition-all">
-        <lucide-icon name="printer" class="w-4 h-4"></lucide-icon>
-        Generate Sales Report
+        Generate Report
+      </button>
+      <button (click)="printReport()" class="p-5 bg-gray-100 rounded-3xl hover:bg-gray-200">
+        <lucide-icon name="printer" class="w-5 h-5 text-gray-600"></lucide-icon>
       </button>
     </div>
   </div>

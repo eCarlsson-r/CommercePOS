@@ -40,8 +40,8 @@ export class AdminLayoutComponent implements OnInit {
     this.isSidebarOpen.set(false);
   }
 
-  onBranchChange(event: any) {
-    this.branchService.setBranch(Number(event.target.value));
+  onBranchChange(value: number) {
+    this.branchService.setBranch(value);
   }
 
   pendingTransfers = 0;
@@ -50,18 +50,20 @@ export class AdminLayoutComponent implements OnInit {
   menuItems = computed(() => {
     const role = this.userRole();
 
+    // interface MenuItem { title: string; link: string; icon: string; roles?: string[] }
+    // interface MenuSection { title: string; visible: boolean; items: MenuItem[] }
+
     const baseMenu = [
       {
         title: 'Sales',
-        visible: true, // Everyone sees inventory
+        visible: true,
         items: [
           { title: 'Sales POS', link: '/sales', icon: 'shopping-cart' },
-          { title: 'E-Commerce Orders', link: '/ecommerce-orders', icon: 'globe' }
+          { title: 'E-Commerce Orders', link: '/ecommerce-orders', icon: 'globe', roles: ['admin'] }
         ]
       },
       {
         title: 'Master',
-        // Only Admins in Medan can see the "Master" section
         visible: role === 'admin', 
         items: [
           { title: 'Branches', link: '/branches', icon: 'map-pin' },
@@ -75,12 +77,12 @@ export class AdminLayoutComponent implements OnInit {
       },
       {
         title: 'Inventory',
-        visible: true, // Everyone sees inventory
+        visible: true,
         items: [
           { title: 'Stock Inventory', link: '/inventory', icon: 'monitor-smartphone' },
-          { title: 'Purchase Order', link: '/purchase', icon: 'shopping-cart' }, // Changed to shopping-cart for clarity
-          { title: 'Stock Transfers', link: '/movement', icon: 'truck' }, 
-          { title: 'Returns & Waste', link: '/returns', icon: 'rotate-ccw' }, // New!
+          { title: 'Purchase Order', link: '/purchase', icon: 'shopping-cart', roles: ['admin'] },
+          { title: 'Stock Transfers', link: '/movement', icon: 'truck' }, // Example restriction
+          { title: 'Returns & Waste', link: '/returns', icon: 'rotate-ccw', roles: ['admin'] },
         ]
       },
       {
@@ -89,16 +91,30 @@ export class AdminLayoutComponent implements OnInit {
         items: [
           { title: 'Daily Closing', link: '/reports/daily-closing', icon: 'clipboard-list' },
           { title: 'Sales Report', link: '/reports/sales', icon: 'file-text' },
-          { title: 'Purchase Report', link: '/reports/purchase', icon: 'truck' },
-          { title: 'Stock Audit', link: '/reports/audit', icon: 'clipboard-pen-line' },
+          { title: 'Purchase Report', link: '/reports/purchase', icon: 'truck', roles: ['admin'] }, // Example restriction
+          { title: 'Stock Audit', link: '/reports/audit', icon: 'clipboard-pen-line', roles: ['admin'] }, // Example restriction
         ]
       },
     ];
 
-    return baseMenu.filter(section => section.visible);
+    // Filter by section visibility, then filter items by role, and finally hide sections with no items
+    return baseMenu
+      .filter(section => section.visible)
+      .map(section => ({
+        ...section,
+        items: section.items.filter(item => !item.roles || item.roles.includes(role))
+      }))
+      .filter(section => section.items.length > 0);
   });
 
   ngOnInit() {
+    this.branchService.getBranches().subscribe({
+      next: (data) => {
+        this.branchService.branches.set(data);
+        this.branchService.setBranch(this.user()?.employee?.branch?.id || 1);
+      }
+    });
+    
     // 1. Listen for new stock movement requests via Reverb
     this.realtime.listenForTransfers().subscribe({
       next: (data) => {
@@ -110,6 +126,10 @@ export class AdminLayoutComponent implements OnInit {
 
     // 2. Initial check for permissions
     this.push.checkSubscriptionStatus();
+  }
+
+  logout() {
+    this.auth.logout();
   }
 
   playNotificationSound() {
