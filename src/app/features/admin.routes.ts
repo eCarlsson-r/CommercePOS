@@ -6,6 +6,7 @@ export const ADMIN_ROUTES: Routes = [
     path: '',
     children: [
       { path: '', loadComponent: () => import('./pages/dashboard/pages/dashboard-page/dashboard-page.component').then(c => c.DashboardPageComponent) },
+      { path: 'banner', loadComponent: () => import('./pages/banner-management/banner-management.component').then(c => c.BannerManagementComponent) },
       { path: 'categories', loadComponent: () => import('./pages/category-management/category-management.component').then(c => c.CategoryManagementComponent) },
       { path: 'products', loadComponent: () => import('./pages/product-management/product-management.component').then(c => c.ProductManagementComponent) },
       { path: 'customers', loadComponent: () => import('./pages/customer-list/customer-list.component').then(c => c.CustomerListComponent) },

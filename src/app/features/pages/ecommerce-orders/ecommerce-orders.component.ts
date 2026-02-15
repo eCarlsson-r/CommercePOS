@@ -2,13 +2,14 @@ import { Component, inject, signal } from '@angular/core';
 import { EcommerceService } from '@/services/ecommerce.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { BranchService } from '@/services/branch.service';
+import { PackingSlipComponent } from './components/packing-slip.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ecommerce-orders',
   templateUrl: './ecommerce-orders.component.html',
-  imports: [LucideAngularModule, CommonModule, RouterLink]
+  imports: [LucideAngularModule, CommonModule, FormsModule, PackingSlipComponent]
 })
 export class EcommerceOrdersComponent {
   private ecommerceService = inject(EcommerceService);
@@ -16,10 +17,14 @@ export class EcommerceOrdersComponent {
 
   activeTab = signal<'paid' | 'processing' | 'shipped' | 'completed'>('paid');
   orders = signal<any[]>([]);
+  selectedOrderForPrinting = signal<any>(null);
+  selectedBranchName = signal<string>('');
+  showShipmentModal = signal(false);
+  selectedOrder = signal<any>(null);
+  shipmentData = { courier: 'JNE', resi: '' };
 
   ngOnInit() {
     this.loadOrders();
-    this.ecommerceService.checkNewOrders();
   }
   setTab(tab: any) {
     this.activeTab.set(tab);
@@ -35,13 +40,20 @@ export class EcommerceOrdersComponent {
   processOrder(orderId: number) {
     this.ecommerceService.updateStatus(
       orderId,
-      'processing',
-      this.branchService.selectedBranchId() || 0
+      { status: 'processing', branch_id: this.branchService.selectedBranchId() || 0 }
     ).subscribe({
-      next: () => {
+      next: (res) => {
+        // 1. Assign data to the packing slip component
+        this.selectedOrderForPrinting.set(res); 
+        
+        // 2. Refresh the UI tabs
         this.loadOrders();
-        // Trigger Label Print here
-        this.printPackingSlip(orderId);
+
+        // 3. Trigger the print dialog
+        setTimeout(() => {
+          window.print();
+          this.selectedOrderForPrinting.set(null);
+        }, 500);
       },
       error: (err) => {
         // If someone else took it, the backend returns 422
@@ -51,16 +63,49 @@ export class EcommerceOrdersComponent {
     });
   }
 
-  openShipmentModal(order: any) {
-    // This would trigger your Modal to enter the Resi (Tracking Number)
-    // and eventually call the 'finalizeShipment' backend we discussed.
-    this.ecommerceService.finalizeShipment(order.id).subscribe(() => {
-      this.loadOrders();
-    });
+  releaseOrder(orderId: number) {
+    if (confirm('Release this order? It will go back to the "NEW" pool for other branches.')) {
+      // We send status 'new' and branch_id null to the backend
+      this.ecommerceService.updateStatus(orderId, { 
+        status: 'paid', 
+        branch_id: null 
+      }).subscribe(() => {
+        this.loadOrders();
+      });
+    }
   }
 
-  printPackingSlip(orderId: number) {
-    // This would trigger your Modal to enter the Resi (Tracking Number)
-    // and eventually call the 'finalizeShipment' backend we discussed.
+  async cancelOrder(order: any) {
+    const reason = prompt("Reason for cancellation:");
+    if (reason) {
+      this.ecommerceService.updateStatus(order.id, { 
+        status: 'cancelled',
+        cancel_reason: reason 
+      }).subscribe(() => {
+        this.loadOrders();
+      });
+    }
+  }
+
+  openShipmentModal(order: any) {
+    this.selectedOrder.set(order);
+    this.showShipmentModal.set(true);
+  }
+
+  onConfirmShipment() {
+    const payload = {
+      status: 'processed',
+      tracking_number: this.shipmentData.resi,
+      courier_service: this.shipmentData.courier
+    };
+
+    this.ecommerceService.updateStatus(this.selectedOrder().id, payload).subscribe({
+      next: () => {
+        this.showShipmentModal.set(false);
+        this.loadOrders();
+        this.shipmentData.resi = ''; // Clear for next use
+      },
+      error: (err) => alert("Error: " + err.error.message)
+    });
   }
 }

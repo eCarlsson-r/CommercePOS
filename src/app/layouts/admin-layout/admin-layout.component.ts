@@ -66,6 +66,7 @@ export class AdminLayoutComponent implements OnInit {
         title: 'Master',
         visible: role === 'admin', 
         items: [
+          { title: 'Banners', link: '/banner', icon: 'image' },
           { title: 'Branches', link: '/branches', icon: 'map-pin' },
           { title: 'Employees', link: '/employees', icon: 'user-plus' },
           { title: 'Customers', link: '/customers', icon: 'users' },
