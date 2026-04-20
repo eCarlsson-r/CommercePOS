@@ -7,8 +7,8 @@ export class ReturnService extends BaseApiService {
   private apiUrl = `${this.baseUrl}/returns`;
 
   getReturns(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
-      catchError(err => {
+    return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() }).pipe(
+      catchError((err: any) => {
         console.error('Error fetching returns:', err);
         return of([]); // Return empty array on error
       })
@@ -16,8 +16,8 @@ export class ReturnService extends BaseApiService {
   }
 
   getReturnsBySupplier(supplierId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?supplier_id=${supplierId}`).pipe(
-      catchError(err => {
+    return this.http.get<any[]>(`${this.apiUrl}?supplier_id=${supplierId}`, { headers: this.getHeaders() }).pipe(
+      catchError((err: any) => {
         console.error('Error fetching returns by supplier:', err);
         return of([]);
       })
@@ -33,6 +33,6 @@ export class ReturnService extends BaseApiService {
     }[];
     reason: string;
   }) {
-    return this.http.post(this.apiUrl, payload);
+    return this.http.post(this.apiUrl, payload, { headers: this.getHeaders() });
   }
 }

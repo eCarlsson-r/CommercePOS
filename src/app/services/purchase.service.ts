@@ -10,14 +10,14 @@ export class PurchaseService extends BaseApiService {
     branch_id: number;
     items: { product_id: number; quantity: number; unit_price: number }[];
   }) {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(this.apiUrl, data, { headers: this.getHeaders() });
   }
 
   updateStatus(id: number, status: string) {
-    return this.http.put(`${this.apiUrl}/${id}`, { status });
+    return this.http.put(`${this.apiUrl}/${id}`, { status }, { headers: this.getHeaders() });
   }
   
   getPurchaseOrders() {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() });
   }
 }

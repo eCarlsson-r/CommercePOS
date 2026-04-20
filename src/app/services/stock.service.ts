@@ -17,7 +17,7 @@ export class StockService extends BaseApiService {
     if (categoryId) {
       params = params.set('category_id', categoryId.toString());
     }
-    return this.http.get<any[]>(`${this.baseUrl}/stocks`, { params });
+    return this.http.get<any[]>(`${this.baseUrl}/stocks`, { params, headers: this.getHeaders() });
   }
 
   getLowStock(branchId?: number): Observable<any[]> {
@@ -26,7 +26,7 @@ export class StockService extends BaseApiService {
       params = params.set('branch_id', branchId.toString());
     }
     // Targets the /products/low-stock endpoint in Laravel
-    return this.http.get<any[]>(`${this.baseUrl}/products/low-stock`, { params });
+    return this.http.get<any[]>(`${this.baseUrl}/products/low-stock`, { params, headers: this.getHeaders() });
   }
 
   getMovements(branchId?: number): Observable<any[]> {
@@ -34,27 +34,27 @@ export class StockService extends BaseApiService {
       ? `${this.apiUrl}?branch_id=${branchId}` 
       : this.apiUrl;
       
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(url, { headers: this.getHeaders() });
   }
 
   // For the Audit View
   getStockAudit(productId: number, branchId: number) {
-    return this.http.get<any[]>(`${this.baseUrl}/stock/audit/${productId}/${branchId}`);
+    return this.http.get<any[]>(`${this.baseUrl}/stock/audit/${productId}/${branchId}`, { headers: this.getHeaders() });
   }
 
   sendTransfer(payload: StockTransferPayload): Observable<any> {
-    return this.http.post(this.apiUrl, payload);
+    return this.http.post(this.apiUrl, payload, { headers: this.getHeaders() });
   }
 
   receiveTransfer(transferId: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/receive`, { transfer_id: transferId });
+    return this.http.post(`${this.apiUrl}/receive`, { transfer_id: transferId }, { headers: this.getHeaders() });
   }
 
   getStockLogs(stockId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/stocks/${stockId}`);
+    return this.http.get<any[]>(`${this.baseUrl}/stocks/${stockId}`, { headers: this.getHeaders() });
   }
 
   updateStock(stockId: number, data: { quantity: number, sale_price: number, purchase_price: number }): Observable<any> {
-    return this.http.put(`${this.baseUrl}/stocks/${stockId}`, data);
+    return this.http.put(`${this.baseUrl}/stocks/${stockId}`, data, { headers: this.getHeaders() });
   }
 }

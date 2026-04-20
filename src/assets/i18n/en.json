@@ -1,0 +1,88 @@
+{
+  "common": {
+    "language": "Language",
+    "logout": "Logout",
+    "search": "Search",
+    "dashboard": "Dashboard",
+    "admin": "Admin",
+    "loading": "Loading",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "loginError": "Invalid credentials",
+    "loginSuccess": "Login successful",
+    "unauthorized": "Unauthorized"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "revenue": "Total Revenue",
+    "orders": "Orders",
+    "branches": "Branches",
+    "lowStock": "Low Stock",
+    "pendingTransfers": "Pending Transfers",
+    "recentSales": "Recent Sales",
+    "topProducts": "Top Products"
+  },
+  "sales": {
+    "title": "Sales",
+    "list": "Sales List",
+    "newSale": "New Sale",
+    "date": "Date",
+    "amount": "Amount",
+    "branch": "Branch",
+    "customer": "Customer"
+  },
+  "products": {
+    "title": "Products",
+    "list": "Product List",
+    "newProduct": "New Product",
+    "name": "Name",
+    "price": "Price",
+    "stock": "Stock",
+    "category": "Category"
+  },
+  "inventory": {
+    "title": "Inventory",
+    "stock": "Stock",
+    "transfers": "Stock Transfers",
+    "audit": "Stock Audit",
+    "lowStock": "Low Stock Items"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "kpi": "KPI Metrics",
+    "commercial": "Commercial KPIs",
+    "operational": "Operational KPIs",
+    "governance": "Governance KPIs",
+    "conversion": "Conversion Uplift",
+    "averageOrderValue": "Average Order Value",
+    "visualSearchRate": "Visual Search Rate",
+    "aiLatency": "AI P95 Latency",
+    "aiCost": "AI Cost Per Order",
+    "supportDeflection": "Support Deflection Rate",
+    "promptDrift": "Prompt Drift Incidents",
+    "hallucination": "Hallucination Rate",
+    "fallbackSuccess": "Feature Fallback Success"
+  },
+  "offline": {
+    "title": "Offline",
+    "offlineMode": "Offline Mode",
+    "syncPending": "Sync Pending",
+    "syncing": "Syncing...",
+    "syncComplete": "Sync Complete",
+    "connectionRestored": "Connection Restored",
+    "connectionLost": "Connection Lost"
+  }
+}

@@ -12,14 +12,14 @@ export class SupplierService extends BaseApiService {
   }
 
   createSupplier(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(this.apiUrl, data, { headers: this.getHeaders() });
   }
 
   updateSupplier(id: number, data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+    return this.http.put(`${this.apiUrl}/${id}`, data, { headers: this.getHeaders() });
   }
 
   deleteSupplier(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
   }
 }

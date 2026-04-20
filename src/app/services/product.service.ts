@@ -67,4 +67,8 @@ export class ProductService extends BaseApiService {
     
     return this.http.post(`${this.apiUrl}/${id}`, formData, { headers: this.getHeaders(true) });
   }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
+  }
 }

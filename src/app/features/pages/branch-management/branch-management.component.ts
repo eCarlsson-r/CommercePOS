@@ -29,12 +29,17 @@ export class BranchManagementComponent {
 
   toggleBranchStatus(branch: Branch) {
     this.isUpdating.set(true);
-    // In a real app, you'd call a branchService.update() method here
-    // For now, we simulate a toggle
-    branch.is_active = !branch.is_active;
-    
-    // Logic to sync with Laravel would go here
-    setTimeout(() => this.isUpdating.set(false), 500);
+    const payload: Branch = {
+      ...branch,
+      is_active: !branch.is_active,
+    };
+
+    this.branchService.updateBranch(branch.id || 0, payload).subscribe({
+      next: () => {
+        this.branchService.getBranches().subscribe(() => this.isUpdating.set(false));
+      },
+      error: () => this.isUpdating.set(false),
+    });
   }
 
   editBranch(branch: any) {
@@ -63,6 +68,9 @@ export class BranchManagementComponent {
       ? this.branchService.updateBranch(this.editingBranch(), this.formData)
       : this.branchService.createBranch(this.formData);
 
-    obs$.subscribe(() => this.cancelEdit);
+    obs$.subscribe(() => {
+      this.branchService.getBranches().subscribe();
+      this.cancelEdit();
+    });
   }
 }

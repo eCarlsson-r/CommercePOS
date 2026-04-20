@@ -7,17 +7,21 @@ import { PushNotificationService } from '@/services/push-notification.service';
 import { BranchService } from '@/services/branch.service';
 import { AuthService } from '@/services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { LanguageSwitcherComponent } from "@/shared/components/language-switcher/language-switcher.component";
+import { OfflineSyncIndicatorComponent } from "@/shared/components/offline-sync-indicator/offline-sync-indicator.component";
 
 @Component({
   selector: 'app-admin-layout', // Changed from app-root
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterOutlet, 
-    RouterModule, 
+    CommonModule,
+    RouterOutlet,
+    RouterModule,
     FormsModule,
-    LucideAngularModule
-  ],
+    LucideAngularModule,
+    LanguageSwitcherComponent,
+    OfflineSyncIndicatorComponent
+],
   templateUrl: './admin-layout.component.html',
 })
 export class AdminLayoutComponent implements OnInit {

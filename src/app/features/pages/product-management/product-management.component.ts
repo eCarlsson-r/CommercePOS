@@ -92,4 +92,14 @@ export class ProductManagementComponent {
       }
     });
   }
+
+  deleteProduct(product: any) {
+    if (!product?.id) return;
+    if (!window.confirm(`Delete ${product.name}? This cannot be undone.`)) return;
+
+    this.productService.delete(product.id).subscribe({
+      next: () => this.refreshProducts(),
+      error: (err) => console.error(err),
+    });
+  }
 }

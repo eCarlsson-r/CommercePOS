@@ -22,6 +22,7 @@ export class CustomerListComponent {
   // Search Control with 300ms debounce to save Medan server resources
   searchControl = new FormControl('');
   customerForm: FormGroup = this.fb.group({
+    id: [null],
     name: ['', [Validators.required]],
     mobile: ['', [Validators.required]],
     email: ['', [Validators.email]],
@@ -47,6 +48,7 @@ export class CustomerListComponent {
   );
 
   ngOnInit() {
+    this.refreshCustomers();
   }
 
   refreshCustomers() {
@@ -54,12 +56,44 @@ export class CustomerListComponent {
   }
 
   cancelEdit() {
+    this.customerForm.reset({ id: null, name: '', mobile: '', email: '' });
     this.showDrawer.set(false);
+  }
+
+  editCustomer(customer: Customer) {
+    this.customerForm.patchValue({
+      id: customer.id,
+      name: customer.name,
+      mobile: customer.mobile,
+      email: customer.email || '',
+    });
+    this.showDrawer.set(true);
+  }
+
+  deleteCustomer(customer: Customer) {
+    if (!customer.id) return;
+    if (!window.confirm(`Delete ${customer.name}?`)) return;
+
+    this.customerService.deleteCustomer(customer.id).subscribe({
+      next: () => this.refreshCustomers(),
+      error: (err: any) => console.error('Error deleting customer:', err),
+    });
   }
 
   saveCustomer() {
     if (this.customerForm.valid) {
-      this.customerService.createCustomer(this.customerForm.value).subscribe({
+      const id = this.customerForm.value.id;
+      const payload = {
+        name: this.customerForm.value.name,
+        mobile: this.customerForm.value.mobile,
+        email: this.customerForm.value.email,
+      };
+
+      const request$ = id
+        ? this.customerService.updateCustomer(id, payload)
+        : this.customerService.createCustomer(payload);
+
+      request$.subscribe({
         next: () => {
           this.refreshCustomers();
           this.cancelEdit();
