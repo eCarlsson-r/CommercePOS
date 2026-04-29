@@ -96,8 +96,9 @@ export class AdminLayoutComponent implements OnInit {
         items: [
           { title: 'Daily Closing', link: '/reports/daily-closing', icon: 'clipboard-list' },
           { title: 'Sales Report', link: '/reports/sales', icon: 'file-text' },
-          { title: 'Purchase Report', link: '/reports/purchase', icon: 'truck', roles: ['admin'] }, // Example restriction
-          { title: 'Stock Audit', link: '/reports/audit', icon: 'clipboard-pen-line', roles: ['admin'] }, // Example restriction
+          { title: 'Purchase Report', link: '/reports/purchase', icon: 'truck', roles: ['admin'] },
+          { title: 'Stock Audit', link: '/reports/audit', icon: 'clipboard-pen-line', roles: ['admin'] },
+          { title: 'AI & KPI Analytics', link: '/analytics/kpi', icon: 'bar-chart-3', roles: ['admin'] },
         ]
       },
     ];

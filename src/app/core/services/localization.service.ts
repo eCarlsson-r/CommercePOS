@@ -9,7 +9,7 @@ export class LocalizationService {
   private currentLanguageSubject = new BehaviorSubject<string>('en');
   public currentLanguage$ = this.currentLanguageSubject.asObservable();
 
-  private supportedLanguages = ['en', 'sv'];
+  private supportedLanguages = ['en', 'id'];
   private storageKey = 'app_language';
 
   constructor(private translateService: TranslateService) {

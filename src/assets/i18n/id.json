@@ -1,0 +1,88 @@
+{
+  "common": {
+    "language": "Bahasa",
+    "logout": "Keluar",
+    "search": "Cari",
+    "dashboard": "Dasbor",
+    "admin": "Admin",
+    "loading": "Memuat",
+    "error": "Kesalahan",
+    "success": "Berhasil",
+    "confirm": "Konfirmasi",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "delete": "Hapus",
+    "edit": "Ubah",
+    "close": "Tutup",
+    "back": "Kembali"
+  },
+  "auth": {
+    "login": "Masuk",
+    "logout": "Keluar",
+    "email": "Email",
+    "password": "Kata Sandi",
+    "loginError": "Kredensial tidak valid",
+    "loginSuccess": "Login berhasil",
+    "unauthorized": "Tidak berwenang"
+  },
+  "dashboard": {
+    "title": "Dasbor",
+    "revenue": "Total Pendapatan",
+    "orders": "Pesanan",
+    "branches": "Cabang",
+    "lowStock": "Stok Rendah",
+    "pendingTransfers": "Transfer Tertunda",
+    "recentSales": "Penjualan Terbaru",
+    "topProducts": "Produk Terlaris"
+  },
+  "sales": {
+    "title": "Penjualan",
+    "list": "Daftar Penjualan",
+    "newSale": "Penjualan Baru",
+    "date": "Tanggal",
+    "amount": "Jumlah",
+    "branch": "Cabang",
+    "customer": "Pelanggan"
+  },
+  "products": {
+    "title": "Produk",
+    "list": "Daftar Produk",
+    "newProduct": "Produk Baru",
+    "name": "Nama",
+    "price": "Harga",
+    "stock": "Stok",
+    "category": "Kategori"
+  },
+  "inventory": {
+    "title": "Inventori",
+    "stock": "Stok",
+    "transfers": "Transfer Stok",
+    "audit": "Audit Stok",
+    "lowStock": "Stok Menipis"
+  },
+  "analytics": {
+    "title": "Analitik",
+    "kpi": "Metrik KPI",
+    "commercial": "KPI Komersial",
+    "operational": "KPI Operasional",
+    "governance": "KPI Tata Kelola",
+    "conversion": "Peningkatan Konversi",
+    "averageOrderValue": "Nilai Pesanan Rata-rata",
+    "visualSearchRate": "Tingkat Pencarian Visual",
+    "aiLatency": "Latensi AI P95",
+    "aiCost": "Biaya AI per Pesanan",
+    "supportDeflection": "Tingkat Pengalihan Dukungan",
+    "promptDrift": "Insiden Drift Prompt",
+    "hallucination": "Tingkat Halusinasi",
+    "fallbackSuccess": "Keberhasilan Fallback Fitur"
+  },
+  "offline": {
+    "title": "Offline",
+    "offlineMode": "Mode Offline",
+    "syncPending": "Sinkronisasi Tertunda",
+    "syncing": "Menyinkronkan...",
+    "syncComplete": "Sinkronisasi Selesai",
+    "connectionRestored": "Koneksi Pulih",
+    "connectionLost": "Koneksi Hilang"
+  }
+}

@@ -16,7 +16,7 @@ import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
         class="px-3 py-2 border border-gray-300 rounded-lg text-sm"
       >
         <option value="en">English</option>
-        <option value="sv">Svenska</option>
+        <option value="id">Bahasa Indonesia</option>
       </select>
     </div>
   `,

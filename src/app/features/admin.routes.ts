@@ -25,6 +25,7 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'reports/purchase', loadComponent: () => import('./pages/reports/pages/purchase-report/purchase-report.component').then(c => c.PurchaseReportComponent) },
       { path: 'reports/audit', loadComponent: () => import('./pages/inventory/pages/stock-audit/stock-audit.component').then(c => c.StockAuditComponent) },
       { path: 'reports/daily-closing', loadComponent: () => import('./pages/reports/pages/daily-closing/daily-closing.component').then(c => c.DailyClosingComponent) },
+      { path: 'analytics/kpi', loadComponent: () => import('./pages/analytics/kpi-analytics/kpi-analytics.component').then(c => c.KPIAnalyticsComponent) },
     ]
   }
 ];
