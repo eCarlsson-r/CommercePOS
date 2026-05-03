@@ -30,7 +30,7 @@
       <div class="bg-primary p-6 rounded-2xl text-white shadow-xl shadow-primary/20">
         <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
           <lucide-icon name="zap" class="w-5 h-5 text-amber-400"></lucide-icon>
-          Quick Operations
+          {{ 'dashboard.quickOps' | translate }}
         </h4>
         <div class="flex flex-col gap-3">
           <button
@@ -38,14 +38,14 @@
             class="w-full bg-white/10 hover:bg-white/20 py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2 border border-white/10"
           >
             <lucide-icon name="monitor-smartphone" class="w-4 h-4"></lucide-icon>
-            Open POS
+            {{ 'dashboard.openPos' | translate }}
           </button>
           <button
             routerLink="/movement"
             class="w-full bg-white/10 hover:bg-white/20 py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2 border border-white/10"
           >
             <lucide-icon name="plus-circle" class="w-4 h-4"></lucide-icon>
-            Receive Stock
+            {{ 'dashboard.receiveStock' | translate }}
           </button>
         </div>
       </div>

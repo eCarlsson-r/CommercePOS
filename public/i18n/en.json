@@ -14,7 +14,8 @@
     "delete": "Delete",
     "edit": "Edit",
     "close": "Close",
-    "back": "Back"
+    "back": "Back",
+    "superAdmin": "Super Admin"
   },
   "auth": {
     "login": "Login",
@@ -33,7 +34,10 @@
     "lowStock": "Low Stock",
     "pendingTransfers": "Pending Transfers",
     "recentSales": "Recent Sales",
-    "topProducts": "Top Products"
+    "topProducts": "Top Products",
+    "quickOps": "Quick Operations",
+    "openPos": "Open POS",
+    "receiveStock": "Receive Stock"
   },
   "sales": {
     "title": "Sales",
@@ -42,7 +46,27 @@
     "date": "Date",
     "amount": "Amount",
     "branch": "Branch",
-    "customer": "Customer"
+    "customer": "Customer",
+    "ecommerce": "E-Commerce Orders",
+    "searchPlaceholder": "Search product code or name...",
+    "searching": "Searching...",
+    "visualSearch": "Visual Search",
+    "recommendationsTitle": "Recommended for this Cart",
+    "currentOrder": "Current Order",
+    "customerMember": "Customer / Member",
+    "walkInCustomer": "Walk-in Customer (Guest)",
+    "total": "Total",
+    "processPayment": "Process Payment"
+  },
+  "master": {
+    "banners": "Banners",
+    "branches": "Branches",
+    "employees": "Employees",
+    "customers": "Customers",
+    "products": "Products",
+    "suppliers": "Suppliers",
+    "categories": "Categories",
+    "priceCoder": "Price Coder"
   },
   "products": {
     "title": "Products",
@@ -76,6 +100,13 @@
     "hallucination": "Hallucination Rate",
     "fallbackSuccess": "Feature Fallback Success"
   },
+  "insights": {
+    "dailyClosing": "Daily Closing",
+    "salesReport": "Sales Report",
+    "purchaseReport": "Purchase Report",
+    "stockAudit": "Stock Audit",
+    "aiKpi": "AI & KPI Analytics"
+  },
   "offline": {
     "title": "Offline",
     "offlineMode": "Offline Mode",
@@ -84,5 +115,17 @@
     "syncComplete": "Sync Complete",
     "connectionRestored": "Connection Restored",
     "connectionLost": "Connection Lost"
+  },
+  "receipt": {
+    "cashier": "Cashier",
+    "guest": "Guest",
+    "subtotal": "Subtotal",
+    "manualDiscount": "Manual Discount",
+    "pointsRedeem": "Points Redeem",
+    "grandTotal": "Grand Total",
+    "paid": "Paid",
+    "change": "Change",
+    "newBalance": "New Balance",
+    "thankYou": "Thank you for shopping"
   }
 }

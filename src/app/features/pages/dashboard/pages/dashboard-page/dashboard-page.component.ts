@@ -3,6 +3,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Import our new components
 import { StatsGridComponent } from '@/features/pages/dashboard/components/stats-grid/stats-grid.component';
@@ -24,7 +25,8 @@ import { BranchStaffKpisComponent } from '@/features/pages/dashboard/components/
     RecentSalesComponent,
     StockAlertComponent,
     AdminMetricsViewComponent,
-    BranchStaffKpisComponent
+    BranchStaffKpisComponent,
+    TranslateModule
   ],
   templateUrl: './dashboard-page.component.html'
 })

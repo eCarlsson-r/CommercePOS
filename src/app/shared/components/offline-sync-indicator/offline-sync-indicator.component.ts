@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { OfflineSyncService } from '../../../core/services/offline-sync.service';
@@ -9,58 +9,39 @@ import { LucideAngularModule } from 'lucide-angular';
   standalone: true,
   imports: [CommonModule, TranslateModule, LucideAngularModule],
   template: `
-    <div class="fixed bottom-4 right-4 p-4 rounded-lg shadow-lg" 
+    <div class="flex items-center gap-2 px-3 py-2 rounded-xl border transition-all duration-300 shadow-sm"
          [ngClass]="{
-           'bg-red-100 border border-red-400 text-red-700': !(isOnline$ | async),
-           'bg-green-100 border border-green-400 text-green-700': (isOnline$ | async),
-           'bg-blue-100 border border-blue-400 text-blue-700': (isSyncing$ | async)
+           'bg-red-50 border-red-200 text-red-600': !(isOnline$ | async),
+           'bg-green-50 border-green-200 text-green-600': (isOnline$ | async) && !(isSyncing$ | async),
+           'bg-blue-50 border-blue-200 text-blue-600': (isSyncing$ | async)
          }">
       
-      <div class="flex items-center gap-3">
-        <!-- Icon -->
-        <div class="shrink-0">
-          <lucide-icon name="Upload" *ngIf="(isSyncing$ | async)" class="w-5 h-5 animate-spin" />
-          <lucide-icon name="WifiOff" *ngIf="!(isOnline$ | async) && !(isSyncing$ | async)" class="w-5 h-5" />
-          <lucide-icon name="Wifi" *ngIf="(isOnline$ | async) && !(isSyncing$ | async)" class="w-5 h-5" />
-        </div>
+      <div class="flex items-center gap-2">
         @if (isSyncing$ | async) {
-          <div class="font-semibold">
-            {{ 'offline.syncing' | translate }}
-          </div>
-        } @else if (isOnline$ | async) {
-          <div class="font-semibold">
-            {{ 'offline.connectionRestored' | translate }}
+          <lucide-icon name="refresh-cw" class="w-4 h-4 animate-spin"></lucide-icon>
+          <span class="text-[10px] font-black uppercase tracking-widest">{{ 'offline.syncing' | translate }}</span>
+        } @else if (!(isOnline$ | async)) {
+          <lucide-icon name="wifi-off" class="w-4 h-4"></lucide-icon>
+          <div class="flex flex-col leading-tight">
+            <span class="text-[10px] font-black uppercase tracking-widest">{{ 'offline.connectionLost' | translate }}</span>
+            <span class="text-[8px] font-bold opacity-70">{{ pendingCount }} {{ 'offline.syncPending' | translate }}</span>
           </div>
         } @else {
-          <div class="font-semibold">
-            {{ 'offline.connectionLost' | translate }}
-            <div class="text-xs mt-1">
-              {{ pendingCount }} pending
-            </div>
-          </div>
+          <lucide-icon name="wifi" class="w-4 h-4"></lucide-icon>
+          <span class="text-[10px] font-black uppercase tracking-widest">{{ 'offline.title' | translate }}</span>
         }
-        <div *ngIf="(isOnline$ | async) && !(isSyncing$ | async)" class="font-semibold">
-          {{ 'offline.connectionRestored' | translate }}
-        </div>
       </div>
     </div>
   `,
   styles: []
 })
-export class OfflineSyncIndicatorComponent implements OnInit {
-  isOnline$;
-  isSyncing$;
-  pendingCount = 0;
-
-  constructor(private offlineSync: OfflineSyncService) {
-    this.isOnline$ = this.offlineSync.isOnline$;
-    this.isSyncing$ = this.offlineSync.isSyncing$;
-  }
-
-  ngOnInit(): void {
-    // Update pending count periodically
-    setInterval(() => {
-      this.pendingCount = this.offlineSync.getPendingCount();
-    }, 1000);
+export class OfflineSyncIndicatorComponent {
+  private offlineSync = inject(OfflineSyncService);
+  
+  isOnline$ = this.offlineSync.isOnline$;
+  isSyncing$ = this.offlineSync.isSyncing$;
+  
+  get pendingCount() {
+    return this.offlineSync.getPendingCount();
   }
 }

@@ -3,6 +3,7 @@ import { Component, Input, Output, EventEmitter, inject, OnInit, signal } from '
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
 import { CategoryService } from '@/services/category.service';
+import { AIService } from '@/services/ai.service';
 
 @Component({
   selector: 'app-product-form',
@@ -13,6 +14,10 @@ import { CategoryService } from '@/services/category.service';
 export class ProductFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   private categoryService = inject(CategoryService);
+  private aiService = inject(AIService);
+
+  isGeneratingDescription = signal(false);
+  isGeneratingImage = signal(false);
 
   categories = signal<any[]>([]);
   previews = signal<string[]>([]);
@@ -76,5 +81,43 @@ export class ProductFormComponent implements OnInit {
         images: this.selectedFiles
       });
     }
+  }
+
+  generateDescription() {
+    const name = this.productForm.get('name')?.value;
+    if (!name) return;
+
+    this.isGeneratingDescription.set(true);
+    this.aiService.generateDescription(name).subscribe({
+      next: (res) => {
+        this.productForm.patchValue({ description: res.text });
+        this.isGeneratingDescription.set(false);
+      },
+      error: () => this.isGeneratingDescription.set(false)
+    });
+  }
+
+  generateAIImage() {
+    const name = this.productForm.get('name')?.value;
+    if (!name) return;
+
+    this.isGeneratingImage.set(true);
+    this.aiService.generateImage(`Professional product photo of ${name} on white background`).subscribe({
+      next: (res) => {
+        const base64 = `data:image/png;base64,${res.image_base64}`;
+        this.previews.update(prev => [...prev, base64]);
+        
+        // Convert base64 to file for form submission
+        fetch(base64)
+          .then(res => res.blob())
+          .then(blob => {
+            const file = new File([blob], `${name.replace(/\s+/g, '_')}_ai.png`, { type: 'image/png' });
+            this.selectedFiles.push(file);
+          });
+
+        this.isGeneratingImage.set(false);
+      },
+      error: () => this.isGeneratingImage.set(false)
+    });
   }
 }

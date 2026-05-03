@@ -14,7 +14,8 @@
     "delete": "Hapus",
     "edit": "Ubah",
     "close": "Tutup",
-    "back": "Kembali"
+    "back": "Kembali",
+    "superAdmin": "Super Admin"
   },
   "auth": {
     "login": "Masuk",
@@ -33,7 +34,10 @@
     "lowStock": "Stok Rendah",
     "pendingTransfers": "Transfer Tertunda",
     "recentSales": "Penjualan Terbaru",
-    "topProducts": "Produk Terlaris"
+    "topProducts": "Produk Terlaris",
+    "quickOps": "Operasi Cepat",
+    "openPos": "Buka POS",
+    "receiveStock": "Terima Stok"
   },
   "sales": {
     "title": "Penjualan",
@@ -42,7 +46,27 @@
     "date": "Tanggal",
     "amount": "Jumlah",
     "branch": "Cabang",
-    "customer": "Pelanggan"
+    "customer": "Pelanggan",
+    "ecommerce": "Pesanan E-Commerce",
+    "searchPlaceholder": "Cari kode atau nama produk...",
+    "searching": "Mencari...",
+    "visualSearch": "Pencarian Visual",
+    "recommendationsTitle": "Direkomendasikan untuk Keranjang ini",
+    "currentOrder": "Pesanan Saat Ini",
+    "customerMember": "Pelanggan / Member",
+    "walkInCustomer": "Pelanggan Umum (Tamu)",
+    "total": "Total",
+    "processPayment": "PROSES PEMBAYARAN"
+  },
+  "master": {
+    "banners": "Banner",
+    "branches": "Cabang",
+    "employees": "Karyawan",
+    "customers": "Pelanggan",
+    "products": "Produk",
+    "suppliers": "Pemasok",
+    "categories": "Kategori",
+    "priceCoder": "Pembuat Harga"
   },
   "products": {
     "title": "Produk",
@@ -76,6 +100,13 @@
     "hallucination": "Tingkat Halusinasi",
     "fallbackSuccess": "Keberhasilan Fallback Fitur"
   },
+  "insights": {
+    "dailyClosing": "Penutupan Harian",
+    "salesReport": "Laporan Penjualan",
+    "purchaseReport": "Laporan Pembelian",
+    "stockAudit": "Audit Stok",
+    "aiKpi": "Analitik AI & KPI"
+  },
   "offline": {
     "title": "Offline",
     "offlineMode": "Mode Offline",
@@ -84,5 +115,17 @@
     "syncComplete": "Sinkronisasi Selesai",
     "connectionRestored": "Koneksi Pulih",
     "connectionLost": "Koneksi Hilang"
+  },
+  "receipt": {
+    "cashier": "Kasir",
+    "guest": "Tamu",
+    "subtotal": "Subtotal",
+    "manualDiscount": "Diskon Manual",
+    "pointsRedeem": "Tukar Poin",
+    "grandTotal": "Total Akhir",
+    "paid": "Dibayar",
+    "change": "Kembali",
+    "newBalance": "Saldo Baru",
+    "thankYou": "Terima kasih telah berbelanja"
   }
 }

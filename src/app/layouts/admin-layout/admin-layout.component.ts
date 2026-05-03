@@ -9,6 +9,7 @@ import { AuthService } from '@/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { LanguageSwitcherComponent } from "@/shared/components/language-switcher/language-switcher.component";
 import { OfflineSyncIndicatorComponent } from "@/shared/components/offline-sync-indicator/offline-sync-indicator.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-layout', // Changed from app-root
@@ -20,7 +21,8 @@ import { OfflineSyncIndicatorComponent } from "@/shared/components/offline-sync-
     FormsModule,
     LucideAngularModule,
     LanguageSwitcherComponent,
-    OfflineSyncIndicatorComponent
+    OfflineSyncIndicatorComponent,
+    TranslateModule
 ],
   templateUrl: './admin-layout.component.html',
 })
@@ -59,46 +61,46 @@ export class AdminLayoutComponent implements OnInit {
 
     const baseMenu = [
       {
-        title: 'Sales',
+        title: 'sales.title',
         visible: true,
         items: [
-          { title: 'Sales POS', link: '/sales', icon: 'shopping-cart' },
-          { title: 'E-Commerce Orders', link: '/ecommerce-orders', icon: 'globe', roles: ['admin'] }
+          { title: 'sales.list', link: '/sales', icon: 'shopping-cart' },
+          { title: 'sales.ecommerce', link: '/ecommerce-orders', icon: 'globe', roles: ['admin'] }
         ]
       },
       {
-        title: 'Master',
+        title: 'products.title',
         visible: role === 'admin', 
         items: [
-          { title: 'Banners', link: '/banner', icon: 'image' },
-          { title: 'Branches', link: '/branches', icon: 'map-pin' },
-          { title: 'Employees', link: '/employees', icon: 'user-plus' },
-          { title: 'Customers', link: '/customers', icon: 'users' },
-          { title: 'Products', link: '/products', icon: 'package' },  
-          { title: 'Suppliers', link: '/suppliers', icon: 'users' },
-          { title: 'Categories', link: '/categories', icon: 'folder' },
-          { title: 'Price Coder', link: '/price-coder', icon: 'tag' }
+          { title: 'master.banners', link: '/banner', icon: 'image' },
+          { title: 'master.branches', link: '/branches', icon: 'map-pin' },
+          { title: 'master.employees', link: '/employees', icon: 'user-plus' },
+          { title: 'master.customers', link: '/customers', icon: 'users' },
+          { title: 'master.products', link: '/products', icon: 'package' },  
+          { title: 'master.suppliers', link: '/suppliers', icon: 'users' },
+          { title: 'master.categories', link: '/categories', icon: 'folder' },
+          { title: 'master.priceCoder', link: '/price-coder', icon: 'tag' }
         ]
       },
       {
-        title: 'Inventory',
+        title: 'inventory.title',
         visible: true,
         items: [
-          { title: 'Stock Inventory', link: '/inventory', icon: 'monitor-smartphone' },
-          { title: 'Purchase Order', link: '/purchase', icon: 'shopping-cart', roles: ['admin'] },
-          { title: 'Stock Transfers', link: '/movement', icon: 'truck' }, // Example restriction
-          { title: 'Returns & Waste', link: '/returns', icon: 'rotate-ccw', roles: ['admin'] },
+          { title: 'inventory.stock', link: '/inventory', icon: 'monitor-smartphone' },
+          { title: 'inventory.purchase', link: '/purchase', icon: 'shopping-cart', roles: ['admin'] },
+          { title: 'inventory.transfers', link: '/movement', icon: 'truck' },
+          { title: 'inventory.returns', link: '/returns', icon: 'rotate-ccw', roles: ['admin'] },
         ]
       },
       {
-        title: 'Insights',
+        title: 'analytics.title',
         visible: true,
         items: [
-          { title: 'Daily Closing', link: '/reports/daily-closing', icon: 'clipboard-list' },
-          { title: 'Sales Report', link: '/reports/sales', icon: 'file-text' },
-          { title: 'Purchase Report', link: '/reports/purchase', icon: 'truck', roles: ['admin'] },
-          { title: 'Stock Audit', link: '/reports/audit', icon: 'clipboard-pen-line', roles: ['admin'] },
-          { title: 'AI & KPI Analytics', link: '/analytics/kpi', icon: 'bar-chart-3', roles: ['admin'] },
+          { title: 'insights.dailyClosing', link: '/reports/daily-closing', icon: 'clipboard-list' },
+          { title: 'insights.salesReport', link: '/reports/sales', icon: 'file-text' },
+          { title: 'insights.purchaseReport', link: '/reports/purchase', icon: 'truck', roles: ['admin'] },
+          { title: 'insights.stockAudit', link: '/reports/audit', icon: 'clipboard-pen-line', roles: ['admin'] },
+          { title: 'insights.aiKpi', link: '/analytics/kpi', icon: 'bar-chart-3', roles: ['admin'] },
         ]
       },
     ];

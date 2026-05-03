@@ -1,11 +1,12 @@
 // src/app/features/sales/components/thermal-receipt/thermal-receipt.component.ts
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-thermal-receipt',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   template: `
     <div id="print-section" class="receipt-container text-xs font-mono p-4 w-[80mm] bg-white">
       <div class="text-center border-b pb-2 mb-2">
@@ -20,8 +21,8 @@ import { CommonModule } from '@angular/common';
         <span>{{ today | date:'dd/MM/yy HH:mm' }}</span>
       </div>
       <div class="flex justify-between mb-2">
-        <span>CASHIER: {{ cashierName }}</span>
-        <span>{{ activeCustomerName || 'GUEST' }}</span>
+        <span>{{ 'receipt.cashier' | translate }}: {{ cashierName }}</span>
+        <span>{{ activeCustomerName || ('receipt.guest' | translate) }}</span>
       </div>
 
       <div class="border-b border-dashed border-gray-400 my-2"></div>
@@ -39,26 +40,26 @@ import { CommonModule } from '@angular/common';
 
       <div class="space-y-1">
         <div class="flex justify-between">
-          <span>SUBTOTAL</span>
+          <span>{{ 'receipt.subtotal' | translate }}</span>
           <span>{{ subtotal | number }}</span>
         </div>
 
         @if (manualDiscount > 0) {
           <div class="flex justify-between italic">
-            <span>DISC. MANUAL</span>
+            <span>{{ 'receipt.manualDiscount' | translate }}</span>
             <span>-{{ manualDiscount | number }}</span>
           </div>
         }
 
         @if (appliedPoints > 0) {
           <div class="flex justify-between text-green-700 italic">
-            <span>POINTS REDEEM ({{ appliedPoints }} pts)</span>
+            <span>{{ 'receipt.pointsRedeem' | translate }} ({{ appliedPoints }} pts)</span>
             <span>-{{ (appliedPoints * 100) | number }}</span>
           </div>
         }
 
         <div class="flex justify-between text-sm font-black pt-2">
-          <span>GRAND TOTAL</span>
+          <span>{{ 'receipt.grandTotal' | translate }}</span>
           <span>Rp {{ total | number }}</span>
         </div>
       </div>
@@ -68,13 +69,13 @@ import { CommonModule } from '@angular/common';
       <div class="space-y-1">
         @for (p of payments; track $index) {
           <div class="flex justify-between uppercase">
-            <span>PAID [{{ p.payment_method }}]</span>
+            <span>{{ 'receipt.paid' | translate }} [{{ p.payment_method }}]</span>
             <span>{{ p.amount_paid | number }}</span>
           </div>
         }
         @if (change > 0) {
           <div class="flex justify-between font-bold">
-            <span>CHANGE</span>
+            <span>{{ 'receipt.change' | translate }}</span>
             <span>{{ change | number }}</span>
           </div>
         }
@@ -84,9 +85,9 @@ import { CommonModule } from '@angular/common';
 
       <div class="text-center text-[10px] space-y-1 italic">
         @if (activeCustomerName) {
-          <p>NEW BALANCE: {{ customerNewBalance }} PTS</p>
+          <p>{{ 'receipt.newBalance' | translate }}: {{ customerNewBalance }} PTS</p>
         }
-        <p class="font-bold uppercase mt-2">THANK YOU FOR SHOPPING</p>
+        <p class="font-bold uppercase mt-2">{{ 'receipt.thankYou' | translate }}</p>
       </div>
     </div>
   `,

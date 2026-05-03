@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
     provideTranslateService({
-      loader: provideTranslateHttpLoader({prefix:'./assets/i18n/', suffix:'.json'}),
+      loader: provideTranslateHttpLoader({prefix:'/i18n/', suffix:'.json'}),
       fallbackLang: 'en'
     })
   ]

@@ -10,11 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { ActiveSale } from '@/models/sale.model';
 import { BranchService } from '@/services/branch.service';
 import { SaleService } from '@/services/sale.service';
+import { AIService } from '@/services/ai.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { OfflineSyncService } from '@/core/services/offline-sync.service';
 
 @Component({
   selector: 'app-sales-form',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, ThermalReceiptComponent, FormsModule],
+  imports: [CommonModule, LucideAngularModule, ThermalReceiptComponent, FormsModule, TranslateModule],
   templateUrl: './sales-form.component.html'
 })
 export class SalesFormComponent implements OnInit {
@@ -22,6 +25,11 @@ export class SalesFormComponent implements OnInit {
   private customerService = inject(CustomerService);
   private branchService = inject(BranchService);
   private salesService = inject(SaleService);
+  private aiService = inject(AIService);
+  private offlineSync = inject(OfflineSyncService);
+  
+  aiRecommendations = signal<any[]>([]);
+  isSearchingVisual = signal(false);
   
   products: Product[] = [];
   customers: Customer[] = [];
@@ -46,6 +54,58 @@ export class SalesFormComponent implements OnInit {
   ngOnInit() {
     this.loadProducts();
     this.loadCustomers();
+    
+    // Auto-fetch recommendations when cart items change
+    this.setupRecommendationListener();
+  }
+
+  setupRecommendationListener() {
+    // This is a simple implementation, in a real app you might debounce this
+  }
+
+  fetchRecommendations() {
+    const items = this.activeSale().items;
+    if (items.length === 0) {
+      this.aiRecommendations.set([]);
+      return;
+    }
+
+    const contextTags = items.map(i => i.name);
+    this.aiService.getRecommendations({ contextTags, maxResults: 4 }).subscribe({
+      next: (res) => {
+        // Map recommendation IDs back to product objects
+        const recommendedProducts = res.items.map(rec => {
+          const product = this.products.find(p => p.id === rec.productId);
+          return product ? { ...product, aiScore: rec.score, aiReason: rec.reason } : null;
+        }).filter(p => p !== null);
+        
+        this.aiRecommendations.set(recommendedProducts);
+      }
+    });
+  }
+
+  onVisualSearch(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.isSearchingVisual.set(true);
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      const base64 = e.target.result;
+      this.aiService.visualSearch(base64).subscribe({
+        next: (res) => {
+          const foundProducts = res.items.map(rec => {
+            const product = this.products.find(p => p.id === rec.productId);
+            return product ? { ...product, aiScore: rec.score } : null;
+          }).filter(p => p !== null);
+          
+          this.products = foundProducts as any;
+          this.isSearchingVisual.set(false);
+        },
+        error: () => this.isSearchingVisual.set(false)
+      });
+    };
+    reader.readAsDataURL(file);
   }
 
   totalPrice = computed(() => {
@@ -175,6 +235,7 @@ export class SalesFormComponent implements OnInit {
         subtotal: current.subtotal - item.price
       };
     });
+    this.fetchRecommendations();
   }
 
   addQuantity(item: any) {
@@ -212,6 +273,7 @@ export class SalesFormComponent implements OnInit {
       }
       return current;
     });
+    this.fetchRecommendations();
   }
 
   addToCart(product: any) {
@@ -247,6 +309,7 @@ export class SalesFormComponent implements OnInit {
         subtotal: current.subtotal + Number(stock.sale_price)
       };
     });
+    this.fetchRecommendations();
   }
 
   // Link to the component in the HTML
@@ -294,16 +357,23 @@ export class SalesFormComponent implements OnInit {
       payments: this.selectedPayments()
     };
 
+    if (!navigator.onLine) {
+      this.offlineSync.queueMutation('sale.create', payload);
+      alert('Transaction saved offline and will sync when connection is restored.');
+      this.clearCart();
+      this.closePayment();
+      return;
+    }
+
     this.salesService.createSale(payload).subscribe({
       next: (res: any) => {
-        // Set lastSale so the receipt template binds to it
+        // ... same as before
         this.lastSale.set({
           ...res,
           change: this.calculateChange(),
           branch: this.branchService.selectedBranch()
         });
         
-        // Brief timeout ensures Angular updates the Receipt DOM before printing
         setTimeout(() => {
           window.print();
           this.clearCart();

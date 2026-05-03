@@ -17,7 +17,7 @@
       @for (item of menuItems(); track $index) {
         <div>
           <p class="px-4 text-[10px] font-black text-primary/40 uppercase tracking-widest my-2">
-            {{ item.title }}
+            {{ item.title | translate }}
           </p>
           <div class="space-y-1">
             @for (subItem of item.items; track $index) {
@@ -27,7 +27,7 @@
                 (click)="closeSidebar()"
                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition text-sm font-bold text-gray-600"
               >
-                <i-lucide [name]="subItem.icon" class="w-5 h-5"></i-lucide> {{ subItem.title }}
+                <i-lucide [name]="subItem.icon" class="w-5 h-5"></i-lucide> {{ subItem.title | translate }}
               </a>
             }
           </div>
@@ -68,7 +68,7 @@
           @if (userRole() === 'admin') {
             <span
               class="hidden sm:inline-block text-[8px] md:text-[10px] bg-primary/10 text-primary px-1.5 md:px-2 py-0.5 rounded font-black"
-              >SUPER-ADMIN</span
+              >{{ 'common.superAdmin' | translate }}</span
             >
           }
         </div>

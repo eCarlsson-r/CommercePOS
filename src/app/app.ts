@@ -1,8 +1,8 @@
-// src/app/app.ts (AppComponent)
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PushNotificationService } from '@/services/push-notification.service';
 import { SwPush } from '@angular/service-worker';
+import { TranslateService } from '@ngx-translate/core';
 
 interface PushPayload {
   notification?: {
@@ -21,8 +21,16 @@ interface PushPayload {
 export class App implements OnInit {
   private push = inject(PushNotificationService);
   private swPush = inject(SwPush);
+  private translate = inject(TranslateService);
 
   ngOnInit() {
+    // Initialize i18n
+    this.translate.addLangs(['en', 'id']);
+    this.translate.setDefaultLang('en');
+    
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang?.match(/en|id/) ? browserLang : 'en');
+
     // Check for notification permissions as soon as the app loads
     this.push.checkSubscriptionStatus();
 
