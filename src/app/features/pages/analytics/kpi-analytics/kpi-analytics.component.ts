@@ -43,7 +43,7 @@ interface KPIMetric {
           <h2 class="text-2xl font-bold mb-4">{{ 'analytics.commercial' | translate }}</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div *ngFor="let metric of commercialKPIs" class="kpi-card">
-              <div class="text-gray-600 text-sm">{{ metric.label }}</div>
+              <div class="text-gray-600 text-sm">{{ metric.label | translate }}</div>
               <div class="text-3xl font-bold mt-2">{{ metric.value }}</div>
               <div class="text-gray-500 text-xs mt-1">{{ metric.unit }}</div>
             </div>
@@ -55,7 +55,7 @@ interface KPIMetric {
           <h2 class="text-2xl font-bold mb-4">{{ 'analytics.operational' | translate }}</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div *ngFor="let metric of operationalKPIs" class="kpi-card">
-              <div class="text-gray-600 text-sm">{{ metric.label }}</div>
+              <div class="text-gray-600 text-sm">{{ metric.label | translate }}</div>
               <div class="text-3xl font-bold mt-2">{{ metric.value }}</div>
               <div class="text-gray-500 text-xs mt-1">{{ metric.unit }}</div>
             </div>
@@ -67,7 +67,7 @@ interface KPIMetric {
           <h2 class="text-2xl font-bold mb-4">{{ 'analytics.governance' | translate }}</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div *ngFor="let metric of governanceKPIs" class="kpi-card">
-              <div class="text-gray-600 text-sm">{{ metric.label }}</div>
+              <div class="text-gray-600 text-sm">{{ metric.label | translate }}</div>
               <div class="text-3xl font-bold mt-2">{{ metric.value }}</div>
               <div class="text-gray-500 text-xs mt-1">{{ metric.unit }}</div>
             </div>
@@ -130,19 +130,19 @@ export class KPIAnalyticsComponent implements OnInit, OnDestroy {
         next: (data) => {
           this.commercialKPIs = [
             { 
-              label: 'Conversion Uplift', 
+              label: 'analytics.conversion', 
               value: (data.conversion_uplift?.value || 0).toFixed(2), 
               unit: '%',
               category: 'commercial'
             },
             { 
-              label: 'Average Order Value', 
+              label: 'analytics.averageOrderValue', 
               value: (data.average_order_value?.value || 0).toFixed(2), 
               unit: 'USD',
               category: 'commercial'
             },
             { 
-              label: 'Visual Search Rate', 
+              label: 'analytics.visualSearchRate', 
               value: (data.visual_search_discovery_rate?.rate || 0).toFixed(2), 
               unit: '%',
               category: 'commercial'
@@ -161,19 +161,19 @@ export class KPIAnalyticsComponent implements OnInit, OnDestroy {
         next: (data) => {
           this.operationalKPIs = [
             { 
-              label: 'AI P95 Latency', 
+              label: 'analytics.aiLatency', 
               value: (data.ai_p95_latency_ms?.p95 || 0).toFixed(0), 
               unit: 'ms',
               category: 'operational'
             },
             { 
-              label: 'AI Cost Per Order', 
+              label: 'analytics.aiCost', 
               value: (data.ai_cost_per_order?.cost_per_order || 0).toFixed(4), 
               unit: 'USD',
               category: 'operational'
             },
             { 
-              label: 'Support Deflection', 
+              label: 'analytics.supportDeflection', 
               value: (data.support_deflection_rate?.rate || 0).toFixed(2), 
               unit: '%',
               category: 'operational'
@@ -191,19 +191,19 @@ export class KPIAnalyticsComponent implements OnInit, OnDestroy {
         next: (data) => {
           this.governanceKPIs = [
             { 
-              label: 'Prompt Drift Incidents', 
+              label: 'analytics.promptDrift', 
               value: (data.prompt_drift_incidents?.value || 0).toFixed(0), 
               unit: 'count',
               category: 'governance'
             },
             { 
-              label: 'Hallucination Rate', 
+              label: 'analytics.hallucination', 
               value: (data.hallucination_rate?.value || 0).toFixed(2), 
               unit: '%',
               category: 'governance'
             },
             { 
-              label: 'Fallback Success', 
+              label: 'analytics.fallbackSuccess', 
               value: (data.feature_disable_fallback_success?.value || 0).toFixed(2), 
               unit: '%',
               category: 'governance'

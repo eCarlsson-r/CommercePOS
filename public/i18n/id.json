@@ -58,6 +58,11 @@
     "total": "Total",
     "processPayment": "PROSES PEMBAYARAN"
   },
+  "assistant": {
+    "title": "Asisten AI",
+    "welcome": "Tanya saya tentang produk, stok, atau tips penjualan!",
+    "placeholder": "Ketik pertanyaan Anda..."
+  },
   "master": {
     "banners": "Banner",
     "branches": "Cabang",
@@ -68,21 +73,126 @@
     "categories": "Kategori",
     "priceCoder": "Pembuat Harga"
   },
+  "suppliers": {
+    "title": "Direktori Pemasok",
+    "subtitle": "Kelola hubungan vendor dan kontak pengadaan",
+    "addSupplier": "Tambah Pemasok",
+    "editDetails": "Edit Detail",
+    "purchaseHistory": "Riwayat Pembelian",
+    "removeSupplier": "Hapus Pemasok",
+    "contact": "Kontak",
+    "taxId": "NPWP",
+    "email": "Email",
+    "address": "Alamat",
+    "phone": "Telepon",
+    "noAddress": "Tidak ada alamat",
+    "newSupplierDetails": "Detail Pemasok Baru",
+    "companyName": "Nama Perusahaan",
+    "contactPerson": "Nama Kontak",
+    "phoneNumber": "Nomor Telepon",
+    "emailAddress": "Alamat Email",
+    "physicalAddress": "Alamat Fisik",
+    "cancel": "Batal",
+    "save": "Simpan"
+  },
+  "customers": {
+    "title": "Jaringan Pelanggan",
+    "subtitle": "Mengelola loyalitas di semua cabang",
+    "searchPlaceholder": "Cari berdasarkan nomor...",
+    "newMember": "Member Baru",
+    "editMember": "Edit Member",
+    "registerMember": "Daftarkan Member",
+    "updateMember": "Update Member",
+    "table": {
+      "customer": "Pelanggan",
+      "points": "Poin",
+      "balance": "Saldo"
+    },
+    "form": {
+      "fullName": "Nama Lengkap",
+      "namePlaceholder": "John Doe",
+      "whatsapp": "Nomor WhatsApp",
+      "mobilePlaceholder": "0812...",
+      "email": "Email",
+      "emailPlaceholder": "[EMAIL_ADDRESS]",
+      "loyaltyProgram": "Program Loyalitas",
+      "startingPoints": "Poin Awal"
+    }
+  },
   "products": {
     "title": "Produk",
     "list": "Daftar Produk",
     "newProduct": "Produk Baru",
-    "name": "Nama",
+    "name": "Nama Produk",
+    "namePlaceholder": "contoh: Arabica Gayo 250g",
+    "sku": "SKU / Barcode",
+    "skuPlaceholder": "BRW-001",
     "price": "Harga",
+    "basePrice": "Harga Dasar Universal (Rp)",
     "stock": "Stok",
-    "category": "Kategori"
+    "minStockAlert": "Alert Stok Minimum Global",
+    "minStockHint": "Beritahu saya ketika stok cabang di bawah ini.",
+    "category": "Kategori",
+    "selectCategory": "Pilih...",
+    "gallery": "Galeri Produk",
+    "addPhoto": "Tambah Foto",
+    "description": "Deskripsi",
+    "aiImage": "Gambar AI",
+    "aiImageGenerating": "Membuat...",
+    "magicGenerate": "Buat Deskripsi dengan AI",
+    "magicGenerating": "Menulis...",
+    "updateProduct": "Update Produk",
+    "createProduct": "Buat Produk",
+    "cancel": "Batal"
   },
   "inventory": {
     "title": "Inventori",
     "stock": "Stok",
     "transfers": "Transfer Stok",
     "audit": "Audit Stok",
-    "lowStock": "Stok Menipis"
+    "lowStock": "Stok Menipis",
+    "purchaseOrders": "Pesanan Pembelian",
+    "purchaseOrdersSubtitle": "Mengelola pengadaan inventori",
+    "createNewOrder": "Buat Pesanan Baru",
+    "table": {
+      "poReference": "Referensi PO",
+      "supplier": "Pemasok",
+      "orderDate": "Tanggal Pesan",
+      "totalAmount": "Jumlah Total",
+      "status": "Status",
+      "actions": "Aksi"
+    },
+    "status": {
+      "pending": "Tertunda",
+      "sent": "Terkirim",
+      "received": "Diterima"
+    },
+    "actions": {
+      "confirmDelivery": "Konfirmasi & Tambah ke Stok",
+      "viewDetails": "Lihat Detail",
+      "print": "Cetak"
+    },
+    "returns": {
+      "title": "Retur & Limbah Inventori",
+      "newReturn": "Retur Baru",
+      "history": "Riwayat",
+      "searchPlaceholder": "Scan Barcode atau Ketik Nama Produk...",
+      "table": {
+        "product": "Produk",
+        "qty": "Jml",
+        "status": "Status/Kondisi"
+      },
+      "status": {
+        "good": "Baik - Retur ke Pemasok",
+        "damaged": "Rusak - Buang/Hapus",
+        "expired": "Kadaluarsa - Buang"
+      },
+      "supplier": "Pemasok untuk Retur",
+      "selectSupplier": "Pilih Pemasok (untuk stok Baik)...",
+      "notes": "Catatan / Alasan",
+      "notesPlaceholder": "contoh: Segel rusak, tanggal kadaluarsa...",
+      "processReturn": "Proses Retur"
+    }
   },
   "analytics": {
     "title": "Analitik",
@@ -121,7 +231,12 @@
     "guest": "Tamu",
     "subtotal": "Subtotal",
     "manualDiscount": "Diskon Manual",
+    "discountAmount": "Jumlah Diskon",
     "pointsRedeem": "Tukar Poin",
+    "pointsAvailable": "Poin Tersedia",
+    "pointsRedemption": "Penukaran Poin",
+    "redeem": "TUKAR",
+    "redeemed": "DITUKAR",
     "grandTotal": "Total Akhir",
     "paid": "Dibayar",
     "change": "Kembali",

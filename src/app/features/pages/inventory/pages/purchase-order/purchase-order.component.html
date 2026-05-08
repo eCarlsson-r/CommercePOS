@@ -1,13 +1,13 @@
 <div class="p-8 space-y-8">
   <header class="flex justify-between items-center">
     <div>
-      <h1 class="text-3xl font-black text-primary tracking-tighter uppercase">Purchase Orders</h1>
-      <p class="text-gray-500 text-sm font-medium">Managing inventory procurement for 11 branches</p>
+      <h1 class="text-3xl font-black text-primary tracking-tighter uppercase">{{ 'inventory.purchaseOrders' | translate }}</h1>
+      <p class="text-gray-500 text-sm font-medium">{{ 'inventory.purchaseOrdersSubtitle' | translate }}</p>
     </div>
     <button (click)="createNewPO()" 
             class="bg-primary text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-3 shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all">
       <lucide-icon name="plus-circle" class="w-5 h-5"></lucide-icon>
-      Create New Order
+      {{ 'inventory.createNewOrder' | translate }}
     </button>
   </header>
 
@@ -15,11 +15,11 @@
     <table class="w-full text-left">
       <thead class="bg-gray-50/50 border-b">
         <tr>
-          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">PO Reference</th>
-          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">Supplier</th>
-          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">Order Date</th>
-          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">Total Amount</th>
-          <th class="p-6 text-[10px] font-black text-gray-400 uppercase text-center">Status</th>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">{{ 'inventory.table.poReference' | translate }}</th>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">{{ 'inventory.table.supplier' | translate }}</th>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">{{ 'inventory.table.orderDate' | translate }}</th>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase">{{ 'inventory.table.totalAmount' | translate }}</th>
+          <th class="p-6 text-[10px] font-black text-gray-400 uppercase text-center">{{ 'inventory.table.status' | translate }}</th>
           <th class="p-6"></th>
         </tr>
       </thead>
@@ -44,7 +44,7 @@
                   'bg-blue-50 text-blue-600 border-blue-100': po.status === 'sent',
                   'bg-green-50 text-green-600 border-green-100': po.status === 'received'
                 }" class="text-[10px] font-black uppercase px-3 py-1 rounded-full border">
-                  {{ po.status }}
+                  {{ ('inventory.status.' + po.status) | translate }}
                 </span>
               </div>
             </td>
@@ -53,7 +53,7 @@
                 @if (po.status !== 'received') {
                   <button (click)="receiveStock(po)" 
                           class="p-2 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors shadow-lg shadow-green-200"
-                          title="Confirm Delivery & Add to Stock">
+                          [title]="'inventory.actions.confirmDelivery' | translate">
                     <lucide-icon name="check-circle" class="w-5 h-5"></lucide-icon>
                   </button>
                 }

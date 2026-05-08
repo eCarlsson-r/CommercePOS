@@ -4,13 +4,14 @@ import { ProductService } from '@/services/product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { SupplierService } from '@/services/supplier.service';
 import { BranchService } from '@/services/branch.service';
 
 @Component({
   selector: 'app-returns',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule, TranslateModule],
   templateUrl: './returns.component.html'
 })
 export class ReturnsComponent {

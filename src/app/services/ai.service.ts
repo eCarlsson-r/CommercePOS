@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
 })
 export class AIService {
   private http = inject(HttpClient);
-  private baseUrl = environment.aiUrl;
+  private baseUrl = environment.apiUrl;
 
   generateDescription(context: string): Observable<{ text: string }> {
-    return this.http.post<{ text: string }>(`${this.baseUrl}/generate-description`, { context });
+    return this.http.post<{ text: string }>(`${this.baseUrl}/ai/generate-description`, { context });
   }
 
   generateImage(prompt: string): Observable<{ image_base64: string }> {
-    return this.http.post<{ image_base64: string }>(`${this.baseUrl}/generate-image`, { prompt });
+    return this.http.post<{ image_base64: string }>(`${this.baseUrl}/ai/generate-image`, { prompt });
   }
 
   getRecommendations(payload: { 
@@ -23,14 +23,14 @@ export class AIService {
     contextTags?: string[], 
     maxResults?: number 
   }): Observable<{ items: any[] }> {
-    return this.http.post<{ items: any[] }>(`${this.baseUrl}/recommendations`, payload);
+    return this.http.post<{ items: any[] }>(`${this.baseUrl}/ai/recommendations`, payload);
   }
 
   visualSearch(imageUrl: string): Observable<{ items: any[] }> {
-    return this.http.post<{ items: any[] }>(`${this.baseUrl}/visual-search`, { imageUrl });
+    return this.http.post<{ items: any[] }>(`${this.baseUrl}/ai/visual-search`, { imageUrl });
   }
 
   chatAssistant(message: string): Observable<{ reply: string, followUps: string[] }> {
-    return this.http.post<{ reply: string, followUps: string[] }>(`${this.baseUrl}/assistant`, { message });
+    return this.http.post<{ reply: string, followUps: string[] }>(`${this.baseUrl}/ai/assistant`, { message });
   }
 }

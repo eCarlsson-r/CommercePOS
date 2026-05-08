@@ -1,15 +1,15 @@
 <div class="p-6 space-y-6">
   <div class="flex justify-between items-center">
     <div>
-      <h1 class="text-2xl font-bold text-store-brown">Supplier Directory</h1>
-      <p class="text-sm text-gray-500">Manage vendor relationships and procurement contacts</p>
+      <h1 class="text-2xl font-bold text-store-brown">{{ 'suppliers.title' | translate }}</h1>
+      <p class="text-sm text-gray-500">{{ 'suppliers.subtitle' | translate }}</p>
     </div>
     <button
       (click)="showDrawer.set(true)"
       class="bg-primary text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2"
     >
       <lucide-icon name="plus" class="w-5 h-5"></lucide-icon>
-      Add Supplier
+      {{ 'suppliers.addSupplier' | translate }}
     </button>
   </div>
 
@@ -36,14 +36,14 @@
                   class="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-700 hover:bg-gray-50 rounded-xl"
                 >
                   <lucide-icon name="edit-3" class="w-4 h-4 text-blue-500"></lucide-icon>
-                  Edit Details
+                  {{ 'suppliers.editDetails' | translate }}
                 </button>
                 <button
                   routerLink="/purchase"
                   class="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-700 hover:bg-gray-50 rounded-xl"
                 >
                   <lucide-icon name="history" class="w-4 h-4 text-primary"></lucide-icon>
-                  Purchase History
+                  {{ 'suppliers.purchaseHistory' | translate }}
                 </button>
                 <div class="h-px bg-gray-100 my-1"></div>
                 <button
@@ -51,7 +51,7 @@
                   class="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl"
                 >
                   <lucide-icon name="trash-2" class="w-4 h-4"></lucide-icon>
-                  Remove Supplier
+                  {{ 'suppliers.removeSupplier' | translate }}
                 </button>
               </div>
             </div>
@@ -68,7 +68,7 @@
           </div>
           <div class="flex items-center gap-3 text-sm text-gray-600">
             <lucide-icon name="store" class="w-4 h-4"></lucide-icon>
-            {{ s.address || 'No address provided' }}
+            {{ s.address || ('suppliers.noAddress' | translate) }}
           </div>
         </div>
       </div>
@@ -78,36 +78,36 @@
   @if (showDrawer()) {
     <div class="fixed inset-0 bg-black/50 z-50 flex justify-end">
       <div class="bg-white w-full max-w-md p-8 h-full shadow-2xl space-y-6">
-        <h2 class="text-xl font-bold">New Supplier Details</h2>
+        <h2 class="text-xl font-bold">{{ 'suppliers.newSupplierDetails' | translate }}</h2>
         <div class="space-y-4">
           <input
             [(ngModel)]="formData.name"
-            placeholder="Company Name"
+            [placeholder]="'suppliers.companyName' | translate"
             class="w-full p-4 bg-gray-50 rounded-2xl border-none"
           />
           <input
             [(ngModel)]="formData.contact_person"
-            placeholder="Contact Person"
+            [placeholder]="'suppliers.contactPerson' | translate"
             class="w-full p-4 bg-gray-50 rounded-2xl border-none"
           />
           <input
             [(ngModel)]="formData.tax_id"
-            placeholder="Tax ID"
+            [placeholder]="'suppliers.taxId' | translate"
             class="w-full p-4 bg-gray-50 rounded-2xl border-none"
           />
           <input
             [(ngModel)]="formData.phone"
-            placeholder="Phone Number"
+            [placeholder]="'suppliers.phoneNumber' | translate"
             class="w-full p-4 bg-gray-50 rounded-2xl border-none"
           />
           <input
             [(ngModel)]="formData.email"
-            placeholder="Email Address"
+            [placeholder]="'suppliers.emailAddress' | translate"
             class="w-full p-4 bg-gray-50 rounded-2xl border-none"
           />
           <textarea
             [(ngModel)]="formData.address"
-            placeholder="Physical Address"
+            [placeholder]="'suppliers.physicalAddress' | translate"
             class="w-full p-4 bg-gray-50 rounded-2xl border-none h-24"
           ></textarea>
         </div>
@@ -116,13 +116,13 @@
             (click)="showDrawer.set(false)"
             class="flex-1 py-4 bg-gray-100 rounded-2xl font-bold"
           >
-            Cancel
+            {{ 'suppliers.cancel' | translate }}
           </button>
           <button
             (click)="saveSupplier()"
             class="flex-1 py-4 bg-primary text-white rounded-2xl font-bold"
           >
-            Save
+            {{ 'suppliers.save' | translate }}
           </button>
         </div>
       </div>

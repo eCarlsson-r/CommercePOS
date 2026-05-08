@@ -3,7 +3,7 @@ import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 
 import { ZardDebounceEventManagerPlugin } from './event-manager-plugins/zard-debounce-event-manager-plugin';
 import { ZardEventManagerPlugin } from './event-manager-plugins/zard-event-manager-plugin';
-import { Camera, CheckCircle, AlertCircle, ArrowRight, Check, BarChart3, Edit3, Loader2, File, LogIn, LogOut, Lock, LucideAngularModule, Mail, MapPin, Plus, ShoppingCart, Trash2, Truck, UserPlus, Users, LayoutDashboard, Package, FileText, TrendingUp, Zap, MonitorSmartphone, PackageSearch, Banknote, PlusCircle, MinusCircle, AlertTriangle, Folder, RotateCcw, ClipboardList, Search, Download, Power, Coffee, Printer, Store, ImagePlus, MoreVertical, Phone, Tag, X, UserX, History, Menu, Settings, Settings2, Eye, RefreshCw, ShoppingBag, Globe, ReceiptText, ClipboardPenLine, Minus, Inbox, User, GalleryHorizontal, Image, Upload, WifiOff, Wifi  } from 'lucide-angular';
+import { Bot, Camera, CheckCircle, AlertCircle, ArrowRight, Check, Languages, ChevronDown, BarChart3, Edit3, Loader2, File, LogIn, LogOut, Lock, LucideAngularModule, Mail, MapPin, Plus, ShoppingCart, Trash2, Truck, UserPlus, Users, LayoutDashboard, Package, FileText, TrendingUp, Zap, MonitorSmartphone, PackageSearch, Banknote, PlusCircle, MinusCircle, AlertTriangle, Folder, RotateCcw, ClipboardList, Search, Download, Power, Coffee, Printer, Store, ImagePlus, MoreVertical, Phone, Tag, Sparkles, X, UserX, History, Menu, Settings, Settings2, Eye, RefreshCw, ShoppingBag, Globe, ReceiptText, ClipboardPenLine, Minus, Inbox, User, GalleryHorizontal, Image, Upload, WifiOff, Wifi  } from 'lucide-angular';
 
 export function provideZard(): EnvironmentProviders {
   const eventManagerPlugins = [
@@ -23,9 +23,11 @@ export function provideZard(): EnvironmentProviders {
     ...eventManagerPlugins, 
     importProvidersFrom(
       LucideAngularModule.pick({
+        Bot,
         Folder,
         Camera,
         X,
+        Sparkles,
         User,
         UserX,
         RefreshCw,
@@ -38,6 +40,8 @@ export function provideZard(): EnvironmentProviders {
         Globe,
         History,
         LayoutDashboard,
+        Languages,
+        ChevronDown,
         Package,
         PackageSearch,
         ShoppingCart, 

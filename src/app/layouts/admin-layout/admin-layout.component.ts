@@ -9,6 +9,7 @@ import { AuthService } from '@/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { LanguageSwitcherComponent } from "@/shared/components/language-switcher/language-switcher.component";
 import { OfflineSyncIndicatorComponent } from "@/shared/components/offline-sync-indicator/offline-sync-indicator.component";
+import { FloatingAssistantComponent } from "@/components/ai/floating-assistant/floating-assistant.component";
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -22,6 +23,7 @@ import { TranslateModule } from '@ngx-translate/core';
     LucideAngularModule,
     LanguageSwitcherComponent,
     OfflineSyncIndicatorComponent,
+    FloatingAssistantComponent,
     TranslateModule
 ],
   templateUrl: './admin-layout.component.html',

@@ -2,22 +2,22 @@
   
   <div class="space-y-4">
     <div>
-      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Product Name</label>
-      <input formControlName="name" type="text" placeholder="e.g. Arabica Gayo 250g"
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'products.name' | translate }}</label>
+      <input formControlName="name" type="text" [placeholder]="'products.namePlaceholder' | translate"
              class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-primary outline-none transition-all">
     </div>
 
     <div class="grid grid-cols-2 gap-4">
       <div>
-        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">SKU / Barcode</label>
-        <input formControlName="sku" type="text" placeholder="BRW-001"
+        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'products.sku' | translate }}</label>
+        <input formControlName="sku" type="text" [placeholder]="'products.skuPlaceholder' | translate"
                class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-primary outline-none">
       </div>
       <div>
-        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Category</label>
+        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'products.category' | translate }}</label>
         <select formControlName="category_id" 
                 class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl focus:border-primary outline-none appearance-none cursor-pointer">
-          <option value="">Select...</option>
+          <option value="">{{ 'products.selectCategory' | translate }}</option>
           @for (cat of categories(); track cat.id) {
             <option [value]="cat.id">{{ cat.name }}</option>
           }
@@ -27,7 +27,7 @@
   </div>
 
   <div class="space-y-3">
-    <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest block">Product Gallery</label>
+    <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest block">{{ 'products.gallery' | translate }}</label>
     
     <div class="grid grid-cols-3 gap-3">
       @for (url of previews(); track $index) {
@@ -42,7 +42,7 @@
 
       <label class="aspect-square flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 hover:border-primary/50 transition-all group">
         <lucide-icon name="image-plus" class="w-6 h-6 text-gray-300 group-hover:text-primary"></lucide-icon>
-        <span class="text-[8px] font-black text-gray-400 mt-2 uppercase tracking-tighter">Add Photo</span>
+        <span class="text-[8px] font-black text-gray-400 mt-2 uppercase tracking-tighter">{{ 'products.addPhoto' | translate }}</span>
         <input type="file" (change)="onFilesSelected($event)" multiple class="hidden" accept="image/*">
       </label>
 
@@ -50,7 +50,7 @@
               class="aspect-square flex flex-col items-center justify-center border-2 border-dashed border-primary/20 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all group disabled:opacity-50">
         <lucide-icon name="sparkles" [class.animate-pulse]="isGeneratingImage()" class="w-6 h-6 text-primary"></lucide-icon>
         <span class="text-[8px] font-black text-primary mt-2 uppercase tracking-tighter">
-          {{ isGeneratingImage() ? 'Generating...' : 'AI Image' }}
+          {{ isGeneratingImage() ? ('products.aiImageGenerating' | translate) : ('products.aiImage' | translate) }}
         </span>
       </button>
     </div>
@@ -58,11 +58,11 @@
 
   <div>
     <div class="flex justify-between items-center mb-1">
-      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Description</label>
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'products.description' | translate }}</label>
       <button type="button" (click)="generateDescription()" [disabled]="isGeneratingDescription() || !productForm.get('name')?.value"
               class="flex items-center gap-1 text-[10px] font-bold text-primary hover:underline disabled:opacity-50">
         <lucide-icon name="sparkles" [class.animate-spin]="isGeneratingDescription()" class="w-3 h-3"></lucide-icon>
-        {{ isGeneratingDescription() ? 'Writing...' : 'Magic Generate' }}
+        {{ isGeneratingDescription() ? ('products.magicGenerating' | translate) : ('products.magicGenerate' | translate) }}
       </button>
     </div>
     <textarea formControlName="description" rows="4"
@@ -74,17 +74,17 @@
 
   <div class="space-y-4">
     <div>
-      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Universal Base Price (Rp)</label>
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'products.basePrice' | translate }}</label>
       <input formControlName="base_price" type="number"
              class="w-full mt-1 p-3 bg-gray-50 border border-border rounded-xl font-mono font-bold text-primary focus:border-primary outline-none">
     </div>
 
     <div>
-      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Global Min. Stock Alert</label>
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'products.minStockAlert' | translate }}</label>
       <div class="flex items-center gap-3">
         <input formControlName="min_stock_alert" type="number"
                class="w-24 mt-1 p-3 bg-gray-50 border border-border rounded-xl text-center focus:border-primary outline-none">
-        <span class="text-xs text-gray-400 italic">Notify me when branch stock falls below this.</span>
+        <span class="text-xs text-gray-400 italic">{{ 'products.minStockHint' | translate }}</span>
       </div>
     </div>
   </div>
@@ -92,11 +92,11 @@
   <div class="pt-8 flex gap-3 mt-auto sticky bottom-0 bg-white pb-4">
     <button type="button" (click)="cancel.emit()"
             class="flex-1 px-6 py-4 rounded-2xl font-bold text-gray-500 hover:bg-gray-50 transition-colors">
-      Cancel
+      {{ 'products.cancel' | translate }}
     </button>
     <button type="submit" [disabled]="productForm.invalid"
             class="flex-2 bg-primary text-white px-6 py-4 rounded-2xl font-bold shadow-lg shadow-primary/20 hover:opacity-90 disabled:opacity-50 transition-all">
-      {{ initialData ? 'Update Product' : 'Create Product' }}
+      {{ initialData ? ('products.updateProduct' | translate) : ('products.createProduct' | translate) }}
     </button>
   </div>
 </form>

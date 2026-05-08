@@ -2,6 +2,7 @@ import { Component, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { ProductService } from '@/services/product.service';
 import { PurchaseService } from '@/services/purchase.service';
 import { BranchService } from '@/services/branch.service';
@@ -19,7 +20,7 @@ interface POItem {
 @Component({
   selector: 'app-purchase-order',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule, PurchaseReceiptComponent],
+  imports: [CommonModule, FormsModule, LucideAngularModule, PurchaseReceiptComponent, TranslateModule],
   templateUrl: './purchase-order.component.html'
 })
 export class PurchaseOrderComponent {

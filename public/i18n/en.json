@@ -58,6 +58,11 @@
     "total": "Total",
     "processPayment": "Process Payment"
   },
+  "assistant": {
+    "title": "AI Assistant",
+    "welcome": "Ask me about products, stock, or sales tips!",
+    "placeholder": "Type your question..."
+  },
   "master": {
     "banners": "Banners",
     "branches": "Branches",
@@ -68,21 +73,126 @@
     "categories": "Categories",
     "priceCoder": "Price Coder"
   },
+  "suppliers": {
+    "title": "Supplier Directory",
+    "subtitle": "Manage vendor relationships and procurement contacts",
+    "addSupplier": "Add Supplier",
+    "editDetails": "Edit Details",
+    "purchaseHistory": "Purchase History",
+    "removeSupplier": "Remove Supplier",
+    "contact": "Contact",
+    "taxId": "Tax ID",
+    "email": "Email",
+    "address": "Address",
+    "phone": "Phone",
+    "noAddress": "No address provided",
+    "newSupplierDetails": "New Supplier Details",
+    "companyName": "Company Name",
+    "contactPerson": "Contact Person",
+    "phoneNumber": "Phone Number",
+    "emailAddress": "Email Address",
+    "physicalAddress": "Physical Address",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "customers": {
+    "title": "Customer Network",
+    "subtitle": "Managing loyalty across all branches",
+    "searchPlaceholder": "Search by mobile...",
+    "newMember": "New Member",
+    "editMember": "Edit Member",
+    "registerMember": "Register Member",
+    "updateMember": "Update Member",
+    "table": {
+      "customer": "Customer",
+      "points": "Points",
+      "balance": "Balance"
+    },
+    "form": {
+      "fullName": "Full Name",
+      "namePlaceholder": "John Doe",
+      "whatsapp": "WhatsApp Number",
+      "mobilePlaceholder": "0812...",
+      "email": "Email",
+      "emailPlaceholder": "[EMAIL_ADDRESS]",
+      "loyaltyProgram": "Loyalty Program",
+      "startingPoints": "Starting Points"
+    }
+  },
   "products": {
     "title": "Products",
     "list": "Product List",
     "newProduct": "New Product",
-    "name": "Name",
+    "name": "Product Name",
+    "namePlaceholder": "e.g. Arabica Gayo 250g",
+    "sku": "SKU / Barcode",
+    "skuPlaceholder": "BRW-001",
     "price": "Price",
+    "basePrice": "Universal Base Price (Rp)",
     "stock": "Stock",
-    "category": "Category"
+    "minStockAlert": "Global Min. Stock Alert",
+    "minStockHint": "Notify me when branch stock falls below this.",
+    "category": "Category",
+    "selectCategory": "Select...",
+    "gallery": "Product Gallery",
+    "addPhoto": "Add Photo",
+    "description": "Description",
+    "aiImage": "AI Image",
+    "aiImageGenerating": "Generating...",
+    "magicGenerate": "Magic Generate",
+    "magicGenerating": "Writing...",
+    "updateProduct": "Update Product",
+    "createProduct": "Create Product",
+    "cancel": "Cancel"
   },
   "inventory": {
     "title": "Inventory",
     "stock": "Stock",
     "transfers": "Stock Transfers",
     "audit": "Stock Audit",
-    "lowStock": "Low Stock Items"
+    "lowStock": "Low Stock Items",
+    "purchaseOrders": "Purchase Orders",
+    "purchaseOrdersSubtitle": "Managing inventory procurement",
+    "createNewOrder": "Create New Order",
+    "table": {
+      "poReference": "PO Reference",
+      "supplier": "Supplier",
+      "orderDate": "Order Date",
+      "totalAmount": "Total Amount",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "pending": "Pending",
+      "sent": "Sent",
+      "received": "Received"
+    },
+    "actions": {
+      "confirmDelivery": "Confirm Delivery & Add to Stock",
+      "viewDetails": "View Details",
+      "print": "Print"
+    },
+    "returns": {
+      "title": "Returns & Inventory Waste",
+      "newReturn": "New Return",
+      "history": "History",
+      "searchPlaceholder": "Scan Barcode or Type Product Name...",
+      "table": {
+        "product": "Product",
+        "qty": "Qty",
+        "status": "Status/Condition"
+      },
+      "status": {
+        "good": "Good - Return to Supplier",
+        "damaged": "Damaged - Destroy/Write-off",
+        "expired": "Expired - Dispose"
+      },
+      "supplier": "Supplier to Return",
+      "selectSupplier": "Select Supplier (for Good stock)...",
+      "notes": "Notes / Reason",
+      "notesPlaceholder": "e.g., Broken seal, expired date...",
+      "processReturn": "Process Return"
+    }
   },
   "analytics": {
     "title": "Analytics",
@@ -121,7 +231,12 @@
     "guest": "Guest",
     "subtotal": "Subtotal",
     "manualDiscount": "Manual Discount",
+    "discountAmount": "Discount Amount",
     "pointsRedeem": "Points Redeem",
+    "pointsAvailable": "Points Available",
+    "pointsRedemption": "Points Redemption",
+    "redeem": "REDEEM",
+    "redeemed": "REDEEMED",
     "grandTotal": "Grand Total",
     "paid": "Paid",
     "change": "Change",

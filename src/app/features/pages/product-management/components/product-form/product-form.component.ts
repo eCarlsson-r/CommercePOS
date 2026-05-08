@@ -2,13 +2,14 @@
 import { Component, Input, Output, EventEmitter, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { CategoryService } from '@/services/category.service';
 import { AIService } from '@/services/ai.service';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [ReactiveFormsModule, LucideAngularModule],
+  imports: [ReactiveFormsModule, LucideAngularModule, TranslateModule],
   templateUrl: './product-form.component.html'
 })
 export class ProductFormComponent implements OnInit {

@@ -4,12 +4,13 @@ import { SupplierService } from '@/services/supplier.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-suppliers',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink],
+  imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink, TranslateModule],
   templateUrl: './supplier-list.component.html'
 })
 export class SupplierListComponent {

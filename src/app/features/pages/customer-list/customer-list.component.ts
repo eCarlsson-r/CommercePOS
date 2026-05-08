@@ -3,6 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerService } from '@/services/customer.service';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap, of, BehaviorSubject, merge } from 'rxjs';
@@ -12,7 +13,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, LucideAngularModule, ReactiveFormsModule, RouterLink, TranslateModule],
   templateUrl: './customer-list.component.html'
 })
 export class CustomerListComponent {
