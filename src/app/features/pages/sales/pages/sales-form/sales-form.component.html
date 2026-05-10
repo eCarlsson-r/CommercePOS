@@ -40,7 +40,7 @@
            (click)="addToCart(product)"
            class="bg-white p-4 rounded-xl shadow-sm border-b-4 border-transparent hover:border-primary transition cursor-pointer group">
         <div class="h-32 bg-gray-100 rounded-lg mb-3 flex items-center justify-center">
-            <lucide-icon name="package" class="text-gray-300 group-hover:text-primary transition w-10 h-10"></lucide-icon>
+          <lucide-icon name="package" class="text-gray-300 group-hover:text-primary transition w-10 h-10"></lucide-icon>
         </div>
         <h3 class="font-bold text-gray-800">{{ product.name }}</h3>
         <p class="text-primary font-semibold">{{ getBranchStock(product)?.sale_price | currency : 'IDR' : 'Rp. ' : '1.0-0'}}</p>

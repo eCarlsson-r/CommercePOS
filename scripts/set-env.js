@@ -10,7 +10,7 @@ const targetPath = './src/environments/environment.ts';
 // Create the content for the environment file
 const envConfigFile = `export const environment = {
   production: ${process.env.PRODUCTION || false},
-  apiUrl: '${process.env.API_URL || "http://localhost:8000/api"}',
+  apiUrl: '${process.env.API_URL || "http://commercesystem-api.test/api"}',
   reverbKey: '${process.env.REVERB_APP_KEY || ""}',
   reverbHost: '${process.env.REVERB_HOST || "localhost"}',
   reverbPort: ${process.env.REVERB_PORT || 8080},
