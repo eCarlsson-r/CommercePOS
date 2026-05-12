@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ViewChild, NgModule, signal, computed, HostListener } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, NgModule, signal, computed, HostListener, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
 import { ThermalReceiptComponent } from '../../components/thermal-receipt/thermal-receipt.component';
@@ -60,26 +60,46 @@ export class SalesFormComponent implements OnInit {
   }
 
   setupRecommendationListener() {
-    // This is a simple implementation, in a real app you might debounce this
+    // Watch for changes in the active sale items and fetch recommendations
+    effect(() => {
+      const items = this.activeSale().items;
+      if (items.length > 0) {
+        // Debounce the recommendation call
+        setTimeout(() => this.fetchRecommendations(), 500);
+      } else {
+        this.aiRecommendations.set([]);
+      }
+    });
   }
 
   fetchRecommendations() {
     const items = this.activeSale().items;
+    console.log('Fetching recommendations for items:', items.length);
+    
     if (items.length === 0) {
       this.aiRecommendations.set([]);
       return;
     }
 
     const contextTags = items.map(i => i.name);
+    console.log('Context tags for AI:', contextTags);
+    
     this.aiService.getRecommendations({ contextTags, maxResults: 4 }).subscribe({
       next: (res) => {
+        console.log('AI recommendation response:', res);
+        
         // Map recommendation IDs back to product objects
         const recommendedProducts = res.items.map(rec => {
           const product = this.products.find(p => p.id === rec.productId);
           return product ? { ...product, aiScore: rec.score, aiReason: rec.reason } : null;
         }).filter(p => p !== null);
         
+        console.log('Mapped recommendations:', recommendedProducts);
         this.aiRecommendations.set(recommendedProducts);
+      },
+      error: (err) => {
+        console.error('AI recommendations failed:', err);
+        this.aiRecommendations.set([]);
       }
     });
   }
