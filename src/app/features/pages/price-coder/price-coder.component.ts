@@ -6,11 +6,12 @@ import { StockService } from '@/services/stock.service';
 import { SettingsService } from '@/services/settings.service';
 import { BranchService } from '@/services/branch.service';
 import { BarcodeLabelComponent } from './components/barcode-label.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-price-coder',
   templateUrl: './price-coder.component.html',
-  imports: [CommonModule, FormsModule, LucideAngularModule, BarcodeLabelComponent],
+  imports: [CommonModule, FormsModule, TranslateModule, LucideAngularModule, BarcodeLabelComponent],
   standalone: true
 })
 export class PriceCoderComponent {

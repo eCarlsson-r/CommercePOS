@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
 import { CategoryService } from '@/services/category.service';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, ProductFormComponent],
+  imports: [CommonModule, LucideAngularModule, TranslateModule, ProductFormComponent],
   templateUrl: './product-management.component.html'
 })
 

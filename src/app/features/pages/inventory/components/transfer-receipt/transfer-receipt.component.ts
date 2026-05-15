@@ -1,11 +1,12 @@
 import { Component, input } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transfer-receipt',
   standalone: true,
-  imports: [LucideAngularModule, CommonModule],
+  imports: [LucideAngularModule, CommonModule, TranslateModule],
   templateUrl: './transfer-receipt.component.html'
 })
 export class TransferReceiptComponent {

@@ -6,11 +6,12 @@ import { CustomerService } from "@/services/customer.service";
 import { LucideAngularModule } from "lucide-angular";
 import { DecimalPipe } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-customer-detail',
     templateUrl: './customer-detail.component.html',
-    imports: [CommonModule, LucideAngularModule, DecimalPipe],
+    imports: [CommonModule, LucideAngularModule, TranslateModule, DecimalPipe],
     standalone: true
 })
 export class CustomerDetailComponent implements OnInit {

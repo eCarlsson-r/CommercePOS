@@ -1,35 +1,35 @@
 <div class="p-6 max-w-5xl mx-auto space-y-8">
   <header>
-    <h1 class="text-2xl font-bold text-primary">Category Management</h1>
-    <p class="text-sm text-gray-500">Organize your products for the Medan and Binjai branches.</p>
+    <h1 class="text-2xl font-bold text-primary">{{ 'categoryManagement.title' | translate }}</h1>
+    <p class="text-sm text-gray-500">{{ 'categoryManagement.subtitle' | translate }}</p>
   </header>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     
     <div class="md:col-span-1">
       <div class="bg-white p-6 rounded-2xl border border-border shadow-sm sticky top-6">
-        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">New Category</h3>
+        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">{{ 'categoryManagement.newCategory' | translate }}</h3>
         <div class="space-y-4">
           <div>
-            <label class="block text-xs font-bold text-gray-700 mb-1">Name</label>
+            <label class="block text-xs font-bold text-gray-700 mb-1">{{ 'categoryManagement.form.name' | translate }}</label>
             <input [(ngModel)]="categoryName"
                    type="text" 
                    placeholder="e.g., Coffee Beans"
                    class="w-full border p-3 rounded-xl outline-none focus:border-primary transition-colors">
           </div>
           <div>
-            <label class="block text-xs font-bold text-gray-700 mb-1">Description</label>
+            <label class="block text-xs font-bold text-gray-700 mb-1">{{ 'categoryManagement.form.description' | translate }}</label>
             <textarea [(ngModel)]="categoryDescription"
                    rows="4"
                    type="text" 
                    placeholder="e.g., Coffee Beans"
                    class="w-full border p-3 rounded-xl outline-none focus:border-primary transition-colors"></textarea>
           </div>
-          <button (click)="saveCategory()"
+            <button (click)="saveCategory()"
                   [disabled]="!categoryName()"
                   class="w-full bg-primary text-white py-3 rounded-xl font-bold shadow-md hover:bg-opacity-90 disabled:opacity-50 transition-all flex items-center justify-center gap-2">
             <lucide-icon name="plus" class="w-4 h-4"></lucide-icon>
-            Create Category
+            {{ 'categoryManagement.create' | translate }}
           </button>
         </div>
       </div>
@@ -38,8 +38,8 @@
     <div class="md:col-span-2 space-y-4">
       <div class="bg-white rounded-2xl border border-border overflow-hidden shadow-sm">
         <div class="p-4 bg-gray-50 border-b border-border flex justify-between items-center">
-          <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Available Categories</span>
-          <span class="text-xs font-medium text-primary">{{ categories().length }} Total</span>
+          <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">{{ 'categoryManagement.available' | translate }}</span>
+          <span class="text-xs font-medium text-primary">{{ categories().length }} {{ 'categoryManagement.total' | translate }}</span>
         </div>
         
         <div class="divide-y divide-border">
@@ -56,7 +56,7 @@
               </div>
             </div>
           } @empty {
-            <div class="p-10 text-center text-gray-400 italic">No categories created yet.</div>
+            <div class="p-10 text-center text-gray-400 italic">{{ 'categoryManagement.empty' | translate }}</div>
           }
         </div>
       </div>

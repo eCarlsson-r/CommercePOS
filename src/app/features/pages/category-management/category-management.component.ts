@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { CategoryService } from '@/services/category.service';
 import { LucideAngularModule } from "lucide-angular";
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
   templateUrl: './category-management.component.html',
-  imports: [LucideAngularModule, FormsModule]
+  imports: [LucideAngularModule, FormsModule, TranslateModule]
 })
 export class CategoryManagementComponent {
   private categoryService = inject(CategoryService);

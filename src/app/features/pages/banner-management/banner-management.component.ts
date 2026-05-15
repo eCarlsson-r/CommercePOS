@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { FormsModule } from '@angular/forms';
 import { BannerService } from '@/services/banner.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-banner-management',
   templateUrl: './banner-management.component.html',
-  imports: [LucideAngularModule, FormsModule]
+  imports: [LucideAngularModule, FormsModule, TranslateModule]
 })
 export class BannerManagementComponent {
   private bannerService = inject(BannerService);

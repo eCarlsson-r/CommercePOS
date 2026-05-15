@@ -4,11 +4,12 @@ import { ReportService } from '@/services/report.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-daily-closing',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule],
+  imports: [CommonModule, TranslateModule, FormsModule, LucideAngularModule],
   templateUrl: './daily-closing.component.html'
 })
 export class DailyClosingComponent {

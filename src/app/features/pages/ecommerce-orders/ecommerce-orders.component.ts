@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { BranchService } from '@/services/branch.service';
 import { PackingSlipComponent } from './components/packing-slip.component';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ecommerce-orders',
   templateUrl: './ecommerce-orders.component.html',
-  imports: [LucideAngularModule, CommonModule, FormsModule, PackingSlipComponent]
+  imports: [LucideAngularModule, CommonModule, FormsModule, TranslateModule, PackingSlipComponent]
 })
 export class EcommerceOrdersComponent {
   private ecommerceService = inject(EcommerceService);

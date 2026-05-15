@@ -2,11 +2,12 @@ import { ReportService } from '@/services/report.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, inject, signal, Input } from '@angular/core';
 import { SettingsService } from '@/services/settings.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-purchase-a4',
   standalone: true,
-  imports: [DatePipe, DecimalPipe],
+  imports: [DatePipe, DecimalPipe, TranslateModule],
   templateUrl: './purchase-a4.component.html',
 })
 export class PurchaseA4Component {

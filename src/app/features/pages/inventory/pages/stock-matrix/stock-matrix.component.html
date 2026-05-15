@@ -1,6 +1,6 @@
 <div class="p-6 space-y-6">
   <div class="flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-store-brown">Network Stock Matrix</h1>
+    <h1 class="text-2xl font-bold text-store-brown">{{ 'stockMatrix.title' | translate }}</h1>
     <div class="flex gap-2">
         <button (click)="exportToExcel()" class="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-bold shadow-md hover:bg-green-700 transition-all">
             <lucide-icon name="file-spreadsheet" class="w-4 h-4"></lucide-icon>
@@ -18,13 +18,13 @@
       <table class="w-full text-left border-collapse">
         <thead class="bg-gray-50 border-b">
           <tr>
-            <th class="p-4 text-xs font-black text-gray-400 uppercase sticky left-0 bg-gray-50 z-10 border-r w-64">Product Name</th>
+            <th class="p-4 text-xs font-black text-gray-400 uppercase sticky left-0 bg-gray-50 z-10 border-r w-64">{{ 'stockMatrix.table.productName' | translate }}</th>
             @for (branch of branches(); track branch.id) {
-              <th class="p-4 text-[10px] font-black text-gray-400 uppercase text-center min-w-[120px]">
+              <th class="p-4 text-[10px] font-black text-gray-400 uppercase text-center min-w-30">
                 {{ branch.name }}
               </th>
             }
-            <th class="p-4 text-xs font-black text-store-brown uppercase text-center bg-store-cream/10">Total Network</th>
+            <th class="p-4 text-xs font-black text-store-brown uppercase text-center bg-store-cream/10">{{ 'stockMatrix.table.totalNetwork' | translate }}</th>
           </tr>
         </thead>
         <tbody class="divide-y">

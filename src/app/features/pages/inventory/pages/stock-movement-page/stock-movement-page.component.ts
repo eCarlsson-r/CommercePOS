@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { StockMovementDrawerComponent } from '../../components/stock-movement-drawer/stock-movement-drawer.component';
 import { LucideAngularModule } from 'lucide-angular';
 import { TransferReceiptComponent } from '../../components/transfer-receipt/transfer-receipt.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-stock-movement-page',
   standalone: true,
-  imports: [CommonModule, StockMovementDrawerComponent, LucideAngularModule, TransferReceiptComponent],
+  imports: [CommonModule, StockMovementDrawerComponent, TranslateModule, LucideAngularModule, TransferReceiptComponent],
   templateUrl: './stock-movement-page.component.html'
 })
 

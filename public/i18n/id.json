@@ -95,6 +95,15 @@
     "cancel": "Batal",
     "save": "Simpan"
   },
+  "reports": {
+    "generateSalesReport": "Buat Laporan Penjualan",
+    "selectBranch": "Pilih Cabang",
+    "selectEmployee": "Pilih Karyawan",
+    "allBranches": "Semua Cabang (Konsolidasi)",
+    "allEmployees": "Semua Karyawan (Konsolidasi)",
+    "generateReport": "Buat Laporan",
+    "printReport": "Cetak Laporan"
+  },
   "customers": {
     "title": "Jaringan Pelanggan",
     "subtitle": "Mengelola loyalitas di semua cabang",
@@ -194,6 +203,141 @@
       "processReturn": "Proses Retur"
     }
   },
+  "purchase": {
+    "title": "Analisis Pengeluaran Pemasok",
+    "supplierLabel": "Pemasok",
+    "allSuppliers": "Semua Pemasok (Konsolidasi)",
+    "summary": "Ringkasan Pembelian",
+    "networkWide": "Seluruh Jaringan: {{count}} Cabang",
+    "totalSpend": "Total Pengeluaran",
+    "totalOrders": "Total Pesanan",
+    "avgOrderValue": "Rata-rata Nilai Pesanan",
+    "auditLog": "Log Audit Pembelian",
+    "table": {
+      "sku": "SKU",
+      "product": "Produk",
+      "qty": "Jml",
+      "unitCost": "Harga Satuan",
+      "total": "Total"
+    }
+  },
+
+  "reports": {
+    "salesA4": {
+      "title": "Laporan Penjualan",
+      "table": {
+        "sku": "SKU",
+        "itemName": "Nama Item",
+        "costEnc": "Biaya (Enc)",
+        "qty": "Jml",
+      "branchManagement": {
+        "title": "Jaringan Cabang",
+        "form": {
+          "name": "Nama Cabang",
+          "phone": "Telepon Cabang",
+          "address": "Alamat"
+        }
+      },
+
+      "purchaseOrder": {
+        "title": "Pesanan Pembelian Baru",
+        "supplier": "Pemasok",
+        "destinationBranch": "Cabang Tujuan",
+        "orderDate": "Tanggal Pesanan",
+        "expectedDate": "Tanggal Diharapkan",
+        "addProducts": "Tambahkan Produk",
+        "totalCommitment": "Total Komitmen",
+        "receiptPreview": "Pratinjau Kwitansi Pembelian"
+      },
+
+      "priceCoder": {
+        "title": "Pengkode Harga",
+        "subtitle": "Area staging untuk pencetakan label 18mm",
+        "systemSettings": "Pengaturan Sistem",
+        "costCipherKey": "Kunci Cipher Biaya",
+        "costCipherHint": "10 huruf unik untuk masking harga."
+      },
+
+      "stockMovement": {
+        "title": "Logistik Inventori",
+        "subtitle": "Kelola transfer antar cabang",
+        "movementHistory": "Riwayat Pergerakan",
+        "table": {
+          "reference": "Referensi",
+          "path": "Jalur",
+          "items": "Item",
+          "status": "Status",
+          "date": "Tanggal"
+        }
+      },
+        "unitPrice": "Harga Satuan",
+        "total": "Total",
+        "soldBy": "Dijual Oleh"
+      }
+    },
+    "supplierPerformance": {
+      "title": "Performa Pemasok",
+      "subtitle": "Analisa keandalan vendor dan dampak limbah inventori",
+      "table": {
+        "supplierName": "Nama Pemasok",
+        "orders": "Pesanan",
+        "totalQtyIn": "Total Jml Masuk",
+        "wasteQty": "Jml Limbah",
+        "wasteRate": "Tingkat Limbah"
+      }
+    }
+  },
+  "customerDetail": {
+    "memberSince": "Member sejak {{date}}",
+    "totalSpent": "Total Pengeluaran",
+    "pointsBalance": "Saldo Poin",
+    "recentTransactions": "Transaksi Terbaru",
+    "pointsShort": "pt",
+    "topFavorite": "Item Favorit Teratas",
+    "purchasedTimes": "Dibeli {{count}} kali",
+    "manualPointsAdjustment": "Penyesuaian Poin Manual",
+    "enterAmountPlaceholder": "Masukkan jumlah...",
+    "applyCorrection": "Terapkan Koreksi"
+  },
+
+  "mediaUploader": {
+    "clickToUpload": "Klik untuk mengunggah gambar produk",
+    "hint": "PNG, JPG hingga 2MB"
+  },
+
+  "stockMatrix": {
+    "title": "Matriks Stok Jaringan",
+    "table": {
+      "productName": "Nama Produk",
+      "totalNetwork": "Total Jaringan"
+    }
+  },
+
+  "stockHistory": {
+    "branchContext": "Konteks Cabang",
+    "selectProduct": "Pilih Produk",
+    "table": {
+      "dateTime": "Tanggal & Waktu",
+      "reference": "Referensi",
+      "type": "Tipe",
+      "change": "Perubahan",
+      "balance": "Saldo"
+    }
+  },
+
+  "categoryManagement": {
+    "title": "Manajemen Kategori",
+    "subtitle": "Atur produk Anda di seluruh cabang",
+    "newCategory": "Kategori Baru",
+    "form": {
+      "name": "Nama",
+      "description": "Deskripsi"
+    },
+    "create": "Buat Kategori",
+    "available": "Kategori Tersedia",
+    "total": "Total",
+    "empty": "Belum ada kategori dibuat."
+  },
   "analytics": {
     "title": "Analitik",
     "kpi": "Metrik KPI",
@@ -243,4 +387,30 @@
     "newBalance": "Saldo Baru",
     "thankYou": "Terima kasih telah berbelanja"
   }
+
+    ,"ecommerceOrders": {
+      "title": "Pesanan E-commerce",
+      "subtitle": "Kelola dan penuhi pesanan online",
+      "tabs": {
+        "new": "Baru",
+        "processing": "Diproses",
+        "shipped": "Dikirim"
+      },
+      "orderPrefix": "Pesanan",
+      "deliverTo": "Kirim ke",
+      "items": "Item",
+      "assignedBranch": "Cabang Ditugaskan",
+      "acceptPrintLabel": "Terima & Cetak Label",
+      "inputResiShip": "Input Resi / Kirim",
+      "release": "Rilis Pesanan",
+      "cancelOrder": "Batalkan Pesanan",
+      "trackingNumber": "Nomor Resi",
+      "viewCustomerProfile": "Lihat Profil Pelanggan",
+      "emptyState": "Tidak ada pesanan e-commerce",
+      "finalizeShipment": "Finalisasi Pengiriman",
+      "selectCourier": "Pilih Kurir",
+      "trackingNumberResi": "Nomor Resi",
+      "resiPlaceholder": "Masukkan nomor resi...",
+      "confirmFinalizeSale": "Konfirmasi & Finalisasi"
+    }
 }

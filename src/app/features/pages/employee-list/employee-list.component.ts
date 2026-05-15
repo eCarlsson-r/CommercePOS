@@ -5,11 +5,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { LucideAngularModule } from "lucide-angular";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  imports: [LucideAngularModule, CommonModule, FormsModule]
+  imports: [LucideAngularModule, CommonModule, FormsModule, TranslateModule]
 })
 export class EmployeeListComponent {
   private employeeService = inject(EmployeeService);

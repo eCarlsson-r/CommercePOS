@@ -23,8 +23,7 @@
     "email": "Email",
     "password": "Password",
     "loginError": "Invalid credentials",
-    "loginSuccess": "Login successful",
-    "unauthorized": "Unauthorized"
+    "loginSuccess": "Login successful"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -95,6 +94,66 @@
     "cancel": "Cancel",
     "save": "Save"
   },
+  "reports": {
+    "generateSalesReport": "Generate Sales Report",
+    "selectBranch": "Select Branch",
+    "dateRange": "Date Range",
+    "selectEmployee": "Select Employee",
+    "allBranches": "All Branches (Consolidated)",
+    "allEmployees": "All Employees (Consolidated)",
+    "generateReport": "Generate Report",
+    "printReport": "Print Report"
+  },
+  "purchase": {
+    "title": "Supplier Spend Analysis",
+    "supplierLabel": "Supplier",
+    "allSuppliers": "All Suppliers (Consolidated)",
+    "summary": "Purchase Summary",
+    "networkWide": "Network Wide: {{count}} Branches",
+    "totalSpend": "Total Spend",
+    "totalOrders": "Total Orders",
+    "avgOrderValue": "Avg Order Value",
+    "auditLog": "Purchase Audit Log",
+    "table": {
+      "sku": "SKU",
+      "product": "Product",
+      "qty": "Qty",
+      "unitCost": "Unit Cost",
+      "total": "Total"
+    }
+  },
+  "stockAudit": {
+    "selectProduct": "Select Product",
+    "selectBranch": "Select Branch",
+    "table": {
+      "dateTime": "Date & Time",
+      "type": "Type",
+      "change": "Change",
+      "finalBalance": "Final Balance",
+      "actor": "Actor"
+    }
+  },
+  "employee": {
+    "title": "Staff Directory",
+    "subtitle": "Managing staff across all branches",
+    "addNew": "Add New Employee",
+    "branch": "Branch",
+    "offboard": "Offboard",
+    "inactiveLeft": "Inactive (Left: {date})",
+    "onboard": "Onboard Employee",
+    "profileInformation": "Profile Information",
+    "employmentDetails": "Employment Details",
+    "assignToBranchPlaceholder": "Assign to Branch...",
+    "systemLogin": "System Login",
+    "form": {
+      "fullName": "Full Name",
+      "mobilePlaceholder": "WhatsApp / Mobile Number"
+      ,
+      "username": "Username",
+      "password": "Password"
+    },
+    "noEmployees": "No employees found for this branch."
+  }
   "customers": {
     "title": "Customer Network",
     "subtitle": "Managing loyalty across all branches",
@@ -160,6 +219,11 @@
       "orderDate": "Order Date",
       "totalAmount": "Total Amount",
       "status": "Status",
+      "product": "Product",
+      "qty": "Qty",
+      "unitPrice": "Unit Price",
+      "subtotal": "Subtotal",
+      "totalItems": "Total Items",
       "actions": "Actions"
     },
     "status": {
@@ -179,8 +243,48 @@
       "searchPlaceholder": "Scan Barcode or Type Product Name...",
       "table": {
         "product": "Product",
-        "qty": "Qty",
-        "status": "Status/Condition"
+        "qty": "Qty"
+      },
+      "status": "Status/Condition"
+
+    "mediaUploader": {
+      "clickToUpload": "Click to upload product image",
+      "hint": "PNG, JPG up to 2MB"
+    },
+
+    "stockMatrix": {
+      "title": "Network Stock Matrix",
+      "table": {
+        "productName": "Product Name",
+        "totalNetwork": "Total Network"
+      }
+    },
+
+    "stockHistory": {
+      "branchContext": "Branch Context",
+      "selectProduct": "Select Product",
+      "table": {
+        "dateTime": "Date & Time",
+        "reference": "Reference",
+        "type": "Type",
+        "change": "Change",
+        "balance": "Balance"
+      }
+    },
+
+    "categoryManagement": {
+      "title": "Category Management",
+      "subtitle": "Organize your products across branches",
+      "newCategory": "New Category",
+      "form": {
+        "name": "Name",
+        "description": "Description"
+      },
+      "create": "Create Category",
+      "available": "Available Categories",
+      "total": "Total",
+      "empty": "No categories created yet."
+    }
       },
       "status": {
         "good": "Good - Return to Supplier",
@@ -193,6 +297,95 @@
       "notesPlaceholder": "e.g., Broken seal, expired date...",
       "processReturn": "Process Return"
     }
+  },
+
+  "banner": {
+    "title": "E-commerce Banners",
+    "subtitle": "Manage the Hero Section of your storefront",
+    "addNew": "Add New Banner",
+    "form": {
+      "title": "Banner Title",
+      "redirect": "Redirect Link (URL)"
+    },
+    "selectImage": "Select Banner Image",
+    "uploading": "UPLOADING...",
+    "publish": "PUBLISH BANNER",
+    "live": "Live Banners",
+    "status": {
+      "active": "Active",
+      "draft": "Draft"
+    },
+    "empty": "No banners uploaded"
+  },
+
+  "productManagement": {
+    "subtitle": "Universal definitions for all branches",
+    "addUniversal": "Add Universal Product",
+    "newUniversal": "New Universal Product"
+  },
+
+  "recentSales": {
+    "subtitle": "Latest invoices from your branch",
+    "viewAll": "View All",
+    "table": {
+      "invoice": "Invoice",
+      "grandTotal": "Grand Total",
+      "payment": "Payment",
+      "action": "Action"
+    },
+    "empty": "No transactions recorded today."
+  },
+  "branchManagement": {
+    "title": "Branch Network",
+    "form": {
+      "name": "Branch Name",
+      "phone": "Branch Phone",
+      "address": "Address"
+    }
+  },
+
+  "purchaseOrder": {
+    "title": "New Purchase Order",
+    "supplier": "Supplier",
+    "destinationBranch": "Destination Branch",
+    "orderDate": "Order Date",
+    "expectedDate": "Expected Date",
+    "addProducts": "Add Products",
+    "totalCommitment": "Total Commitment",
+    "receiptPreview": "Purchase Receipt Preview"
+  },
+
+  "priceCoder": {
+    "title": "Price Coder",
+    "subtitle": "Staging area for 18mm Label Printing",
+    "systemSettings": "System Settings",
+    "costCipherKey": "Cost Cipher Key",
+    "costCipherHint": "10 unique letters for price masking."
+  },
+
+  "stockMovement": {
+    "title": "Inventory Logistics",
+    "subtitle": "Manage transfers between branches",
+    "movementHistory": "Movement History",
+    "table": {
+      "reference": "Reference",
+      "path": "Path",
+      "items": "Items",
+      "status": "Status",
+      "date": "Date"
+    }
+  },
+  "customerDetail": {
+    "memberSince": "Member since {{date}}",
+    "totalSpent": "Total Spent",
+    "pointsBalance": "Points Balance",
+    "recentTransactions": "Recent Transactions",
+    "pointsShort": "pts",
+    "topFavorite": "Top Favorite Item",
+    "purchasedTimes": "Purchased {{count}} times",
+    "manualPointsAdjustment": "Manual Points Adjustment",
+    "enterAmountPlaceholder": "Enter amount...",
+    "applyCorrection": "Apply Correction"
   },
   "analytics": {
     "title": "Analytics",
@@ -242,5 +435,31 @@
     "change": "Change",
     "newBalance": "New Balance",
     "thankYou": "Thank you for shopping"
+  }
+
+  ,"ecommerceOrders": {
+    "title": "E-commerce Orders",
+    "subtitle": "Manage and fulfill online orders",
+    "tabs": {
+      "new": "New",
+      "processing": "Processing",
+      "shipped": "Shipped"
+    },
+    "orderPrefix": "Order",
+    "deliverTo": "Deliver to",
+    "items": "Items",
+    "assignedBranch": "Assigned Branch",
+    "acceptPrintLabel": "Accept & Print Label",
+    "inputResiShip": "Input Resi / Ship",
+    "release": "Release Order",
+    "cancelOrder": "Cancel Order",
+    "trackingNumber": "Tracking Number",
+    "viewCustomerProfile": "View Customer Profile",
+    "emptyState": "No ecommerce orders",
+    "finalizeShipment": "Finalize Shipment",
+    "selectCourier": "Select Courier",
+    "trackingNumberResi": "Tracking Number / Resi",
+    "resiPlaceholder": "Enter tracking number...",
+    "confirmFinalizeSale": "Confirm & Finalize"
   }
 }

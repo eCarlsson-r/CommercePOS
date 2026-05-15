@@ -1,16 +1,16 @@
 // src/app/features/pages/inventory/pages/stock-matrix/stock-matrix.component.ts
 import { ReportService } from '@/services/report.service'; // Adjust path as needed
 import { SumStockPipe } from '@/shared/pipes/sum-stock.pipe';
-import { inject, signal } from '@angular/core';
+import { inject, signal, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
-import { Component, OnInit } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-stock-matrix',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, SumStockPipe],
+  imports: [CommonModule, LucideAngularModule, TranslateModule, SumStockPipe],
   templateUrl: './stock-matrix.component.html'
 })
 export class StockMatrixComponent implements OnInit {

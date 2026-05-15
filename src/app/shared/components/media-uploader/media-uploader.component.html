@@ -5,8 +5,8 @@
   
   <div class="flex flex-col items-center">
     <lucide-icon name="upload-cloud" class="text-primary w-12 h-12 mb-3"></lucide-icon>
-    <p class="text-primary font-semibold">Click to upload product image</p>
-    <p class="text-xs text-gray-500 mt-1">PNG, JPG up to 2MB</p>
+    <p class="text-primary font-semibold">{{ 'mediaUploader.clickToUpload' | translate }}</p>
+    <p class="text-xs text-gray-500 mt-1">{{ 'mediaUploader.hint' | translate }}</p>
   </div>
 
   <div *ngIf="uploadProgress > 0" class="mt-4 w-full bg-gray-200 rounded-full h-2">

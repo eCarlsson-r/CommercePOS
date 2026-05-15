@@ -3,11 +3,12 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, inject, signal, Input } from '@angular/core';
 import { SettingsService } from '@/services/settings.service';
 import { generateCostCode } from '@/utils/number';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sales-a4',
   standalone: true,
-  imports: [DatePipe, DecimalPipe],
+  imports: [DatePipe, DecimalPipe, TranslateModule],
   templateUrl: './sales-a4.component.html',
 })
 export class SalesA4Component {

@@ -2,7 +2,7 @@
   <div class="bg-white p-6 rounded-3xl border border-border shadow-sm">
     <div class="flex flex-col md:flex-row gap-4 items-end mb-8">
       <div class="flex-1 space-y-2">
-        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Branch Context</label>
+        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'stockHistory.branchContext' | translate }}</label>
         <select [(ngModel)]="selectedBranchId" (change)="loadHistory()" class="w-full p-3 bg-gray-50 border rounded-xl outline-none">
           @for (branch of branches(); track branch.id) {
             <option [value]="branch.id">{{ branch.name }}</option>
@@ -11,7 +11,7 @@
       </div>
       
       <div class="flex-1 space-y-2">
-        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select Product</label>
+        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'stockHistory.selectProduct' | translate }}</label>
         <select [(ngModel)]="selectedProductId" (change)="loadHistory()" class="w-full p-3 bg-gray-50 border rounded-xl outline-none">
           @for (product of products(); track product.id) {
             <option [value]="product.id">{{ product.name }}</option>
@@ -24,11 +24,11 @@
       <table class="w-full text-left border-collapse">
         <thead class="bg-gray-50 text-[10px] font-black text-gray-500 uppercase tracking-widest">
           <tr>
-            <th class="p-4">Date & Time</th>
-            <th class="p-4">Reference</th>
-            <th class="p-4">Type</th>
-            <th class="p-4 text-right">Change</th>
-            <th class="p-4 text-right bg-store-cream/10 text-primary">Balance</th>
+            <th class="p-4">{{ 'stockHistory.table.dateTime' | translate }}</th>
+            <th class="p-4">{{ 'stockHistory.table.reference' | translate }}</th>
+            <th class="p-4">{{ 'stockHistory.table.type' | translate }}</th>
+            <th class="p-4 text-right">{{ 'stockHistory.table.change' | translate }}</th>
+            <th class="p-4 text-right bg-store-cream/10 text-primary">{{ 'stockHistory.table.balance' | translate }}</th>
           </tr>
         </thead>
         <tbody class="divide-y text-sm">

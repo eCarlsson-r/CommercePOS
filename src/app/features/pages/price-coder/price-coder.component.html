@@ -1,8 +1,8 @@
 <div class="p-8 space-y-8 max-w-5xl mx-auto">
   <header class="flex justify-between items-end">
     <div>
-      <h1 class="text-3xl font-black text-primary tracking-tighter uppercase">Price Coder</h1>
-      <p class="text-gray-500">Staging area for 18mm Label Printing</p>
+      <h1 class="text-3xl font-black text-primary tracking-tighter uppercase">{{ 'priceCoder.title' | translate }}</h1>
+      <p class="text-gray-500">{{ 'priceCoder.subtitle' | translate }}</p>
     </div>
     <div class="flex gap-3">
       <button (click)="isSettingsOpen.set(true)" 
@@ -81,7 +81,7 @@
 
     <div class="relative w-full max-w-md bg-white h-full shadow-2xl p-8 flex flex-col animate-in slide-in-from-right duration-300">
       <div class="flex justify-between items-center mb-10">
-        <h2 class="text-xl font-black text-gray-800 uppercase tracking-tighter">System Settings</h2>
+        <h2 class="text-xl font-black text-gray-800 uppercase tracking-tighter">{{ 'priceCoder.systemSettings' | translate }}</h2>
         <button (click)="isSettingsOpen.set(false)" class="text-gray-400 hover:text-red-500">
           <lucide-icon name="x"></lucide-icon>
         </button>
@@ -93,8 +93,8 @@
             <lucide-icon name="lock"></lucide-icon>
           </div>
           <div>
-            <h3 class="font-black text-gray-800 uppercase text-xs">Cost Cipher Key</h3>
-            <p class="text-[10px] text-gray-400 font-medium">10 unique letters for price masking.</p>
+            <h3 class="font-black text-gray-800 uppercase text-xs">{{ 'priceCoder.costCipherKey' | translate }}</h3>
+            <p class="text-[10px] text-gray-400 font-medium">{{ 'priceCoder.costCipherHint' | translate }}</p>
           </div>
         </div>
 

@@ -1,14 +1,14 @@
 <div class="p-6 space-y-6">
   <div class="bg-white p-6 rounded-3xl border border-border shadow-sm flex flex-wrap gap-4 items-end">
-    <div class="flex-1 min-w-[200px]">
-      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select Product</label>
+    <div class="flex-1 min-w-50">
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'stockAudit.selectProduct' | translate }}</label>
       <select [(ngModel)]="selectedProduct" (change)="fetchAudit()" class="w-full mt-2 p-3 bg-gray-50 border border-border rounded-xl outline-none">
         @for (p of products(); track p.id) { <option [value]="p.id">{{ p.name }}</option> }
       </select>
     </div>
 
-    <div class="flex-1 min-w-[200px]">
-      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select Branch</label>
+    <div class="flex-1 min-w-50">
+      <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'stockAudit.selectBranch' | translate }}</label>
       <select [(ngModel)]="selectedBranch" (change)="fetchAudit()" class="w-full mt-2 p-3 bg-gray-50 border border-border rounded-xl outline-none">
         @for (b of branches(); track b.id) { <option [value]="b.id">{{ b.name }}</option> }
       </select>
@@ -19,11 +19,11 @@
     <table class="w-full text-left">
       <thead class="bg-gray-50 border-b">
         <tr>
-          <th class="p-4 text-xs font-bold text-gray-400 uppercase">Date & Time</th>
-          <th class="p-4 text-xs font-bold text-gray-400 uppercase">Type</th>
-          <th class="p-4 text-xs font-bold text-gray-400 uppercase text-center">Change</th>
-          <th class="p-4 text-xs font-bold text-gray-400 uppercase text-center">Final Balance</th>
-          <th class="p-4 text-xs font-bold text-gray-400 uppercase">Actor</th>
+          <th class="p-4 text-xs font-bold text-gray-400 uppercase">{{ 'stockAudit.table.dateTime' | translate }}</th>
+          <th class="p-4 text-xs font-bold text-gray-400 uppercase">{{ 'stockAudit.table.type' | translate }}</th>
+          <th class="p-4 text-xs font-bold text-gray-400 uppercase text-center">{{ 'stockAudit.table.change' | translate }}</th>
+          <th class="p-4 text-xs font-bold text-gray-400 uppercase text-center">{{ 'stockAudit.table.finalBalance' | translate }}</th>
+          <th class="p-4 text-xs font-bold text-gray-400 uppercase">{{ 'stockAudit.table.actor' | translate }}</th>
         </tr>
       </thead>
       <tbody class="divide-y">

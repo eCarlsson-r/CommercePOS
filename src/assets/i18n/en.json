@@ -1,0 +1,174 @@
+{
+  "common": {
+    "superAdmin": "Super Admin",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "search": "Search",
+    "confirm": "Confirm",
+    "back": "Back",
+    "add": "Add",
+    "remove": "Remove",
+    "status": "Status",
+    "actions": "Actions",
+    "noData": "No data available"
+  },
+  "dashboard": {
+    "openPos": "Open POS",
+    "quickOps": "Quick Operations",
+    "receiveStock": "Receive Stock"
+  },
+  "sales": {
+    "searchPlaceholder": "Search products by name or SKU...",
+    "searching": "Searching...",
+    "currentOrder": "Current Order",
+    "total": "Total",
+    "walkInCustomer": "Walk-in Customer",
+    "customerMember": "Member Customer",
+    "processPayment": "Process Payment",
+    "visualSearch": "Visual Search",
+    "recommendationsTitle": "AI Recommendations"
+  },
+  "receipt": {
+    "discountAmount": "Discount",
+    "pointsAvailable": "Points Available",
+    "pointsRedemption": "Points Redemption",
+    "redeem": "Redeem Points",
+    "redeemed": "Points Redeemed"
+  },
+  "customers": {
+    "title": "Customer Management",
+    "subtitle": "Manage loyalty members and customer profiles",
+    "searchPlaceholder": "Search by name, email, or phone...",
+    "newMember": "New Member",
+    "editMember": "Edit Member",
+    "updateMember": "Update Member",
+    "registerMember": "Register Member",
+    "table": {
+      "customer": "Customer",
+      "points": "Points",
+      "balance": "Balance"
+    },
+    "form": {
+      "fullName": "Full Name",
+      "namePlaceholder": "Enter full name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter email address",
+      "whatsapp": "WhatsApp / Mobile",
+      "mobilePlaceholder": "Enter mobile number",
+      "loyaltyProgram": "Loyalty Program",
+      "startingPoints": "Starting Points"
+    }
+  },
+  "products": {
+    "name": "Product Name",
+    "namePlaceholder": "Enter product name",
+    "sku": "SKU",
+    "skuPlaceholder": "Auto-generated if empty",
+    "basePrice": "Base Price",
+    "description": "Description",
+    "category": "Category",
+    "selectCategory": "Select a category",
+    "minStockAlert": "Min Stock Alert",
+    "minStockHint": "Notify when stock falls below this level",
+    "gallery": "Product Gallery",
+    "addPhoto": "Add Photo",
+    "aiImage": "AI Image",
+    "aiImageGenerating": "Generating...",
+    "magicGenerate": "Magic Generate",
+    "magicGenerating": "Generating...",
+    "createProduct": "Create Product",
+    "updateProduct": "Update Product",
+    "cancel": "Cancel"
+  },
+  "ecommerceOrders": {
+    "title": "Order Hub",
+    "subtitle": "Managing e-commerce fulfillment across 11 branches",
+    "tabs": {
+      "new": "New",
+      "processing": "Processing",
+      "shipped": "Shipped"
+    },
+    "orderPrefix": "Order",
+    "deliverTo": "Deliver to:",
+    "items": "Items",
+    "assignedBranch": "Assigned Branch",
+    "acceptPrintLabel": "Accept & Print Label",
+    "inputResiShip": "Input Resi & Ship",
+    "release": "Release",
+    "cancelOrder": "Cancel Order",
+    "trackingNumber": "Tracking Number",
+    "viewCustomerProfile": "View Customer Profile",
+    "emptyState": "No orders in this queue.",
+    "finalizeShipment": "Finalize Shipment",
+    "selectCourier": "Select Courier",
+    "trackingNumberResi": "Tracking Number (RESI)",
+    "resiPlaceholder": "Paste Resi here...",
+    "confirmFinalizeSale": "Confirm & Finalize Sale"
+  },
+  "packingSlip": {
+    "orderNumber": "Order Number",
+    "fulfillmentBranch": "Fulfillment Branch",
+    "shipTo": "Ship To:",
+    "itemsChecklist": "Items Checklist (Check before packing)",
+    "sku": "SKU",
+    "qty": "Qty"
+  },
+  "inventory": {
+    "purchaseOrders": "Purchase Orders",
+    "purchaseOrdersSubtitle": "Manage stock procurement from suppliers",
+    "createNewOrder": "Create New Order",
+    "table": {
+      "poReference": "PO Reference",
+      "supplier": "Supplier",
+      "orderDate": "Order Date",
+      "totalAmount": "Total Amount",
+      "status": "Status"
+    },
+    "actions": {
+      "confirmDelivery": "Confirm Delivery"
+    },
+    "returns": {
+      "title": "Stock Returns",
+      "newReturn": "New Return",
+      "history": "Return History",
+      "searchPlaceholder": "Search returns...",
+      "selectSupplier": "Select Supplier",
+      "supplier": "Supplier",
+      "notes": "Notes",
+      "notesPlaceholder": "Reason for return, condition details...",
+      "processReturn": "Process Return",
+      "table": {
+        "product": "Product",
+        "qty": "Qty",
+        "status": "Status"
+      },
+      "status": {
+        "good": "Good Condition",
+        "damaged": "Damaged"
+      }
+    }
+  },
+  "suppliers": {
+    "title": "Suppliers",
+    "subtitle": "Manage your supplier network",
+    "addSupplier": "Add Supplier",
+    "editDetails": "Edit Details",
+    "removeSupplier": "Remove Supplier",
+    "newSupplierDetails": "New Supplier Details",
+    "companyName": "Company Name",
+    "contactPerson": "Contact Person",
+    "emailAddress": "Email Address",
+    "phoneNumber": "Phone Number",
+    "physicalAddress": "Physical Address",
+    "noAddress": "No address on file",
+    "taxId": "Tax ID / NPWP",
+    "purchaseHistory": "Purchase History",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}

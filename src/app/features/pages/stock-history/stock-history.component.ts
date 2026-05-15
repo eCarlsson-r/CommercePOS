@@ -1,14 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { StockHistoryService, StockLog } from '@/services/stock-history.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // <--- 1. Import this
+import { FormsModule } from '@angular/forms'; 
 import { ProductService } from '@/services/product.service';
 import { BranchService } from '@/services/branch.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-stock-history',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './stock-history.component.html',
 })
 export class StockHistoryComponent {

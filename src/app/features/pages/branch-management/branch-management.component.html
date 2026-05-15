@@ -1,7 +1,7 @@
 <div class="p-6 max-w-6xl mx-auto space-y-6">
   <div class="flex justify-between items-end">
     <div>
-      <h1 class="text-2xl font-bold text-primary">Branch Network</h1>
+      <h1 class="text-2xl font-bold text-primary">{{ 'branchManagement.title' | translate }}</h1>
       <p class="text-sm text-gray-500">
         Managing {{ branchService.branches().length }} active locations
       </p>
@@ -70,7 +70,7 @@
 
       <div class="space-y-6 flex-1 overflow-y-auto">
         <div>
-          <label class="text-[10px] font-bold text-gray-400 uppercase">Branch Name</label>
+          <label class="text-[10px] font-bold text-gray-400 uppercase">{{ 'branchManagement.form.name' | translate }}</label>
           <input
             [(ngModel)]="formData.name"
             class="w-full mt-2 p-4 bg-gray-50 rounded-2xl border-none"
@@ -78,7 +78,7 @@
           />
         </div>
         <div>
-          <label class="text-[10px] font-bold text-gray-400 uppercase">Branch Phone</label>
+          <label class="text-[10px] font-bold text-gray-400 uppercase">{{ 'branchManagement.form.phone' | translate }}</label>
           <input
             [(ngModel)]="formData.phone"
             class="w-full mt-2 p-4 bg-gray-50 rounded-2xl border-none"
@@ -86,7 +86,7 @@
           />
         </div>
         <div>
-          <label class="text-[10px] font-bold text-gray-400 uppercase">Address</label>
+          <label class="text-[10px] font-bold text-gray-400 uppercase">{{ 'branchManagement.form.address' | translate }}</label>
           <textarea
             [(ngModel)]="formData.address"
             class="w-full mt-2 p-4 bg-gray-50 rounded-2xl border-none h-32"

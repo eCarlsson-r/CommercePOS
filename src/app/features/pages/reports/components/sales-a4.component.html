@@ -2,7 +2,7 @@
   
   <header class="flex justify-between items-end border-b-2 border-black pb-4 mb-6">
     <div>
-      <h1 class="text-xl font-black uppercase">Sales Report</h1>
+      <h1 class="text-xl font-black uppercase">{{ 'reports.salesA4.title' | translate }}</h1>
       <p class="font-bold uppercase">
         {{ branchName() }} | 
         @if (employeeName()) {
@@ -20,13 +20,13 @@
   <table class="w-full border-collapse">
     <thead>
       <tr class="border-b border-black text-left uppercase font-black">
-        <th class="py-2">SKU</th>
-        <th class="py-2">Item Name</th>
-        <th class="py-2 text-center">Cost (Enc)</th>
-        <th class="py-2 text-center">Qty</th>
-        <th class="py-2 text-right">Unit Price</th>
-        <th class="py-2 text-right">Total</th>
-        <th class="py-2 text-right">Sold By</th>
+        <th class="py-2">{{ 'reports.salesA4.table.sku' | translate }}</th>
+        <th class="py-2">{{ 'reports.salesA4.table.itemName' | translate }}</th>
+        <th class="py-2 text-center">{{ 'reports.salesA4.table.costEnc' | translate }}</th>
+        <th class="py-2 text-center">{{ 'reports.salesA4.table.qty' | translate }}</th>
+        <th class="py-2 text-right">{{ 'reports.salesA4.table.unitPrice' | translate }}</th>
+        <th class="py-2 text-right">{{ 'reports.salesA4.table.total' | translate }}</th>
+        <th class="py-2 text-right">{{ 'reports.salesA4.table.soldBy' | translate }}</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-200">

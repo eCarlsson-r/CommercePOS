@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { BranchService } from '@/services/branch.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { Branch } from '@/models/branch.model';
 
 @Component({
   selector: 'app-branch-management',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, FormsModule],
+  imports: [CommonModule, LucideAngularModule, FormsModule, TranslateModule],
   templateUrl: './branch-management.component.html'
 })
 export class BranchManagementComponent {

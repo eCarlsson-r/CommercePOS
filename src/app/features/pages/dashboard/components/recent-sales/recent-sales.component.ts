@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { SaleService } from '@/services/sale.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recent-sales',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, TranslateModule],
   templateUrl: './recent-sales.component.html'
 })
 export class RecentSalesComponent implements OnInit {

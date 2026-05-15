@@ -1,8 +1,8 @@
 <div class="p-6 space-y-6">
   <div class="flex justify-between items-center">
     <div>
-      <h1 class="text-2xl font-bold text-store-brown">Supplier Performance</h1>
-      <p class="text-sm text-gray-500">Analyze vendor reliability and inventory waste impact</p>
+      <h1 class="text-2xl font-bold text-store-brown">{{ 'reports.supplierPerformance.title' | translate }}</h1>
+      <p class="text-sm text-gray-500">{{ 'reports.supplierPerformance.subtitle' | translate }}</p>
     </div>
   </div>
 
@@ -10,11 +10,11 @@
     <table class="w-full text-left">
       <thead class="bg-gray-50 border-b">
         <tr>
-          <th class="p-4 text-xs font-black text-gray-400 uppercase">Supplier Name</th>
-          <th class="p-4 text-xs font-black text-gray-400 uppercase text-center">Orders</th>
-          <th class="p-4 text-xs font-black text-gray-400 uppercase text-center">Total Qty In</th>
-          <th class="p-4 text-xs font-black text-gray-400 uppercase text-center">Waste Qty</th>
-          <th class="p-4 text-xs font-black text-gray-400 uppercase">Waste Rate</th>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase">{{ 'reports.supplierPerformance.table.supplierName' | translate }}</th>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase text-center">{{ 'reports.supplierPerformance.table.orders' | translate }}</th>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase text-center">{{ 'reports.supplierPerformance.table.totalQtyIn' | translate }}</th>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase text-center">{{ 'reports.supplierPerformance.table.wasteQty' | translate }}</th>
+          <th class="p-4 text-xs font-black text-gray-400 uppercase">{{ 'reports.supplierPerformance.table.wasteRate' | translate }}</th>
         </tr>
       </thead>
       <tbody class="divide-y">

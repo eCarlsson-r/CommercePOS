@@ -7,13 +7,15 @@ import { Branch } from "@/models/branch.model";
 import { EmployeeService } from "@/services/employee.service";
 import { SalesA4Component } from "../../components/sales-a4.component";
 import { Employee } from "@/models/employee.model";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-sales-report',
     templateUrl: './sales-report.component.html',
-    imports: [CommonModule, FormsModule, LucideAngularModule, SalesA4Component]
+    imports: [CommonModule, FormsModule, TranslateModule, LucideAngularModule, SalesA4Component]
 })
 export class SalesReportComponent {
+    private translate = inject(TranslateService);
     private branchService = inject(BranchService);
     private employeeService = inject(EmployeeService);
     branches = signal<Branch[]>([]);
@@ -36,12 +38,14 @@ export class SalesReportComponent {
 
     onBranchChange() {
         const branch = this.branches().find((b) => b.id === Number(this.branchId()));
-        this.report.branchName.set(branch?.name || 'All Branches');
+        const allBranchesLabel = (typeof this.translate?.instant === 'function') ? (this.translate as any).instant('reports.allBranches') : 'All Branches';
+        this.report.branchName.set(branch?.name || allBranchesLabel);
     }
 
     onEmployeeChange() {
         const employee = this.employees().find((e) => e.id === Number(this.employeeId()));
-        this.report.employeeName.set(employee?.name || 'All Employees');
+        const allEmployeesLabel = (typeof this.translate?.instant === 'function') ? (this.translate as any).instant('reports.allEmployees') : 'All Employees';
+        this.report.employeeName.set(employee?.name || allEmployeesLabel);
     }
 
     @ViewChild(SalesA4Component) report!: SalesA4Component;

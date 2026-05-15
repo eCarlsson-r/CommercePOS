@@ -20,10 +20,10 @@
   <table class="w-full mb-10">
     <thead class="text-[10px] font-black text-gray-400 uppercase border-b">
       <tr>
-        <th class="py-4 text-left">Product</th>
-        <th class="py-4 text-center">Quantity</th>
-        <th class="py-4 text-right">Unit Price</th>
-        <th class="py-4 text-right">Subtotal</th>
+        <th class="py-4 text-left">{{ 'inventory.table.product' | translate }}</th>
+        <th class="py-4 text-center">{{ 'inventory.table.qty' | translate }}</th>
+        <th class="py-4 text-right">{{ 'inventory.table.unitPrice' | translate }}</th>
+        <th class="py-4 text-right">{{ 'inventory.table.subtotal' | translate }}</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-50">
@@ -48,11 +48,11 @@
   <div class="flex justify-end pt-6 border-t">
     <div class="w-64 space-y-2">
       <div class="flex justify-between text-xs text-gray-400 font-bold uppercase">
-        <span>Total Items</span>
+        <span>{{ 'inventory.table.totalItems' | translate }}</span>
         <span>{{ totalItems }}</span>
       </div>
       <div class="flex justify-between text-xl font-black text-gray-900 pt-2 border-t">
-        <span>Grand Total</span>
+        <span>{{ 'receipt.grandTotal' | translate }}</span>
         <span class="text-primary">Rp {{ selectedPO()?.total_amount | number }}</span>
       </div>
     </div>

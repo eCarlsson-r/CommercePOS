@@ -3,21 +3,21 @@
     <div class="p-3 bg-primary/10 text-primary rounded-2xl">
       <lucide-icon name="truck"></lucide-icon>
     </div>
-    <h2 class="text-xl font-black text-gray-800 uppercase tracking-tighter">Supplier Spend Analysis</h2>
+    <h2 class="text-xl font-black text-gray-800 uppercase tracking-tighter">{{ 'purchase.title' | translate }}</h2>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
     <div class="col-span-1">
-      <label class="text-[10px] font-black text-gray-400 uppercase">Supplier</label>
+      <label class="text-[10px] font-black text-gray-400 uppercase">{{ 'purchase.supplierLabel' | translate }}</label>
       <select [(ngModel)]="supplierId" class="w-full mt-1 p-4 bg-gray-50 rounded-2xl border-none font-bold">
-        <option [value]="0">All Suppliers (Consolidated)</option>
+        <option [value]="0">{{ 'purchase.allSuppliers' | translate }}</option>
         @for (s of suppliers(); track s.id) {
           <option [value]="s.id">{{ s.name }}</option>
         }
       </select>
     </div>
     <div class="col-span-2">
-      <label class="text-[10px] font-black text-gray-400 uppercase">Date Range</label>
+      <label class="text-[10px] font-black text-gray-400 uppercase">{{ 'common.dateRange' | translate }}</label>
       <div class="flex items-center gap-2 mt-1">
         <input type="date" [ngModel]="startDate" (ngModelChange)="startDate.set($event)" class="w-full p-4 bg-gray-50 rounded-2xl border-none font-bold">
         <span class="text-gray-300">-</span>
@@ -25,9 +25,9 @@
       </div>
     </div>
     <div class="col-span-1 flex items-center gap-2">
-      <button (click)="generatePurchaseReport()" 
+        <button (click)="generatePurchaseReport()" 
             class="w-full py-5 bg-primary text-white rounded-3xl font-black text-xs uppercase hover:bg-primary transition-all">
-        Generate Report
+        {{ 'reports.generateReport' | translate }}
       </button>
       <button (click)="printReport()" class="p-5 bg-gray-100 rounded-3xl hover:bg-gray-200">
         <lucide-icon name="printer" class="w-5 h-5 text-gray-600"></lucide-icon>

@@ -5,11 +5,12 @@ import { LucideAngularModule } from "lucide-angular";
 import { SupplierService } from "@/services/supplier.service";
 import { Supplier } from "@/models/supplier.model";
 import { PurchaseA4Component } from "../../components/purchase-a4.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-purchase-report',
     templateUrl: './purchase-report.component.html',
-    imports: [CommonModule, FormsModule, LucideAngularModule, PurchaseA4Component]
+    imports: [CommonModule, FormsModule, TranslateModule, LucideAngularModule, PurchaseA4Component]
 })
 export class PurchaseReportComponent {
     private supplierService = inject(SupplierService);

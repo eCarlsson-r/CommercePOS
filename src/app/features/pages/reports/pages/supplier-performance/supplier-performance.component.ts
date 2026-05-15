@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
 import { ReportService } from '@/services/report.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-supplier-performance',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, TranslateModule, LucideAngularModule],
   templateUrl: './supplier-performance.component.html'
 })
 export class SupplierPerformanceComponent {

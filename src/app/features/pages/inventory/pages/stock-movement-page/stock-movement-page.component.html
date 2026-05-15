@@ -2,8 +2,8 @@
   
   <div class="flex justify-between items-end">
     <div>
-      <h1 class="text-3xl font-bold text-primary tracking-tight">Inventory Logistics</h1>
-      <p class="text-gray-500">Manage transfers between Medan and Binjai branches</p>
+      <h1 class="text-3xl font-bold text-primary tracking-tight">{{ 'stockMovement.title' | translate }}</h1>
+      <p class="text-gray-500">{{ 'stockMovement.subtitle' | translate }}</p>
     </div>
     <button (click)="isDrawerOpen.set(true)" 
             class="bg-primary text-white px-8 py-3 rounded-2xl font-bold shadow-lg shadow-primary/20 flex items-center gap-2 hover:-translate-y-1 transition-all">
@@ -13,16 +13,16 @@
   </div>
 
   <section>
-    <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Movement History</h2>
+    <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">{{ 'stockMovement.movementHistory' | translate }}</h2>
     <div class="bg-white rounded-2xl border border-border overflow-hidden">
       <table class="w-full text-left">
         <thead class="bg-store-cream/20 text-primary text-xs font-bold uppercase tracking-widest">
           <tr>
-            <th class="p-5">Reference</th>
-            <th class="p-5">Path</th>
-            <th class="p-5">Items</th>
-            <th class="p-5">Status</th>
-            <th class="p-5 text-right">Date</th>
+            <th class="p-5">{{ 'stockMovement.table.reference' | translate }}</th>
+            <th class="p-5">{{ 'stockMovement.table.path' | translate }}</th>
+            <th class="p-5">{{ 'stockMovement.table.items' | translate }}</th>
+            <th class="p-5">{{ 'stockMovement.table.status' | translate }}</th>
+            <th class="p-5 text-right">{{ 'stockMovement.table.date' | translate }}</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-border">
