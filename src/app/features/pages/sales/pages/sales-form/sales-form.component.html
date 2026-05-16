@@ -132,31 +132,31 @@
     
     <div class="relative bg-white w-full max-w-2xl rounded-[3rem] shadow-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-200">
       <div class="p-8 bg-gray-50 border-b flex justify-between items-center">
-        <h2 class="text-2xl font-black text-primary uppercase italic tracking-tighter">Complete Payment</h2>
+        <h2 class="text-2xl font-black text-primary uppercase italic tracking-tighter">{{ 'sales.form.completePayment' | translate }}</h2>
         <button (click)="closePayment()" class="p-3 hover:bg-white rounded-2xl text-gray-400"><lucide-icon name="x"></lucide-icon></button>
       </div>
 
       <div class="p-10 grid grid-cols-2 gap-10">
         <div class="space-y-6">
           <div class="p-6 bg-gray-50 rounded-4xl border border-gray-100">
-            <label class="text-[10px] font-black text-gray-400 uppercase">Original Subtotal</label>
+            <label class="text-[10px] font-black text-gray-400 uppercase">{{ 'sales.form.originalSubtotal' | translate }}</label>
             <div class="text-xl font-bold text-gray-400 line-through decoration-gray-300">
               Rp {{ (totalPrice() + (activeSale().appliedPoints * 100) + manualDiscount) | number }}
             </div>
             
             <div class="mt-4 space-y-2">
               <div *ngIf="activeSale().appliedPoints > 0" class="flex justify-between items-center text-green-600">
-                <span class="text-[10px] font-black uppercase tracking-widest">Points Reward</span>
+                <span class="text-[10px] font-black uppercase tracking-widest">{{ 'sales.form.pointsReward' | translate }}</span>
                 <span class="font-bold">- Rp {{ (activeSale().appliedPoints * 100) | number }}</span>
               </div>
               <div *ngIf="manualDiscount > 0" class="flex justify-between items-center text-blue-600">
-                <span class="text-[10px] font-black uppercase tracking-widest">Special Discount</span>
+                <span class="text-[10px] font-black uppercase tracking-widest">{{ 'sales.form.specialDiscount' | translate }}</span>
                 <span class="font-bold">- Rp {{ manualDiscount | number }}</span>
               </div>
             </div>
 
             <div class="mt-6 pt-6 border-t border-gray-200">
-              <label class="text-[10px] font-black text-primary uppercase">Amount to Pay</label>
+              <label class="text-[10px] font-black text-primary uppercase">{{ 'sales.form.amountToPay' | translate }}</label>
               <div class="text-4xl font-black text-gray-900 tracking-tighter">
                 Rp {{ totalPrice() | number }}
               </div>
@@ -165,7 +165,7 @@
         </div>
 
         <div class="space-y-6">
-          <label class="text-[10px] font-black text-gray-400 uppercase">Payment Breakdown</label>
+          <label class="text-[10px] font-black text-gray-400 uppercase">{{ 'sales.form.paymentBreakdown' | translate }}</label>
           
           <div class="space-y-2">
             @for (p of selectedPayments(); track $index) {
@@ -183,17 +183,17 @@
           <div class="grid grid-cols-2 gap-2 mt-4">
             <button (click)="addPaymentMethod('CASH')" 
                     class="py-3 border-2 border-gray-100 rounded-xl font-black text-[10px] uppercase hover:border-primary transition-all">
-              + Add Cash
+              {{ 'sales.form.addCash' | translate }}
             </button>
             <button (click)="addPaymentMethod('QRIS')" 
                     class="py-3 border-2 border-gray-100 rounded-xl font-black text-[10px] uppercase hover:border-primary transition-all">
-              + Add QRIS/Debit
+              {{ 'sales.form.addQRIS' | translate }}
             </button>
           </div>
 
           <div *ngIf="hasCashPayment()" class="p-4 bg-orange-50 rounded-2xl border border-orange-100 mt-4">
             <div class="flex justify-between items-center text-orange-600">
-              <span class="text-[10px] font-black uppercase">Change Due</span>
+              <span class="text-[10px] font-black uppercase">{{ 'sales.form.changeDue' | translate }}</span>
               <span class="text-xl font-black">Rp {{ calculateChange() | number }}</span>
             </div>
           </div>
@@ -204,7 +204,7 @@
         <button (click)="submitPayment()" 
           [disabled]="hasCashPayment() && (calculateChange() < 0)"
           class="w-full py-6 bg-primary text-white rounded-4xl font-black text-lg uppercase shadow-xl shadow-primary/20 hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-50 disabled:grayscale">
-          Confirm & Print Receipt
+          {{ 'sales.form.confirmAndPrint' | translate }}
         </button>
       </div>
     </div>

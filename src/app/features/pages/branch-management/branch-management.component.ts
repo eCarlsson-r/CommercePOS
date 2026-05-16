@@ -17,7 +17,7 @@ export class BranchManagementComponent {
   // Injecting our dynamic branch service
   public branchService = inject(BranchService);
   showDrawer = signal(false);
-  action = signal("Create");
+  action = signal("branchManagement.actions.create");
   formData = { name: '', address: '', phone: '', is_active: true };
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class BranchManagementComponent {
   }
 
   editBranch(branch: any) {
-    this.action.set("Update");
+    this.action.set("branchManagement.actions.update");
     this.editingBranch.set(branch.id);
     this.formData = {
       name: branch.name,
@@ -59,7 +59,7 @@ export class BranchManagementComponent {
 
   cancelEdit() {
     this.showDrawer.set(false);
-    this.action.set("Create");
+    this.action.set("branchManagement.actions.create");
     this.formData = { name: '', address: '', phone: '', is_active: true };
     this.editingBranch.set(0);
   }

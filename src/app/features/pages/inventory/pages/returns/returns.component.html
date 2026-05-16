@@ -1,6 +1,6 @@
 <div class="p-6 max-w-6xl mx-auto space-y-6">
   <div class="flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-store-brown">{{ 'inventory.returns.title' | translate }}</h1>
+    <h1 class="text-3xl font-black text-primary tracking-tighter uppercase">{{ 'inventory.returns.title' | translate }}</h1>
     <div class="bg-gray-100 p-1 rounded-xl flex">
       <button (click)="activeTab.set('process')" [class.bg-white]="activeTab() === 'process'" class="px-4 py-2 rounded-lg text-sm font-bold">{{ 'inventory.returns.newReturn' | translate }}</button>
       <button (click)="loadHistory()" [class.bg-white]="activeTab() === 'history'" class="px-4 py-2 rounded-lg text-sm font-bold">{{ 'inventory.returns.history' | translate }}</button>
@@ -98,11 +98,11 @@
     <table class="w-full text-left">
       <thead class="bg-gray-50/50 border-b">
         <tr>
-          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Date / Ref</th>
-          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Item & Branch</th>
-          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Reason</th>
-          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Outcome</th>
-          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Financial Impact</th>
+          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'inventory.returns.table.dateRef' | translate }}</th>
+          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'inventory.returns.table.itemBranch' | translate }}</th>
+          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'inventory.returns.table.reason' | translate }}</th>
+          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ 'inventory.returns.table.outcome' | translate }}</th>
+          <th class="p-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">{{ 'inventory.returns.table.financialImpact' | translate }}</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-100">
@@ -125,11 +125,11 @@
             <td class="p-5">
               @if (entry.condition === 'good') {
                 <span class="flex items-center gap-1 w-fit px-2 py-1 bg-green-50 text-green-600 rounded-lg text-[10px] font-black uppercase border border-green-100">
-                  <lucide-icon name="refresh-cw" class="w-3 h-3"></lucide-icon> Restocked
+                  <lucide-icon name="refresh-cw" class="w-3 h-3"></lucide-icon> {{ 'inventory.returns.status.good' | translate }}
                 </span>
               } @else {
                 <span class="flex items-center gap-1 w-fit px-2 py-1 bg-red-50 text-red-600 rounded-lg text-[10px] font-black uppercase border border-red-100">
-                  <lucide-icon name="trash-2" class="w-3 h-3"></lucide-icon> Waste
+                  <lucide-icon name="trash-2" class="w-3 h-3"></lucide-icon> {{ 'inventory.returns.status.damaged' | translate }}
                 </span>
               }
             </td>

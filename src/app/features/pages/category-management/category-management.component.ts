@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CategoryService } from '@/services/category.service';
 import { LucideAngularModule } from "lucide-angular";
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class CategoryManagementComponent {
   private categoryService = inject(CategoryService);
+  private translate = inject(TranslateService);
 
   categories = signal<any[]>([]);
   editingCategory = signal<any | null>(null);
@@ -29,7 +30,7 @@ export class CategoryManagementComponent {
 
   // --- TRASH FUNCTION (DELETE) ---
   deleteCategory(id: number) {
-    if (confirm('Are you sure? This may affect products linked to this category.')) {
+    if (confirm(this.translate.instant('categoryManagement.deleteConfirm'))) {
       this.categoryService.delete(id).subscribe({
         next: () => {
           // Update local state immediately for a snappy UI

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
 import { AIService } from '@/services/ai.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -119,6 +119,7 @@ interface ChatMessage {
 })
 export class FloatingAssistantComponent {
   private aiService = inject(AIService);
+  private translate = inject(TranslateService);
 
   isOpen = signal(false);
   isLoading = signal(false);
@@ -157,7 +158,7 @@ export class FloatingAssistantComponent {
       error: () => {
         this.messages.update(msgs => [...msgs, {
           role: 'assistant',
-          content: 'Sorry, I encountered an error. Please try again.',
+          content: this.translate.instant('assistant.error'),
           timestamp: new Date()
         }]);
         this.isLoading.set(false);

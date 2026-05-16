@@ -2,7 +2,7 @@ import { Component, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProductService } from '@/services/product.service';
 import { PurchaseService } from '@/services/purchase.service';
 import { BranchService } from '@/services/branch.service';
@@ -28,6 +28,7 @@ export class PurchaseOrderComponent {
   private purchaseService = inject(PurchaseService);
   private branchService = inject(BranchService);
   private supplierService = inject(SupplierService);
+  private translate = inject(TranslateService);
 
   // State
   selectedSupplierId = signal<number>(0); // Default to Medan Warehouse
@@ -142,7 +143,7 @@ export class PurchaseOrderComponent {
 
     this.purchaseService.createPurchase(payload).subscribe({
       next: () => {
-        alert('Stock received and added to branch inventory!');
+        alert(this.translate.instant('inventory.purchaseOrderAlerts.successAlert'));
         this.poItems.set([]); // Reset form
         this.isSubmitting.set(false);
       },
@@ -154,7 +155,7 @@ export class PurchaseOrderComponent {
   }
 
   receiveStock(po: any) {
-    if (!confirm(`Confirm receiving PO #${po.id}? This will add ${po.items.length} items to ${po.branch.name} inventory.`)) return;
+    if (!confirm(this.translate.instant('inventory.purchaseOrderAlerts.confirmReceive', { id: po.id, items: po.items.length, branch: po.branch.name }))) return;
 
     this.purchaseService.updateStatus(po.id, 'received').subscribe({
       next: () => {
@@ -162,9 +163,9 @@ export class PurchaseOrderComponent {
         this.purchaseOrders.update(orders => 
           orders.map(o => o.id === po.id ? { ...o, status: 'received' } : o)
         );
-        alert('Stock successfully integrated into branch inventory.');
+        alert(this.translate.instant('inventory.purchaseOrderAlerts.integratedAlert'));
       },
-      error: (err) => alert('Error updating status: ' + err.message)
+      error: (err) => alert(this.translate.instant('inventory.purchaseOrderAlerts.errorStatusUpdate', { message: err.message }))
     });
   }
 }

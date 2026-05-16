@@ -12,13 +12,13 @@
       <div class="space-y-4">
         <div>
           <label class="text-[10px] font-black uppercase ml-2 text-gray-400">{{ 'banner.form.title' | translate }}</label>
-          <input type="text" [(ngModel)]="newBanner.title" placeholder="e.g. Ramadan Special"
+             <input type="text" [(ngModel)]="newBanner.title" [placeholder]="'banner.form.titlePlaceholder' | translate"
                  class="w-full mt-1 p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 ring-primary/20">
         </div>
 
         <div>
           <label class="text-[10px] font-black uppercase ml-2 text-gray-400">{{ 'banner.form.redirect' | translate }}</label>
-          <input type="text" [(ngModel)]="newBanner.link_url" placeholder="/category/gold-rings"
+             <input type="text" [(ngModel)]="newBanner.link_url" [placeholder]="'banner.form.linkPlaceholder' | translate"
                  class="w-full mt-1 p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 ring-primary/20">
         </div>
 

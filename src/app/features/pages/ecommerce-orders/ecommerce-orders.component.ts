@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { BranchService } from '@/services/branch.service';
 import { PackingSlipComponent } from './components/packing-slip.component';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ecommerce-orders',
@@ -15,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class EcommerceOrdersComponent {
   private ecommerceService = inject(EcommerceService);
   private branchService = inject(BranchService);  
+  private translate = inject(TranslateService);
 
   activeTab = signal<'paid' | 'processing' | 'shipped' | 'completed'>('paid');
   orders = signal<any[]>([]);
@@ -58,14 +59,14 @@ export class EcommerceOrdersComponent {
       },
       error: (err) => {
         // If someone else took it, the backend returns 422
-        alert(err.error.message || 'This order was just taken by another branch.');
+        alert(err.error.message || this.translate.instant('ecommerceOrders.orderTakenAlert'));
         this.loadOrders();
       }
     });
   }
 
   releaseOrder(orderId: number) {
-    if (confirm('Release this order? It will go back to the "NEW" pool for other branches.')) {
+    if (confirm(this.translate.instant('ecommerceOrders.releaseConfirm'))) {
       // We send status 'new' and branch_id null to the backend
       this.ecommerceService.updateStatus(orderId, { 
         status: 'paid', 
@@ -77,7 +78,7 @@ export class EcommerceOrdersComponent {
   }
 
   async cancelOrder(order: any) {
-    const reason = prompt("Reason for cancellation:");
+    const reason = prompt(this.translate.instant('ecommerceOrders.cancelReasonPrompt'));
     if (reason) {
       this.ecommerceService.updateStatus(order.id, { 
         status: 'cancelled',
@@ -106,7 +107,7 @@ export class EcommerceOrdersComponent {
         this.loadOrders();
         this.shipmentData.resi = ''; // Clear for next use
       },
-      error: (err) => alert("Error: " + err.error.message)
+      error: (err) => alert(this.translate.instant('ecommerceOrders.errorAlert', { message: err.error.message }))
     });
   }
 }

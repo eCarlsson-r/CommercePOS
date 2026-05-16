@@ -1,7 +1,7 @@
 <div class="p-6 max-w-5xl mx-auto space-y-8">
   <header>
-    <h1 class="text-2xl font-bold text-primary">{{ 'categoryManagement.title' | translate }}</h1>
-    <p class="text-sm text-gray-500">{{ 'categoryManagement.subtitle' | translate }}</p>
+    <h1 class="text-3xl font-black text-primary tracking-tighter uppercase">{{ 'categoryManagement.title' | translate }}</h1>
+    <p class="text-gray-500 font-medium">{{ 'categoryManagement.subtitle' | translate }}</p>
   </header>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -14,7 +14,7 @@
             <label class="block text-xs font-bold text-gray-700 mb-1">{{ 'categoryManagement.form.name' | translate }}</label>
             <input [(ngModel)]="categoryName"
                    type="text" 
-                   placeholder="e.g., Coffee Beans"
+                   [placeholder]="'categoryManagement.form.namePlaceholder' | translate"
                    class="w-full border p-3 rounded-xl outline-none focus:border-primary transition-colors">
           </div>
           <div>
@@ -22,7 +22,7 @@
             <textarea [(ngModel)]="categoryDescription"
                    rows="4"
                    type="text" 
-                   placeholder="e.g., Coffee Beans"
+                   [placeholder]="'categoryManagement.form.descriptionPlaceholder' | translate"
                    class="w-full border p-3 rounded-xl outline-none focus:border-primary transition-colors"></textarea>
           </div>
             <button (click)="saveCategory()"

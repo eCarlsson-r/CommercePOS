@@ -8,7 +8,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { debounceTime, distinctUntilChanged, switchMap, of, BehaviorSubject, merge } from 'rxjs';
 import { Customer } from '@/models/customer.model';
 import { RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-customer-list',
@@ -19,6 +19,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class CustomerListComponent {
   private fb = inject(FormBuilder);
   private customerService = inject(CustomerService);
+  private translate = inject(TranslateService);
   
   // Search Control with 300ms debounce to save Medan server resources
   searchControl = new FormControl('');
@@ -73,7 +74,7 @@ export class CustomerListComponent {
 
   deleteCustomer(customer: Customer) {
     if (!customer.id) return;
-    if (!window.confirm(`Delete ${customer.name}?`)) return;
+    if (!window.confirm(this.translate.instant('customers.deleteConfirm', { name: customer.name }))) return;
 
     this.customerService.deleteCustomer(customer.id).subscribe({
       next: () => this.refreshCustomers(),

@@ -2,13 +2,14 @@
 import { Component, input, inject, output } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { generateCostCode } from '@/utils/number';
 import { SettingsService } from '@/services/settings.service';
 
 @Component({
   selector: 'app-stock-card',
   standalone: true,
-  imports: [LucideAngularModule, CommonModule],
+  imports: [LucideAngularModule, CommonModule, TranslateModule],
   templateUrl: './stock-card.component.html'
 })
 export class StockCardComponent {

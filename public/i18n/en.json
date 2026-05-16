@@ -1,66 +1,34 @@
 {
   "common": {
-    "language": "Language",
-    "logout": "Logout",
-    "search": "Search",
-    "dashboard": "Dashboard",
-    "admin": "Admin",
-    "loading": "Loading",
-    "error": "Error",
-    "success": "Success",
-    "confirm": "Confirm",
-    "cancel": "Cancel",
+    "superAdmin": "Super Admin",
+    "loading": "Loading...",
+    "error": "An error occurred",
     "save": "Save",
+    "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
     "close": "Close",
+    "search": "Search",
+    "confirm": "Confirm",
     "back": "Back",
-    "superAdmin": "Super Admin"
+    "add": "Add",
+    "remove": "Remove",
+    "status": "Status",
+    "actions": "Actions",
+    "allCategories": "All Categories",
+    "allBranches": "All Branches",
+    "allStock": "All Stock",
+    "noData": "No data available",
+    "dateRange": "Date Range"
   },
-  "auth": {
-    "login": "Login",
-    "logout": "Logout",
-    "email": "Email",
-    "password": "Password",
-    "loginError": "Invalid credentials",
-    "loginSuccess": "Login successful"
-  },
-  "dashboard": {
-    "title": "Dashboard",
-    "revenue": "Total Revenue",
-    "orders": "Orders",
-    "branches": "Branches",
-    "lowStock": "Low Stock",
-    "pendingTransfers": "Pending Transfers",
-    "recentSales": "Recent Sales",
-    "topProducts": "Top Products",
-    "quickOps": "Quick Operations",
-    "openPos": "Open POS",
-    "receiveStock": "Receive Stock"
-  },
-  "sales": {
-    "title": "Sales",
-    "list": "Sales List",
-    "newSale": "New Sale",
-    "date": "Date",
-    "amount": "Amount",
-    "branch": "Branch",
-    "customer": "Customer",
-    "ecommerce": "E-Commerce Orders",
-    "searchPlaceholder": "Search product code or name...",
-    "searching": "Searching...",
-    "visualSearch": "Visual Search",
-    "recommendationsTitle": "Recommended for this Cart",
-    "currentOrder": "Current Order",
-    "customerMember": "Customer / Member",
-    "walkInCustomer": "Walk-in Customer (Guest)",
-    "total": "Total",
-    "processPayment": "Process Payment"
-  },
-  "assistant": {
-    "title": "AI Assistant",
-    "welcome": "Ask me about products, stock, or sales tips!",
-    "placeholder": "Type your question..."
+  "inventoryAssets": {
+    "title": "Inventory Assets",
+    "subtitle": "Manage and track your branch stock levels",
+    "searchPlaceholder": "Search by name or SKU...",
+    "updateStock": "Update Stock",
+    "historyLog": "History Log",
+    "noHistoryFound": "No history found",
+    "saveChanges": "Save Changes"
   },
   "master": {
     "banners": "Banners",
@@ -70,98 +38,85 @@
     "products": "Products",
     "suppliers": "Suppliers",
     "categories": "Categories",
-    "priceCoder": "Price Coder"
+    "priceCoder": "Price Label"
   },
-  "suppliers": {
-    "title": "Supplier Directory",
-    "subtitle": "Manage vendor relationships and procurement contacts",
-    "addSupplier": "Add Supplier",
-    "editDetails": "Edit Details",
-    "purchaseHistory": "Purchase History",
-    "removeSupplier": "Remove Supplier",
-    "contact": "Contact",
-    "taxId": "Tax ID",
-    "email": "Email",
-    "address": "Address",
-    "phone": "Phone",
-    "noAddress": "No address provided",
-    "newSupplierDetails": "New Supplier Details",
-    "companyName": "Company Name",
-    "contactPerson": "Contact Person",
-    "phoneNumber": "Phone Number",
-    "emailAddress": "Email Address",
-    "physicalAddress": "Physical Address",
-    "cancel": "Cancel",
-    "save": "Save"
-  },
-  "reports": {
-    "generateSalesReport": "Generate Sales Report",
-    "selectBranch": "Select Branch",
-    "dateRange": "Date Range",
-    "selectEmployee": "Select Employee",
-    "allBranches": "All Branches (Consolidated)",
-    "allEmployees": "All Employees (Consolidated)",
-    "generateReport": "Generate Report",
-    "printReport": "Print Report"
-  },
-  "purchase": {
-    "title": "Supplier Spend Analysis",
-    "supplierLabel": "Supplier",
-    "allSuppliers": "All Suppliers (Consolidated)",
-    "summary": "Purchase Summary",
-    "networkWide": "Network Wide: {{count}} Branches",
-    "totalSpend": "Total Spend",
-    "totalOrders": "Total Orders",
-    "avgOrderValue": "Avg Order Value",
-    "auditLog": "Purchase Audit Log",
-    "table": {
-      "sku": "SKU",
-      "product": "Product",
-      "qty": "Qty",
-      "unitCost": "Unit Cost",
-      "total": "Total"
-    }
-  },
-  "stockAudit": {
-    "selectProduct": "Select Product",
-    "selectBranch": "Select Branch",
-    "table": {
-      "dateTime": "Date & Time",
-      "type": "Type",
-      "change": "Change",
-      "finalBalance": "Final Balance",
-      "actor": "Actor"
-    }
-  },
-  "employee": {
-    "title": "Staff Directory",
-    "subtitle": "Managing staff across all branches",
-    "addNew": "Add New Employee",
-    "branch": "Branch",
-    "offboard": "Offboard",
-    "inactiveLeft": "Inactive (Left: {date})",
-    "onboard": "Onboard Employee",
-    "profileInformation": "Profile Information",
-    "employmentDetails": "Employment Details",
-    "assignToBranchPlaceholder": "Assign to Branch...",
-    "systemLogin": "System Login",
-    "form": {
-      "fullName": "Full Name",
-      "mobilePlaceholder": "WhatsApp / Mobile Number"
-      ,
-      "username": "Username",
-      "password": "Password"
+  "dashboard": {
+    "openPos": "Open POS",
+    "quickOps": "Quick Operations",
+    "receiveStock": "Receive Stock",
+    "actionRequired": "Action Required",
+    "branchRevenueComparison": "Branch Revenue Comparison",
+    "inTransit": "In Transit",
+    "incomingTransfers": "Incoming Transfers",
+    "itemsShort": "Items Short",
+    "lowStock": "Low Stock",
+    "networkOverview": "Network Overview",
+    "salesToday": "Sales Today",
+    "shipmentsShort": "Shipments Short",
+    "stockAlert": {
+      "alerts": "Alerts",
+      "allHealthy": "All Healthy",
+      "left": "Left",
+      "title": "Stock Alert"
     },
-    "noEmployees": "No employees found for this branch."
-  }
+    "topPerformingBranch": "Top Performing Branch",
+    "totalNetworkRevenue": "Total Network Revenue",
+    "transactionsShort": "Transactions Short",
+    "transfersShort": "Transfers Short",
+    "urgent": "Urgent",
+    "wasteToday": "Waste Today"
+  },
+  "sales": {
+    "title": "Sales",
+    "list": "Retail Sales",
+    "ecommerce": "Online Sales",
+    "searchPlaceholder": "Search products by name or SKU...",
+    "searching": "Searching...",
+    "currentOrder": "Current Order",
+    "total": "Total",
+    "walkInCustomer": "Walk-in Customer",
+    "customerMember": "Member Customer",
+    "processPayment": "Process Payment",
+    "visualSearch": "Visual Search",
+    "recommendationsTitle": "AI Recommendations",
+    "form": {
+      "addCash": "Add Cash",
+      "addQRIS": "Add Q R I S",
+      "amountToPay": "Amount To Pay",
+      "changeDue": "Change Due",
+      "completePayment": "Complete Payment",
+      "confirmAndPrint": "Confirm And Print",
+      "originalSubtotal": "Original Subtotal",
+      "paymentBreakdown": "Payment Breakdown",
+      "pointsReward": "Points Reward",
+      "specialDiscount": "Special Discount"
+    },
+    "offlineAlert": "Transaction saved offline and will sync when connection is restored.",
+    "successAlert": "Transaction Successful!",
+    "errorAlert": "Payment Failed: {{ message }}"
+  },
+  "receipt": {
+    "cashier": "Cashier",
+    "guest": "Guest",
+    "subtotal": "Subtotal",
+    "manualDiscount": "Manual Discount",
+    "discountAmount": "Discount Amount",
+    "pointsRedeem": "Points Redeem",
+    "pointsAvailable": "Points Available",
+    "pointsRedemption": "Points Redemption",
+    "paid": "Paid",
+    "change": "Change",
+    "newBalance": "New Balance",
+    "thankYou": "Thank you for shopping"
+  },
   "customers": {
-    "title": "Customer Network",
-    "subtitle": "Managing loyalty across all branches",
-    "searchPlaceholder": "Search by mobile...",
+    "title": "Customer Management",
+    "subtitle": "Manage loyalty members and customer profiles",
+    "searchPlaceholder": "Search by name, email, or phone...",
     "newMember": "New Member",
     "editMember": "Edit Member",
-    "registerMember": "Register Member",
     "updateMember": "Update Member",
+    "registerMember": "Register Member",
     "table": {
       "customer": "Customer",
       "points": "Points",
@@ -169,50 +124,90 @@
     },
     "form": {
       "fullName": "Full Name",
-      "namePlaceholder": "John Doe",
-      "whatsapp": "WhatsApp Number",
-      "mobilePlaceholder": "0812...",
-      "email": "Email",
-      "emailPlaceholder": "[EMAIL_ADDRESS]",
+      "namePlaceholder": "Enter full name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter email address",
+      "whatsapp": "WhatsApp / Mobile",
+      "mobilePlaceholder": "Enter mobile number",
       "loyaltyProgram": "Loyalty Program",
       "startingPoints": "Starting Points"
-    }
+    },
+    "editMembership": "Edit Membership",
+    "newMembership": "New Membership",
+    "pointsShort": "Points Short",
+    "deleteConfirm": "Delete {{ name }}?"
   },
   "products": {
-    "title": "Products",
-    "list": "Product List",
-    "newProduct": "New Product",
+    "title": "Product Management",
+    "subtitle": "Manage products across all locations",
+    "addProducts": "Add Products",
+    "searchPlaceholder": "Search products...",
     "name": "Product Name",
-    "namePlaceholder": "e.g. Arabica Gayo 250g",
-    "sku": "SKU / Barcode",
-    "skuPlaceholder": "BRW-001",
-    "price": "Price",
-    "basePrice": "Universal Base Price (Rp)",
-    "stock": "Stock",
-    "minStockAlert": "Global Min. Stock Alert",
-    "minStockHint": "Notify me when branch stock falls below this.",
+    "namePlaceholder": "Enter product name",
+    "sku": "SKU",
+    "skuPlaceholder": "Auto-generated if empty",
+    "basePrice": "Base Price",
+    "description": "Description",
     "category": "Category",
-    "selectCategory": "Select...",
+    "selectCategory": "Select a category",
+    "minStockAlert": "Min Stock Alert",
+    "minStockHint": "Notify when stock falls below this level",
     "gallery": "Product Gallery",
     "addPhoto": "Add Photo",
-    "description": "Description",
     "aiImage": "AI Image",
     "aiImageGenerating": "Generating...",
     "magicGenerate": "Magic Generate",
-    "magicGenerating": "Writing...",
-    "updateProduct": "Update Product",
+    "magicGenerating": "Generating...",
     "createProduct": "Create Product",
-    "cancel": "Cancel"
+    "updateProduct": "Update Product",
+    "cancel": "Cancel",
+    "list": "List",
+    "deleteConfirm": "Delete {{ name }}? This cannot be undone."
+  },
+  "ecommerceOrders": {
+    "title": "E-commerce Orders",
+    "subtitle": "Manage and fulfill online orders",
+    "tabs": {
+      "new": "New",
+      "processing": "Processing",
+      "shipped": "Shipped"
+    },
+    "orderPrefix": "Order",
+    "deliverTo": "Deliver to:",
+    "items": "Items",
+    "assignedBranch": "Assigned Branch",
+    "acceptPrintLabel": "Accept & Print Label",
+    "inputResiShip": "Input Resi & Ship",
+    "release": "Release",
+    "cancelOrder": "Cancel Order",
+    "trackingNumber": "Tracking Number",
+    "viewCustomerProfile": "View Customer Profile",
+    "emptyState": "No orders in this queue.",
+    "finalizeShipment": "Finalize Shipment",
+    "selectCourier": "Select Courier",
+    "trackingNumberResi": "Tracking Number (RESI)",
+    "resiPlaceholder": "Paste Resi here...",
+    "confirmFinalizeSale": "Confirm & Finalize Sale",
+    "orderTakenAlert": "This order was just taken by another branch.",
+    "releaseConfirm": "Release this order? It will go back to the \"NEW\" pool for other branches.",
+    "cancelReasonPrompt": "Reason for cancellation:",
+    "errorAlert": "Error: {{ message }}"
+  },
+  "packingSlip": {
+    "orderNumber": "Order Number",
+    "fulfillmentBranch": "Fulfillment Branch",
+    "shipTo": "Ship To:",
+    "itemsChecklist": "Items Checklist (Check before packing)",
+    "sku": "SKU",
+    "qty": "Qty"
   },
   "inventory": {
     "title": "Inventory",
     "stock": "Stock",
-    "transfers": "Stock Transfers",
-    "audit": "Stock Audit",
-    "lowStock": "Low Stock Items",
     "purchaseOrders": "Purchase Orders",
-    "purchaseOrdersSubtitle": "Managing inventory procurement",
+    "purchaseOrdersSubtitle": "Manage stock procurement from suppliers",
     "createNewOrder": "Create New Order",
+    "transfers": "Transfer Stock",
     "table": {
       "poReference": "PO Reference",
       "supplier": "Supplier",
@@ -221,10 +216,9 @@
       "status": "Status",
       "product": "Product",
       "qty": "Qty",
-      "unitPrice": "Unit Price",
       "subtotal": "Subtotal",
       "totalItems": "Total Items",
-      "actions": "Actions"
+      "unitPrice": "Unit Price"
     },
     "status": {
       "pending": "Pending",
@@ -232,178 +226,187 @@
       "received": "Received"
     },
     "actions": {
-      "confirmDelivery": "Confirm Delivery & Add to Stock",
-      "viewDetails": "View Details",
-      "print": "Print"
+      "confirmDelivery": "Confirm Delivery"
     },
     "returns": {
-      "title": "Returns & Inventory Waste",
+      "title": "Stock Returns",
       "newReturn": "New Return",
-      "history": "History",
-      "searchPlaceholder": "Scan Barcode or Type Product Name...",
+      "history": "Return History",
+      "searchPlaceholder": "Search returns...",
+      "selectSupplier": "Select Supplier",
+      "supplier": "Supplier",
+      "notes": "Notes",
+      "notesPlaceholder": "Reason for return, condition details...",
+      "processReturn": "Process Return",
       "table": {
         "product": "Product",
-        "qty": "Qty"
-      },
-      "status": "Status/Condition"
-
-    "mediaUploader": {
-      "clickToUpload": "Click to upload product image",
-      "hint": "PNG, JPG up to 2MB"
-    },
-
-    "stockMatrix": {
-      "title": "Network Stock Matrix",
-      "table": {
-        "productName": "Product Name",
-        "totalNetwork": "Total Network"
-      }
-    },
-
-    "stockHistory": {
-      "branchContext": "Branch Context",
-      "selectProduct": "Select Product",
-      "table": {
-        "dateTime": "Date & Time",
-        "reference": "Reference",
-        "type": "Type",
-        "change": "Change",
-        "balance": "Balance"
-      }
-    },
-
-    "categoryManagement": {
-      "title": "Category Management",
-      "subtitle": "Organize your products across branches",
-      "newCategory": "New Category",
-      "form": {
-        "name": "Name",
-        "description": "Description"
-      },
-      "create": "Create Category",
-      "available": "Available Categories",
-      "total": "Total",
-      "empty": "No categories created yet."
-    }
+        "qty": "Qty",
+        "status": "Status",
+        "dateRef": "Date Ref",
+        "financialImpact": "Financial Impact",
+        "itemBranch": "Item Branch",
+        "outcome": "Outcome",
+        "reason": "Reason"
       },
       "status": {
-        "good": "Good - Return to Supplier",
-        "damaged": "Damaged - Destroy/Write-off",
-        "expired": "Expired - Dispose"
+        "good": "Good Condition",
+        "damaged": "Damaged"
       },
-      "supplier": "Supplier to Return",
-      "selectSupplier": "Select Supplier (for Good stock)...",
-      "notes": "Notes / Reason",
-      "notesPlaceholder": "e.g., Broken seal, expired date...",
-      "processReturn": "Process Return"
+      "successAlert": "Inventory Updated: Stock adjusted or Waste recorded."
+    },
+    "purchaseOrderAlerts": {
+      "successAlert": "Stock received and added to branch inventory!",
+      "confirmReceive": "Confirm receiving PO #{{ id }}? This will add {{ items }} items to {{ branch }} inventory.",
+      "integratedAlert": "Stock successfully integrated into branch inventory.",
+      "errorStatusUpdate": "Error updating status: {{ message }}"
+    },
+    "stockMovement": {
+      "noStockAlert": "No stock available in source branch!"
     }
   },
-
-  "banner": {
-    "title": "E-commerce Banners",
-    "subtitle": "Manage the Hero Section of your storefront",
-    "addNew": "Add New Banner",
-    "form": {
-      "title": "Banner Title",
-      "redirect": "Redirect Link (URL)"
-    },
-    "selectImage": "Select Banner Image",
-    "uploading": "UPLOADING...",
-    "publish": "PUBLISH BANNER",
-    "live": "Live Banners",
-    "status": {
-      "active": "Active",
-      "draft": "Draft"
-    },
-    "empty": "No banners uploaded"
-  },
-
-  "productManagement": {
-    "subtitle": "Universal definitions for all branches",
-    "addUniversal": "Add Universal Product",
-    "newUniversal": "New Universal Product"
-  },
-
-  "recentSales": {
-    "subtitle": "Latest invoices from your branch",
-    "viewAll": "View All",
-    "table": {
-      "invoice": "Invoice",
-      "grandTotal": "Grand Total",
-      "payment": "Payment",
-      "action": "Action"
-    },
-    "empty": "No transactions recorded today."
-  },
-  "branchManagement": {
-    "title": "Branch Network",
-    "form": {
-      "name": "Branch Name",
-      "phone": "Branch Phone",
-      "address": "Address"
-    }
-  },
-
-  "purchaseOrder": {
-    "title": "New Purchase Order",
-    "supplier": "Supplier",
-    "destinationBranch": "Destination Branch",
-    "orderDate": "Order Date",
-    "expectedDate": "Expected Date",
-    "addProducts": "Add Products",
-    "totalCommitment": "Total Commitment",
-    "receiptPreview": "Purchase Receipt Preview"
-  },
-
-  "priceCoder": {
-    "title": "Price Coder",
-    "subtitle": "Staging area for 18mm Label Printing",
-    "systemSettings": "System Settings",
-    "costCipherKey": "Cost Cipher Key",
-    "costCipherHint": "10 unique letters for price masking."
-  },
-
-  "stockMovement": {
-    "title": "Inventory Logistics",
-    "subtitle": "Manage transfers between branches",
-    "movementHistory": "Movement History",
-    "table": {
-      "reference": "Reference",
-      "path": "Path",
-      "items": "Items",
-      "status": "Status",
-      "date": "Date"
-    }
-  },
-  "customerDetail": {
-    "memberSince": "Member since {{date}}",
-    "totalSpent": "Total Spent",
-    "pointsBalance": "Points Balance",
-    "recentTransactions": "Recent Transactions",
-    "pointsShort": "pts",
-    "topFavorite": "Top Favorite Item",
-    "purchasedTimes": "Purchased {{count}} times",
-    "manualPointsAdjustment": "Manual Points Adjustment",
-    "enterAmountPlaceholder": "Enter amount...",
-    "applyCorrection": "Apply Correction"
+  "suppliers": {
+    "title": "Supplier Directory",
+    "subtitle": "Manage vendor relationships and procurement contacts",
+    "addSupplier": "Add Supplier",
+    "editDetails": "Edit Details",
+    "removeSupplier": "Remove Supplier",
+    "newSupplierDetails": "New Supplier Details",
+    "companyName": "Company Name",
+    "contactPerson": "Contact Person",
+    "emailAddress": "Email Address",
+    "phoneNumber": "Phone Number",
+    "physicalAddress": "Physical Address",
+    "noAddress": "No address on file",
+    "taxId": "Tax ID / NPWP",
+    "purchaseHistory": "Purchase History",
+    "save": "Save",
+    "cancel": "Cancel"
   },
   "analytics": {
     "title": "Analytics",
-    "kpi": "KPI Metrics",
+    "kpi": "KPI Analytics",
     "commercial": "Commercial KPIs",
     "operational": "Operational KPIs",
     "governance": "Governance KPIs",
     "conversion": "Conversion Uplift",
     "averageOrderValue": "Average Order Value",
-    "visualSearchRate": "Visual Search Rate",
-    "aiLatency": "AI P95 Latency",
+    "visualSearchRate": "Visual Search Discovery Rate",
+    "aiLatency": "AI Latency (p95)",
     "aiCost": "AI Cost Per Order",
     "supportDeflection": "Support Deflection Rate",
     "promptDrift": "Prompt Drift Incidents",
     "hallucination": "Hallucination Rate",
-    "fallbackSuccess": "Feature Fallback Success"
+    "fallbackSuccess": "Fallback Success Rate",
+    "days": "Days:",
+    "errors": {
+      "commercial": "Failed to load commercial KPIs",
+      "operational": "Failed to load operational KPIs",
+      "governance": "Failed to load governance KPIs"
+    }
   },
-  "insights": {
+  "assistant": {
+    "title": "AI Assistant",
+    "welcome": "How can I help you today?",
+    "placeholder": "Ask a question...",
+    "error": "Sorry, I encountered an error. Please try again."
+  },
+  "employee": {
+    "title": "Employee Management",
+    "subtitle": "Manage staff roles and access",
+    "addNew": "Add Employee",
+    "branch": "Branch",
+    "offboard": "Offboard",
+    "inactiveLeft": "Left on {{ date }}",
+    "noEmployees": "No employees found",
+    "onboard": "Onboard Employee",
+    "profileInformation": "Profile Information",
+    "employmentDetails": "Employment Details",
+    "assignToBranchPlaceholder": "Select a branch",
+    "systemLogin": "System Login",
+    "assignToBranchButton": "Save Employee",
+    "form": {
+      "fullName": "Full Name",
+      "mobilePlaceholder": "Mobile Number",
+      "username": "Username",
+      "password": "Password"
+    },
+    "offboardReasonPrompt": "Reason for {{ name }} leaving?",
+    "offboardSuccess": "Access has been terminated."
+  },
+  "banner": {
+    "title": "E-commerce Banners",
+    "subtitle": "Manage the Hero Section of your storefront",
+    "addNew": "Add New",
+    "empty": "Empty",
+    "form": {
+      "title": "Banner Title",
+      "titlePlaceholder": "e.g., Coffee Beans",
+      "redirect": "Redirect URL",
+      "linkPlaceholder": "https://example.com"
+    },
+    "live": "Active Banners",
+    "publish": "Publish",
+    "selectImage": "Select Image",
+    "status": {
+      "active": "Active",
+      "draft": "Draft"
+    },
+    "uploading": "Uploading",
+    "selectImagePrompt": "Please select an image",
+    "deleteConfirm": "Remove this banner from the website?"
+  },
+  "branchManagement": {
+    "title": "Branch Management",
+    "subtitle": "Manage your branches",
+    "actions": {
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "create": "Create",
+      "update": "Update"
+    },
+    "branch": "Branch",
+    "editDetails": "Edit Details",
+    "form": {
+      "address": "Address",
+      "name": "Name",
+      "phone": "Phone",
+      "namePlaceholder": "e.g., Main Store",
+      "phonePlaceholder": "e.g., 08123456789",
+      "addressPlaceholder": "e.g., 123 Example St."
+    },
+    "newLocation": "New Location",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "viewInventory": "View Inventory"
+  },
+  "categoryManagement": {
+    "title": "Category Management",
+    "subtitle": "Organize your products across branches",
+    "available": "Available",
+    "create": "Create",
+    "empty": "Empty",
+    "form": {
+      "description": "Description",
+      "name": "Name",
+      "namePlaceholder": "e.g., Coffee Beans",
+      "descriptionPlaceholder": "e.g., Delicious roasted arabica beans"
+    },
+    "newCategory": "New Category",
+    "total": "Total",
+    "deleteConfirm": "Are you sure? This may affect products linked to this category."
+  },
+  "customerDetail": {
+    "applyCorrection": "Apply Correction",
+    "enterAmountPlaceholder": "Enter Amount Placeholder",
+    "manualPointsAdjustment": "Manual Points Adjustment",
+    "pointsBalance": "Points Balance",
+    "pointsShort": "Points Short",
+    "recentTransactions": "Recent Transactions",
+    "topFavorite": "Top Favorite",
+    "totalSpent": "Total Spent"
+  },"insights": {
     "dailyClosing": "Daily Closing",
     "salesReport": "Sales Report",
     "purchaseReport": "Purchase Report",
@@ -419,47 +422,164 @@
     "connectionRestored": "Connection Restored",
     "connectionLost": "Connection Lost"
   },
-  "receipt": {
-    "cashier": "Cashier",
-    "guest": "Guest",
-    "subtotal": "Subtotal",
-    "manualDiscount": "Manual Discount",
-    "discountAmount": "Discount Amount",
-    "pointsRedeem": "Points Redeem",
-    "pointsAvailable": "Points Available",
-    "pointsRedemption": "Points Redemption",
-    "redeem": "REDEEM",
-    "redeemed": "REDEEMED",
-    "grandTotal": "Grand Total",
-    "paid": "Paid",
-    "change": "Change",
-    "newBalance": "New Balance",
-    "thankYou": "Thank you for shopping"
-  }
-
-  ,"ecommerceOrders": {
-    "title": "E-commerce Orders",
-    "subtitle": "Manage and fulfill online orders",
-    "tabs": {
-      "new": "New",
-      "processing": "Processing",
-      "shipped": "Shipped"
+  "mediaUploader": {
+    "clickToUpload": "Click To Upload",
+    "hint": "Hint"
+  },
+  "priceCoder": {
+    "title": "Print Price Label",
+    "subtitle": "Staging area for 18mm Label Printing",
+    "costCipherHint": "Cost Cipher Hint",
+    "costCipherKey": "Cost Cipher Key",
+    "currentPrice": "Current Price",
+    "noSku": "No Sku",
+    "notAvailable": "Not Available",
+    "printQty": "Print Qty",
+    "printLabel": "Print Labels",
+    "productDetails": "Product Details",
+    "systemSettings": "System Settings",
+    "tip": {
+      "changeImpact": "Change Impact"
     },
-    "orderPrefix": "Order",
-    "deliverTo": "Deliver to",
+    "updateEncryptionKey": "Update Encryption Key",
+    "keyLengthAlert": "Key must be exactly 10 characters.",
+    "keyUpdateSuccessAlert": "Key updated successfully."
+  },
+  "purchase": {
+    "title": "Supplier Spend Analysis",
+    "allSuppliers": "All Suppliers",
+    "auditLog": "Audit Log",
+    "avgOrderValue": "Avg Order Value",
+    "branchAllocation": "Branch Allocation",
+    "summary": "Summary",
+    "supplierLabel": "Select Supplier",
+    "table": {
+      "product": "Product",
+      "qty": "Qty",
+      "sku": "Sku",
+      "total": "Total",
+      "unitCost": "Unit Cost"
+    },
+    "totalOrders": "Total Orders",
+    "totalSpend": "Total Spend"
+  },
+  "purchaseOrder": {
+    "title": "New Purchase Order",
+    "addProducts": "Add Products",
+    "closePreview": "Close Preview",
+    "create": "Create",
+    "destinationBranch": "Destination Branch",
+    "expectedDate": "Expected Date",
+    "orderDate": "Order Date",
+    "receiptPreview": "Receipt Preview",
+    "searchPlaceholder": "Search product...",
+    "selectSupplier": "Select Supplier",
+    "supplier": "Supplier",
+    "totalCommitment": "Total Commitment"
+  },
+  "recentSales": {
+    "empty": "Empty",
+    "subtitle": "Latest invoices from your branches",
+    "table": {
+      "action": "Action",
+      "grandTotal": "Grand Total",
+      "invoice": "Invoice",
+      "payment": "Payment"
+    },
+    "viewAll": "View All"
+  },
+  "reports": {
+    "allBranches": "All Branches",
+    "allEmployees": "All Employees",
+    "daily": {
+      "generateReport": "Generate Report",
+      "managerSignature": "Manager Signature",
+      "paymentBreakdown": "Payment Breakdown",
+      "physicalCashInDrawer": "Physical Cash In Drawer",
+      "selectDate": "Select Date",
+      "title": "Daily Closing Report",
+      "totalRevenue": "Total Revenue",
+      "transactions": "Transactions"
+    },
+    "dateRange": "Date Range",
+    "generateReport": "Generate Report",
+    "generateSalesReport": "Generate Sales Report",
+    "grandTotalSales": "Grand Total Sales",
+    "salesA4": {
+      "table": {
+        "costEnc": "Cost Code",
+        "itemName": "Item Name",
+        "qty": "Qty",
+        "sku": "Sku",
+        "soldBy": "Sold By",
+        "total": "Total",
+        "unitPrice": "Unit Price"
+      },
+      "title": "Sales Report"
+    },
+    "selectBranch": "Select Branch",
+    "selectEmployee": "Select Employee",
+    "supplierPerformance": {
+      "title": "Supplier Performance",
+      "subtitle": "Analyze vendor reliability and inventory waste impact",
+      "table": {
+        "orders": "Orders",
+        "supplierName": "Supplier Name",
+        "totalQtyIn": "Total Qty In",
+        "wasteQty": "Waste Qty",
+        "wasteRate": "Waste Rate"
+      }
+    },
+    "totalItemsSold": "Total Items Sold"
+  },
+  "stockAudit": {
+    "selectBranch": "Select Branch",
+    "selectProduct": "Select Product",
+    "table": {
+      "actor": "Actor",
+      "change": "Change",
+      "dateTime": "Date Time",
+      "finalBalance": "Final Balance",
+      "type": "Type"
+    }
+  },
+  "stockCard": {
+    "costCipher": "Cost Cipher",
+    "salePrice": "Sale Price"
+  },
+  "stockHistory": {
+    "branchContext": "Branch Context",
+    "selectProduct": "Select Product",
+    "table": {
+      "balance": "Balance",
+      "change": "Change",
+      "dateTime": "Date Time",
+      "reference": "Reference",
+      "type": "Type"
+    }
+  },
+  "stockMatrix": {
+    "title": "Network Stock Matrix",
+    "exportExcel": "Export Excel",
+    "table": {
+      "productName": "Product Name",
+      "totalNetwork": "Total Network"
+    }
+  },
+  "stockMovement": {
+    "title": "Inventory Logistics",
+    "subtitle": "Manage transfers between branches",
+    "createTransfer": "Create Transfer",
     "items": "Items",
-    "assignedBranch": "Assigned Branch",
-    "acceptPrintLabel": "Accept & Print Label",
-    "inputResiShip": "Input Resi / Ship",
-    "release": "Release Order",
-    "cancelOrder": "Cancel Order",
-    "trackingNumber": "Tracking Number",
-    "viewCustomerProfile": "View Customer Profile",
-    "emptyState": "No ecommerce orders",
-    "finalizeShipment": "Finalize Shipment",
-    "selectCourier": "Select Courier",
-    "trackingNumberResi": "Tracking Number / Resi",
-    "resiPlaceholder": "Enter tracking number...",
-    "confirmFinalizeSale": "Confirm & Finalize"
+    "movementHistory": "Movement History",
+    "receive": "Receive",
+    "received": "Received",
+    "table": {
+      "date": "Date",
+      "items": "Items",
+      "path": "Path",
+      "reference": "Reference",
+      "status": "Status"
+    }
   }
 }

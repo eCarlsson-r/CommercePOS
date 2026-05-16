@@ -12,17 +12,17 @@
     </button>
   </div>
 
-  <h4 class="font-bold text-gray-800">{{ stock()?.product?.name || 'Loading Product...' }}</h4>
+  <h4 class="font-bold text-gray-800">{{ stock()?.product?.name || ('common.loading' | translate) }}</h4>
   
   <div class="mt-4 space-y-2">
     <div class="flex justify-between items-center bg-gray-50 p-2 rounded-xl border border-dashed">
-      <span class="text-[10px] font-black text-gray-400 uppercase tracking-tighter">Cost (Cipher)</span>
+      <span class="text-[10px] font-black text-gray-400 uppercase tracking-tighter">{{ 'stockCard.costCipher' | translate }}</span>
       <span class="font-mono text-xs font-bold text-gray-500">
         {{ generateCostCode(stock()?.purchase_price) }}
       </span>
     </div>
     <div class="flex justify-between items-center bg-primary/5 p-2 rounded-xl border border-primary/10">
-      <span class="text-[10px] font-black text-primary uppercase">Sale Price</span>
+      <span class="text-[10px] font-black text-primary uppercase">{{ 'stockCard.salePrice' | translate }}</span>
       <span class="font-black text-gray-900">Rp {{ stock()?.sale_price | number }}</span>
     </div>
   </div>

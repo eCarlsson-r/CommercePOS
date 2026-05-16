@@ -1,69 +1,37 @@
 {
   "common": {
-    "language": "Bahasa",
-    "logout": "Keluar",
-    "search": "Cari",
-    "dashboard": "Dasbor",
-    "admin": "Admin",
-    "loading": "Memuat",
-    "error": "Kesalahan",
-    "success": "Berhasil",
-    "confirm": "Konfirmasi",
-    "cancel": "Batal",
+    "superAdmin": "Super Admin",
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
     "save": "Simpan",
+    "cancel": "Batal",
     "delete": "Hapus",
     "edit": "Ubah",
     "close": "Tutup",
+    "search": "Cari",
+    "confirm": "Konfirmasi",
     "back": "Kembali",
-    "superAdmin": "Super Admin"
+    "add": "Tambah",
+    "remove": "Hapus",
+    "status": "Status",
+    "actions": "Aksi",
+    "allCategories": "Semua Kategori",
+    "allBranches": "Semua Cabang",
+    "allStock": "Semua Stok",
+    "noData": "Tidak ada data",
+    "dateRange": "Rentang Waktu"
   },
-  "auth": {
-    "login": "Masuk",
-    "logout": "Keluar",
-    "email": "Email",
-    "password": "Kata Sandi",
-    "loginError": "Kredensial tidak valid",
-    "loginSuccess": "Login berhasil",
-    "unauthorized": "Tidak berwenang"
-  },
-  "dashboard": {
-    "title": "Dasbor",
-    "revenue": "Total Pendapatan",
-    "orders": "Pesanan",
-    "branches": "Cabang",
-    "lowStock": "Stok Rendah",
-    "pendingTransfers": "Transfer Tertunda",
-    "recentSales": "Penjualan Terbaru",
-    "topProducts": "Produk Terlaris",
-    "quickOps": "Operasi Cepat",
-    "openPos": "Buka POS",
-    "receiveStock": "Terima Stok"
-  },
-  "sales": {
-    "title": "Penjualan",
-    "list": "Daftar Penjualan",
-    "newSale": "Penjualan Baru",
-    "date": "Tanggal",
-    "amount": "Jumlah",
-    "branch": "Cabang",
-    "customer": "Pelanggan",
-    "ecommerce": "Pesanan E-Commerce",
-    "searchPlaceholder": "Cari kode atau nama produk...",
-    "searching": "Mencari...",
-    "visualSearch": "Pencarian Visual",
-    "recommendationsTitle": "Direkomendasikan untuk Keranjang ini",
-    "currentOrder": "Pesanan Saat Ini",
-    "customerMember": "Pelanggan / Member",
-    "walkInCustomer": "Pelanggan Umum (Tamu)",
-    "total": "Total",
-    "processPayment": "PROSES PEMBAYARAN"
-  },
-  "assistant": {
-    "title": "Asisten AI",
-    "welcome": "Tanya saya tentang produk, stok, atau tips penjualan!",
-    "placeholder": "Ketik pertanyaan Anda..."
+  "inventoryAssets": {
+    "title": "Stok Inventaris",
+    "subtitle": "Kelola dan lacak level stok cabang Anda",
+    "searchPlaceholder": "Cari berdasarkan nama atau SKU...",
+    "updateStock": "Perbarui Stok",
+    "historyLog": "Log Riwayat",
+    "noHistoryFound": "Tidak ada riwayat yang ditemukan",
+    "saveChanges": "Simpan Perubahan"
   },
   "master": {
+    "title": "Master Data",
     "banners": "Banner",
     "branches": "Cabang",
     "employees": "Karyawan",
@@ -71,47 +39,93 @@
     "products": "Produk",
     "suppliers": "Pemasok",
     "categories": "Kategori",
-    "priceCoder": "Pembuat Harga"
+    "priceCoder": "Cetak Label"
   },
-  "suppliers": {
-    "title": "Direktori Pemasok",
-    "subtitle": "Kelola hubungan vendor dan kontak pengadaan",
-    "addSupplier": "Tambah Pemasok",
-    "editDetails": "Edit Detail",
-    "purchaseHistory": "Riwayat Pembelian",
-    "removeSupplier": "Hapus Pemasok",
-    "contact": "Kontak",
-    "taxId": "NPWP",
-    "email": "Email",
-    "address": "Alamat",
-    "phone": "Telepon",
-    "noAddress": "Tidak ada alamat",
-    "newSupplierDetails": "Detail Pemasok Baru",
-    "companyName": "Nama Perusahaan",
-    "contactPerson": "Nama Kontak",
-    "phoneNumber": "Nomor Telepon",
-    "emailAddress": "Alamat Email",
-    "physicalAddress": "Alamat Fisik",
-    "cancel": "Batal",
-    "save": "Simpan"
+  "dashboard": {
+    "openPos": "Buka POS",
+    "quickOps": "Operasi Cepat",
+    "receiveStock": "Terima Stok",
+    "actionRequired": "Butuh Tindakan",
+    "branchRevenueComparison": "Perbandingan Pendapatan Cabang",
+    "inTransit": "Sedang Dikirim",
+    "incomingTransfers": "Transfer Masuk",
+    "itemsShort": "Kekurangan Barang",
+    "lowStock": "Stok Menipis",
+    "networkOverview": "Ringkasan Jaringan",
+    "salesToday": "Penjualan Hari Ini",
+    "shipmentsShort": "Ringkasan Pengiriman",
+    "stockAlert": {
+      "alerts": "Peringatan",
+      "allHealthy": "Semua Normal",
+      "left": "Sisa",
+      "title": "Peringatan Stok"
+    },
+    "topPerformingBranch": "Cabang Berkinerja Terbaik",
+    "totalNetworkRevenue": "Total Pendapatan Jaringan",
+    "transactionsShort": "Ringkasan Transaksi",
+    "transfersShort": "Ringkasan Transfer",
+    "urgent": "Mendesak",
+    "wasteToday": "Barang Terbuang Hari Ini"
   },
-  "reports": {
-    "generateSalesReport": "Buat Laporan Penjualan",
-    "selectBranch": "Pilih Cabang",
-    "selectEmployee": "Pilih Karyawan",
-    "allBranches": "Semua Cabang (Konsolidasi)",
-    "allEmployees": "Semua Karyawan (Konsolidasi)",
-    "generateReport": "Buat Laporan",
-    "printReport": "Cetak Laporan"
+  "sales": {
+    "title": "Penjualan",
+    "list": "Penjualan Ritel",
+    "ecommerce": "Pesanan Online",
+    "searchPlaceholder": "Cari produk berdasarkan nama atau SKU...",
+    "searching": "Mencari...",
+    "currentOrder": "Pesanan Saat Ini",
+    "total": "Total",
+    "walkInCustomer": "Pelanggan Biasa",
+    "customerMember": "Pelanggan Member",
+    "processPayment": "Proses Pembayaran",
+    "visualSearch": "Pencarian Visual",
+    "recommendationsTitle": "Rekomendasi AI",
+    "form": {
+      "addCash": "Tambah Tunai",
+      "addQRIS": "Tambah QRIS",
+      "amountToPay": "Jumlah Harus Dibayar",
+      "changeDue": "Kembalian",
+      "completePayment": "Selesaikan Pembayaran",
+      "confirmAndPrint": "Konfirmasi & Cetak",
+      "originalSubtotal": "Subtotal Asli",
+      "paymentBreakdown": "Rincian Pembayaran",
+      "pointsReward": "Hadiah Poin",
+      "specialDiscount": "Diskon Khusus"
+    },
+    "offlineAlert": "Transaksi disimpan secara offline dan akan disinkronkan saat koneksi pulih.",
+    "successAlert": "Transaksi Berhasil!",
+    "errorAlert": "Pembayaran Gagal: {{ message }}"
+  },
+
+  "receipt": {
+    "cashier": "Kasir",
+    "guest": "Tamu",
+    "subtotal": "Subtotal",
+    "manualDiscount": "Diskon Manual",
+    "discountAmount": "Jumlah Diskon",
+    "pointsRedeem": "Tukar Poin",
+    "pointsAvailable": "Poin Tersedia",
+    "pointsRedemption": "Penukaran Poin",
+    "redeem": "Tukar Poin",
+    "redeemed": "Poin Ditukar",
+    "grandTotal": "Total Keseluruhan",
+    "paid": "Dibayar",
+    "change": "Kembali",
+    "newBalance": "Saldo Baru",
+    "thankYou": "Terima kasih telah berbelanja"
   },
   "customers": {
-    "title": "Jaringan Pelanggan",
-    "subtitle": "Mengelola loyalitas di semua cabang",
-    "searchPlaceholder": "Cari berdasarkan nomor...",
-    "newMember": "Member Baru",
-    "editMember": "Edit Member",
-    "registerMember": "Daftarkan Member",
-    "updateMember": "Update Member",
+    "title": "Manajemen Pelanggan",
+    "subtitle": "Kelola anggota loyalitas dan profil pelanggan",
+    "searchPlaceholder": "Cari berdasarkan nama, email, atau telepon...",
+    "newMember": "Anggota Baru",
+    "editMember": "Ubah Anggota",
+    "updateMember": "Perbarui Anggota",
+    "registerMember": "Daftarkan Anggota",
+    "editMembership": "Ubah Keanggotaan",
+    "newMembership": "Keanggotaan Baru",
+    "pointsShort": "Poin Tidak Cukup",
+    "deleteConfirm": "Hapus {{ name }}?",
     "table": {
       "customer": "Pelanggan",
       "points": "Poin",
@@ -119,57 +133,97 @@
     },
     "form": {
       "fullName": "Nama Lengkap",
-      "namePlaceholder": "John Doe",
-      "whatsapp": "Nomor WhatsApp",
-      "mobilePlaceholder": "0812...",
-      "email": "Email",
-      "emailPlaceholder": "[EMAIL_ADDRESS]",
+      "namePlaceholder": "Masukkan nama lengkap",
+      "email": "Alamat Email",
+      "emailPlaceholder": "Masukkan alamat email",
+      "whatsapp": "WhatsApp / HP",
+      "mobilePlaceholder": "Masukkan nomor HP",
       "loyaltyProgram": "Program Loyalitas",
       "startingPoints": "Poin Awal"
     }
   },
   "products": {
-    "title": "Produk",
-    "list": "Daftar Produk",
-    "newProduct": "Produk Baru",
+    "title": "Manajemen Produk",
+    "subtitle": "Kelola produk di semua lokasi",
+    "addProducts": "Tambah Produk",
+    "searchPlaceholder": "Cari produk...",
     "name": "Nama Produk",
-    "namePlaceholder": "contoh: Arabica Gayo 250g",
-    "sku": "SKU / Barcode",
-    "skuPlaceholder": "BRW-001",
-    "price": "Harga",
-    "basePrice": "Harga Dasar Universal (Rp)",
-    "stock": "Stok",
-    "minStockAlert": "Alert Stok Minimum Global",
-    "minStockHint": "Beritahu saya ketika stok cabang di bawah ini.",
+    "namePlaceholder": "Masukkan nama produk",
+    "sku": "SKU",
+    "skuPlaceholder": "Dibuat otomatis jika kosong",
+    "basePrice": "Harga Dasar",
+    "description": "Deskripsi",
     "category": "Kategori",
-    "selectCategory": "Pilih...",
+    "selectCategory": "Pilih kategori",
+    "minStockAlert": "Batas Minimum Stok",
+    "minStockHint": "Beri notifikasi jika stok di bawah batas ini",
     "gallery": "Galeri Produk",
     "addPhoto": "Tambah Foto",
-    "description": "Deskripsi",
     "aiImage": "Gambar AI",
-    "aiImageGenerating": "Membuat...",
-    "magicGenerate": "Buat Deskripsi dengan AI",
-    "magicGenerating": "Menulis...",
-    "updateProduct": "Update Produk",
+    "aiImageGenerating": "Membuat gambar...",
+    "magicGenerate": "Buat Otomatis",
+    "magicGenerating": "Memproses...",
     "createProduct": "Buat Produk",
-    "cancel": "Batal"
+    "updateProduct": "Perbarui Produk",
+    "cancel": "Batal",
+    "list": "Daftar",
+    "deleteConfirm": "Hapus {{ name }}? Ini tidak dapat diurungkan."
+  },
+  "ecommerceOrders": {
+    "title": "Pesanan E-commerce",
+    "subtitle": "Kelola dan penuhi pesanan online",
+    "tabs": {
+      "new": "Baru",
+      "processing": "Diproses",
+      "shipped": "Dikirim"
+    },
+    "orderPrefix": "Pesanan",
+    "deliverTo": "Kirim ke:",
+    "items": "Barang",
+    "assignedBranch": "Cabang Ditugaskan",
+    "acceptPrintLabel": "Terima & Cetak Label",
+    "inputResiShip": "Masukkan Resi & Kirim",
+    "release": "Lepaskan",
+    "cancelOrder": "Batalkan Pesanan",
+    "trackingNumber": "Nomor Resi",
+    "viewCustomerProfile": "Lihat Profil Pelanggan",
+    "emptyState": "Tidak ada pesanan dalam antrean ini.",
+    "finalizeShipment": "Finalisasi Pengiriman",
+    "selectCourier": "Pilih Kurir",
+    "trackingNumberResi": "Nomor Resi (RESI)",
+    "resiPlaceholder": "Tempel Resi di sini...",
+    "confirmFinalizeSale": "Konfirmasi & Finalisasi Penjualan",
+    "orderTakenAlert": "Pesanan ini baru saja diambil oleh cabang lain.",
+    "releaseConfirm": "Lepaskan pesanan ini? Pesanan akan kembali ke antrean \"BARU\" untuk cabang lain.",
+    "cancelReasonPrompt": "Alasan pembatalan:",
+    "errorAlert": "Kesalahan: {{ message }}"
+  },
+  "packingSlip": {
+    "orderNumber": "Nomor Pesanan",
+    "fulfillmentBranch": "Cabang Pemenuhan",
+    "shipTo": "Kirim Ke:",
+    "itemsChecklist": "Daftar Periksa Barang (Periksa sebelum dikemas)",
+    "sku": "SKU",
+    "qty": "Qty"
   },
   "inventory": {
-    "title": "Inventori",
+    "title": "Inventaris",
     "stock": "Stok",
-    "transfers": "Transfer Stok",
-    "audit": "Audit Stok",
-    "lowStock": "Stok Menipis",
     "purchaseOrders": "Pesanan Pembelian",
-    "purchaseOrdersSubtitle": "Mengelola pengadaan inventori",
+    "purchaseOrdersSubtitle": "Kelola pengadaan stok dari pemasok",
     "createNewOrder": "Buat Pesanan Baru",
+    "transfers": "Pindah Stok",
     "table": {
       "poReference": "Referensi PO",
       "supplier": "Pemasok",
-      "orderDate": "Tanggal Pesan",
-      "totalAmount": "Jumlah Total",
+      "orderDate": "Tanggal Pesanan",
+      "totalAmount": "Total Jumlah",
       "status": "Status",
-      "actions": "Aksi"
+      "product": "Produk",
+      "qty": "Qty",
+      "subtotal": "Subtotal",
+      "totalItems": "Total Barang",
+      "unitPrice": "Harga Satuan"
     },
     "status": {
       "pending": "Tertunda",
@@ -177,182 +231,186 @@
       "received": "Diterima"
     },
     "actions": {
-      "confirmDelivery": "Konfirmasi & Tambah ke Stok",
-      "viewDetails": "Lihat Detail",
-      "print": "Cetak"
+      "confirmDelivery": "Konfirmasi Pengiriman"
     },
     "returns": {
-      "title": "Retur & Limbah Inventori",
+      "title": "Retur Stok",
       "newReturn": "Retur Baru",
-      "history": "Riwayat",
-      "searchPlaceholder": "Scan Barcode atau Ketik Nama Produk...",
+      "history": "Riwayat Retur",
+      "searchPlaceholder": "Cari retur...",
+      "selectSupplier": "Pilih Pemasok",
+      "supplier": "Pemasok",
+      "notes": "Catatan",
+      "notesPlaceholder": "Alasan retur, kondisi barang...",
+      "processReturn": "Proses Retur",
       "table": {
         "product": "Produk",
-        "qty": "Jml",
-        "status": "Status/Kondisi"
+        "qty": "Qty",
+        "status": "Status",
+        "dateRef": "Ref Tanggal",
+        "financialImpact": "Dampak Finansial",
+        "itemBranch": "Cabang Barang",
+        "outcome": "Hasil",
+        "reason": "Alasan"
       },
       "status": {
-        "good": "Baik - Retur ke Pemasok",
-        "damaged": "Rusak - Buang/Hapus",
-        "expired": "Kadaluarsa - Buang"
+        "good": "Kondisi Baik",
+        "damaged": "Rusak"
       },
-      "supplier": "Pemasok untuk Retur",
-      "selectSupplier": "Pilih Pemasok (untuk stok Baik)...",
-      "notes": "Catatan / Alasan",
-      "notesPlaceholder": "contoh: Segel rusak, tanggal kadaluarsa...",
-      "processReturn": "Proses Retur"
-    }
-  },
-  "purchase": {
-    "title": "Analisis Pengeluaran Pemasok",
-    "supplierLabel": "Pemasok",
-    "allSuppliers": "Semua Pemasok (Konsolidasi)",
-    "summary": "Ringkasan Pembelian",
-    "networkWide": "Seluruh Jaringan: {{count}} Cabang",
-    "totalSpend": "Total Pengeluaran",
-    "totalOrders": "Total Pesanan",
-    "avgOrderValue": "Rata-rata Nilai Pesanan",
-    "auditLog": "Log Audit Pembelian",
-    "table": {
-      "sku": "SKU",
-      "product": "Produk",
-      "qty": "Jml",
-      "unitCost": "Harga Satuan",
-      "total": "Total"
-    }
-  },
-
-  "reports": {
-    "salesA4": {
-      "title": "Laporan Penjualan",
-      "table": {
-        "sku": "SKU",
-        "itemName": "Nama Item",
-        "costEnc": "Biaya (Enc)",
-        "qty": "Jml",
-      "branchManagement": {
-        "title": "Jaringan Cabang",
-        "form": {
-          "name": "Nama Cabang",
-          "phone": "Telepon Cabang",
-          "address": "Alamat"
-        }
-      },
-
-      "purchaseOrder": {
-        "title": "Pesanan Pembelian Baru",
-        "supplier": "Pemasok",
-        "destinationBranch": "Cabang Tujuan",
-        "orderDate": "Tanggal Pesanan",
-        "expectedDate": "Tanggal Diharapkan",
-        "addProducts": "Tambahkan Produk",
-        "totalCommitment": "Total Komitmen",
-        "receiptPreview": "Pratinjau Kwitansi Pembelian"
-      },
-
-      "priceCoder": {
-        "title": "Pengkode Harga",
-        "subtitle": "Area staging untuk pencetakan label 18mm",
-        "systemSettings": "Pengaturan Sistem",
-        "costCipherKey": "Kunci Cipher Biaya",
-        "costCipherHint": "10 huruf unik untuk masking harga."
-      },
-
-      "stockMovement": {
-        "title": "Logistik Inventori",
-        "subtitle": "Kelola transfer antar cabang",
-        "movementHistory": "Riwayat Pergerakan",
-        "table": {
-          "reference": "Referensi",
-          "path": "Jalur",
-          "items": "Item",
-          "status": "Status",
-          "date": "Tanggal"
-        }
-      },
-        "unitPrice": "Harga Satuan",
-        "total": "Total",
-        "soldBy": "Dijual Oleh"
-      }
+      "successAlert": "Inventaris Diperbarui: Stok disesuaikan atau Limbah dicatat."
     },
-    "supplierPerformance": {
-      "title": "Performa Pemasok",
-      "subtitle": "Analisa keandalan vendor dan dampak limbah inventori",
-      "table": {
-        "supplierName": "Nama Pemasok",
-        "orders": "Pesanan",
-        "totalQtyIn": "Total Jml Masuk",
-        "wasteQty": "Jml Limbah",
-        "wasteRate": "Tingkat Limbah"
-      }
-    }
-  },
-  "customerDetail": {
-    "memberSince": "Member sejak {{date}}",
-    "totalSpent": "Total Pengeluaran",
-    "pointsBalance": "Saldo Poin",
-    "recentTransactions": "Transaksi Terbaru",
-    "pointsShort": "pt",
-    "topFavorite": "Item Favorit Teratas",
-    "purchasedTimes": "Dibeli {{count}} kali",
-    "manualPointsAdjustment": "Penyesuaian Poin Manual",
-    "enterAmountPlaceholder": "Masukkan jumlah...",
-    "applyCorrection": "Terapkan Koreksi"
-  },
-
-  "mediaUploader": {
-    "clickToUpload": "Klik untuk mengunggah gambar produk",
-    "hint": "PNG, JPG hingga 2MB"
-  },
-
-  "stockMatrix": {
-    "title": "Matriks Stok Jaringan",
-    "table": {
-      "productName": "Nama Produk",
-      "totalNetwork": "Total Jaringan"
-    }
-  },
-
-  "stockHistory": {
-    "branchContext": "Konteks Cabang",
-    "selectProduct": "Pilih Produk",
-    "table": {
-      "dateTime": "Tanggal & Waktu",
-      "reference": "Referensi",
-      "type": "Tipe",
-      "change": "Perubahan",
-      "balance": "Saldo"
-    }
-  },
-
-  "categoryManagement": {
-    "title": "Manajemen Kategori",
-    "subtitle": "Atur produk Anda di seluruh cabang",
-    "newCategory": "Kategori Baru",
-    "form": {
-      "name": "Nama",
-      "description": "Deskripsi"
+    "purchaseOrderAlerts": {
+      "successAlert": "Stok diterima dan ditambahkan ke inventaris cabang!",
+      "confirmReceive": "Konfirmasi penerimaan PO #{{ id }}? Ini akan menambahkan {{ items }} item ke inventaris {{ branch }}.",
+      "integratedAlert": "Stok berhasil diintegrasikan ke inventaris cabang.",
+      "errorStatusUpdate": "Kesalahan memperbarui status: {{ message }}"
     },
-    "create": "Buat Kategori",
-    "available": "Kategori Tersedia",
-    "total": "Total",
-    "empty": "Belum ada kategori dibuat."
+    "stockMovement": {
+      "noStockAlert": "Tidak ada stok tersedia di cabang asal!"
+    }
+  },
+  "suppliers": {
+    "title": "Direktori Pemasok",
+    "subtitle": "Kelola hubungan vendor dan kontak pengadaan",
+    "addSupplier": "Tambah Pemasok",
+    "editDetails": "Ubah Detail",
+    "removeSupplier": "Hapus Pemasok",
+    "newSupplierDetails": "Detail Pemasok Baru",
+    "companyName": "Nama Perusahaan",
+    "contactPerson": "Kontak Person",
+    "emailAddress": "Alamat Email",
+    "phoneNumber": "Nomor Telepon",
+    "physicalAddress": "Alamat Fisik",
+    "noAddress": "Tidak ada alamat tercatat",
+    "taxId": "NPWP",
+    "purchaseHistory": "Riwayat Pembelian",
+    "save": "Simpan",
+    "cancel": "Batal"
   },
   "analytics": {
     "title": "Analitik",
-    "kpi": "Metrik KPI",
+    "kpi": "Analisis KPI",
     "commercial": "KPI Komersial",
     "operational": "KPI Operasional",
     "governance": "KPI Tata Kelola",
     "conversion": "Peningkatan Konversi",
-    "averageOrderValue": "Nilai Pesanan Rata-rata",
-    "visualSearchRate": "Tingkat Pencarian Visual",
-    "aiLatency": "Latensi AI P95",
-    "aiCost": "Biaya AI per Pesanan",
+    "averageOrderValue": "Rata-rata Nilai Pesanan",
+    "visualSearchRate": "Tingkat Penemuan Pencarian Visual",
+    "aiLatency": "Latensi AI (p95)",
+    "aiCost": "Biaya AI Per Pesanan",
     "supportDeflection": "Tingkat Pengalihan Dukungan",
-    "promptDrift": "Insiden Drift Prompt",
+    "promptDrift": "Insiden Pergeseran Prompt",
     "hallucination": "Tingkat Halusinasi",
-    "fallbackSuccess": "Keberhasilan Fallback Fitur"
+    "fallbackSuccess": "Tingkat Keberhasilan Pengganti",
+    "days": "Hari:",
+    "errors": {
+      "commercial": "Gagal memuat KPI komersial",
+      "operational": "Gagal memuat KPI operasional",
+      "governance": "Gagal memuat KPI tata kelola"
+    }
+  },
+  "assistant": {
+    "title": "Asisten AI",
+    "welcome": "Apa yang bisa saya bantu hari ini?",
+    "placeholder": "Ketik pertanyaan...",
+    "error": "Maaf, saya mengalami kesalahan. Silakan coba lagi."
+  },
+  "employee": {
+    "title": "Manajemen Pegawai",
+    "subtitle": "Kelola peran dan akses staf",
+    "addNew": "Tambah Pegawai",
+    "branch": "Cabang",
+    "offboard": "Berhentikan",
+    "inactiveLeft": "Berhenti pada {{ date }}",
+    "noEmployees": "Tidak ada pegawai ditemukan",
+    "onboard": "Tambah Pegawai Baru",
+    "profileInformation": "Informasi Profil",
+    "employmentDetails": "Detail Pekerjaan",
+    "assignToBranchPlaceholder": "Pilih cabang",
+    "systemLogin": "Akses Sistem",
+    "assignToBranchButton": "Simpan Pegawai",
+    "form": {
+      "fullName": "Nama Lengkap",
+      "mobilePlaceholder": "Nomor Handphone",
+      "username": "Nama Pengguna",
+      "password": "Kata Sandi"
+    },
+    "offboardReasonPrompt": "Alasan {{ name }} berhenti?",
+    "offboardSuccess": "Akses telah dihentikan."
+  },
+  "banner": {
+    "title": "Banner E-commerce",
+    "subtitle": "Kelola Bagian Hero dari etalase Anda",
+    "addNew": "Tambah Baru",
+    "empty": "Kosong",
+    "form": {
+      "title": "Judul Banner",
+      "titlePlaceholder": "mis., Biji Kopi",
+      "redirect": "URL Pengalihan",
+      "linkPlaceholder": "https://example.com"
+    },
+    "live": "Banner Aktif",
+    "publish": "Terbitkan",
+    "selectImage": "Pilih Gambar",
+    "status": {
+      "active": "Aktif",
+      "draft": "Draf"
+    },
+    "uploading": "Mengunggah",
+    "selectImagePrompt": "Silakan pilih gambar",
+    "deleteConfirm": "Hapus spanduk ini dari situs web?"
+  },
+  "branchManagement": {
+    "title": "Manajemen Cabang",
+    "subtitle": "Kelola cabang Anda",
+    "actions": {
+      "activate": "Aktifkan",
+      "deactivate": "Nonaktifkan",
+      "create": "Buat",
+      "update": "Ubah"
+    },
+    "branch": "Cabang",
+    "editDetails": "Ubah Detail",
+    "form": {
+      "address": "Alamat",
+      "name": "Nama",
+      "namePlaceholder": "mis., Cabang Utama",
+      "phone": "Telepon",
+      "phonePlaceholder": "mis., 08123456789",
+      "addressPlaceholder": "mis., Jl. Contoh No. 123"
+    },
+    "newLocation": "Lokasi Baru",
+    "status": {
+      "active": "Aktif",
+      "inactive": "Tidak Aktif"
+    },
+    "viewInventory": "Lihat Inventaris"
+  },
+  "categoryManagement": {
+    "title": "Manajemen Kategori",
+    "subtitle": "Atur produk Anda di seluruh cabang",
+    "available": "Tersedia",
+    "create": "Buat",
+    "empty": "Kosong",
+    "form": {
+      "description": "Deskripsi",
+      "name": "Nama",
+      "namePlaceholder": "mis., Biji Kopi",
+      "descriptionPlaceholder": "mis., Biji kopi arabika panggang yang lezat"
+    },
+    "newCategory": "Kategori Baru",
+    "total": "Total",
+    "deleteConfirm": "Apakah Anda yakin? Ini mungkin memengaruhi produk yang terkait dengan kategori ini."
+  },
+  "customerDetail": {
+    "applyCorrection": "Terapkan Koreksi",
+    "enterAmountPlaceholder": "Masukkan Jumlah",
+    "manualPointsAdjustment": "Penyesuaian Poin Manual",
+    "pointsBalance": "Saldo Poin",
+    "pointsShort": "Poin Tidak Cukup",
+    "recentTransactions": "Transaksi Terbaru",
+    "topFavorite": "Favorit Utama",
+    "totalSpent": "Total Pengeluaran"
   },
   "insights": {
     "dailyClosing": "Penutupan Harian",
@@ -370,47 +428,164 @@
     "connectionRestored": "Koneksi Pulih",
     "connectionLost": "Koneksi Hilang"
   },
-  "receipt": {
-    "cashier": "Kasir",
-    "guest": "Tamu",
-    "subtotal": "Subtotal",
-    "manualDiscount": "Diskon Manual",
-    "discountAmount": "Jumlah Diskon",
-    "pointsRedeem": "Tukar Poin",
-    "pointsAvailable": "Poin Tersedia",
-    "pointsRedemption": "Penukaran Poin",
-    "redeem": "TUKAR",
-    "redeemed": "DITUKAR",
-    "grandTotal": "Total Akhir",
-    "paid": "Dibayar",
-    "change": "Kembali",
-    "newBalance": "Saldo Baru",
-    "thankYou": "Terima kasih telah berbelanja"
-  }
-
-    ,"ecommerceOrders": {
-      "title": "Pesanan E-commerce",
-      "subtitle": "Kelola dan penuhi pesanan online",
-      "tabs": {
-        "new": "Baru",
-        "processing": "Diproses",
-        "shipped": "Dikirim"
+  "mediaUploader": {
+    "clickToUpload": "Klik Untuk Mengunggah",
+    "hint": "Petunjuk"
+  },
+  "priceCoder": {
+    "title": "Cetak Label Harga",
+    "subtitle": "Area staging untuk pencetakan label 18mm",
+    "costCipherHint": "Petunjuk Sandi Biaya",
+    "costCipherKey": "Kunci Sandi Biaya",
+    "currentPrice": "Harga Saat Ini",
+    "noSku": "Tidak Ada SKU",
+    "notAvailable": "Tidak Tersedia",
+    "printQty": "Jumlah Cetak",
+    "printLabel":"Cetak Label",
+    "productDetails": "Detail Produk",
+    "systemSettings": "Pengaturan Sistem",
+    "tip": {
+      "changeImpact": "Dampak Perubahan"
+    },
+    "updateEncryptionKey": "Perbarui Kunci Enkripsi",
+    "keyLengthAlert": "Kunci harus tepat 10 karakter.",
+    "keyUpdateSuccessAlert": "Kunci berhasil diperbarui."
+  },
+  "purchase": {
+    "title": "Analisis Pengeluaran Pemasok",
+    "allSuppliers": "Semua Pemasok",
+    "auditLog": "Log Audit",
+    "avgOrderValue": "Rata-rata Nilai Pesanan",
+    "branchAllocation": "Alokasi Cabang",
+    "summary": "Ringkasan",
+    "supplierLabel": "Pilih Pemasok",
+    "table": {
+      "product": "Produk",
+      "qty": "Qty",
+      "sku": "SKU",
+      "total": "Total",
+      "unitCost": "Biaya Satuan"
+    },
+    "totalOrders": "Total Pesanan",
+    "totalSpend": "Total Pengeluaran"
+  },
+  "purchaseOrder": {
+    "title": "Pesanan Pembelian Baru",
+    "addProducts": "Tambah Produk",
+    "closePreview": "Tutup Pratinjau",
+    "create": "Buat",
+    "destinationBranch": "Cabang Tujuan",
+    "expectedDate": "Tanggal Diharapkan",
+    "orderDate": "Tanggal Pesanan",
+    "receiptPreview": "Pratinjau Tanda Terima",
+    "searchPlaceholder": "Cari produk...",
+    "selectSupplier": "Pilih Pemasok",
+    "supplier": "Pemasok",
+    "totalCommitment": "Total Komitmen"
+  },
+  "recentSales": {
+    "empty": "Kosong",
+    "subtitle": "Faktur terakhir dari cabang-cabang Anda",
+    "table": {
+      "action": "Aksi",
+      "grandTotal": "Total Keseluruhan",
+      "invoice": "Faktur",
+      "payment": "Pembayaran"
+    },
+    "viewAll": "Lihat Semua"
+  },
+  "reports": {
+    "allBranches": "Semua Cabang",
+    "allEmployees": "Semua Pegawai",
+    "daily": {
+      "generateReport": "Buat Laporan",
+      "managerSignature": "Tanda Tangan Manajer",
+      "paymentBreakdown": "Rincian Pembayaran",
+      "physicalCashInDrawer": "Uang Tunai Fisik di Laci",
+      "selectDate": "Pilih Tanggal",
+      "title": "Laporan Closing Harian",
+      "totalRevenue": "Total Pendapatan",
+      "transactions": "Transaksi"
+    },
+    "dateRange": "Rentang Waktu",
+    "generateReport": "Buat Laporan",
+    "generateSalesReport": "Buat Laporan Penjualan",
+    "grandTotalSales": "Total Penjualan Keseluruhan",
+    "salesA4": {
+      "table": {
+        "costEnc": "Kode Modal",
+        "itemName": "Nama Barang",
+        "qty": "Qty",
+        "sku": "SKU",
+        "soldBy": "Dijual Oleh",
+        "total": "Total",
+        "unitPrice": "Harga Satuan"
       },
-      "orderPrefix": "Pesanan",
-      "deliverTo": "Kirim ke",
-      "items": "Item",
-      "assignedBranch": "Cabang Ditugaskan",
-      "acceptPrintLabel": "Terima & Cetak Label",
-      "inputResiShip": "Input Resi / Kirim",
-      "release": "Rilis Pesanan",
-      "cancelOrder": "Batalkan Pesanan",
-      "trackingNumber": "Nomor Resi",
-      "viewCustomerProfile": "Lihat Profil Pelanggan",
-      "emptyState": "Tidak ada pesanan e-commerce",
-      "finalizeShipment": "Finalisasi Pengiriman",
-      "selectCourier": "Pilih Kurir",
-      "trackingNumberResi": "Nomor Resi",
-      "resiPlaceholder": "Masukkan nomor resi...",
-      "confirmFinalizeSale": "Konfirmasi & Finalisasi"
+      "title": "Laporan Penjualan"
+    },
+    "selectBranch": "Pilih Cabang",
+    "selectEmployee": "Pilih Pegawai",
+    "supplierPerformance": {
+      "title": "Performa Pemasok",
+      "subtitle": "Analisa keandalan vendor dan dampak limbah inventori",
+      "table": {
+        "orders": "Pesanan",
+        "supplierName": "Nama Pemasok",
+        "totalQtyIn": "Jumlah Masuk",
+        "wasteQty": "Jumlah Terbuang",
+        "wasteRate": "Tingkat Terbuang"
+      }
+    },
+    "totalItemsSold": "Total Barang Terjual"
+  },
+  "stockAudit": {
+    "selectBranch": "Pilih Cabang",
+    "selectProduct": "Pilih Produk",
+    "table": {
+      "actor": "Pelaku",
+      "change": "Perubahan",
+      "dateTime": "Tanggal Waktu",
+      "finalBalance": "Saldo Akhir",
+      "type": "Tipe"
     }
+  },
+  "stockCard": {
+    "costCipher": "Sandi Biaya",
+    "salePrice": "Harga Jual"
+  },
+  "stockHistory": {
+    "branchContext": "Konteks Cabang",
+    "selectProduct": "Pilih Produk",
+    "table": {
+      "balance": "Saldo",
+      "change": "Perubahan",
+      "dateTime": "Tanggal Waktu",
+      "reference": "Referensi",
+      "type": "Tipe"
+    }
+  },
+  "stockMatrix": {
+    "title": "Matriks Stok Jaringan",
+    "exportExcel": "Ekspor Excel",
+    "table": {
+      "productName": "Nama Produk",
+      "totalNetwork": "Total Jaringan"
+    }
+  },
+  "stockMovement": {
+    "title": "Logistik Inventori",
+    "subtitle": "Kelola transfer antar cabang",
+    "createTransfer": "Buat Transfer",
+    "items": "Barang",
+    "movementHistory": "Riwayat Pergerakan",
+    "receive": "Terima",
+    "received": "Diterima",
+    "table": {
+      "date": "Tanggal",
+      "items": "Barang",
+      "path": "Jalur",
+      "reference": "Referensi",
+      "status": "Status"
+    }
+  }
 }

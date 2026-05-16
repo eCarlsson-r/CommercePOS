@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
 import { CategoryService } from '@/services/category.service';
 import { ProductFormComponent } from './components/product-form/product-form.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-management',
@@ -16,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ProductManagementComponent {
   private productService = inject(ProductService);
   private categoryService = inject(CategoryService);
+  private translate = inject(TranslateService);
 
   // State Signals
   products = signal<any[]>([]);
@@ -96,7 +97,7 @@ export class ProductManagementComponent {
 
   deleteProduct(product: any) {
     if (!product?.id) return;
-    if (!window.confirm(`Delete ${product.name}? This cannot be undone.`)) return;
+    if (!window.confirm(this.translate.instant('products.deleteConfirm', { name: product.name }))) return;
 
     this.productService.delete(product.id).subscribe({
       next: () => this.refreshProducts(),

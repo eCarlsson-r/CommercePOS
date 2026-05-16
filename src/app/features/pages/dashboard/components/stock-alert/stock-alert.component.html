@@ -2,9 +2,9 @@
   <div class="p-6 border-b border-border flex items-center justify-between bg-store-cream/50">
     <h3 class="font-bold text-primary flex items-center gap-2">
       <lucide-icon name="package-search" class="w-5 h-5"></lucide-icon>
-      Stock Replenishment Needed
+      {{ 'dashboard.stockAlert.title' | translate }}
     </h3>
-    <span class="text-xs font-mono text-muted-foreground">{{ lowStockItems().length }} alerts</span>
+    <span class="text-xs font-mono text-muted-foreground">{{ lowStockItems().length }} {{ 'dashboard.stockAlert.alerts' | translate }}</span>
   </div>
 
   <div class="divide-y divide-border max-h-[400px] overflow-y-auto">
@@ -19,14 +19,14 @@
             <div class="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
               <div class="bg-destructive h-full" [style.width.%]="((item.quantity || 0) / 10) * 100"></div>
             </div>
-            <span class="text-[10px] font-bold text-destructive">{{ item.quantity || 0 }} left</span>
+            <span class="text-[10px] font-bold text-destructive">{{ item.quantity || 0 }} {{ 'dashboard.stockAlert.left' | translate }}</span>
           </div>
         </div>
       </div>
     } @empty {
       <div class="p-12 text-center text-muted-foreground italic">
         <lucide-icon name="check-circle" class="w-8 h-8 mx-auto mb-2 text-stock-in"></lucide-icon>
-        All stock levels are healthy.
+        {{ 'dashboard.stockAlert.allHealthy' | translate }}
       </div>
     }
   </div>

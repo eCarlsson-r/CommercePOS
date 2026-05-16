@@ -1,16 +1,15 @@
 <div class="p-6 max-w-6xl mx-auto space-y-6">
   <div class="flex justify-between items-end">
     <div>
-      <h1 class="text-2xl font-bold text-primary">{{ 'branchManagement.title' | translate }}</h1>
-      <p class="text-sm text-gray-500">
-        Managing {{ branchService.branches().length }} active locations
+      <h1 class="text-3xl font-black text-primary tracking-tighter uppercase">{{ 'branchManagement.title' | translate }}</h1>
+      <p class="text-gray-500 font-medium">
+        {{ 'branchManagement.subtitle' | translate }}
       </p>
     </div>
     <button
       (click)="showDrawer.set(true)"
-      class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2"
-    >
-      <lucide-icon name="plus" class="w-4 h-4"></lucide-icon> Add New Branch
+      class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+      <lucide-icon name="plus" class="w-4 h-4"></lucide-icon> {{ 'branchManagement.newLocation' | translate }}
     </button>
   </div>
 
@@ -27,7 +26,7 @@
             [class]="branch.is_active ? 'text-green-600 bg-green-50' : 'text-gray-400 bg-gray-50'"
             class="text-[10px] font-bold px-2 py-1 rounded-md uppercase"
           >
-            {{ branch.is_active ? 'Active' : 'Inactive' }}
+            {{ branch.is_active ? ('branchManagement.status.active' | translate) : ('branchManagement.status.inactive' | translate) }}
           </span>
         </div>
 
@@ -40,19 +39,19 @@
             class="px-3 py-2 text-xs font-bold rounded-lg"
             [class]="branch.is_active ? 'text-gray-600 bg-gray-100 hover:bg-gray-200' : 'text-green-700 bg-green-50 hover:bg-green-100'"
           >
-            {{ branch.is_active ? 'Deactivate' : 'Activate' }}
+            {{ branch.is_active ? ('branchManagement.actions.deactivate' | translate) : ('branchManagement.actions.activate' | translate) }}
           </button>
           <button
             (click)="editBranch(branch)"
             class="flex-1 py-2 text-xs font-bold text-gray-600 bg-gray-50 rounded-lg hover:bg-gray-100"
           >
-            Edit Details
+            {{ 'branchManagement.editDetails' | translate }}
           </button>
           <button
             routerLink="/inventory"
             class="px-3 py-2 text-xs font-bold text-primary bg-store-cream/20 rounded-lg"
           >
-            View Inventory
+            {{ 'branchManagement.viewInventory' | translate }}
           </button>
         </div>
       </div>
@@ -65,7 +64,7 @@
   >
     <div class="w-full max-w-md bg-white h-full shadow-2xl p-8 flex flex-col">
       <h2 class="text-xl font-black text-primary mb-8 uppercase tracking-tighter">
-        New Branch Location
+        {{ 'branchManagement.newLocation' | translate }}
       </h2>
 
       <div class="space-y-6 flex-1 overflow-y-auto">
@@ -74,7 +73,7 @@
           <input
             [(ngModel)]="formData.name"
             class="w-full mt-2 p-4 bg-gray-50 rounded-2xl border-none"
-            placeholder="e.g., Binjai Supermall"
+            [placeholder]="'branchManagement.form.namePlaceholder' | translate"
           />
         </div>
         <div>
@@ -82,7 +81,7 @@
           <input
             [(ngModel)]="formData.phone"
             class="w-full mt-2 p-4 bg-gray-50 rounded-2xl border-none"
-            placeholder="e.g., 08123456789"
+            [placeholder]="'branchManagement.form.phonePlaceholder' | translate"
           />
         </div>
         <div>
@@ -94,15 +93,15 @@
         </div>
       </div>
 
-      <div class="pt-6 flex gap-4">
+        <div class="pt-6 flex gap-4">
         <button (click)="cancelEdit()" class="flex-1 py-4 bg-gray-100 rounded-2xl font-bold">
-          Cancel
+          {{ 'common.cancel' | translate }}
         </button>
         <button
           (click)="saveBranch()"
           class="flex-1 py-4 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-store-brown/20"
         >
-          {{ action() }} Branch
+          {{ action() | translate }} {{ 'branchManagement.branch' | translate }}
         </button>
       </div>
     </div>

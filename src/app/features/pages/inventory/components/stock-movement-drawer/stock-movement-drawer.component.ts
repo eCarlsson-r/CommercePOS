@@ -7,11 +7,12 @@ import { StockService } from '@/services/stock.service';
 import { BranchService } from '@/services/branch.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { AuthService } from '@/services/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-stock-movement-drawer',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule, TranslateModule],
   template: `
     <div *ngIf="isOpen" 
          class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity"
@@ -106,6 +107,7 @@ export class StockMovementDrawerComponent {
   private productService = inject(ProductService);
   private stockService = inject(StockService);
   private branchService = inject(BranchService);
+  private translate = inject(TranslateService);
 
   products = signal<any[]>([]);
   branches = signal<any[]>([]);
@@ -132,7 +134,7 @@ export class StockMovementDrawerComponent {
 
     // Logic: Prevent adding if the 'From' branch doesn't have enough stock
     if (product.current_stock <= 0) {
-      alert('No stock available in source branch!');
+      alert(this.translate.instant('inventory.stockMovement.noStockAlert'));
       return;
     }
 

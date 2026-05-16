@@ -5,7 +5,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { LucideAngularModule } from "lucide-angular";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-employee-list',
@@ -15,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class EmployeeListComponent {
   private employeeService = inject(EmployeeService);
   branchService = inject(BranchService);
+  private translate = inject(TranslateService);
 
   showDrawer = signal(false);
   branches = toSignal(this.branchService.getBranches()); 
@@ -95,13 +96,14 @@ export class EmployeeListComponent {
 
   confirmOffboard(employee: any) {
     const quitDate = new Date().toISOString().split('T')[0];
-    const reason = prompt(`Reason for ${employee.name} leaving?`);
+    const promptMsg = this.translate.instant('employee.offboardReasonPrompt', { name: employee.name });
+    const reason = prompt(promptMsg);
 
     if (reason !== null) {
       this.employeeService.offboard(employee.id, { quit_date: quitDate, reason })
         .subscribe(() => {
           this.loadEmployees();
-          alert('Access has been terminated.');
+          alert(this.translate.instant('employee.offboardSuccess'));
         });
     }
   }

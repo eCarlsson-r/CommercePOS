@@ -24,7 +24,7 @@ interface KPIMetric {
         <h1 class="text-3xl font-bold">{{ 'analytics.kpi' | translate }}</h1>
         <div class="flex gap-4">
           <label class="text-sm font-semibold">
-            Days:
+            {{ 'analytics.days' | translate }}
             <input 
               type="number" 
               [(ngModel)]="days" 
@@ -80,7 +80,7 @@ interface KPIMetric {
       </div>
 
       <div *ngIf="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-        {{ error }}
+        {{ error | translate }}
       </div>
     </div>
   `,
@@ -151,7 +151,7 @@ export class KPIAnalyticsComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           console.error('Failed to load commercial KPIs:', err);
-          this.error = 'Failed to load commercial KPIs';
+          this.error = 'analytics.errors.commercial';
         }
       });
 
@@ -182,6 +182,7 @@ export class KPIAnalyticsComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           console.error('Failed to load operational KPIs:', err);
+          this.error = 'analytics.errors.operational';
         }
       });
 
@@ -213,6 +214,7 @@ export class KPIAnalyticsComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           console.error('Failed to load governance KPIs:', err);
+          this.error = 'analytics.errors.governance';
           this.isLoading = false;
         }
       });

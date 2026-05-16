@@ -1,5 +1,6 @@
 import { Component, inject, signal, input } from "@angular/core";
 import { SlicePipe, DecimalPipe } from "@angular/common";
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxBarcode6 } from 'ngx-barcode6';
 import { generateCostCode } from "@/utils/number";
 import { SettingsService } from "@/services/settings.service";
@@ -9,7 +10,7 @@ import { SettingsService } from "@/services/settings.service";
     templateUrl: './barcode-label.component.html',
     styleUrls: ['./barcode-label.component.css'],
     standalone: true,
-    imports: [NgxBarcode6, SlicePipe, DecimalPipe]
+    imports: [NgxBarcode6, SlicePipe, DecimalPipe, TranslateModule]
 })
 export class BarcodeLabelComponent {
     private settingsService = inject(SettingsService);

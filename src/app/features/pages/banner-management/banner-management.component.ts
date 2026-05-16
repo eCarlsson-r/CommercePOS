@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { FormsModule } from '@angular/forms';
 import { BannerService } from '@/services/banner.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-banner-management',
@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class BannerManagementComponent {
   private bannerService = inject(BannerService);
+  private translate = inject(TranslateService);
   
   banners = signal<any[]>([]);
   isUploading = signal(false);
@@ -35,7 +36,7 @@ export class BannerManagementComponent {
   }
 
   saveBanner() {
-    if (!this.newBanner.image) return alert('Please select an image');
+    if (!this.newBanner.image) return alert(this.translate.instant('banner.selectImagePrompt'));
     
     this.isUploading.set(true);
     const formData = new FormData();
@@ -60,7 +61,7 @@ export class BannerManagementComponent {
   }
 
   deleteBanner(id: number) {
-    if (confirm('Remove this banner from the website?')) {
+    if (confirm(this.translate.instant('banner.deleteConfirm'))) {
       this.bannerService.deleteBanner(id).subscribe(() => this.loadBanners());
     }
   }

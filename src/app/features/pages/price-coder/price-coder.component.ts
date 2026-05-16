@@ -6,7 +6,7 @@ import { StockService } from '@/services/stock.service';
 import { SettingsService } from '@/services/settings.service';
 import { BranchService } from '@/services/branch.service';
 import { BarcodeLabelComponent } from './components/barcode-label.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-price-coder',
@@ -18,6 +18,7 @@ export class PriceCoderComponent {
   private stockService = inject(StockService);
   private branchService = inject(BranchService);
   private settingsService = inject(SettingsService);
+  private translate = inject(TranslateService);
   searchQuery = '';
   searchResults = signal<any[]>([]);
   printQueue = signal<any[]>([]);
@@ -26,13 +27,13 @@ export class PriceCoderComponent {
 
   updateKey() {
     if (this.tempKey().length !== 10) {
-      return alert('Key must be exactly 10 characters.');
+      return alert(this.translate.instant('priceCoder.keyLengthAlert'));
     }
   
     this.settingsService.updateSetting('cost_cipher_key', this.tempKey().toUpperCase())
       .subscribe(() => {
         this.isSettingsOpen.set(false);
-        alert('Key updated successfully.');
+        alert(this.translate.instant('priceCoder.keyUpdateSuccessAlert'));
       });
   }
 

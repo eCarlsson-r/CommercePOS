@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '@/services/auth.service';
 import { ReportService } from '@/services/report.service';
 import { Router } from '@angular/router';
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-branch-staff-kpis',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, TranslateModule],
   templateUrl: './branch-staff-kpis.component.html'
 })
 export class BranchStaffKpisComponent {

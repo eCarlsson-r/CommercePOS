@@ -7,6 +7,7 @@ import { LucideAngularModule } from 'lucide-angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { SupplierService } from '@/services/supplier.service';
 import { BranchService } from '@/services/branch.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-returns',
@@ -19,6 +20,7 @@ export class ReturnsComponent {
   private branchService = inject(BranchService);
   private productService = inject(ProductService);
   private supplierService = inject(SupplierService);
+  private translate = inject(TranslateService);
 
   // State
   activeTab = signal<'process' | 'history'>('process');
@@ -92,7 +94,7 @@ export class ReturnsComponent {
     };
 
     this.returnService.processReturn(payload).subscribe(() => {
-      alert('Inventory Updated: Stock adjusted or Waste recorded.');
+      alert(this.translate.instant('inventory.returns.successAlert'));
       this.basket.set([]);
       this.reason.set('');
     });

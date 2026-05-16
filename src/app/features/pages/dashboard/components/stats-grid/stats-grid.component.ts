@@ -5,15 +5,16 @@ import { ProductService } from '@/services/product.service';
 import { SaleService } from '@/services/sale.service';
 import { StockService } from '@/services/stock.service';
 import { ReturnService } from '@/services/return.service';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular'; // <--- Import this
+import { TranslateModule } from '@ngx-translate/core';
 import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-stats-grid',
   standalone: true,
   templateUrl: './stats-grid.component.html',
-  imports: [CurrencyPipe, LucideAngularModule]
+  imports: [CommonModule, CurrencyPipe, LucideAngularModule, TranslateModule]
 })
 
 export class StatsGridComponent {

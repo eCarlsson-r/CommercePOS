@@ -6,9 +6,9 @@
         <lucide-icon name="banknote" class="w-6 h-6"></lucide-icon>
       </div>
     </div>
-    <p class="mt-4 text-sm text-muted-foreground font-medium">Sales Today</p>
+    <p class="mt-4 text-sm text-muted-foreground font-medium">{{ 'dashboard.salesToday' | translate }}</p>
     <h3 class="text-2xl font-bold text-foreground">
-      {{ salesCount() }} Transactions
+      {{ salesCount() }} {{ 'dashboard.transactionsShort' | translate }}
     </h3>
     <p class="text-sm text-primary font-bold">
       Total: {{ todayRevenue() | currency:'IDR':'Rp. ':'1.0-0' }}
@@ -20,10 +20,10 @@
       <div class="p-2 bg-red-100 rounded-lg text-red-600">
         <lucide-icon name="alert-triangle" class="w-6 h-6"></lucide-icon>
       </div>
-      <span class="text-xs font-bold text-red-600">Urgent</span>
+      <span class="text-xs font-bold text-red-600">{{ 'dashboard.urgent' | translate }}</span>
     </div>
-    <p class="mt-4 text-sm text-muted-foreground font-medium">Low Stock Items</p>
-    <h3 class="text-2xl font-bold text-foreground">{{ lowStockCount() }} Items</h3>
+    <p class="mt-4 text-sm text-muted-foreground font-medium">{{ 'dashboard.lowStock' | translate }}</p>
+    <h3 class="text-2xl font-bold text-foreground">{{ lowStockCount() }} {{ 'dashboard.itemsShort' | translate }}</h3>
   </div>
   
   <div class="bg-white p-6 rounded-2xl border border-border shadow-sm">
@@ -32,9 +32,9 @@
         <lucide-icon name="truck" class="w-6 h-6"></lucide-icon>
       </div>
     </div>
-    <p class="mt-4 text-sm text-muted-foreground font-medium">In Transit</p>
+    <p class="mt-4 text-sm text-muted-foreground font-medium">{{ 'dashboard.inTransit' | translate }}</p>
     <h3 class="text-2xl font-bold text-foreground">
-      {{ pendingTransfers() }} Transfers
+      {{ pendingTransfers() }} {{ 'dashboard.transfersShort' | translate }}
     </h3>
   </div>
 
@@ -44,7 +44,7 @@
         <lucide-icon name="trash-2" class="w-6 h-6"></lucide-icon>
       </div>
     </div>
-    <p class="mt-4 text-sm text-muted-foreground font-medium">Waste Today</p>
+    <p class="mt-4 text-sm text-muted-foreground font-medium">{{ 'dashboard.wasteToday' | translate }}</p>
     <h3 class="text-2xl font-bold text-foreground truncate">{{ dailyWaste() | currency:'IDR':'Rp. ':'1.0-0' }}</h3>
   </div>
 </div>

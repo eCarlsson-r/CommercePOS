@@ -4,7 +4,7 @@
     <div class="flex gap-2">
         <button (click)="exportToExcel()" class="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-bold shadow-md hover:bg-green-700 transition-all">
             <lucide-icon name="file-spreadsheet" class="w-4 h-4"></lucide-icon>
-            Export Excel
+            {{ 'stockMatrix.exportExcel' | translate }}
         </button>
         
         <button (click)="loadMatrix()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">

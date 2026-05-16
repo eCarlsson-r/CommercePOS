@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ViewChild, NgModule, signal, computed, HostListener, effect } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, NgModule, signal, computed, HostListener, effect, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
 import { ThermalReceiptComponent } from '../../components/thermal-receipt/thermal-receipt.component';
@@ -11,7 +11,7 @@ import { ActiveSale } from '@/models/sale.model';
 import { BranchService } from '@/services/branch.service';
 import { SaleService } from '@/services/sale.service';
 import { AIService } from '@/services/ai.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { OfflineSyncService } from '@/core/services/offline-sync.service';
 
 @Component({
@@ -27,6 +27,8 @@ export class SalesFormComponent implements OnInit {
   private salesService = inject(SaleService);
   private aiService = inject(AIService);
   private offlineSync = inject(OfflineSyncService);
+  private translate = inject(TranslateService);
+  private injector = inject(Injector);
   
   aiRecommendations = signal<any[]>([]);
   isSearchingVisual = signal(false);
@@ -69,7 +71,7 @@ export class SalesFormComponent implements OnInit {
       } else {
         this.aiRecommendations.set([]);
       }
-    });
+    }, { injector: this.injector, allowSignalWrites: true });
   }
 
   fetchRecommendations() {
@@ -379,7 +381,7 @@ export class SalesFormComponent implements OnInit {
 
     if (!navigator.onLine) {
       this.offlineSync.queueMutation('sale.create', payload);
-      alert('Transaction saved offline and will sync when connection is restored.');
+      alert(this.translate.instant('sales.offlineAlert'));
       this.clearCart();
       this.closePayment();
       return;
@@ -398,10 +400,10 @@ export class SalesFormComponent implements OnInit {
           window.print();
           this.clearCart();
           this.closePayment();
-          alert('Transaction Successful!');
+          alert(this.translate.instant('sales.successAlert'));
         }, 100);
       },
-      error: (err) => alert('Payment Failed: ' + err.message)
+      error: (err) => alert(this.translate.instant('sales.errorAlert', { message: err.message }))
     });
   }
 

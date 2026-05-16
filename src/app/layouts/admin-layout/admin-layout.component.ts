@@ -71,7 +71,7 @@ export class AdminLayoutComponent implements OnInit {
         ]
       },
       {
-        title: 'products.title',
+        title: 'master.title',
         visible: role === 'admin', 
         items: [
           { title: 'master.banners', link: '/banner', icon: 'image' },
@@ -89,9 +89,9 @@ export class AdminLayoutComponent implements OnInit {
         visible: true,
         items: [
           { title: 'inventory.stock', link: '/inventory', icon: 'monitor-smartphone' },
-          { title: 'inventory.purchase', link: '/purchase', icon: 'shopping-cart', roles: ['admin'] },
+          { title: 'inventory.purchaseOrders', link: '/purchase', icon: 'shopping-cart', roles: ['admin'] },
           { title: 'inventory.transfers', link: '/movement', icon: 'truck' },
-          { title: 'inventory.returns', link: '/returns', icon: 'rotate-ccw', roles: ['admin'] },
+          { title: 'inventory.returns.title', link: '/returns', icon: 'rotate-ccw', roles: ['admin'] },
         ]
       },
       {
