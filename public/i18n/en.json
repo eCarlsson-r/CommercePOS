@@ -31,6 +31,7 @@
     "saveChanges": "Save Changes"
   },
   "master": {
+    "title": "Master Data",
     "banners": "Banners",
     "branches": "Branches",
     "employees": "Employees",
@@ -104,6 +105,9 @@
     "pointsRedeem": "Points Redeem",
     "pointsAvailable": "Points Available",
     "pointsRedemption": "Points Redemption",
+    "redeem": "Redeem",
+    "redeemed": "Redeemed",
+    "grandTotal": "Grand Total",
     "paid": "Paid",
     "change": "Change",
     "newBalance": "New Balance",
@@ -406,7 +410,8 @@
     "recentTransactions": "Recent Transactions",
     "topFavorite": "Top Favorite",
     "totalSpent": "Total Spent"
-  },"insights": {
+  },
+  "insights": {
     "dailyClosing": "Daily Closing",
     "salesReport": "Sales Report",
     "purchaseReport": "Purchase Report",
@@ -414,7 +419,7 @@
     "aiKpi": "AI & KPI Analytics"
   },
   "offline": {
-    "title": "Offline",
+    "title": "Online",
     "offlineMode": "Offline Mode",
     "syncPending": "Sync Pending",
     "syncing": "Syncing...",

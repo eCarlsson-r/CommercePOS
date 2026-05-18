@@ -96,7 +96,6 @@
     "successAlert": "Transaksi Berhasil!",
     "errorAlert": "Pembayaran Gagal: {{ message }}"
   },
-
   "receipt": {
     "cashier": "Kasir",
     "guest": "Tamu",
@@ -420,7 +419,7 @@
     "aiKpi": "Analitik AI & KPI"
   },
   "offline": {
-    "title": "Offline",
+    "title": "Online",
     "offlineMode": "Mode Offline",
     "syncPending": "Sinkronisasi Tertunda",
     "syncing": "Menyinkronkan...",

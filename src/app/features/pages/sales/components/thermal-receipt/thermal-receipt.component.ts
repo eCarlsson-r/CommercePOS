@@ -60,7 +60,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
         <div class="flex justify-between text-sm font-black pt-2">
           <span>{{ 'receipt.grandTotal' | translate }}</span>
-          <span>Rp {{ total | number }}</span>
+          <span>{{ total | currency:'IDR':'Rp. ':'1.0-0' }}</span>
         </div>
       </div>
 
@@ -70,13 +70,13 @@ import { TranslateModule } from '@ngx-translate/core';
         @for (p of payments; track $index) {
           <div class="flex justify-between uppercase">
             <span>{{ 'receipt.paid' | translate }} [{{ p.payment_method }}]</span>
-            <span>{{ p.amount_paid | number }}</span>
+            <span>{{ p.amount_paid | currency:'IDR':'Rp. ':'1.0-0' }}</span>
           </div>
         }
         @if (change > 0) {
           <div class="flex justify-between font-bold">
             <span>{{ 'receipt.change' | translate }}</span>
-            <span>{{ change | number }}</span>
+            <span>{{ change | currency:'IDR':'Rp. ':'1.0-0' }}</span>
           </div>
         }
       </div>
