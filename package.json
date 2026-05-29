@@ -1,12 +1,12 @@
 {
   "name": "commerce-pos",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "ng": "ng",
-    "start": "node scripts/set-env.js && ng serve",
-    "build": "node scripts/set-env.js && ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "node scripts/set-env.cjs && vite",
+    "build": "node scripts/set-env.cjs && vite build",
+    "watch": "vite build --watch",
+    "test": "vitest"
   },
   "prettier": {
     "printWidth": 100,
@@ -48,6 +48,8 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@analogjs/platform": "^2.5.2",
+    "@analogjs/router": "^2.5.2",
     "@angular/build": "^21.1.0",
     "@angular/cli": "^21.1.0",
     "@angular/compiler-cli": "^21.1.0",
@@ -58,6 +60,7 @@
     "tailwindcss": "^4.1.18",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "~5.9.2",
+    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.0.8"
   }
 }
