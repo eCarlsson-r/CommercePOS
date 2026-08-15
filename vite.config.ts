@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => ({
     target: ['es2020'],
   },
   resolve: {
-    mainFields: ['module'],
+    mainFields: ['module', 'browser', 'main'],
   },
   plugins: [
     analog({
